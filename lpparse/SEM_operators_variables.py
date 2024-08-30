@@ -80,7 +80,7 @@ class OperatorVariableModule:
         return False
 
     def update(self, idx, criteria):
-        self.inventory[idx].update(criteria)
+        self.inventory[idx].update_contents(criteria)
 
     def project(self, ps, idx):
         self.inventory[idx] = self.speaker_model.narrow_semantics.default_attributes(ps, 'OP')

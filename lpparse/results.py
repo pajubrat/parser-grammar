@@ -90,6 +90,9 @@ class Results:
         self.recorded_steps.append((self.step_number, ps.copy(), information))
         self.step_number += 1
 
+    def get_results_by_title(self, title):
+        return [item[1] for item in self.recorded_steps if item[2] == title]
+
     def recorded_step(self, index):
         return self.recorded_steps[index][0], self.recorded_steps[index][1], self.recorded_steps[index][2]
 

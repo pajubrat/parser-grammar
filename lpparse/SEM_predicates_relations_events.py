@@ -21,7 +21,7 @@ class PredicatesRelationsEvents:
         return self.inventory[idx]
 
     def update_discourse_inventory(self, idx, criteria):
-        self.inventory[idx].update(criteria)
+        self.inventory[idx].update_contents(criteria)
 
     def project(self, X, idx):
         log(f'\n\t\t\tProject {X.label()}-event ({idx}, PRE)')

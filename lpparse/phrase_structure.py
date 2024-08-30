@@ -7,7 +7,7 @@ from support import log, set_logging
 
 class PhraseStructure:
     speaker_model = None
-    major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'a', 'A', 'v', 'V', 'Pass',
+    major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'C/fin', 'a', 'A', 'v', 'V', 'Pass',
                   'VA/inf', 'T', 'Fin', 'Agr',
                   'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
                   'FORCE', 'EXPL', 'Adv', 'Pr',

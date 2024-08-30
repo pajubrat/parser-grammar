@@ -25,7 +25,7 @@ class GlobalCognition:
         return self.inventory[idx]
 
     def update_discourse_inventory(self, idx, criteria):
-        self.inventory[str(idx)].update(criteria)
+        self.inventory[str(idx)].update_contents(criteria)
 
     def project(self, X, semantic_object_dict):
         return self.create_object({'Semantic space': 'GLOBAL',

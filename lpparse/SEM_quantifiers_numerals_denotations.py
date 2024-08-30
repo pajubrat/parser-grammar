@@ -30,7 +30,7 @@ class QuantifiersNumeralsDenotations:
         return self.inventory[idx]
 
     def update_discourse_inventory(self, idx, criteria):
-        self.inventory[idx].update(criteria)
+        self.inventory[idx].update_contents(criteria)
 
     def object_presentation(self, X):
         if X.referential():
@@ -142,15 +142,17 @@ class QuantifiersNumeralsDenotations:
         for i in self.inventory.keys():
             if i == idx:
                 break
-            if i != idx:
-                if self.coreference(i, idx):                          # If X and Y co-refer, they must have the same binding index
-                    self.inventory[i]['BindingIndexes'] = {chr(int(i)+96)}
-                    self.inventory[idx]['BindingIndexes'] = {chr(int(i)+96)}
-                if self.overlapping_reference(i, idx):                # If X and Y overlap in denotation, both binding indexes are shown
-                    self.inventory[idx]['BindingIndexes'].add(chr(int(i)+96))
+            if self.coreference(i, idx):    # If X and Y co-refer, they must have the same binding index
+                self.inventory[i]['BindingIndexes'] = {chr(int(i)+96)}
+                self.inventory[idx]['BindingIndexes'] = {chr(int(i)+96)}
+                log(f'===>{i}, {idx}')
+            if self.overlapping_reference(i, idx): # If X and Y overlap in denotation, both binding indexes are shown
+                self.inventory[idx]['BindingIndexes'].add(chr(int(i)+96))
 
     def coreference(self, idx1, idx2):
-        return next((False for a in self.all_assignments if a[idx1] != a[idx2] and a['weight'] > 0), True)
+        assignments = [a for a in self.all_assignments if a['weight'] > 0]
+        disjoint_assignments = [a for a in assignments if a[idx1] != a[idx2]]
+        return assignments and not disjoint_assignments
 
     def disjoint_reference(self, idx1, idx2):
         return next((False for a in self.all_assignments if a[idx1] == a[idx2] and a['weight'] > 0), True)

@@ -263,7 +263,7 @@ class MainMenu(tk.Menu):
         file_menu.add_command(label='Load Study...', command=self._event('<<LoadStudy>>'))
         file_menu.add_command(label='Save Study As...', command=self._event('<<SaveStudy>>'))
         file_menu.add_separator()
-        file_menu.add_command(label='Load gPhrase Structure...', command=self._event('<<LoadPhraseStructure>>'))
+        file_menu.add_command(label='Load GPS...', command=self._event('<<LoadPhraseStructure>>'))
         file_menu.add_separator()
         file_menu.add_command(label='Preferences...', command=self.todo)
         file_menu.add_command(label='Quit', command=self.todo)
@@ -277,7 +277,8 @@ class MainMenu(tk.Menu):
         # Study menu
         study_menu = tk.Menu(self, tearoff=False, font=menu_font)
         study_menu.add_command(label='New from corpus...', command=self._event('<<CreateNewFromFile>>'))
-        study_menu.add_command(label='Run complete study', command=self._event('<<RunStudy>>'))
+        study_menu.add_command(label='Run Study', command=self._event('<<RunStudy>>'))
+        study_menu.add_command(label='Run Study and Generate Images', command=self._event('<<RunStudyWithImages>>'))
         self.add_cascade(label='Study', menu=study_menu)
 
         # Examine_results_menu

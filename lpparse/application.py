@@ -1,15 +1,15 @@
+
 from local_file_system import LocalFileSystem
 import tkinter as tk
-from tkinter import ttk, font
+from tkinter import font
 import ctypes
-from support import is_comment
 from settings import Settings
 from language_guesser import LanguageGuesser
 from speaker_model import SpeakerModel
 from GUI_main_application import DatasetView, LexiconView, SpeakerModelView, ResultsView, LogTextWindow, MainMenu
 from GUI_phrase_structure_graphics import PhraseStructureGraphics
 import pickle
-from tkinter import ttk, simpledialog, filedialog
+from tkinter import ttk, filedialog
 
 
 class Application(tk.Tk):
@@ -53,6 +53,7 @@ class Application(tk.Tk):
         # Callbacks
         self.bind('<<Analyze>>', self.analyze_one)    # This causes the first item to be analyzed automatically upon launch
         self.bind('<<RunStudy>>', self.run_study)
+        self.bind('<<RunStudyWithImages>>', self.run_study_with_images)
         self.bind('<<SaveStudy>>', self.save_study)
         self.bind('<<LoadStudy>>', self.load_study)
         self.bind('<<LoadPhraseStructure>>', self.load_phrase_structure)
@@ -105,10 +106,7 @@ class Application(tk.Tk):
         filename = filedialog.askopenfilename()
         with open(filename, 'rb') as input_file:
             # Open the phrase structure with the first speaker model available (SM contains settings)
-            PhraseStructureGraphics(self,
-                                    self.speaker_model[list(self.speaker_model.keys())[0]],
-                                    pickle.load(input_file),
-                                    filename)
+            PhraseStructureGraphics(self, speaker_model=self.speaker_model[list(self.speaker_model.keys())[0]], gps=pickle.load(input_file), title=filename)
 
     def reset_widgets(self):
         self.lexicon_frame.destroy()
@@ -135,23 +133,40 @@ class Application(tk.Tk):
         print(f'\n{self.speaker_model[language].results}')
         if self.speaker_model[language].results.syntax_semantics:
             self.results_frame.fill_with_data(self.speaker_model[language])
-            PhraseStructureGraphics(self, self.speaker_model[language], None)   # Show phrase structure images
+            PhraseStructureGraphics(self, settings=self.speaker_model[language].settings,
+                                    speaker_model=self.speaker_model[language],
+                                    gps=None,
+                                    title='')   # Show phrase structure images
         else:
             LogTextWindow(self, self.settings.external_sources["log_file_name"], 'Derivation')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())
         self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
 
-    def run_study(self, *_):
+    def run_study_with_images(self, *_):
+        image_window = PhraseStructureGraphics(self, settings=None, speaker_model=None, gps=None, title='')
+        image_window.withdraw()
+        self.run_study(image_window=image_window)
+
+    def run_study(self, *_, **kwargs):
         self.local_file_system.initialize_output_files(self.settings)
         for data_item in self.input_data.get_all():
             language = self.language_guesser.guess_language(data_item)
-            print(f'\n{data_item["index"]}. {data_item["expression"]}')
             self.speaker_model[language].parse_sentence(data_item)
-            print(f'\n{self.speaker_model[language].results}')
             self.local_file_system.save_output(self.speaker_model[language], data_item)
             if not data_item['part_of_conversation']:
                 self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
+            if kwargs and kwargs['image_window']:
+                self.save_result_image(language, kwargs['image_window'], data_item)
+            else:
+                print(self.speaker_model[language].results)
         self.local_file_system.close_all_output_files()
-
         sp = list(self.speaker_model.keys())[0]
         self.speaker_model[sp].results.report_results_to_console()
+
+    def save_result_image(self, language, image_window, data_item):
+        lf = self.speaker_model[language].results.get_results_by_title('Accepted LF-interface')
+        if lf:
+            image_window.settings = self.speaker_model[language].settings
+            image_window.draw_and_print_phrase_structure_tree(lf[0], f'{image_window.settings.retrieve("file_study_folder", "")}/{data_item["index"]} {data_item["expression"]}')
+            # image_window.update()
+

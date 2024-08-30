@@ -186,49 +186,11 @@ class GPhraseStructure(PhraseStructure):
 
     def itext(self):
         """Produces information concerning constituents when pointed at the screen by mouse"""
-        itext = self.label() + '\n\n'
-
-        if self.complex():
-
-            itext += f'Identity: {self.node_identity}\n'
-            itext += f'Reconstructed: {self.copied}\n'
-            itext += f'Adjunct Merge: {self.adjunct}\n'
-            itext += ' '.join(self.features)
-            return itext
-
+        itext = self.label() + '\n'
         if self.zero_level():
-
-            feature_dict = {'PF:': [],
-                            'LF:': [],
-                            'COMP:': [],
-                            'SPEC:': [],
-                            'PHI:': [],
-                            'Φ': [],
-                            'PROBE:': [],
-                            'ε': [],
-                            'RESIDUUM': []}
-
+            i = 0
             for feature in sorted(self.features):
-                for key in feature_dict.keys():
-                    if key in feature:
-                        feature_dict[key].append(feature)
-                        break
-                else:
-                    feature_dict['RESIDUUM'].append(feature)
-
-            i = 1
-            for category in feature_dict.keys():
-                for feature in feature_dict[category]:
-                    itext += f"{feature: <20}"
-                    if i % 2 == 0:
-                        itext += '\n'
-                    i += 1
-
-            if self.affix() and not self.right().copied:
-                itext += f'\nComplex head with structure '
-                for c in self.get_affix_list():
-                    itext += f'{c} '
-
+                itext += feature + '\n'
         return itext
 
     def find_max_label_size(self, label_size):

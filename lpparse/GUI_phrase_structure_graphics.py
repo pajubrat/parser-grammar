@@ -1,43 +1,27 @@
 import tkinter as tk
-from tkinter import simpledialog, filedialog
+from tkinter import simpledialog, filedialog, messagebox
 from phrase_structure import PhraseStructure
 from feature_processing import clean_string
 from g_phrase_structure import GPhraseStructure
 import pickle
 from GUI_gphrase_structure_canvas import PhraseStructureCanvas
-try:
-    from PIL import ImageGrab
-except ImportError or ModuleNotFoundError:
-    print('Pillow library not found: Image saving will not be available (images cropping is possible)')
 
 
 class PhraseStructureGraphics(tk.Toplevel):
     """Window hosting the canvas"""
-    def __init__(self, root, speaker_model=None, gps=None, title=None):
+    def __init__(self, root, **kwargs):
         super().__init__(root)
+        self.settings = kwargs['settings']
         self.title("Phrase Structure Graphics")
-        self.geometry(('2800x2480+'
-                       '1000+500'))
-        self.speaker_model = speaker_model
+        self.geometry(('2800x1500+100+100'))
+        self.speaker_model = kwargs['speaker_model']
         self.root = root
         self.feature_visualizations = {}
-        self.root_gps = gps  # Current phrase structure on screen
-
-        # Features shown in figures on the basis of settings
-        GPhraseStructure.draw_features = {feature.strip() for feature in root.settings.retrieve('image_parameter_features', None).split(';')}
-        mapping_str = self.root.settings.retrieve('image_parameter_visualization', '')
-        # Generate lexical feature visualizations
-        if mapping_str:
-            self.parse_feature_visualizations(mapping_str)
-
-        # Internal variables
-        self.index_of_analysis_shown = 0
-        self.phase_structure_title = None
-        self.label = None
+        self.root_gps = kwargs['gps']  # Current phrase structure on screen
 
         # Settings for drawing
         self.S = {'grid': 150,
-                  'margins': 150,
+                  'margins': 200,
                   'y_grid': 180,
                   'y_margins': 300,
                   'label_padding': 1,
@@ -45,6 +29,35 @@ class PhraseStructureGraphics(tk.Toplevel):
                   'tshrink': 1.1,
                   'arc_curvature': 1,
                   'tsize': int(150 / 3.5)}
+
+        self.canvas = PhraseStructureCanvas(self)
+        self.canvas.grid(row=4, column=0)
+        self.canvas.configure(width=2600, height=1400, background='white')
+        self.canvas.scrollregion=(0, 0, 5000, 5000)
+
+        # Scrollbars for the canvas
+        xscroll = tk.Scrollbar(self, command=self.canvas.xview, orient=tk.HORIZONTAL)
+        xscroll.grid(row=3, column=0, sticky='new')
+        yscroll = tk.Scrollbar(self, command=self.canvas.yview, orient=tk.VERTICAL)
+        yscroll.grid(row=4, column=1, sticky='nsw')
+        self.canvas.configure(yscrollcommand=yscroll.set)
+        self.canvas.configure(xscrollcommand=xscroll.set)
+
+        # Shows information about elements in the canvas
+        self.infoframe = tk.Label(self, borderwidth=20, bg='white')
+
+        # Features shown in figures on the basis of settings
+        if self.settings:
+            GPhraseStructure.draw_features = {feature.strip() for feature in self.settings.retrieve('image_parameter_features', None).split(';')}
+            mapping_str = self.settings.retrieve('image_parameter_visualization', '')
+            # Generate lexical feature visualizations
+            if mapping_str:
+                self.parse_feature_visualizations(mapping_str)
+
+        # Internal variables
+        self.index_of_analysis_shown = 0
+        self.phase_structure_title = None
+        self.label = None
 
         # Line styles
         self.line_style = {'phrasal_chain': {'fill': 'black', 'dash': None, 'width': 2},
@@ -66,7 +79,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.status_label = tk.Label(status_bar, text='')
         self.status_label.grid(row=0, column=0, sticky='E')
 
-        if self.speaker_model.results.recorded_steps:
+        if self.speaker_model and self.speaker_model.results.recorded_steps:
             self.firstButtonImage = tk.PhotoImage(file='./lpparse/image resources/first_arrow.png').subsample(2, 2)
             firstButton = tk.Button(ribbon, command=self.first_image,
                                     compound=tk.LEFT,
@@ -76,7 +89,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                                     fg='black')
             firstButton.grid(row=0, column=0, sticky=tk.E, padx=pad, pady=pad)
 
-        if self.speaker_model.results.recorded_steps:
+        if self.speaker_model and self.speaker_model.results.recorded_steps:
             self.previousButtonImage = tk.PhotoImage(file='./lpparse/image resources/left_arrow.png').subsample(2, 2)
             previousButton = tk.Button(ribbon, command=self.previous_image,
                                        image=self.previousButtonImage,
@@ -86,7 +99,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                                        fg='black')
             previousButton.grid(row=0, column=1, sticky=tk.E, padx=pad, pady=pad)
 
-        if self.speaker_model.results.recorded_steps:
+        if self.speaker_model and self.speaker_model.results.recorded_steps:
             self.nextButtonImage = tk.PhotoImage(file='./lpparse/image resources/right_arrow.png').subsample(2, 2)
             nextButton = tk.Button(ribbon, command=self.next_image,
                                    compound=tk.LEFT,
@@ -98,72 +111,70 @@ class PhraseStructureGraphics(tk.Toplevel):
 
         self.compressButtonImage = tk.PhotoImage(file='./lpparse/image resources/compress.png').subsample(2, 2)
         compressButton = tk.Button(ribbon, command=self.compress_node,
-                                compound=tk.LEFT,
-                                image=self.compressButtonImage,
-                                font=('Calibri', 20),
-                                bg='white',
-                                fg='black')
+                                   compound=tk.LEFT,
+                                   image=self.compressButtonImage,
+                                   font=('Calibri', 20),
+                                   bg='white',
+                                   fg='black')
         compressButton.grid(row=0, column=3, sticky=tk.E, padx=pad, pady=pad)
 
         self.phonologyButtonImage = tk.PhotoImage(file='./lpparse/image resources/phonology.png').subsample(2, 2)
         phonologyButton = tk.Button(ribbon, command=self.custom_phonology,
-                               compound=tk.LEFT,
-                               image=self.phonologyButtonImage,
-                               font=('Calibri', 20),
-                               bg='white',
-                               fg='black')
+                                    compound=tk.LEFT,
+                                    image=self.phonologyButtonImage,
+                                    font=('Calibri', 20),
+                                    bg='white',
+                                    fg='black')
         phonologyButton.grid(row=0, column=4, sticky=tk.E, padx=pad, pady=pad)
 
         self.glossButtonImage = tk.PhotoImage(file='./lpparse/image resources/gloss.png').subsample(2, 2)
         phonologyButton = tk.Button(ribbon, command=self.custom_gloss,
-                               compound=tk.LEFT,
-                               image=self.glossButtonImage,
-                               font=('Calibri', 20),
-                               bg='white',
-                               fg='black')
+                                    compound=tk.LEFT,
+                                    image=self.glossButtonImage,
+                                    font=('Calibri', 20),
+                                    bg='white',
+                                    fg='black')
         phonologyButton.grid(row=0, column=5, sticky=tk.E, padx=pad, pady=pad)
 
         self.no_infoButtonImage = tk.PhotoImage(file='./lpparse/image resources/no_info.png').subsample(2, 2)
         no_infoButton = tk.Button(ribbon, command=self.only_label,
-                               compound=tk.LEFT,
-                               image=self.no_infoButtonImage,
-                               font=('Calibri', 20),
-                               bg='white',
-                               fg='black')
+                                  compound=tk.LEFT,
+                                  image=self.no_infoButtonImage,
+                                  font=('Calibri', 20),
+                                  bg='white',
+                                  fg='black')
         no_infoButton.grid(row=0, column=6, sticky=tk.E, padx=pad, pady=pad)
 
         self.expandButtonImage = tk.PhotoImage(file='./lpparse/image resources/expand.png').subsample(2, 2)
         expandButton = tk.Button(ribbon, command=self.expand_phrase_structure,
-                               compound=tk.LEFT,
-                               image=self.expandButtonImage,
-                               font=('Calibri', 20),
-                               bg='white',
-                               fg='black')
+                                 compound=tk.LEFT,
+                                 image=self.expandButtonImage,
+                                 font=('Calibri', 20),
+                                 bg='white',
+                                 fg='black')
         expandButton.grid(row=0, column=7, sticky=tk.E, padx=pad, pady=pad)
 
         self.custom_labelButtonImage = tk.PhotoImage(file='./lpparse/image resources/custom_label.png').subsample(2, 2)
         expandButton = tk.Button(ribbon, command=self.use_custom_label,
-                               compound=tk.LEFT,
-                               image=self.custom_labelButtonImage,
-                               font=('Calibri', 20),
-                               bg='white',
-                               fg='black')
+                                 compound=tk.LEFT,
+                                 image=self.custom_labelButtonImage,
+                                 font=('Calibri', 20),
+                                 bg='white',
+                                 fg='black')
         expandButton.grid(row=0, column=8, sticky=tk.E, padx=pad, pady=pad)
 
         # Make host window and canvas visible
         self.focus()
         self.grid()
-        self.canvas = PhraseStructureCanvas(self)
-        self.canvas.grid(row=3, column=0)
         self.bind('<<SaveAsStructure>>', self.save_as_structure)
         self.bind('<<LoadAsStructure>>', self.load_as_structure)
+        self.bind('<<FitPhraseStructure>>', self.fit_phrase_structure)
         self.bind('<<LF>>', self.LF)
         self.bind('<<PF>>', self.PF)
         self.bind('<<NextImage>>', self.next_image)
         self.bind('<<PreviousImage>>', self.previous_image)
         self.bind('<<FirstImage>>', self.first_image)
-        self.bind('<<CaptureImage>>', self.capture_image)
-        self.bind('<<Settings>>', self.image_settings)
+        self.bind('<<CaptureImage>>', self.save_image)
         self.bind('<<CompressNode>>', self.compress_node)
         self.bind('<<DecompressNode>>', self.decompress_node)
         self.bind('<<CustomLabel>>', self.use_custom_label)
@@ -226,30 +237,36 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<OnlyLabel>>', self.only_label)
 
         # Show image
-        if gps:
+        if kwargs['gps']:
             # Single GPS
-            self.canvas.title=title
+            self.canvas.title=kwargs['title']
             self.canvas.derivational_index = 0
-            self.update()
-        elif speaker_model:
+            self.update_contents()
+        elif kwargs['speaker_model']:
             # Derivation (sequence of phrase structures)
             self.draw_phrase_structure_by_title('Accepted LF-interface')
+            self.update_contents()
+        else:
+            pass
+
+    def fit_phrase_structure(self, *_):
+        self.fit_into_screen_and_show()
 
     def change_curvature(self, *_):
         self.S['arc_curvature'] = float(simpledialog.askstring(title='Change arc curvature', prompt='Curvature (0-5)', parent=self))
-        self.update()
+        self.update_contents()
 
     def label_subscript(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.subscript = simpledialog.askstring(title='Add subscript', prompt='Subscript', parent=self)
             self.label_stack_update(gps)
-            self.update()
+            self.update_contents()
 
     def label_superscript(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.superscript = simpledialog.askstring(title='Add superscript', prompt='Superscript', parent=self)
             self.label_stack_update(gps)
-            self.update()
+            self.update_contents()
 
     def compress_all_DPs(self, *_):
         def compress_all_DPs_(gps):
@@ -261,7 +278,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 if gps.right():
                     compress_all_DPs_(gps.right())
         compress_all_DPs_(self.root_gps)
-        self.update()
+        self.update_contents()
 
     def delete_all_custom_fields(self, *_):
         def delete_all_custom_fields_(gps):
@@ -278,13 +295,13 @@ class PhraseStructureGraphics(tk.Toplevel):
                 if gps.right():
                     delete_all_custom_fields_(gps.right())
         delete_all_custom_fields_(self.root_gps)
-        self.parent.update()
+        self.parent.update_contents()
 
     def new_features(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.features = set(simpledialog.askstring(title='Linguistic features', prompt='New linguistic features', parent=self).split(';'))
             self.label_stack_update(gps)
-            self.update()
+            self.update_contents()
 
     def change_original_label(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -292,7 +309,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.features = {f for f in gps.features if not f.startswith('PF:') and not f.startswith('LF:') and f != old_label}
             gps.features.add(simpledialog.askstring(title='Change the original label', prompt='New label', parent=self))
             self.label_stack_update(gps)
-            self.update()
+            self.update_contents()
 
     def add_T(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -309,7 +326,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
-            self.update()
+            self.update_contents()
 
     def add_V(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -326,7 +343,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
-            self.update()
+            self.update_contents()
 
     def add_C(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -343,7 +360,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
-            self.update()
+            self.update_contents()
 
     def expand_complex_head(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -352,12 +369,12 @@ class PhraseStructureGraphics(tk.Toplevel):
                 affix_lst = gps.get_affix_list()
                 # If covert complex heads are set to be disabled, we enable them first
                 if [a for a in affix_lst if a.copied]:
-                    self.speaker_model.settings.store('image_parameter_covert_complex_heads', True)
+                    self.settings.store('image_parameter_covert_complex_heads', True)
                 last_affix = gps.get_affix_list()[-1]
                 last_affix.const = [H]
                 H.mother_ = last_affix
                 H.features.add('PF:X')
-                self.update()
+                self.update_contents()
 
     def reverse_presentation(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -365,7 +382,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 gps.flip = False
             else:
                 gps.flip = True
-        self.update()
+        self.update_contents()
 
     def basic_template(self, *_):
         X = GPhraseStructure(PhraseStructure())
@@ -377,7 +394,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         YP = GPhraseStructure(PhraseStructure(), Y, Z)
         XP = GPhraseStructure(PhraseStructure(), X, YP)
         self.root_gps = XP
-        self.update()
+        self.update_contents()
 
     def DP(self):
         D = GPhraseStructure(PhraseStructure())
@@ -410,19 +427,19 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def template_VP(self, *_):
         self.root_gps = self.VP()
-        self.update()
+        self.update_contents()
 
     def template_vP(self, *_):
         self.root_gps = self.vP()
-        self.update()
+        self.update_contents()
 
     def template_TP(self, *_):
         self.root_gps = self.TP()
-        self.update()
+        self.update_contents()
 
     def template_CP(self, *_):
         self.root_gps = self.CP()
-        self.update()
+        self.update_contents()
 
     def add_Head(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -438,7 +455,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
-            self.update()
+            self.update_contents()
 
     def add_XP(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -460,7 +477,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 Host.mother_ = Z
             else:
                 self.root_gps = Host
-            self.update()
+            self.update_contents()
 
     def add_DP(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -483,35 +500,35 @@ class PhraseStructureGraphics(tk.Toplevel):
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
-            self.update()
+            self.update_contents()
 
     def make_adjunct(self, *_):
         for gps in self.selected_objects_into_gps_list():
             if gps.complex():
                 gps.adjunct = True
-                self.update()
+                self.update_contents()
 
     def make_regular(self, *_):
         for gps in self.selected_objects_into_gps_list():
             if gps.complex():
                 gps.adjunct = False
-                self.update()
+                self.update_contents()
 
     def enable_head_chains(self, *_):
-        self.speaker_model.settings.data['image_parameter_head_chains'] = True
-        self.update()
+        self.settings.data['image_parameter_head_chains'] = True
+        self.update_contents()
 
     def disable_head_chains(self, *_):
-        self.speaker_model.settings.data['image_parameter_head_chains'] = False
-        self.update()
+        self.settings.data['image_parameter_head_chains'] = False
+        self.update_contents()
 
     def enable_phrasal_chains(self, *_):
-        self.speaker_model.settings.data['image_parameter_phrasal_chains'] = True
-        self.update()
+        self.settings.data['image_parameter_phrasal_chains'] = True
+        self.update_contents()
 
     def disable_phrasal_chains(self, *_):
-        self.speaker_model.settings.data['image_parameter_phrasal_chains'] = False
-        self.update()
+        self.settings.data['image_parameter_phrasal_chains'] = False
+        self.update_contents()
 
     def only_label(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -522,7 +539,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 gps.custom_phonology = '$n/a$'
                 gps.custom_features = ['$n/a$']
                 self.label_stack_update(gps)
-                self.update()
+                self.update_contents()
 
     def clear_content(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -533,7 +550,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 gps.custom_gloss = None
                 gps.custom_phonology = None
                 self.label_stack_update(gps)
-                self.update()
+                self.update_contents()
 
     def recalibrate(self, *_):
         self.draw_phrase_structure()
@@ -567,7 +584,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         filename = filedialog.askopenfilename()
         with open(filename, 'rb') as input_file:
             self.root_gps = pickle.load(input_file)
-            self.update()
+            self.update_contents()
 
     def expand_phrase_structure(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -579,19 +596,19 @@ class PhraseStructureGraphics(tk.Toplevel):
                 Y.mother_ = gps
                 gps.const = [X, Y]
                 gps.features = set()
-                self.update()
+                self.update_contents()
 
     def shrink_phrase_structure(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.const = []
-        self.update()
+        self.update_contents()
 
     def shrink_into_DP(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.const = []
             gps.custom_label = 'DP'
             self.label_stack_update(gps)
-        self.update()
+        self.update_contents()
 
     def delete_phrase_structure(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -612,13 +629,14 @@ class PhraseStructureGraphics(tk.Toplevel):
                 else:
                     preserved_sister.mother_ = None
                     self.root_gps = preserved_sister
-        self.update()
+        self.update_contents()
 
-    def update(self):
-        self.root_gps.initialize_logical_space()
-        self.root_gps.remove_overlap()
+    def update_contents(self, recalculate=True, x_offset=0, y_offset=0):
+        if recalculate:
+            self.root_gps.initialize_logical_space()
+            self.root_gps.remove_overlap()
         self.recalculate_labels(self.root_gps)
-        self.canvas.redraw(self.root_gps)
+        self.canvas.redraw(self.root_gps, False, x_offset, y_offset)
 
     def recalculate_labels(self, gps):
         gps.generate_label_stack()
@@ -630,7 +648,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             if gps.complex():
                 gps.const.reverse()
-        self.update()
+        self.update_contents()
 
     def create_arc(self, *_):
         if len(self.canvas.selected_objects) > 1:
@@ -651,7 +669,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         for o in self.canvas.selected_objects:
             self.canvas.node_to_gps[str(o)].ID = None
         self.canvas.selected_canvas_object = None
-        self.update()
+        self.update_contents()
 
     def create_arrow(self, *_):
         if len(self.canvas.selected_objects) > 1:
@@ -780,7 +798,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.subscript = None
             gps.superscript = None
             self.label_stack_update(gps)
-        self.update()
+        self.update_contents()
 
     def empty_label(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -834,23 +852,33 @@ class PhraseStructureGraphics(tk.Toplevel):
                 antecedent, context = antecedent.split('//')
             self.feature_visualizations[antecedent] = (context, target)     #   Store the result into dictionary [A] = (C, T)
 
-    def image_settings(self, *_):
-        self.root.settings.change_settings(self, ['Image'])
-        self.draw_phrase_structure()
-
-    def capture_image(self, *_):
+    def save_image(self, *_):
+        self.fit_into_screen_and_show()
         filename = filedialog.asksaveasfilename()
+        self.save_image_as_postscript(filename)
+        messagebox.showinfo(title='Image Saving', message=f'Image Saved as {filename}.eps')
+
+    def fit_into_screen_and_show(self):
         self.lift()
-        try:
-            ImageGrab.grab(bbox=(self.canvas.winfo_rootx(), self.canvas.winfo_rooty(), self.canvas.winfo_rootx() + self.canvas.winfo_width() - 50, self.canvas.winfo_rooty() + self.canvas.winfo_height() - 150)).save(filename + '.png')
-        except:
-            print('Image saving was unsuccessful. Make sure pillow is installed or use manual screen capture.')
+        x1, y1, x2, y2 = self.canvas.bbox('all')
+        self.update_contents(False, -x1, -y1)
+        self.canvas.configure(width=2800, height=y2, background='white')
+
+    def draw_and_print_phrase_structure_tree(self, X, filename):
+        self.draw_phrase_structure_tree(X)
+        self.fit_into_screen_and_show()
+        self.update()
+        self.save_image_as_postscript(filename)
+
+    def save_image_as_postscript(self, filename=''):
+        self.canvas.postscript(file=filename + '.eps', colormode='color')
 
     def draw_phrase_structure(self):
         self.prepare_phrase_structure()
         self.canvas.delete("all")
-        spx, spy = self.prepare_canvas()
+        spx, spy = self.determine_position_of_highest_node(self.root_gps)
         self.canvas.draw_to_canvas(self.root_gps, spx, spy)
+        self.index_of_analysis_shown = 0
 
     def prepare_phrase_structure(self):
         self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, self.index_of_analysis_shown)
@@ -858,17 +886,22 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.root_gps.initialize_logical_space()
         self.root_gps.remove_overlap()
 
-    def prepare_canvas(self):
-        width, height, spx, spy = self.calculate_canvas_size(self.root_gps)
-        self.canvas.configure(width=width, height=height, background='white')
-        self.geometry(str(width) + 'x' + str(height))  # Set window size based on the input phrase structure
-        return spx, spy
-
     def LF(self, *_):
         self.draw_phrase_structure_by_title('Accepted LF-interface')
 
     def PF(self, *_):
         self.draw_phrase_structure_by_title('PF-interface')
+
+    def draw_phrase_structure_tree(self, X):
+        self.canvas.delete('all')
+        self.canvas.title = ''
+        self.canvas.derivational_index = 0
+        gps = GPhraseStructure(X)
+        self.root_gps = gps
+        self.root_gps.initialize_logical_space()
+        self.root_gps.remove_overlap()
+        spx, spy = self.determine_position_of_highest_node(self.root_gps)
+        self.canvas.draw_to_canvas(self.root_gps, spx, spy)
 
     def draw_phrase_structure_by_title(self, title):
         if self.speaker_model.results.recorded_steps:
@@ -892,18 +925,12 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def first_image(self, *_):
         if self.speaker_model.results.recorded_steps:
-            self.index_of_analysis_shown = 0
             self.draw_phrase_structure()
 
-    def calculate_canvas_size(self, gps):
+    def determine_position_of_highest_node(self, gps):
         """Determines the canvas size on the basis of the phrase structure object"""
         left_x, right_x, depth = gps.find_boundaries(0, 0, 0)
-        width = 2200    # Default size = A4 width
-        ps_width = (abs(left_x) + abs(right_x)) * self.S['grid'] + 2 * self.S['margins']
-        if ps_width > width:    # Make more room if necessary
-            width = ps_width
-        ps_height = depth * self.S['y_grid'] + self.S['y_margins'] + gps.label_size() * self.S['tsize'] * gps.find_max_label_size(0)
-        return int(width), int(ps_height), abs(left_x) * self.S['grid'] + self.S['margins'], self.S['y_grid'] / 2
+        return abs(left_x) * self.S['grid'] + self.S['margins'], self.S['y_grid'] / 4
 
     def get_ps_from_speaker_model(self, speaker_model, index):
         """Returns the phrase Cstructure object to be drawn, None otherwise"""
@@ -926,8 +953,12 @@ class GraphicsMenu(tk.Menu):
         file_menu.config(font=menu_font)
         file_menu.add_command(label='Load...', command=self._event('<<LoadAsStructure>>'))
         file_menu.add_command(label='Save As...', command=self._event('<<SaveAsStructure>>'))
-        file_menu.add_command(label='Capture Image Into File...', command=self._event('<<CaptureImage>>'))
+        file_menu.add_command(label='Save Postscript Image...', command=self._event('<<CaptureImage>>'))
         self.add_cascade(label='File', underline=0, menu=file_menu)
+
+        image_properties_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        image_properties_menu.add_command(label='Fit Phrase Structure', command=self._event('<<FitPhraseStructure>>'))
+        self.add_cascade(label='Image', menu=image_properties_menu)
 
         # Select image menu
         select_image = tk.Menu(self, tearoff=False, font=menu_font)
@@ -936,7 +967,7 @@ class GraphicsMenu(tk.Menu):
         select_image.add_command(label='Next image', command=self._event('<<NextImage>>'))
         select_image.add_command(label='Previous image', command=self._event('<<PreviousImage>>'))
         select_image.add_command(label='First image', command=self._event('<<FirstImage>>'))
-        self.add_cascade(label='Image properties', menu=select_image)
+        self.add_cascade(label='Source image', menu=select_image)
 
         # Node menu
         node = tk.Menu(self, tearoff=False, font=menu_font)
@@ -1022,7 +1053,10 @@ class GraphicsMenu(tk.Menu):
         ps.add_command(label='Shrink', command=self._event('<<ShrinkPhraseStructure>>'))
         ps.add_command(label='Shrink Into DP', command=self._event('<<ShrinkDP>>'))
         ps.add_command(label='Delete', command=self._event('<<DeletePhraseStructure>>'))
-        ps.add_command(label='Recover original', command=self._event('<<Recalibrate>>'))
+        ps.add_command(label='Recover Original', command=self._event('<<Recalibrate>>'))
+        submenu_mark_special = tk.Menu(ps, tearoff=False, font=menu_font)
+        submenu_mark_special.add_command(label='Break Constituency (not functional)', command=self._event('<<BreakConstituency>>'))
+        ps.add_cascade(label='Special Marking...', menu=submenu_mark_special)
         ps.add_separator()
         ps.add_command(label='Flip (structure)', command=self._event('<<ReversePhraseStructure>>'))
         ps.add_command(label='Flip (presentation)', command=self._event('<<ReversePresentation>>'))
@@ -1062,14 +1096,3 @@ class GraphicsMenu(tk.Menu):
         templates_menu.add_command(label='TP', command=self._event('<<TemplateTP>>'))
         templates_menu.add_command(label='CP', command=self._event('<<TemplateCP>>'))
         self.add_cascade(label='Templates', menu=templates_menu)
-
-        # Settings menu
-        settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
-        settings_menu.add_command(label='Image settings...', command=self._event('<<Settings>>'))
-        self.add_cascade(label='Settings', menu=settings_menu)
-
-    def todo(self):
-        pass
-
-    def print(self):
-        pass
