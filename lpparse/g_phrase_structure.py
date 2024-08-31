@@ -5,6 +5,8 @@ class GPhraseStructure(PhraseStructure):
     """Phrase Structure class that has additional properties related to tree drawing"""
 
     draw_features = {}
+    image_parameter_phrasal_complex_heads = False
+    image_parameter_covert_complex_heads = False
 
     def __init__(self, source=None, left=None, right=None):
         super().__init__(left, right)
@@ -14,9 +16,18 @@ class GPhraseStructure(PhraseStructure):
         self.adjunct = source.adjunct
         self.identity = source.identity
         self.copied = source.copied
+        self.phrasal_zero = source.phrasal_zero
         self.flip = False
+
+        self.custom_label = None
+
         if not source.terminal():
-            self.create_constituents([GPhraseStructure(const) for const in source.const])
+            if GPhraseStructure.image_parameter_phrasal_complex_heads and source.zero_level() and len(source.const) > 0:
+                self.create_constituents([GPhraseStructure(const) for const in self.complex_head_transform(source).const])
+                self.relabel()
+                self.phrasal_zero = True
+            else:
+                self.create_constituents([GPhraseStructure(const) for const in source.const])
 
         # Special properties
         self.x = 0
@@ -24,7 +35,6 @@ class GPhraseStructure(PhraseStructure):
         self.X = 0
         self.Y = 0
         self.Y_offset = 0
-        self.custom_label = None
         self.subscript = None
         self.superscript = None
         self.custom_phonology = None
@@ -41,6 +51,40 @@ class GPhraseStructure(PhraseStructure):
         self.custom_arrows = []
         self.ellipsis = None
         self.ID = None
+
+    def complex_head_transform(self, X):
+        M = X.mother()
+        C = None
+
+        for x in X.get_affix_list()[::-1]:
+            x.const = []
+            if not C:
+                C = x
+            else:
+                C = PhraseStructure(C, x)
+                if not GPhraseStructure.image_parameter_covert_complex_heads:
+                    if C.right().copied:
+                        C.features.add(C.right().label())
+                        C.features.add(C.right().index())
+                        C.features.add('create_head_chain_here')
+                        C.const = []
+                    elif C.left().copied:
+                        C.left().features.add('create_head_chain_here')
+                        C.left().copied = False
+
+        if X.left():
+            M.const = [M.right(), C]
+        else:
+            M.const = [C, M.left()]
+        C.mother_ = M
+        return C
+
+    def relabel(GX):
+        if GX.left():
+            GX.left().relabel()
+        if GX.right():
+            GX.right().relabel()
+            GX.custom_label = GX.right().label() + '°'
 
     # Allows left-right flipping during image creation
     def left(self):
@@ -63,10 +107,6 @@ class GPhraseStructure(PhraseStructure):
             x = x.mother_
         return lst
 
-    def find_head_chain(self):
-        if self.zero_level() and self.is_left() and self.affix() and self.affix().copied and self.mother_:
-            return self.mother_.right().find_constituent_with_index(self.affix().index())
-
     def find_Agree(self):
         if self.zero_level() and self.is_left() and 'ΦLF' in self.features:
             pass
@@ -74,6 +114,8 @@ class GPhraseStructure(PhraseStructure):
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
         self.head_chain_target = self.find_head_chain()
+        if self.find_nonstandard_head_chain():
+            self.head_chain_target = self.find_nonstandard_head_chain()
         if self.complex():
             self.left().x = self.x - 1
             self.left().y = self.y + 1
@@ -104,9 +146,12 @@ class GPhraseStructure(PhraseStructure):
 
     def remove_overlap(self):
         """Stretches child nodes apart if their offspring create overlap"""
+        # Horizontal overlap
         if self.complex():
             self.left().remove_overlap()
             self.right().remove_overlap()
+
+            # Remove horizontal overlap from each row
             overlap = 0
             LC_right_boundary = self.left().boundary_points()
             RC_left_boundary = self.right().boundary_points()
@@ -118,6 +163,36 @@ class GPhraseStructure(PhraseStructure):
             if overlap > 0:
                 self.left().move_x(-overlap/2)
                 self.right().move_x(overlap/2)
+
+            # Remove vertical overlap from each column (i.e. high label stack overlaps with constituent below)
+            # This brute force algorithm is inefficient (todo)
+            lst = self.left().rich_labels() # Find high labels from LEFT that can in principle overlap
+            for node in lst:
+                if self.right().vertical_overlap(node): # find overlaps from RIGHT
+                    self.left().move_x(-0.5)            # and if found, stretch
+                    self.right().move_x(0.5)
+
+    def rich_labels(self):
+        lst = []
+        if self.left():
+            lst += self.left().rich_labels()
+        if self.right():
+            lst += self.right().rich_labels()
+        if self.label_size() > 2:
+            lst.append(self)
+        return lst
+
+    def vertical_overlap(self, node):
+        if self.x == node.x and self.y == node.y + 1:
+            return True
+        if self.left():
+            Z = self.left().vertical_overlap(node)
+            if Z:
+                return True
+        if self.right():
+            Z = self.right().vertical_overlap(node)
+            if Z:
+                return Z
 
     def move_x(self, amount):
         """Moves a node and its offspring"""

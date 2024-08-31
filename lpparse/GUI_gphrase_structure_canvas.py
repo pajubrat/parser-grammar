@@ -9,8 +9,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.S = parent.S
         self.title = None
         self.derivational_index = None
-        self.selected_objects = []   # selected objects
-        self.selected_logical_object = None   # logical node selection (can be independent of image objects)
+        self.selected_objects = []   # selected (logical, phrase structure) objects
         self.parent = parent
         self.configure(scrollregion=(0, 0, 5000, 5000))
         self.node_to_gps = {}
@@ -44,8 +43,7 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def _key_press(self, event):
         if self.selected_objects:
-            for sel in self.selected_objects:
-                gps = self.node_to_gps[str(sel)]  # Get the phrase structure constituent
+            for gps in self.selected_objects:
                 if event.keysym == 'Left':
                     gps.move_x(-0.5)
                 if event.keysym == 'Right':
@@ -58,34 +56,24 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def _on_mouse_click(self, *_):
         if self.find_withtag('current'):
-            self.selected_objects = [self.find_withtag('current')[0]]
-            if self.gettags('current')[0] == 'node':
-                self.selected_logical_object = self.node_to_gps[str(self.selected_objects[0])]
-                self.selected_logical_object.ID = self.find_withtag('current')[0]
+            cur = self.find_withtag('current')[0]
+            self.selected_objects = [self.node_to_gps[str(cur)]]
         else:
-            for o in self.selected_objects:
-                self.node_to_gps[str(o)].ID = None
-            self.selected_canvas_object = None
             self.selected_objects = []
+            self.selected_canvas_object = None
         self.parent.update_contents(False)
 
     def _on_ctrl_mouse_click(self, *_):
         if self.find_withtag('current'):
             if self.gettags('current')[0] == 'node':
-                o = self.find_withtag('current')[0]
-                self.selected_objects.append(o)
-                self.selected_logical_object = self.node_to_gps[str(o)]
-                self.selected_logical_object.ID = self.find_withtag('current')[0]
+                self.selected_objects.append(self.node_to_gps[str(self.find_withtag('current')[0])])
         else:
-            for o in self.selected_objects:
-                self.node_to_gps[str(o)].ID = None
-            self.selected_canvas_object = None
+            self.selected_objects = []
         self.parent.update_contents(False)
 
     def _show_info(self, *_):
         if self.find_withtag('current'):
             selected = self.find_withtag('current')[0]
-            X, Y = self.coords(selected)
             tag = self.gettags('current')[0]
             if tag == 'node':
                 gps = self.node_to_gps[str(selected)]
@@ -117,10 +105,9 @@ class PhraseStructureCanvas(tk.Canvas):
         gps.generate_label_stack()
 
         # Determine the color of label and node information
-        if gps.ID in self.selected_objects:
+        color = 'black'
+        if gps in self.selected_objects:
             color = 'red'
-        else:
-            color = 'black'
 
         if gps.complex():
             self.create_complex_node(gps, X1, Y1, spx, spy, S, color)
@@ -148,6 +135,7 @@ class PhraseStructureCanvas(tk.Canvas):
 
         # Map node to the underlying constituent
         self.node_to_gps[str(ID)] = gps
+        gps.ID = ID
 
         # Add Y-offset (lower boundary), for chain drawing etc.
         gps.Y_offset = S['tsize']
@@ -239,11 +227,11 @@ class PhraseStructureCanvas(tk.Canvas):
         for j, affix in enumerate(gps.get_affix_list(), start=1):
 
             # Do not reproduce copies if blocked by settings
-            if affix.copied and self.parent.settings.retrieve('image_parameter_covert_complex_heads', False):
+            if affix.copied and not self.parent.settings.retrieve('image_parameter_covert_complex_heads', False):
                 break
 
             # Do not produce affixes if blocked by settings
-            if j > 1 and self.parent.settings.retrieve('image_parameter_complex_heads', True):
+            if j > 1 and not self.parent.settings.retrieve('image_parameter_complex_heads', True):
                 break
 
             # Generate the label text (label + phonological exponent + gloss)
@@ -297,6 +285,7 @@ class PhraseStructureCanvas(tk.Canvas):
 
                 # Add the node to the mapping from nodes to affixes
                 self.node_to_gps[str(ID)] = affix
+                affix.ID = str(ID)
 
                 # Add events to the first element (i == 0 when producing the label)
                 if i == 0:
@@ -331,13 +320,13 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def draw_custom_arrows(self, gps):
         if len(gps.custom_arrows) > 0:
-            for target, label in gps.custom_arrows:
-                self.draw_arrow(gps, target, label)
+            for target, label, arrow_type in gps.custom_arrows:
+                self.draw_arrow(gps, target, label, arrow_type)
         if gps.complex() and not gps.compressed:
             self.draw_custom_arrows(gps.left())
             self.draw_custom_arrows(gps.right())
 
-    def draw_arrow(self, source, target, label):
+    def draw_arrow(self, source, target, label, arrow_type):
 
         Y_offset = 75
 
@@ -366,7 +355,7 @@ class PhraseStructureCanvas(tk.Canvas):
 
         self.create_line((X1, Y1), (X2, Y2), (X3, Y3), (X4, Y4),
                          dash=self.parent.line_style['arrow']['dash'],
-                         arrow='last',
+                         arrow=arrow_type,
                          arrowshape=(2, 20, 20),
                          width=self.parent.line_style['arrow']['width'], smooth=False, tag='arrow',
                          fill=self.parent.line_style['arrow']['fill'])

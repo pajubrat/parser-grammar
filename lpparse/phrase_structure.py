@@ -7,7 +7,7 @@ from support import log, set_logging
 
 class PhraseStructure:
     speaker_model = None
-    major_cats = ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'C/fin', 'a', 'A', 'v', 'V', 'Pass',
+    major_cats = ['@', '√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'C/fin', 'a', 'A', 'v', 'V', 'Pass',
                   'VA/inf', 'T', 'Fin', 'Agr',
                   'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
                   'FORCE', 'EXPL', 'Adv', 'Pr',
@@ -98,6 +98,7 @@ class PhraseStructure:
         self.active_in_syntactic_working_memory = True
         self.adjunct = False
         self.copied = False
+        self.phrasal_zero = False
         self.identity = 0
         self.node_identity = self.create_node_identity()
         self.internal = False
@@ -132,7 +133,7 @@ class PhraseStructure:
         return len(X.const) > 1
 
     def zero_level(X):
-        return len(X.const) < 2
+        return len(X.const) < 2 or X.phrasal_zero
 
     def is_left(X):
         return X.mother() and X.mother().left() == X
@@ -1054,6 +1055,7 @@ class PhraseStructure:
         ps_.adjunct = X.adjunct
         ps_.internal = X.internal
         ps_.copied = X.copied
+        ps_.phrasal_zero = X.phrasal_zero
         ps_.identity = X.identity
         ps_.node_identity = X.node_identity
         ps_.create_constituents([x.copy() for x in X.const])
@@ -1101,14 +1103,28 @@ class PhraseStructure:
         return new_ps.get_node(X.top().get_index(target))
 
     # Support ----------------------------------------------------------------------
-    def find_constituent_with_index(X, idx):
-        if X.index() == idx:
+    def find_constituent_with_index(X, idx, Y):
+        if X.index() == idx and X != Y:
             return X
         if X.complex():
             for x in X.const:
-                const = x.find_constituent_with_index(idx)
+                const = x.find_constituent_with_index(idx, Y)
                 if const:
                     return const
+
+    def first_dominating_complex_node(X):
+        while X.mother():
+            if not X.mother().zero_level() and not X.mother().phrasal_zero and X.is_left():
+                return X.sister()
+            X = X.mother()
+
+    def find_nonstandard_head_chain(self):
+        if self.check({'create_head_chain_here'}) and self.first_dominating_complex_node():
+            return self.first_dominating_complex_node().find_constituent_with_index(self.index(), self)
+
+    def find_head_chain(self):
+        if self.affix() and self.affix().index() and self.left():
+            return self.sister().find_constituent_with_index(self.affix().index(), self)
 
     def find_constituent_with_identity(X, ps, identity):
         if X.identity == identity and X != ps:
@@ -1248,11 +1264,7 @@ class PhraseStructure:
                 return f'[{X.left()} {X.right()}]' + chain_index_str
 
     def get_phonological_string(X):
-        pfs = ''.join(sorted([f[3:] for f in X.features if f[:2] == 'PF']))
-        if X.affix():
-            if not X.affix().copied:
-                return f'({X.affix().get_phonological_string()} {pfs})°'
-        return pfs
+        return ''.join(sorted([f[3:] for f in X.features if f[:2] == 'PF']))
 
     def tidy_names(X, counter):
         def rebaptize(X, old_identity, new_identity):

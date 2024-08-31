@@ -27,11 +27,12 @@ class PhraseStructureGraphics(tk.Toplevel):
                   'label_padding': 1,
                   'text_spacing': 1.5,
                   'tshrink': 1.1,
-                  'arc_curvature': 1,
+                  'arc_curvature': 3,
                   'tsize': int(150 / 3.5)}
 
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=4, column=0)
+        self.canvas.focus_set()
         self.canvas.configure(width=2600, height=1400, background='white')
         self.canvas.scrollregion=(0, 0, 5000, 5000)
 
@@ -164,8 +165,8 @@ class PhraseStructureGraphics(tk.Toplevel):
         expandButton.grid(row=0, column=8, sticky=tk.E, padx=pad, pady=pad)
 
         # Make host window and canvas visible
-        self.focus()
         self.grid()
+
         self.bind('<<SaveAsStructure>>', self.save_as_structure)
         self.bind('<<LoadAsStructure>>', self.load_as_structure)
         self.bind('<<FitPhraseStructure>>', self.fit_phrase_structure)
@@ -177,6 +178,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<CaptureImage>>', self.save_image)
         self.bind('<<CompressNode>>', self.compress_node)
         self.bind('<<DecompressNode>>', self.decompress_node)
+        self.bind('<<MoveUp>>', self.move_up)
+        self.bind('<<MoveDown>>', self.move_down)
+        self.bind('<<MoveLeft>>', self.move_left)
+        self.bind('<<MoveRight>>', self.move_right)
         self.bind('<<CustomLabel>>', self.use_custom_label)
         self.bind('<Alt-l>', self.use_custom_label)
         self.bind('<<DefaultLabel>>', self.default_label)
@@ -199,6 +204,9 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<EmptyText>>', self.empty_text)
         self.bind('<<CreateArc>>', self.create_arc)
         self.bind('<<DeleteDependencies>>', self.delete_dependencies)
+        self.bind('<<CreateForwardArrow>>', self.create_forward_arrow)
+        self.bind('<<CreateBackwardArrow>>', self.create_backward_arrow)
+        self.bind('<<CreateBidirectionalArrow>>', self.create_bidirectional_arrow)
         self.bind('<<CreateArrow>>', self.create_arrow)
         self.bind('<<CreateNamedArrow>>', self.create_named_arrow)
         self.bind('<<ChangeCurvature>>', self.change_curvature)
@@ -237,6 +245,8 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<OnlyLabel>>', self.only_label)
 
         # Show image
+        GPhraseStructure.image_parameter_phrasal_complex_heads = self.settings.retrieve('image_parameter_phrasal_complex_heads', False)
+        GPhraseStructure.image_parameter_covert_complex_heads = self.settings.retrieve('image_parameter_phrasal_complex_heads', False)
         if kwargs['gps']:
             # Single GPS
             self.canvas.title=kwargs['title']
@@ -634,7 +644,7 @@ class PhraseStructureGraphics(tk.Toplevel):
     def update_contents(self, recalculate=True, x_offset=0, y_offset=0):
         if recalculate:
             self.root_gps.initialize_logical_space()
-            self.root_gps.remove_overlap()
+        self.root_gps.remove_overlap()
         self.recalculate_labels(self.root_gps)
         self.canvas.redraw(self.root_gps, False, x_offset, y_offset)
 
@@ -666,20 +676,30 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.deselect_all()
 
     def deselect_all(self):
-        for o in self.canvas.selected_objects:
-            self.canvas.node_to_gps[str(o)].ID = None
-        self.canvas.selected_canvas_object = None
+        self.canvas.selected_objects = []
         self.update_contents()
 
+    def create_forward_arrow(self, *_):
+        self.create_arrow_('last')
+
+    def create_backward_arrow(self, *_):
+        self.create_arrow_('first')
+
+    def create_bidirectional_arrow(self, *_):
+        self.create_arrow_('both')
+
     def create_arrow(self, *_):
+        self.create_arrow_('none')
+
+    def create_arrow_(self, arrowtype):
         if len(self.canvas.selected_objects) > 1:
-            for i, gps_ID in enumerate(self.canvas.selected_objects):
+            for i, gps in enumerate(self.canvas.selected_objects):
                 if i < len(self.canvas.selected_objects) - 1:
-                    source_gps = self.canvas.node_to_gps[str(gps_ID)]
-                    target_gps = self.canvas.node_to_gps[str(self.canvas.selected_objects[i + 1])]
-                    source_gps.custom_arrows.append((target_gps, self.label))
+                    source_gps = gps
+                    target_gps = self.canvas.selected_objects[i + 1]
+                    source_gps.custom_arrows.append((target_gps, self.label, arrowtype))
+            self.update_contents()
         self.deselect_all()
-        self.canvas.redraw(self.root_gps)
 
     def delete_dependencies(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -815,7 +835,6 @@ class PhraseStructureGraphics(tk.Toplevel):
     def label_stack_update(self, gps):
         gps.generate_label_stack()
         self.canvas.redraw(gps.top())
-        self.canvas.focus_force()
 
     def compress_node(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -862,7 +881,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.lift()
         x1, y1, x2, y2 = self.canvas.bbox('all')
         self.update_contents(False, -x1, -y1)
-        self.canvas.configure(width=2800, height=y2, background='white')
+        if x2 - x1 > 2800:
+            width = x2 - x1
+        else:
+            width = 2800
+        self.canvas.configure(width=width, height=y2, background='white')
 
     def draw_and_print_phrase_structure_tree(self, X, filename):
         self.draw_phrase_structure_tree(X)
@@ -937,6 +960,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         if index < len(speaker_model.results.recorded_steps):
             return speaker_model.results.recorded_step(index)
 
+
 class GraphicsMenu(tk.Menu):
     def _event(self, sequence):
         def callback(*_):
@@ -973,13 +997,21 @@ class GraphicsMenu(tk.Menu):
         node = tk.Menu(self, tearoff=False, font=menu_font)
         node.add_command(label='Compress', command=self._event('<<CompressNode>>'))
         node.add_command(label='Decompress', command=self._event('<<DecompressNode>>'))
+
+        submenu_Move = tk.Menu(node, tearoff=0, font=menu_font)
+        submenu_Move.add_command(label='Up', underline=0, command=self._event('<<MoveUP>>'))
+        submenu_Move.add_command(label='Right', underline=0, command=self._event('<<MoveRight>>'))
+        submenu_Move.add_command(label='Down', underline=0, command=self._event('<<MoveDown>>'))
+        submenu_Move.add_command(label='Left', underline=0, command=self._event('<<MoveLeft>>'))
+        node.add_cascade(label='Move..', underline=0, menu=submenu_Move)
+
         node.add_separator()
         node.add_command(label='Clear', command=self._event('<<ClearNode>>'))
         node.add_command(label='Only label', command=self._event('<<OnlyLabel>>'))
 
         # Submenu for Label
         submenu_Node_Label = tk.Menu(node, tearoff=0, font=menu_font)
-        submenu_Node_Label.add_command(label='New', command=self._event('<<CustomLabel>>'))
+        submenu_Node_Label.add_command(label='New', underline=0, command=self._event('<<CustomLabel>>'))
         submenu_Node_Label.add_command(label='Original', command=self._event('<<DefaultLabel>>'))
         submenu_Node_Label.add_command(label='Empty', command=self._event('<<EmptyLabel>>'))
         node.add_cascade(label='Custom label...', underline=0, menu=submenu_Node_Label)
@@ -1028,12 +1060,18 @@ class GraphicsMenu(tk.Menu):
         arc.add_command(label='Curved', command=self._event('<<CreateArc>>'))
         arc.add_command(label='Change Curvature', command=self._event('<<ChangeCurvature>>'))
         arc.add_separator()
-        arc.add_command(label='Arrow', command=self._event('<<CreateArrow>>'))
+
+        arc_submenu = tk.Menu(arc, tearoff=False, font=menu_font)
+        arc_submenu.add_command(label='Forward', command=self._event('<<CreateForwardArrow>>'))
+        arc_submenu.add_command(label='Backward', command=self._event('<<CreateBackwardArrow>>'))
+        arc_submenu.add_command(label='Bidirectional', command=self._event('<<CreateBidirectionalArrow>>'))
+        arc_submenu.add_command(label='No direction', command=self._event('<<CreateArrow>>'))
+        arc.add_cascade(label='Chain...', menu=arc_submenu)
+
         arc.add_command(label='Named Arrow', command=self._event('<<CreateNamedArrow>>'))
         arc.add_separator()
         arc.add_command(label='Delete', command=self._event('<<DeleteDependencies>>'))
         self.add_cascade(label='Dependency', menu=arc)
-
 
         ps = tk.Menu(self, tearoff=False, font=menu_font)
         # Submenu Add...

@@ -130,7 +130,7 @@ class QuantifiersNumeralsDenotations:
                 stri += ' ' + relevant_content(X)
 
             # Create binding tags at the end of referential expressions
-            if X.mother() and X.is_right() and X.sister().get_idx_tuple('QND'):
+            if X.mother() and X.is_right() and X.sister() and X.sister().get_idx_tuple('QND'):
                 idx = X.sister().get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f'[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
