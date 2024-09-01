@@ -19,11 +19,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.root = root
         self.feature_visualizations = {}
         self.root_gps = kwargs['gps']  # Current phrase structure on screen
-        self.original_gps = kwargs['gps']   # Store the original (to reset)
-        if kwargs['gps']:
-            self.show_whole_derivation = False
-        else:
-            self.show_whole_derivation = True
+        self.original_gps = self.root_gps
 
         # Settings for drawing
         self.S = {'grid': 150,
@@ -33,7 +29,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                   'label_padding': 1,
                   'text_spacing': 1.5,
                   'tshrink': 1.1,
-                  'arc_curvature': 1,
+                  'arc_curvature': 2,
                   'tsize': int(150 / 3.5)}
 
         self.canvas = PhraseStructureCanvas(self)
@@ -184,6 +180,9 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<CaptureImage>>', self.save_image)
         self.bind('<<CompressNode>>', self.compress_node)
         self.bind('<<DecompressNode>>', self.decompress_node)
+        self.bind('<<SqueezeNode>>', self.squeeze_node)
+        self.bind('<<WidenNode>>', self.widen_node)
+        self.bind('<<MakeSymmetric>>', self.make_symmetric)
         self.bind('<<MoveUp>>', self.move_up)
         self.bind('<<MoveDown>>', self.move_down)
         self.bind('<<MoveLeft>>', self.move_left)
@@ -228,6 +227,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<ExpandComplexHead>>', self.expand_complex_head)
         self.bind('<<ShrinkPhraseStructure>>', self.shrink_phrase_structure)
         self.bind('<<ShrinkDP>>', self.shrink_into_DP)
+        self.bind('<<ShrinkAllDPs>>', self.shrink_all_DPs)
         self.bind('<<DeletePhraseStructure>>', self.delete_phrase_structure)
         self.bind('<<MakeAdjunct>>', self.make_adjunct)
         self.bind('<<MakeRegular>>', self.make_regular)
@@ -239,8 +239,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<MoveRight>>', self.move_right)
         self.bind('<<Recalibrate>>', self.recalibrate)
         self.bind('<<ClearNode>>', self.clear_content)
-        self.bind('<<EnableHeadChains>>', self.enable_head_chains)
-        self.bind('<<DisableHeadChains>>', self.disable_head_chains)
         self.bind('<<EnablePhrasalChains>>', self.enable_phrasal_chains)
         self.bind('<<DisablePhrasalChains>>', self.disable_phrasal_chains)
         self.bind('<<BasicTemplate>>', self.basic_template)
@@ -251,6 +249,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<OnlyLabel>>', self.only_label)
         self.bind('<<ComplexHeadStyle_Stack>>', self.complex_head_style_stack)
         self.bind('<<ComplexHeadStyle_Standard>>', self.complex_head_style_standard)
+        self.bind('<<ShowHeadsAll>>', self.covert_heads_enable)
+        self.bind('<<ShowHeadsNoCopies>>', self.covert_heads_disable)
+        self.bind('<<EnableHeadChains>>', self.enable_head_chains)
+        self.bind('<<DisableHeadChains>>', self.disable_head_chains)
+        self.bind('<<ShowFeatures>>', self.show_features)
 
         # Show image
         self.initialize_and_show_image()
@@ -261,19 +264,21 @@ class PhraseStructureGraphics(tk.Toplevel):
     def initialize_and_show_image(self):
         """
         Initializes settings and canvas and selects the phrase structure to be imagined on the basis
-        of whether we want to edit single image (loaded from file) or examine whole derivation (output from
-        the model). This function is also called if the user changed settings.
+        of whether we want to edit single image (loaded from file), examine whole derivation (output from
+        the model) or do nothing (image provided later). This function is also called if the user changed settings.
         """
-        GPhraseStructure.image_parameter_phrasal_complex_heads = self.settings.retrieve('image_parameter_phrasal_complex_heads', False)
-        GPhraseStructure.image_parameter_covert_complex_heads = self.settings.retrieve('image_parameter_phrasal_complex_heads', False)
         self.canvas.delete('all')
-        if self.show_whole_derivation:
+        GPhraseStructure.image_parameter_phrasal_complex_heads = self.root.settings.retrieve('image_parameter_phrasal_complex_heads', False)
+        GPhraseStructure.image_parameter_covert_complex_heads = self.root.settings.retrieve('image_parameter_covert_complex_heads', False)
+        if self.speaker_model:
             # Derivation (sequence of phrase structures, whole output from the model)
             self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
-        else:
+        elif self.root_gps:
             # Single GPS (usually loaded from separate file)
             self.canvas.title=self.image_title
             self.canvas.derivational_index = 0
+        else:
+            pass    # Canvas is prepared but there will be no image
 
     def draw_phrase_structure(self, X):
         """Deletes content from the canvas and draws X on it"""
@@ -303,6 +308,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             return speaker_model.results.recorded_step(index)
 
     def draw_and_save_phrase_structure_tree_as_postscript(self, X, filename):
+        print(filename)
         self.canvas.delete('all')
         self.canvas.title = ''
         self.canvas.derivational_index = 0
@@ -326,6 +332,32 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     # ---------------------------------------------------------------------------------
     # Menu actions
+
+    def squeeze_node(self, *_):
+        for gps in self.canvas.selected_objects:
+            if gps.complex():
+                gps.left().move_x(0.5)
+                gps.right().move_x(-0.5)
+        self.canvas.redraw(self.root_gps)
+
+    def widen_node(self, *_):
+        for gps in self.canvas.selected_objects:
+            if gps.complex():
+                gps.left().move_x(-0.5)
+                gps.right().move_x(+0.5)
+        self.canvas.redraw(self.root_gps)
+
+    def make_symmetric(self, *_):
+        for gps in self.canvas.selected_objects:
+            if gps.complex():
+                l = gps.x - gps.left().x
+                r = gps.right().x - gps.x
+                if l < r:
+                    gps.right().move_x(-(r-l))
+                else:
+                    gps.left().move_x(l-r)
+        self.canvas.redraw(self.root_gps)
+
 
     def LF(self, *_):
         self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
@@ -352,6 +384,21 @@ class PhraseStructureGraphics(tk.Toplevel):
             self.label_stack_update(gps)
             self.update_contents()
 
+    def shrink_all_DPs(self, *_):
+        def shrink_all_DPs_(gps):
+            if {'D', 'φ'} & gps.head().features:
+                gps.const = []
+                gps.custom_label = 'DP'
+                gps.copied = False
+                self.label_stack_update(gps)
+            else:
+                if gps.left():
+                    shrink_all_DPs_(gps.left())
+                if gps.right():
+                    shrink_all_DPs_(gps.right())
+        shrink_all_DPs_(self.root_gps)
+        self.update_contents(True)
+
     def compress_all_DPs(self, *_):
         def compress_all_DPs_(gps):
             if {'D', 'φ'} & gps.head().features:
@@ -362,7 +409,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 if gps.right():
                     compress_all_DPs_(gps.right())
         compress_all_DPs_(self.root_gps)
-        self.update_contents()
+        self.update_contents(False)
 
     def delete_all_custom_fields(self, *_):
         def delete_all_custom_fields_(gps):
@@ -598,14 +645,6 @@ class PhraseStructureGraphics(tk.Toplevel):
                 gps.adjunct = False
                 self.update_contents()
 
-    def enable_head_chains(self, *_):
-        self.settings.data['image_parameter_head_chains'] = True
-        self.update_contents()
-
-    def disable_head_chains(self, *_):
-        self.settings.data['image_parameter_head_chains'] = False
-        self.update_contents()
-
     def enable_phrasal_chains(self, *_):
         self.settings.data['image_parameter_phrasal_chains'] = True
         self.update_contents()
@@ -691,6 +730,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             gps.const = []
             gps.custom_label = 'DP'
+            gps.copied = False
             self.label_stack_update(gps)
         self.update_contents()
 
@@ -904,14 +944,14 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas.redraw(gps.top())
 
     def selected_objects_into_gps_list(self):
-        return [self.canvas.node_to_gps[str(obj)] for obj in self.canvas.selected_objects]
+        return self.canvas.selected_objects
 
     def label_stack_update(self, gps):
         gps.generate_label_stack()
-        self.canvas.redraw(gps.top())
+        self.canvas.redraw(self.root_gps)
 
     def compress_node(self, *_):
-        for gps in self.selected_objects_into_gps_list():
+        for gps in self.canvas.selected_objects:
             # Compress the object
             gps.compressed = True
         self.canvas.redraw(gps.top())
@@ -976,16 +1016,41 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def complex_head_style_stack(self, *_):
         self.root.settings.set('image_parameter_phrasal_complex_heads', False)
+        GPhraseStructure.image_parameter_phrasal_complex_heads = False
         self.root_gps = self.original_gps
         self.update_settings()
 
     def complex_head_style_standard(self, *_):
         self.root.settings.set('image_parameter_phrasal_complex_heads', True)
+        GPhraseStructure.image_parameter_phrasal_complex_heads = True
+        self.update_settings()
+
+    def covert_heads_enable(self, *_):
+        self.root.settings.set('image_parameter_covert_complex_heads', True)
+        GPhraseStructure.image_parameter_covert_complex_heads = True
+        self.update_settings()
+
+    def covert_heads_disable(self, *_):
+        self.root.settings.set('image_parameter_covert_complex_heads', False)
+        GPhraseStructure.image_parameter_covert_complex_heads = False
+        self.update_settings()
+
+    def enable_head_chains(self, *_):
+        self.root.settings.set('image_parameter_head_chains', True)
+        self.update_settings()
+
+    def disable_head_chains(self, *_):
+        self.root.settings.set('image_parameter_head_chains', False)
+        self.update_settings()
+
+    def show_features(self, *_):
+        features =  simpledialog.askstring(title='Show features', prompt='Features', parent=self)
+        self.root.settings.set('image_parameter_features', features)
+        GPhraseStructure.draw_features = {f.strip() for f in features.split(';')}
         self.update_settings()
 
     def update_settings(self):
         self.settings = self.root.settings
-        GPhraseStructure.image_parameter_phrasal_complex_heads = self.root.settings.data['image_parameter_phrasal_complex_heads']
         self.initialize_and_show_image()
 
 # -------------------------------------------------------------------------------------------
@@ -1027,6 +1092,12 @@ class GraphicsMenu(tk.Menu):
         node = tk.Menu(self, tearoff=False, font=menu_font)
         node.add_command(label='Compress', command=self._event('<<CompressNode>>'))
         node.add_command(label='Decompress', command=self._event('<<DecompressNode>>'))
+
+        submenu_Shape = tk.Menu(node, tearoff=0, font=menu_font)
+        submenu_Shape.add_command(label='Squeeze', underline=0, command=self._event('<<SqueezeNode>>'))
+        submenu_Shape.add_command(label='Widen', underline=0, command=self._event('<<WidenNode>>'))
+        submenu_Shape.add_command(label='Make Symmetric', underline=0, command=self._event('<<MakeSymmetric>>'))
+        node.add_cascade(label='Constituent Shape...', underline=0, menu=submenu_Shape)
 
         submenu_Move = tk.Menu(node, tearoff=0, font=menu_font)
         submenu_Move.add_command(label='Up', underline=0, command=self._event('<<MoveUP>>'))
@@ -1118,6 +1189,7 @@ class GraphicsMenu(tk.Menu):
         submenu_expand_ps.add_command(label='Phrase', command=self._event('<<ExpandPhraseStructure>>'))
         submenu_expand_ps.add_command(label='Complex head', command=self._event('<<ExpandComplexHead>>'))
         ps.add_cascade(label='Expand...', menu=submenu_expand_ps)
+
         ps.add_command(label='Shrink', command=self._event('<<ShrinkPhraseStructure>>'))
         ps.add_command(label='Shrink Into DP', command=self._event('<<ShrinkDP>>'))
         ps.add_command(label='Delete', command=self._event('<<DeletePhraseStructure>>'))
@@ -1134,22 +1206,13 @@ class GraphicsMenu(tk.Menu):
         ps.add_separator()
         ps.add_command(label='Compress all DPs', command=self._event('<<CompressAllDPs>>'))
         ps.add_command(label='Bare bones', command=self._event('<<DeleteAllCustomFields>>'))
+        ps.add_command(label='Shrink all DPs', command=self._event('<<ShrinkAllDPs>>'))
         ps.add_separator()
         ps.add_command(label='Move Up', command=self._event('<<MoveUp>>'))
         ps.add_command(label='Move Down', command=self._event('<<MoveDown>>'))
         ps.add_command(label='Move Left', command=self._event('<<MoveLeft>>'))
         ps.add_command(label='Move Right', command=self._event('<<MoveRight>>'))
         self.add_cascade(label='Phrase Structure', menu=ps)
-
-        # Chain visibility menu
-        chains_menu = tk.Menu(self, tearoff=False, font=menu_font)
-        # Submenu for chains
-        submenu_chains_phrasal = tk.Menu(chains_menu, tearoff=False, font=menu_font)
-        submenu_chains_phrasal = tk.Menu(chains_menu, tearoff=0, font=menu_font)
-        submenu_chains_phrasal.add_command(label='Enable', command=self._event('<<EnablePhrasalChains>>'))
-        submenu_chains_phrasal.add_command(label='Disable', command=self._event('<<DisablePhrasalChains>>'))
-        chains_menu.add_cascade(label='Phrasal chains...', menu=submenu_chains_phrasal)
-        self.add_cascade(label='Chains', menu=chains_menu)
 
         # Templates menu
         templates_menu = tk.Menu(self, tearoff=False, font=menu_font)
@@ -1172,12 +1235,19 @@ class GraphicsMenu(tk.Menu):
         submenu_chains_head = tk.Menu(settings_menu, tearoff=0, font=menu_font)
         submenu_chains_head.add_command(label='Enable', command=self._event('<<EnableHeadChains>>'))
         submenu_chains_head.add_command(label='Disable', command=self._event('<<DisableHeadChains>>'))
-        settings_menu.add_cascade(label='Head chains visibility...', menu=submenu_chains_head)
+        settings_menu.add_cascade(label='Head chains...', menu=submenu_chains_head)
         # Submenu for head chain visibility 2
         submenu_covert_heads = tk.Menu(settings_menu, tearoff=0, font=menu_font)
-        submenu_covert_heads.add_command(label='Enable', command=self._event('<<CovertHeadsEnable>>'))
-        submenu_covert_heads.add_command(label='Disable', command=self._event('<<CovertHeadsDisable>>'))
-        settings_menu.add_cascade(label='Covert heads...', menu=submenu_covert_heads)
+        submenu_covert_heads.add_command(label='All', command=self._event('<<ShowHeadsAll>>'))
+        submenu_covert_heads.add_command(label='No Copies', command=self._event('<<ShowHeadsNoCopies>>'))
+        settings_menu.add_cascade(label='Show Heads...', menu=submenu_covert_heads)
         settings_menu.add_separator()
+        settings_menu.add_command(label='Show Features...', command=self._event('<<ShowFeatures>>'))
+        settings_menu.add_separator()
+        # Chain visibility menu
+        submenu_chains_phrasal = tk.Menu(settings_menu, tearoff=False, font=menu_font)
+        submenu_chains_phrasal.add_command(label='Enable', command=self._event('<<EnablePhrasalChains>>'))
+        submenu_chains_phrasal.add_command(label='Disable', command=self._event('<<DisablePhrasalChains>>'))
+        settings_menu.add_cascade(label='Phrasal chains...', menu=submenu_chains_phrasal)
 
         self.add_cascade(label='Settings', menu=settings_menu)

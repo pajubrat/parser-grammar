@@ -71,7 +71,6 @@ class GPhraseStructure(PhraseStructure):
                     elif C.left().copied:
                         C.left().features.add('create_head_chain_here')
                         C.left().copied = False
-
         if M:
             if X.left():
                 M.const = [M.right(), C]
@@ -125,32 +124,14 @@ class GPhraseStructure(PhraseStructure):
             self.right().y = self.y + 1
             self.right().initialize_logical_space()
 
-    def boundary_points(self):
-        boundary = set()
-        boundary.add((self.x, self.y))
-        if self.complex() and (not self.mother() or not self.mother().compressed):
-            boundary = boundary | self.left().boundary_points()
-            boundary = boundary | self.right().boundary_points()
-        return boundary
-
-    def find_boundaries(self, left_x, right_x, depth):
-        if self.x < left_x:
-            left_x = self.x
-        if self.x > right_x:
-            right_x = self.x
-        if self.y > depth:
-            depth = self.y
-        if self.complex() and (not self.mother() or not self.mother().compressed):
-            left_x, right_x, depth = self.left().find_boundaries(left_x, right_x, depth)
-            left_x, right_x, depth = self.right().find_boundaries(left_x, right_x, depth)
-        return left_x, right_x, depth
-
     def remove_overlap(self):
         """Stretches child nodes apart if their offspring create overlap"""
         # Horizontal overlap
         if self.complex():
-            self.left().remove_overlap()
-            self.right().remove_overlap()
+            if not self.left().compressed:
+                self.left().remove_overlap()
+            if not self.right().compressed:
+                self.right().remove_overlap()
 
             # Remove horizontal overlap from each row
             overlap = 0
@@ -167,11 +148,36 @@ class GPhraseStructure(PhraseStructure):
 
             # Remove vertical overlap from each column (i.e. high label stack overlaps with constituent below)
             # This brute force algorithm is inefficient (todo)
-            lst = self.left().rich_labels() # Find high labels from LEFT that can in principle overlap
-            for node in lst:
-                if self.right().vertical_overlap(node): # find overlaps from RIGHT
-                    self.left().move_x(-0.5)            # and if found, stretch
-                    self.right().move_x(0.5)
+            if not self.left().compressed:
+                lst = self.left().rich_labels() # Find high labels from LEFT that can in principle overlap
+                for node in lst:
+                    if not self.right().compressed:
+                        if self.right().vertical_overlap(node): # find overlaps from RIGHT
+                            self.left().move_x(-0.5)            # and if found, stretch
+                            self.right().move_x(0.5)
+
+    def boundary_points(self):
+        boundary = set()
+        if self.compressed:
+            boundary.add((self.x, self.y))
+        else:
+            boundary.add((self.x, self.y))
+            if self.complex() and not self.compressed:
+                boundary = boundary | self.left().boundary_points()
+                boundary = boundary | self.right().boundary_points()
+        return boundary
+
+    def find_boundaries(self, left_x, right_x, depth):
+        if self.x < left_x:
+            left_x = self.x
+        if self.x > right_x:
+            right_x = self.x
+        if self.y > depth:
+            depth = self.y
+        if self.complex() and not self.compressed:
+            left_x, right_x, depth = self.left().find_boundaries(left_x, right_x, depth)
+            left_x, right_x, depth = self.right().find_boundaries(left_x, right_x, depth)
+        return left_x, right_x, depth
 
     def rich_labels(self):
         lst = []
