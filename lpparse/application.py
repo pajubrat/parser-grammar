@@ -167,6 +167,6 @@ class Application(tk.Tk):
         lf = self.speaker_model[language].results.get_results_by_title('Accepted LF-interface')
         if lf:
             image_window.settings = self.speaker_model[language].settings
-            image_window.draw_and_print_phrase_structure_tree(lf[0], f'{image_window.settings.retrieve("file_study_folder", "")}/{data_item["index"]} {data_item["expression"]}')
+            image_window.draw_and_save_phrase_structure_tree_as_postscript(lf[0], f'{image_window.settings.retrieve("file_study_folder", "")}/{data_item["index"]} {data_item["expression"]}')
             # image_window.update()
 

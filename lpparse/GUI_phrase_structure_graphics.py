@@ -15,9 +15,15 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.title("Phrase Structure Graphics")
         self.geometry(('2800x1500+100+100'))
         self.speaker_model = kwargs['speaker_model']
+        self.image_title = kwargs['title']
         self.root = root
         self.feature_visualizations = {}
         self.root_gps = kwargs['gps']  # Current phrase structure on screen
+        self.original_gps = kwargs['gps']   # Store the original (to reset)
+        if kwargs['gps']:
+            self.show_whole_derivation = False
+        else:
+            self.show_whole_derivation = True
 
         # Settings for drawing
         self.S = {'grid': 150,
@@ -27,7 +33,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                   'label_padding': 1,
                   'text_spacing': 1.5,
                   'tshrink': 1.1,
-                  'arc_curvature': 3,
+                  'arc_curvature': 1,
                   'tsize': int(150 / 3.5)}
 
         self.canvas = PhraseStructureCanvas(self)
@@ -243,21 +249,89 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<TemplateTP>>', self.template_TP)
         self.bind('<<TemplateCP>>', self.template_CP)
         self.bind('<<OnlyLabel>>', self.only_label)
+        self.bind('<<ComplexHeadStyle_Stack>>', self.complex_head_style_stack)
+        self.bind('<<ComplexHeadStyle_Standard>>', self.complex_head_style_standard)
 
         # Show image
+        self.initialize_and_show_image()
+
+    # ----------------------------------------------------------------------------------------------
+    # Image drawing functions
+
+    def initialize_and_show_image(self):
+        """
+        Initializes settings and canvas and selects the phrase structure to be imagined on the basis
+        of whether we want to edit single image (loaded from file) or examine whole derivation (output from
+        the model). This function is also called if the user changed settings.
+        """
         GPhraseStructure.image_parameter_phrasal_complex_heads = self.settings.retrieve('image_parameter_phrasal_complex_heads', False)
         GPhraseStructure.image_parameter_covert_complex_heads = self.settings.retrieve('image_parameter_phrasal_complex_heads', False)
-        if kwargs['gps']:
-            # Single GPS
-            self.canvas.title=kwargs['title']
-            self.canvas.derivational_index = 0
-            self.update_contents()
-        elif kwargs['speaker_model']:
-            # Derivation (sequence of phrase structures)
-            self.draw_phrase_structure_by_title('Accepted LF-interface')
-            self.update_contents()
+        self.canvas.delete('all')
+        if self.show_whole_derivation:
+            # Derivation (sequence of phrase structures, whole output from the model)
+            self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
         else:
-            pass
+            # Single GPS (usually loaded from separate file)
+            self.canvas.title=self.image_title
+            self.canvas.derivational_index = 0
+
+    def draw_phrase_structure(self, X):
+        """Deletes content from the canvas and draws X on it"""
+        self.canvas.delete('all')
+        self.root_gps = GPhraseStructure(X.top().copy())
+        self.root_gps.initialize_logical_space()
+        self.root_gps.remove_overlap()
+        spx, spy = self.determine_position_of_highest_node(self.root_gps)
+        self.canvas.draw_to_canvas(self.root_gps, spx, spy)
+
+    def draw_phrase_structure_from_derivation(self, **kwargs):
+        """Retrieves step from the derivation and calls the drawing function to present it on canvas"""
+        if 'step' in kwargs:
+            self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, kwargs['step'])
+        if 'title' in kwargs:
+            for step, item in enumerate(self.speaker_model.results.recorded_steps):
+                if item[2] == kwargs['title']:
+                    self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, step)
+        else:
+            self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, self.index_of_analysis_shown)
+        self.index_of_analysis_shown = self.canvas.derivational_index
+        self.draw_phrase_structure(X)
+
+    def get_ps_from_speaker_model(self, speaker_model, index):
+        """Returns the phrase structure object to be drawn, None otherwise"""
+        if index < len(speaker_model.results.recorded_steps):
+            return speaker_model.results.recorded_step(index)
+
+    def draw_and_save_phrase_structure_tree_as_postscript(self, X, filename):
+        self.canvas.delete('all')
+        self.canvas.title = ''
+        self.canvas.derivational_index = 0
+        self.draw_phrase_structure(X)
+        self.fit_into_screen_and_show()
+        self.update()
+        self.save_image_as_postscript(filename)
+
+    def fit_into_screen_and_show(self):
+        self.lift()
+        x1, y1, x2, y2 = self.canvas.bbox('all')
+        self.update_contents(False, -x1, -y1)
+        if x2 - x1 > 2800:
+            width = x2 - x1
+        else:
+            width = 2800
+        self.canvas.configure(width=width, height=y2, background='white')
+
+    def save_image_as_postscript(self, filename=''):
+        self.canvas.postscript(file=filename + '.eps', colormode='color')
+
+    # ---------------------------------------------------------------------------------
+    # Menu actions
+
+    def LF(self, *_):
+        self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
+
+    def PF(self, *_):
+        self.draw_phrase_structure_from_derivation(title='PF-interface')
 
     def fit_phrase_structure(self, *_):
         self.fit_into_screen_and_show()
@@ -563,7 +637,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 self.update_contents()
 
     def recalibrate(self, *_):
-        self.draw_phrase_structure()
+        self.draw_phrase_structure_from_derivation(step=self.canvas.derivational_index)
 
     def move_up(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -877,89 +951,45 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.save_image_as_postscript(filename)
         messagebox.showinfo(title='Image Saving', message=f'Image Saved as {filename}.eps')
 
-    def fit_into_screen_and_show(self):
-        self.lift()
-        x1, y1, x2, y2 = self.canvas.bbox('all')
-        self.update_contents(False, -x1, -y1)
-        if x2 - x1 > 2800:
-            width = x2 - x1
-        else:
-            width = 2800
-        self.canvas.configure(width=width, height=y2, background='white')
-
-    def draw_and_print_phrase_structure_tree(self, X, filename):
-        self.draw_phrase_structure_tree(X)
-        self.fit_into_screen_and_show()
-        self.update()
-        self.save_image_as_postscript(filename)
-
-    def save_image_as_postscript(self, filename=''):
-        self.canvas.postscript(file=filename + '.eps', colormode='color')
-
-    def draw_phrase_structure(self):
-        self.prepare_phrase_structure()
-        self.canvas.delete("all")
-        spx, spy = self.determine_position_of_highest_node(self.root_gps)
-        self.canvas.draw_to_canvas(self.root_gps, spx, spy)
-        self.index_of_analysis_shown = 0
-
-    def prepare_phrase_structure(self):
-        self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, self.index_of_analysis_shown)
-        self.root_gps = GPhraseStructure(X.top())
-        self.root_gps.initialize_logical_space()
-        self.root_gps.remove_overlap()
-
-    def LF(self, *_):
-        self.draw_phrase_structure_by_title('Accepted LF-interface')
-
-    def PF(self, *_):
-        self.draw_phrase_structure_by_title('PF-interface')
-
-    def draw_phrase_structure_tree(self, X):
-        self.canvas.delete('all')
-        self.canvas.title = ''
-        self.canvas.derivational_index = 0
-        gps = GPhraseStructure(X)
-        self.root_gps = gps
-        self.root_gps.initialize_logical_space()
-        self.root_gps.remove_overlap()
-        spx, spy = self.determine_position_of_highest_node(self.root_gps)
-        self.canvas.draw_to_canvas(self.root_gps, spx, spy)
-
-    def draw_phrase_structure_by_title(self, title):
-        if self.speaker_model.results.recorded_steps:
-            for i, item in enumerate(self.speaker_model.results.recorded_steps):
-                if item[2] == title:
-                    self.index_of_analysis_shown = i
-                    self.draw_phrase_structure()
-                    return
-
     def next_image(self, *_):
         if self.speaker_model.results.recorded_steps:
             if self.index_of_analysis_shown < len(self.speaker_model.results.recorded_steps) - 1:
-                self.index_of_analysis_shown += 1
-                self.draw_phrase_structure()
+                self.draw_phrase_structure_from_derivatio(step=self.index_of_analysis_show + 1)
 
     def previous_image(self, *_):
         if self.speaker_model.results.recorded_steps:
             if self.index_of_analysis_shown > 0:
                 self.index_of_analysis_shown -= 1
-            self.draw_phrase_structure()
+            self.draw_phrase_structure_from_derivation(step=self.index_of_analysis_shown - 1)
 
     def first_image(self, *_):
         if self.speaker_model.results.recorded_steps:
-            self.draw_phrase_structure()
+            self.draw_phrase_structure_from_derivation(step=0)
 
     def determine_position_of_highest_node(self, gps):
         """Determines the canvas size on the basis of the phrase structure object"""
         left_x, right_x, depth = gps.find_boundaries(0, 0, 0)
         return abs(left_x) * self.S['grid'] + self.S['margins'], self.S['y_grid'] / 4
 
-    def get_ps_from_speaker_model(self, speaker_model, index):
-        """Returns the phrase Cstructure object to be drawn, None otherwise"""
-        if index < len(speaker_model.results.recorded_steps):
-            return speaker_model.results.recorded_step(index)
+    # ------------------------------------------------------------------------------------------
+    # Change of settings (from menu)
 
+    def complex_head_style_stack(self, *_):
+        self.root.settings.set('image_parameter_phrasal_complex_heads', False)
+        self.root_gps = self.original_gps
+        self.update_settings()
+
+    def complex_head_style_standard(self, *_):
+        self.root.settings.set('image_parameter_phrasal_complex_heads', True)
+        self.update_settings()
+
+    def update_settings(self):
+        self.settings = self.root.settings
+        GPhraseStructure.image_parameter_phrasal_complex_heads = self.root.settings.data['image_parameter_phrasal_complex_heads']
+        self.initialize_and_show_image()
+
+# -------------------------------------------------------------------------------------------
+# Definition for main menu
 
 class GraphicsMenu(tk.Menu):
     def _event(self, sequence):
@@ -1114,12 +1144,7 @@ class GraphicsMenu(tk.Menu):
         # Chain visibility menu
         chains_menu = tk.Menu(self, tearoff=False, font=menu_font)
         # Submenu for chains
-        submenu_chains_head = tk.Menu(chains_menu, tearoff=0, font=menu_font)
-        submenu_chains_head.add_command(label='Enable', command=self._event('<<EnableHeadChains>>'))
-        submenu_chains_head.add_command(label='Disable', command=self._event('<<DisableHeadChains>>'))
-        chains_menu.add_cascade(label='Head chains...', menu=submenu_chains_head)
         submenu_chains_phrasal = tk.Menu(chains_menu, tearoff=False, font=menu_font)
-        # Submenu for chains
         submenu_chains_phrasal = tk.Menu(chains_menu, tearoff=0, font=menu_font)
         submenu_chains_phrasal.add_command(label='Enable', command=self._event('<<EnablePhrasalChains>>'))
         submenu_chains_phrasal.add_command(label='Disable', command=self._event('<<DisablePhrasalChains>>'))
@@ -1134,3 +1159,25 @@ class GraphicsMenu(tk.Menu):
         templates_menu.add_command(label='TP', command=self._event('<<TemplateTP>>'))
         templates_menu.add_command(label='CP', command=self._event('<<TemplateCP>>'))
         self.add_cascade(label='Templates', menu=templates_menu)
+
+        # Settings menu
+        settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
+
+        #Submenu for complex head style
+        submenu_complex_head_style = tk.Menu(settings_menu, tearoff=False, font=menu_font)
+        submenu_complex_head_style.add_command(label='Stack', command=self._event('<<ComplexHeadStyle_Stack>>'))
+        submenu_complex_head_style.add_command(label='Standard', command=self._event('<<ComplexHeadStyle_Standard>>'))
+        settings_menu.add_cascade(label='Complex Head Style...', menu=submenu_complex_head_style)
+        # Submenu for head chain visibility
+        submenu_chains_head = tk.Menu(settings_menu, tearoff=0, font=menu_font)
+        submenu_chains_head.add_command(label='Enable', command=self._event('<<EnableHeadChains>>'))
+        submenu_chains_head.add_command(label='Disable', command=self._event('<<DisableHeadChains>>'))
+        settings_menu.add_cascade(label='Head chains visibility...', menu=submenu_chains_head)
+        # Submenu for head chain visibility 2
+        submenu_covert_heads = tk.Menu(settings_menu, tearoff=0, font=menu_font)
+        submenu_covert_heads.add_command(label='Enable', command=self._event('<<CovertHeadsEnable>>'))
+        submenu_covert_heads.add_command(label='Disable', command=self._event('<<CovertHeadsDisable>>'))
+        settings_menu.add_cascade(label='Covert heads...', menu=submenu_covert_heads)
+        settings_menu.add_separator()
+
+        self.add_cascade(label='Settings', menu=settings_menu)

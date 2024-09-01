@@ -69,3 +69,6 @@ class Settings:
             return self.data[key]
         else:
             return value
+
+    def set(self, key, value):
+        self.data[key] = value

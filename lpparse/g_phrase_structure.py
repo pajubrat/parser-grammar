@@ -72,11 +72,12 @@ class GPhraseStructure(PhraseStructure):
                         C.left().features.add('create_head_chain_here')
                         C.left().copied = False
 
-        if X.left():
-            M.const = [M.right(), C]
-        else:
-            M.const = [C, M.left()]
-        C.mother_ = M
+        if M:
+            if X.left():
+                M.const = [M.right(), C]
+            else:
+                M.const = [C, M.left()]
+            C.mother_ = M
         return C
 
     def relabel(GX):

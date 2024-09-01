@@ -1,48 +1,10 @@
-		Sirkku kuiva-#TA#UTU#TA#v#T/fin#prs#[V] sukkaa
-		'Sirkku dru.cau.relf.cau.prs.3sg sock.par'
 
-		Sirkku laula-#TA#T/fin#prs#[V] Merjaa
-		'Sirkku.nom sing-cau-prs-3sg'
-	
-
-# Condition C
-
-	John admires Bill
-	¦-> Binding: John[a] admire Bill[b]
-
-	he 's brother admires Bill
-	¦-> Binding: he[b] brother[a] admire Bill[b,c]
-
-	Bill said that John admires Tim
-	¦-> Binding: Bill[a] say John[b] admire Tim[c]
-
-# Condition A
-
-	John admires himself
-	¦-> Binding: John[a] admire self[a]
-
-	he 's brother admires himself
-	¦-> Binding: he[a] brother[b] admire self[b]
-
-	Bill said that John admires himself
-	¦-> Binding: Bill[a] say John[b] admire self[b]
-
-# Condition B
-
-	John admires him
-	¦-> Binding: John(1) admire him(2)
-
-	he 's brother admires him
-	¦-> Binding: he(2) brother(1) admire him(2,3)
-	
-	Bill said that John admires him
-	¦-> Binding: Bill(1) say John(2) admire him(1,3)
-
-END
 
 #
 # One morpheme
 #
+
+% John admires Mary
 
 #1. (Nominal A-infinitives are not generally possible)
 *nenä-#(t)A 

@@ -1123,7 +1123,7 @@ class PhraseStructure:
             return self.first_dominating_complex_node().find_constituent_with_index(self.index(), self)
 
     def find_head_chain(self):
-        if self.affix() and self.affix().index() and self.left():
+        if self.affix() and self.affix().index() and self.left() and self.sister():
             return self.sister().find_constituent_with_index(self.affix().index(), self)
 
     def find_constituent_with_identity(X, ps, identity):
