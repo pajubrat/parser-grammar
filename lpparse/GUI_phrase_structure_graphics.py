@@ -29,13 +29,14 @@ class PhraseStructureGraphics(tk.Toplevel):
                   'label_padding': 1,
                   'text_spacing': 1.5,
                   'tshrink': 1.1,
-                  'arc_curvature': 2,
+                  'arc_curvature': 3,
+                  'Y_offset_for_arrow': 50,
                   'tsize': int(150 / 3.5)}
 
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=4, column=0)
         self.canvas.focus_set()
-        self.canvas.configure(width=2600, height=1400, background='white')
+        self.canvas.configure(width=2480, height=1400, background='white')
         self.canvas.scrollregion=(0, 0, 5000, 5000)
 
         # Scrollbars for the canvas
@@ -273,9 +274,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         if self.speaker_model:
             # Derivation (sequence of phrase structures, whole output from the model)
             self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
+            if self.settings.retrieve('image_parameter_shrink_all_DPs', False):
+                self.shrink_all_DPs()
         elif self.root_gps:
             # Single GPS (usually loaded from separate file)
-            self.canvas.title=self.image_title
+            self.canvas.title = self.image_title
             self.canvas.derivational_index = 0
         else:
             pass    # Canvas is prepared but there will be no image
@@ -321,10 +324,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.lift()
         x1, y1, x2, y2 = self.canvas.bbox('all')
         self.update_contents(False, -x1, -y1)
-        if x2 - x1 > 2800:
+        if x2 - x1 > 2480:
             width = x2 - x1
         else:
-            width = 2800
+            width = 2480
         self.canvas.configure(width=width, height=y2, background='white')
 
     def save_image_as_postscript(self, filename=''):
@@ -357,7 +360,6 @@ class PhraseStructureGraphics(tk.Toplevel):
                 else:
                     gps.left().move_x(l-r)
         self.canvas.redraw(self.root_gps)
-
 
     def LF(self, *_):
         self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
@@ -892,7 +894,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 self.label_stack_update(gps)
                 gps.ellipsis = False
         self.deselect_all()
-        self.canvas.redraw(gps.top())
+        self.canvas.redraw(self.root_gps)
 
     def mark_ellipsis(self, *_):
         for gps in self.selected_objects_into_gps_list():

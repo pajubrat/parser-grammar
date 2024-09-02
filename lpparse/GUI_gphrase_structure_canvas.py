@@ -27,20 +27,6 @@ class PhraseStructureCanvas(tk.Canvas):
         self.bind('<KeyPress>', self._key_press)
         self.info_text = None
 
-    def draw_to_canvas(self, gps, spx, spy):
-        """Creates a canvas and draws the phrase structure object onto it"""
-        self.update_status_bar(spx)
-
-        self.info_text = self.create_text((2000, 300), state='hidden')  # Show information about selected objects
-
-        self.project_into_canvas(gps, spx, spy, self.S)
-        if self.parent.settings.retrieve('image_parameter_head_chains', True):
-            self.draw_head_chains(gps, self.S)
-        if self.parent.settings.retrieve('image_parameter_phrasal_chains', True):
-            self.draw_phrasal_chains(gps, self.S)
-        self.draw_custom_arcs(gps, self.S)
-        self.draw_custom_arrows(gps)
-
     def _key_press(self, event):
         if self.selected_objects:
             for gps in self.selected_objects:
@@ -114,16 +100,44 @@ class PhraseStructureCanvas(tk.Canvas):
         else:
             self.create_primitive_node(gps, X1, Y1, S, color)
 
+    def draw_to_canvas(self, gps, spx, spy):
+        self.update_status_bar(spx)
+        self.info_text = self.create_text((2000, 300), state='hidden')  # Show information about selected objects
+        self.project_into_canvas(gps, spx, spy, self.S)
+        self.draw_dependencies(gps)
+
+    def draw_dependencies(self, gps):
+        # head chains
+        if self.parent.settings.retrieve('image_parameter_head_chains', True) and gps.head_chain_target:
+            if gps.sister() != gps.head_chain_target or self.parent.settings.retrieve(
+                    'image_parameter_trivial_head_chains', False) or not gps.nonverbal():
+                self.draw_dependency('head_chain', gps, gps.head_chain_target)
+        # phrasal chains
+        if self.parent.settings.retrieve('image_parameter_phrasal_chains', True):
+            if gps.hasChain() and gps.sister():
+                target = gps.sister().find_node_with_identity(gps.hasChain())
+                if target:
+                    self.draw_dependency('phrasal_chain', gps, target)
+        # custom arcs
+        if len(gps.custom_arcs) > 0:
+            for endpoint, label in gps.custom_arcs:
+                self.draw_dependency('custom', gps, endpoint, label)
+        # custom arrows
+        if len(gps.custom_arrows) > 0:
+            for target, label, arrow_type in gps.custom_arrows:
+                self.draw_arrow(gps, target, label, arrow_type)
+        if gps.complex() and not gps.compressed:
+                self.draw_dependencies(gps.left())
+                self.draw_dependencies(gps.right())
+
     def create_complex_node(self, gps, X1, Y1, spx, spy, S, color):
-        # End coordinates of the left constituent line (gps.x, gps.y contain logical position)
+
         X2 = spx + gps.left().x * S['grid']
         Y2 = spy + gps.left().y * S['y_grid']
-
-        # End coordinates of the right constituent line
         X3 = spx + gps.right().x * S['grid']
         Y3 = spy + gps.right().y * S['y_grid']
 
-        text = self.feature_conversion_for_images(gps.label_stack[0][0], gps)
+        text = self.feature_conversion_for_images(gps.label_stack[0][0])
 
         # Create text holding the complex label (e.g., XP)
         ID = self.create_text((X1, Y1),
@@ -137,9 +151,6 @@ class PhraseStructureCanvas(tk.Canvas):
         self.node_to_gps[str(ID)] = gps
         gps.ID = ID
 
-        # Add Y-offset (lower boundary), for chain drawing etc.
-        gps.Y_offset = S['tsize']
-
         # Bind events to the node
         self.tag_bind(ID, '<Enter>', self._show_info)
         self.tag_bind(ID, '<Leave>', self._hide_info)
@@ -152,6 +163,8 @@ class PhraseStructureCanvas(tk.Canvas):
             self.create_line((X2, Y2 + 0), (X3, Y3 + 0), width=2, fill='black')
             text_items = 0
             X = (X2 + X3) / 2
+
+            # Add custom text below the triangle, if applicable
             if gps.custom_phonology and gps.custom_phonology != '$n/a$':
                 text_items += 1
                 Y = Y2 + text_items * S['tsize'] * S['text_spacing'] / 1.5
@@ -164,7 +177,7 @@ class PhraseStructureCanvas(tk.Canvas):
                                       font=self.label_style['PF'])
             if gps.custom_gloss and gps.custom_gloss != '$n/a$':
                 text_items += 1
-                Y = Y2 + text_items * S['tsize'] * S['text_spacing'] / 1.3
+                Y = Y2 + text_items * S['tsize'] * S['text_spacing'] / 1.5
                 ID = self.create_text((X, Y),
                                       text=f'ʻ{gps.custom_gloss}ʼ',
                                       fill=color,
@@ -184,7 +197,7 @@ class PhraseStructureCanvas(tk.Canvas):
                                       font=self.label_style['feature'])
             if gps.custom_text:
                 text_items += 1
-                Y = Y2 + text_items * S['tsize'] * S['text_spacing']
+                Y = Y2 + text_items * S['tsize'] * S['text_spacing'] / 1.5
                 ID = self.create_text((X, Y),
                                       text=gps.custom_text,
                                       fill=color,
@@ -221,39 +234,31 @@ class PhraseStructureCanvas(tk.Canvas):
         return ID
 
     def create_primitive_node(self, gps, X1, Y1, S, color):
-        Y_offset = 0    # Y_offset determines the lower boundary of the node + its label(s)
+        Y_offset = 0    # Y_offset determines the lower boundary of the node + its label(s) when adding elements
 
         # Reproduce the head and all of its affixes
         for j, affix in enumerate(gps.get_affix_list(), start=1):
-
-            # Do not reproduce copies if blocked by settings
-            if affix.copied and not self.parent.settings.retrieve('image_parameter_covert_complex_heads', False):
-                break
-
-            # Do not produce affixes if blocked by settings
-            if j > 1 and not self.parent.settings.retrieve('image_parameter_complex_heads', True):
+            # Do not reproduce affixes if blocked by settings
+            if (affix.copied and not self.parent.settings.retrieve('image_parameter_covert_complex_heads', False)) or \
+                    (j > 1 and not self.parent.settings.retrieve('image_parameter_complex_heads', True)):
                 break
 
             # Generate the label text (label + phonological exponent + gloss)
-            for i, item in enumerate(affix.label_stack):
+            for i, label_item in enumerate(affix.label_stack):
+                text = self.feature_conversion_for_images(label_item)
 
-                # Perform feature conversions (e.g., simplifications, adjustments based on theory)
-                text = self.feature_conversion_for_images(item[0], gps)
-                if text and item[1] == 'feature':
-                    text = '[' + text + ']'
-
-                if item[1] == 'gloss' and not self.parent.settings.retrieve('image_parameter_glosses', True):
+                # Do not reproduce items if blocked by settings
+                if (label_item[1] == 'gloss' and not self.parent.settings.retrieve('image_parameter_glosses', True)) or \
+                        (label_item[1] == 'PF' and not self.parent.settings.retrieve('image_parameter_words', True)):
                     continue
 
-                if item[1] == 'PF' and not self.parent.settings.retrieve('image_parameter_words', True):
-                    continue
-
-                if item[1] == 'PF' and gps.ellipsis:
+                # Elliptic phonology
+                if label_item[1] == 'PF' and gps.ellipsis:
                     style = 'PFtrace'
                 else:
-                    style = item[1]
+                    style = label_item[1]
 
-                # Create the text widget for the element
+                # Create text
                 ID = self.create_text((X1, Y1 + Y_offset),
                                       fill=color,
                                       activefill='red',
@@ -262,7 +267,8 @@ class PhraseStructureCanvas(tk.Canvas):
                                       anchor='center',
                                       font=self.label_style[style])
 
-                if item[1] == 'label' and affix.subscript:
+                # Subscript and superscript
+                if label_item[1] == 'label' and affix.subscript:
                     self.create_text((X1 + (len(text)-1) * 15 + S['grid'] / 6, Y1 + Y_offset + S['tsize'] / 4),
                                      fill=color,
                                      activefill='red',
@@ -270,8 +276,7 @@ class PhraseStructureCanvas(tk.Canvas):
                                      text = affix.subscript,
                                      anchor='w',
                                      font=self.label_style['subscript'])
-
-                if item[1] == 'label' and affix.superscript:
+                if label_item[1] == 'label' and affix.superscript:
                     self.create_text((X1 + (len(text)-1) * 15 + S['grid'] / 6, Y1 - Y_offset - S['tsize'] / 4),
                                      fill=color,
                                      activefill='red',
@@ -292,68 +297,29 @@ class PhraseStructureCanvas(tk.Canvas):
                     self.tag_bind(ID, '<Enter>', self._show_info)
                     self.tag_bind(ID, '<Leave>', self._hide_info)
 
-        # Store the offset for later use (e.g., drawing chains, agreement)
-        gps.Y_offset = Y_offset
-
-    def feature_conversion_for_images(self, text, node):
+    def feature_conversion_for_images(self, label_item):
+        text = label_item[0]
         if self.parent.settings.retrieve('image_parameter_DP_hypothesis', False):
             if text == 'φ':
                 text = 'D'
             if text == 'φP':
                 text = 'DP'
-        for feature in self.parent.feature_visualizations.keys():                               #   Stores feature conversions for images
-            if (feature.endswith('*') and text.startswith(feature[:-1])) or (feature == text):  #   wildcard (*) processing
-                context, target = self.parent.feature_visualizations[feature]                   #   context = features in the node itself, target = features to print out
-                if not context:                                                                 #   if not context, then print out target
-                    return target
-                elif set(context.split(',')) <= node.features:                                  #   additional context test, if applicable
-                    return target
-        return text                                                                             #   No change to the feature
+        if label_item[1] == 'feature':
+            return '[' + text + ']'
+        return text
 
-    def draw_custom_arcs(self, gps, S):
-        if len(gps.custom_arcs) > 0:
-            for endpoint, label in gps.custom_arcs:
-                self.draw_dependency('custom', gps, endpoint, label, S)
-        if gps.complex() and not gps.compressed:
-            self.draw_custom_arcs(gps.left(), S)
-            self.draw_custom_arcs(gps.right(), S)
-
-    def draw_custom_arrows(self, gps):
-        if len(gps.custom_arrows) > 0:
-            for target, label, arrow_type in gps.custom_arrows:
-                self.draw_arrow(gps, target, label, arrow_type)
-        if gps.complex() and not gps.compressed:
-            self.draw_custom_arrows(gps.left())
-            self.draw_custom_arrows(gps.right())
+    def get_lowered_Y_coord_for_arrow(self, source, target):
+        Y_offset = self['Y_offset_for_arrow']
+        if self.get_Y_coord(target) > self.get_Y_coord(source):
+            return self.get_Y_coord(target) + Y_offset
+        return self.get_Y_coord(source) + Y_offset
 
     def draw_arrow(self, source, target, label, arrow_type):
-
-        Y_offset = 75
-
-        source_compressed_offset = 0
-        target_compressed_offset = 0
-
-        if source.compressed or source.complex():
-            source_compressed_offset = self.S['y_grid']
-        if target.compressed or target.complex():
-            target_compressed_offset = self.S['y_grid']
-
-        # Select bottom Y
-        if target.Y + self.label_offset(target) + target_compressed_offset > source.Y + self.label_offset(source) + source_compressed_offset:
-            Yb = target.Y + Y_offset + self.label_offset(target) + target_compressed_offset
-        else:
-            Yb = source.Y + Y_offset + self.label_offset(source) + source_compressed_offset
-
-        X1 = source.X
-        Y1 = source.Y + self.label_offset(source) + source_compressed_offset
-        X2 = source.X
-        Y2 = Yb
-        X3 = target.X
-        Y3 = Yb
-        X4 = target.X
-        Y4 = target.Y + self.label_offset(target) + target_compressed_offset
-
-        self.create_line((X1, Y1), (X2, Y2), (X3, Y3), (X4, Y4),
+        coords = [(source.X, self.get_Y_coord(source)),
+                  (source.X, self.get_lowered_Y_coord_for_arrow(source, target)),
+                  (target.X, self.get_lowered_Y_coord_for_arrow(source, target)),
+                  (target.X, self.get_Y_coord(target))]
+        self.create_line(*coords,
                          dash=self.parent.line_style['arrow']['dash'],
                          arrow=arrow_type,
                          arrowshape=(2, 20, 20),
@@ -370,84 +336,40 @@ class PhraseStructureCanvas(tk.Canvas):
                              anchor='c',
                              font=self.label_style['arrow_label'])
 
-    def draw_head_chains(self, gps, S):
-        if gps.head_chain_target:
-            if gps.sister() != gps.head_chain_target or self.parent.settings.retrieve('image_parameter_trivial_head_chains', False) or not gps.nonverbal():
-                self.draw_dependency('head_chain', gps, gps.head_chain_target, S)
-        if gps.complex() and not gps.compressed:
-            self.draw_head_chains(gps.left(), S)
-            self.draw_head_chains(gps.right(), S)
-
-    def draw_phrasal_chains(self, gps, S):
-        i = gps.hasChain()
-        if i and gps.sister():
-            target = gps.sister().find_node_with_identity(i)
-            if target:
-                self.draw_dependency('phrasal_chain', gps, target, S)
-        if gps.complex() and not gps.compressed:
-            self.draw_phrasal_chains(gps.left(), S)
-            self.draw_phrasal_chains(gps.right(), S)
-
-    def draw_Agree(self, gps):
-        pass
-
     def label_offset(self, gps):
         if gps.compressed:
-            return self.S['tsize'] * 1.2 * self.compressed_label_stack(gps)
+            return self.S['tsize'] * 1.2 * self.compressed_node_label_stack(gps)
         return self.S['text_spacing'] * self.S['tsize'] * gps.label_size()
 
-    def compressed_label_stack(self, gps):
-        offset = 1
-        if gps.custom_phonology and gps.custom_phonology != '$n/a$':
-            offset += 1
-        if gps.custom_gloss and gps.custom_phonology != '$n/a$':
-            offset += 1
-        if gps.custom_features and gps.custom_phonology != '$n/a$':
-            offset += 1
-        return offset
+    def get_Y_coord(self, gps):
+        for x in gps.dominating_nodes():
+            if x.compressed:
+                return x.Y  # GPS is inside compressed node
+        if gps.complex():
+            return self.Y_coord_complex_node(gps)
+        return self.Y_coord_zero_level(gps)
 
-    def draw_dependency(self, style, source_gps, target_gps, S, text=''):
-        """Draws a dependency arc from point to point"""
+    def Y_coord_complex_node(self, gps):
+        return gps.left().Y + self.S['text_spacing'] * self.S['tsize'] * gps.label_size()
 
-        # If the target node is inside a compressed node, we do not currently draw any arc into it
-        if {x for x in target_gps.dominating_nodes() if x.compressed}:
-            return
+    def Y_coord_zero_level(self, gps):
+        x = gps
+        complex_head_Y_offset = 0
+        while x.affix() and not x.affix().copied:
+            complex_head_Y_offset += x.affix().label_size() * self.S['tsize']
+            x = x.affix()
+        return gps.Y + \
+               (self.S['text_spacing'] * self.S['tsize'] * gps.label_size()) + \
+               (self.S['text_spacing'] * complex_head_Y_offset)
 
-        X1 = source_gps.X
-        # Compressed triangles have special properties
-        if source_gps.compressed:
-            Y1 = source_gps.left().Y + self.S['label_padding'] * self.S['tsize'] * self.compressed_label_stack(source_gps)
-        elif source_gps.complex():
-            Y1 = source_gps.left().Y + self.S['label_padding'] * self.S['tsize'] * source_gps.label_size()
-        else:
-            # If X is a complex head, we put the arrow under the lower head (offset)
-            x = source_gps
-            complex_head_offset = 0
-            while x.affix() and not x.affix().copied:
-                complex_head_offset += x.affix().label_size()
-                x = x.affix()
-            Y1 = source_gps.Y + self.S['text_spacing'] * self.S['tsize'] * source_gps.label_size() + self.S['text_spacing'] * complex_head_offset * self.S['tsize']
-        X3 = target_gps.X
-        # Compressed triangles have special properties
-        if target_gps.compressed:
-            Y3 = target_gps.left().Y + self.S['text_spacing'] * self.S['tsize'] * self.compressed_label_stack(target_gps)
-        elif target_gps.complex():
-            Y3 = target_gps.left().Y + self.S['text_spacing'] * self.S['tsize'] * target_gps.label_size()
-        else:
-            # If X is a complex head, we put the arrow under the lower head (offset)
-            x = target_gps
-            complex_head_offset = 0
-            while x.affix() and not x.affix().copied:
-                complex_head_offset += x.affix().label_size()
-                x = x.affix()
-            Y3 = target_gps.Y + self.S['text_spacing'] * self.S['tsize'] * target_gps.label_size() + self.S['text_spacing'] * complex_head_offset * self.S['tsize']
-
-        # Middle point X2
-        X2 = X1 + abs(X1 - X3) / 2
-        if X1 == X3:
-            Y3 = Y3 - self.S['tsize']
-        # Middle point Y2
-        Y2 = Y3 + int(self.S['grid'] * self.S['arc_curvature'])
-
-        # Create arc
-        self.create_line((X1, Y1), (X2, Y2), (X3, Y3), splinesteps=50, dash=self.parent.line_style[style]['dash'], width=self.parent.line_style[style]['width'], smooth=True, tag=style, fill=self.parent.line_style[style]['fill'])
+    def draw_dependency(self, style, source_gps, target_gps, text=''):
+        coords = [(source_gps.X, self.get_Y_coord(source_gps)),
+                  (source_gps.X + abs(source_gps.X - target_gps.X)/2, target_gps.Y + int(self.S['grid'] * self.S['arc_curvature'])),
+                  (target_gps.X, self.get_Y_coord(target_gps))]
+        self.create_line(*coords,
+                         splinesteps=50,
+                         dash=self.parent.line_style[style]['dash'],
+                         width=self.parent.line_style[style]['width'],
+                         smooth=True,
+                         tag=style,
+                         fill=self.parent.line_style[style]['fill'])

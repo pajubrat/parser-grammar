@@ -216,6 +216,17 @@ class GPhraseStructure(PhraseStructure):
             self.right().move_y(amount)
 
     def label_size(self):
+        if not self.terminal() and GPhraseStructure.image_parameter_phrasal_complex_heads:
+            return 0            # Complex heads [X Y]^0 do not generate label stacks
+        if self.compressed:     # Compressed triangles only have custom labels
+            offset = 1
+            if self.custom_phonology and self.custom_phonology != '$n/a$':
+                offset += 1
+            if self.custom_gloss and self.custom_phonology != '$n/a$':
+                offset += 1
+            if self.custom_features and self.custom_phonology != '$n/a$':
+                offset += 1
+            return offset
         return len(self.label_stack)
 
     def generate_label_stack(self):
