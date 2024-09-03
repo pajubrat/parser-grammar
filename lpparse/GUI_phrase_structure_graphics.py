@@ -31,10 +31,13 @@ class PhraseStructureGraphics(tk.Toplevel):
                   'margins': 200,
                   'y_grid': 180,
                   'y_margins': 300,
+                  'fit_margins': 100,
+                  'canvas_width': 2480,
+                  'canvas_height': 1400,
                   'label_padding': 1,
                   'text_spacing': 1.5,
                   'tshrink': 1.1,
-                  'arc_curvature': 3,
+                  'arc_curvature': 2,
                   'Y_offset_for_arrow': 50,
                   'tsize': 42}
 
@@ -49,7 +52,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=4, column=0)
         self.canvas.focus_set()
-        self.canvas.configure(width=2480, height=1400, background='white')
+        self.canvas.configure(width=self.S['canvas_width'], height=self.S['canvas_height'], background='white')
         # Scrollbars for the canvas
         xscroll = tk.Scrollbar(self, command=self.canvas.xview, orient=tk.HORIZONTAL)
         xscroll.grid(row=3, column=0, sticky='new')
@@ -265,15 +268,16 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.update()
         self.save_image_as_postscript(filename)
 
-    def fit_into_screen_and_show(self):
+    def fit_into_screen_and_show(self, margins=0):
         self.lift()
         x1, y1, x2, y2 = self.canvas.bbox('all')
-        self.update_contents(False, -x1, -y1)
-        if x2 - x1 > 2480:
+        self.update_contents(False, margins-x1, margins-y1)
+        if x2 - x1 > self.S['canvas_width']:
             width = x2 - x1
         else:
-            width = 2480
-        self.canvas.configure(width=width, height=y2, background='white')
+            width = self.S['canvas_width']    # This matches with A4
+        height = y2 - y1 + margins * 2
+        self.canvas.configure(width=width, height=height, background='white')
 
     def save_image_as_postscript(self, filename=''):
         self.canvas.postscript(file=filename + '.eps', colormode='color')
@@ -313,7 +317,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.draw_phrase_structure_from_derivation(title='PF-interface')
 
     def fit_phrase_structure(self, *_):
-        self.fit_into_screen_and_show()
+        self.fit_into_screen_and_show(self.S['fit_margins'])
 
     def change_curvature(self, *_):
         self.S['arc_curvature'] = float(simpledialog.askstring(title='Change arc curvature', prompt='Curvature (0-5)', parent=self))
@@ -732,10 +736,10 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def create_arc(self, *_):
         if len(self.canvas.selected_objects) > 1:
-            for i, gps_ID in enumerate(self.canvas.selected_objects):
+            for i, gps in enumerate(self.canvas.selected_objects):
                 if i < len(self.canvas.selected_objects) - 1:
-                    source_gps = self.canvas.node_to_gps[str(gps_ID)]
-                    target_gps = self.canvas.node_to_gps[str(self.canvas.selected_objects[i + 1])]
+                    source_gps = gps
+                    target_gps = self.canvas.selected_objects[i + 1]
                     source_gps.custom_arcs.append((target_gps, 'label'))
         self.canvas.redraw(self.root_gps)
 
@@ -769,13 +773,11 @@ class PhraseStructureGraphics(tk.Toplevel):
                     target_gps = self.canvas.selected_objects[i + 1]
                     source_gps.custom_arrows.append((target_gps, self.label, arrowtype))
             self.update_contents()
-        self.deselect_all()
 
     def delete_dependencies(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_arcs = []
             gps.custom_arrows = []
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def custom_text(self, *_):
@@ -784,14 +786,12 @@ class PhraseStructureGraphics(tk.Toplevel):
             for gps in self.selected_objects_into_gps_list():
                 gps.custom_text = text
                 self.label_stack_update(gps)
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def empty_text(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_text = None
             self.label_stack_update(gps)
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def custom_features(self, *_):
@@ -800,21 +800,18 @@ class PhraseStructureGraphics(tk.Toplevel):
             for gps in self.selected_objects_into_gps_list():
                 gps.custom_features = features
                 self.label_stack_update(gps)
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def default_features(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_features = None
             self.label_stack_update(gps)
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def empty_features(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_features = ['$n/a$']
             self.label_stack_update(gps)
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def custom_gloss(self, *_):
@@ -823,21 +820,18 @@ class PhraseStructureGraphics(tk.Toplevel):
             for gps in self.selected_objects_into_gps_list():
                 gps.custom_gloss = gloss
                 self.label_stack_update(gps)
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def default_gloss(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_gloss = None
             self.label_stack_update(gps)
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def empty_gloss(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_gloss = '$n/a$'
             self.label_stack_update(gps)
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def custom_phonology(self, *_):
@@ -847,14 +841,12 @@ class PhraseStructureGraphics(tk.Toplevel):
                 gps.custom_phonology = phon
                 self.label_stack_update(gps)
                 gps.ellipsis = False
-        self.deselect_all()
         self.canvas.redraw(self.root_gps)
 
     def mark_ellipsis(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.ellipsis=True
             self.label_stack_update(gps)
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def default_phonology(self, *_):
@@ -862,7 +854,6 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.custom_phonology = None
             self.label_stack_update(gps)
             gps.ellipsis = False
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def empty_phonology(self, *_):
@@ -870,7 +861,6 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.custom_phonology = '$n/a$'
             self.label_stack_update(gps)
             gps.ellipsis = False
-        self.deselect_all()
         self.canvas.redraw(gps.top())
 
     def default_label(self, *_):
