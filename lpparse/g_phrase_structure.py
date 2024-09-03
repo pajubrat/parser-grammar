@@ -162,7 +162,7 @@ class GPhraseStructure(PhraseStructure):
             boundary.add((self.x, self.y))
         else:
             boundary.add((self.x, self.y))
-            if self.complex() and not self.compressed:
+            if self.complex():
                 boundary = boundary | self.left().boundary_points()
                 boundary = boundary | self.right().boundary_points()
         return boundary
@@ -230,10 +230,6 @@ class GPhraseStructure(PhraseStructure):
         return len(self.label_stack)
 
     def generate_label_stack(self):
-        """Determines the content for primitive labels"""
-        def feature_conversion(feature):
-            return feature
-
         label_stack = []
 
         # Minimum label is the label itself
@@ -243,36 +239,34 @@ class GPhraseStructure(PhraseStructure):
             else:
                 label_stack.append((self.label(), 'label'))
 
-        if self.zero_level():
+        # Phonological string
+        if not self.custom_phonology == '$n/a$':
+            if self.custom_phonology:
+                label_stack.append((self.custom_phonology, 'PF'))
+            elif not self.complex():
+                if self.get_phonological_string() and self.get_phonological_string() != self.label():
+                    label_stack.append((self.get_phonological_string(), 'PF'))
 
-            # Phonological string
-            if not self.custom_phonology == '$n/a$':
-                if self.custom_phonology:
-                    label_stack.append((self.custom_phonology, 'PF'))
-                else:
-                    if self.get_phonological_string() and self.get_phonological_string() != self.label():
-                        label_stack.append((self.get_phonological_string(), 'PF'))
+        # Gloss
+        if not self.custom_gloss == '$n/a$':
+            if self.custom_gloss:
+                label_stack.append((f"ʻ{self.custom_gloss}ʼ", 'gloss'))
+            elif not self.complex():
+                if self.gloss() and self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
+                    label_stack.append((f"ʻ{self.gloss()}ʼ", 'gloss'))
 
-            # Gloss
-            if not self.custom_gloss == '$n/a$':
-                if self.custom_gloss:
-                    label_stack.append((f"ʻ{self.custom_gloss}ʼ", 'gloss'))
-                else:
-                    if self.gloss() and self.gloss() != self.label() and self.gloss() != self.get_phonological_string():
-                        label_stack.append((f"ʻ{self.gloss()}ʼ", 'gloss'))
+        # Features
+        if not '$n/a$' in self.custom_features:
+            if self.custom_features:
+                for feature in self.custom_features:
+                    label_stack.append((feature, 'feature'))
+            elif not self.complex():
+                for feature in [x for x in self.features if x in GPhraseStructure.draw_features]:
+                    label_stack.append((f'{feature}', 'feature'))
 
-            # Features
-            if not '$n/a$' in self.custom_features:
-                if self.custom_features:
-                    for feature in self.custom_features:
-                        label_stack.append((feature, 'feature'))
-                else:
-                    for feature in [x for x in self.features if x in GPhraseStructure.draw_features]:
-                        label_stack.append((f'{feature_conversion(feature)}', 'feature'))
-
-            # Custom text
-            if self.custom_text:
-                label_stack.append((self.custom_text, 'gloss'))
+        # Custom text
+        if self.custom_text:
+            label_stack.append((self.custom_text, 'gloss'))
 
         self.label_stack = label_stack
         return label_stack

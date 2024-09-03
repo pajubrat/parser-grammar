@@ -130,7 +130,6 @@ class LexiconView(tk.LabelFrame):
         self.configure()
         self.columnconfigure(0, weight=1)
 
-
         # Create Treeview
         self.lexicon_treeview = ttk.Treeview(self, columns=['Language', 'Comment'], selectmode='browse', style='mystyle.Treeview')
         self.lexicon_treeview.heading('#0', text='Item')

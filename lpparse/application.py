@@ -106,7 +106,10 @@ class Application(tk.Tk):
         filename = filedialog.askopenfilename()
         with open(filename, 'rb') as input_file:
             # Open the phrase structure with the first speaker model available (SM contains settings)
-            PhraseStructureGraphics(self, speaker_model=self.speaker_model[list(self.speaker_model.keys())[0]], gps=pickle.load(input_file), title=filename)
+            PhraseStructureGraphics(self, speaker_model=None,
+                                    gps=pickle.load(input_file),
+                                    title=filename,
+                                    settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings)
 
     def reset_widgets(self):
         self.lexicon_frame.destroy()
