@@ -134,6 +134,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<CreateBidirectionalArrow>>', self.create_bidirectional_arrow)
         self.bind('<<CreateArrow>>', self.create_arrow)
         self.bind('<<CreateNamedArrow>>', self.create_named_arrow)
+        self.bind('<<ChangeArrowDepth>>', self.change_arrow_depth)
         self.bind('<<ChangeCurvature>>', self.change_curvature)
         self.bind('<<AddXP>>', self.add_XP)
         self.bind('<<AddDP>>', self.add_DP)
@@ -174,7 +175,9 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<EnableHeadChains>>', self.enable_head_chains)
         self.bind('<<DisableHeadChains>>', self.disable_head_chains)
         self.bind('<<ShowFeatures>>', self.show_features)
-
+        self.bind('<Control-s>', self.save)
+        self.bind('+', self.widen_node)
+        self.bind('-', self.squeeze_node)
         # Show phrase structure image
         self.initialize_and_show_image()
 
@@ -182,24 +185,46 @@ class PhraseStructureGraphics(tk.Toplevel):
     # Image drawing functions
     def create_ribbon_buttons(self):
         pad = 2
+        column = 0
         self.button_img1 = tk.PhotoImage(file='./lpparse/image resources/first_arrow.png').subsample(2, 2)
-        self.create_button(self.button_img1, self.first_image, self.ribbon, pad, 0)
+        self.create_button(self.button_img1, self.first_image, self.ribbon, pad, column)
+        column += 1
         self.button_img2 = tk.PhotoImage(file='./lpparse/image resources/left_arrow.png').subsample(2, 2)
-        self.create_button(self.button_img2, self.previous_image, self.ribbon, pad, 1)
+        self.create_button(self.button_img2, self.previous_image, self.ribbon, pad, column)
+        column += 1
         self.button_img3 = tk.PhotoImage(file='./lpparse/image resources/right_arrow.png').subsample(2, 2)
-        self.create_button(self.button_img3, self.next_image, self.ribbon, pad, 2)
+        self.create_button(self.button_img3, self.next_image, self.ribbon, pad, column)
+        column += 1
         self.button_img4 = tk.PhotoImage(file='./lpparse/image resources/compress.png').subsample(2, 2)
-        self.create_button(self.button_img4, self.compress_node, self.ribbon, pad, 3)
+        self.create_button(self.button_img4, self.compress_node, self.ribbon, pad, column)
+        column += 1
         self.button_img5 = tk.PhotoImage(file='./lpparse/image resources/phonology.png').subsample(2, 2)
-        self.create_button(self.button_img5, self.custom_phonology, self.ribbon, pad, 4)
+        self.create_button(self.button_img5, self.custom_phonology, self.ribbon, pad, column)
+        column += 1
         self.button_img6 = tk.PhotoImage(file='./lpparse/image resources/gloss.png').subsample(2, 2)
-        self.create_button(self.button_img6, self.custom_gloss, self.ribbon, pad, 5)
+        self.create_button(self.button_img6, self.custom_gloss, self.ribbon, pad, column)
+        column += 1
+        self.button_img12 = tk.PhotoImage(file='./lpparse/image resources/custom_feature.png').subsample(2, 2)
+        self.create_button(self.button_img12, self.custom_features, self.ribbon, pad, column)
+        column += 1
         self.button_img7 = tk.PhotoImage(file='./lpparse/image resources/no_info.png').subsample(2, 2)
-        self.create_button(self.button_img7, self.only_label, self.ribbon, pad, 6)
+        self.create_button(self.button_img7, self.only_label, self.ribbon, pad, column)
+        column += 1
         self.button_img8 = tk.PhotoImage(file='./lpparse/image resources/expand.png').subsample(2, 2)
-        self.create_button(self.button_img8, self.expand_phrase_structure, self.ribbon, pad, 7)
+        self.create_button(self.button_img8, self.expand_phrase_structure, self.ribbon, pad, column)
+        column += 1
+        self.button_img13 = tk.PhotoImage(file='./lpparse/image resources/DP.png').subsample(2, 2)
+        self.create_button(self.button_img13, self.shrink_into_DP, self.ribbon, pad, column)
+        column += 1
         self.button_img9 = tk.PhotoImage(file='./lpparse/image resources/custom_label.png').subsample(2, 2)
-        self.create_button(self.button_img9, self.use_custom_label, self.ribbon, pad, 8)
+        self.create_button(self.button_img9, self.use_custom_label, self.ribbon, pad, column)
+        column += 1
+        self.button_img10 = tk.PhotoImage(file='./lpparse/image resources/widen.png').subsample(2, 2)
+        self.create_button(self.button_img10, self.widen_node, self.ribbon, pad, column)
+        column += 1
+        self.button_img11 = tk.PhotoImage(file='./lpparse/image resources/squeeze.png').subsample(2, 2)
+        self.create_button(self.button_img11, self.squeeze_node, self.ribbon, pad,column)
+
 
     def create_button(self, image, command, ribbon, pad, column):
         tk.Button(ribbon, command=command,
@@ -259,7 +284,6 @@ class PhraseStructureGraphics(tk.Toplevel):
             return speaker_model.results.recorded_step(index)
 
     def draw_and_save_phrase_structure_tree_as_postscript(self, X, filename):
-        print(filename)
         self.canvas.delete('all')
         self.canvas.title = ''
         self.canvas.derivational_index = 0
@@ -321,6 +345,10 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def change_curvature(self, *_):
         self.S['arc_curvature'] = float(simpledialog.askstring(title='Change arc curvature', prompt='Curvature (0-5)', parent=self))
+        self.update_contents()
+
+    def change_arrow_depth(self, *_):
+        self.S['Y_offset_for_arrow'] = float(simpledialog.askstring(title='Change chain depth', prompt='Curvature (0-200)', parent=self))
         self.update_contents()
 
     def label_subscript(self, *_):
@@ -464,7 +492,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 gps.flip = False
             else:
                 gps.flip = True
-        self.update_contents()
+        self.update_contents(False)
 
     def basic_template(self, *_):
         X = GPhraseStructure(PhraseStructure())
@@ -659,6 +687,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         if self.stored_filename:
             with open(self.stored_filename, 'wb') as output_file:
                 pickle.dump(self.root_gps, output_file)
+                print(f'Phrase structure file {self.stored_filename} saved.')
         else:
             self.save_as()
 
@@ -666,6 +695,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         filename = filedialog.askopenfilename()
         with open(filename, 'rb') as input_file:
             self.root_gps = pickle.load(input_file)
+            self.stored_filename = filename
             self.update_contents()
 
     def expand_phrase_structure(self, *_):
@@ -683,6 +713,7 @@ class PhraseStructureGraphics(tk.Toplevel):
     def shrink_phrase_structure(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.const = []
+            gps.compressed = False
         self.update_contents()
 
     def shrink_into_DP(self, *_):
@@ -690,6 +721,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.const = []
             gps.custom_label = 'DP'
             gps.copied = False
+            gps.compressed = False
             self.label_stack_update(gps)
         self.update_contents()
 
@@ -732,7 +764,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             if gps.complex():
                 gps.const.reverse()
-        self.update_contents()
+        self.update_contents(False)
 
     def create_arc(self, *_):
         if len(self.canvas.selected_objects) > 1:
@@ -747,11 +779,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.label = simpledialog.askstring(title='Label for arrow', prompt='Label', parent=self)
         self.create_arrow()
         self.label = None
-        self.deselect_all()
 
     def deselect_all(self):
         self.canvas.selected_objects = []
-        self.update_contents()
+        self.update_contents(False)
 
     def create_forward_arrow(self, *_):
         self.create_arrow_('last')
@@ -772,7 +803,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                     source_gps = gps
                     target_gps = self.canvas.selected_objects[i + 1]
                     source_gps.custom_arrows.append((target_gps, self.label, arrowtype))
-            self.update_contents()
+            self.update_contents(False)
 
     def delete_dependencies(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -878,7 +909,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.subscript = None
             gps.superscript = None
             self.label_stack_update(gps)
-        self.update_contents()
+        self.update_contents(False)
 
     def empty_label(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -899,7 +930,8 @@ class PhraseStructureGraphics(tk.Toplevel):
     def compress_node(self, *_):
         for gps in self.canvas.selected_objects:
             # Compress the object
-            gps.compressed = True
+            if gps.complex():
+                gps.compressed = True
         self.canvas.redraw(gps.top())
 
     def decompress_node(self, *_):
@@ -1116,7 +1148,8 @@ class GraphicsMenu(tk.Menu):
         arc_submenu.add_command(label='No direction', command=self._event('<<CreateArrow>>'))
         arc.add_cascade(label='Chain...', menu=arc_submenu)
 
-        arc.add_command(label='Named Arrow', command=self._event('<<CreateNamedArrow>>'))
+        arc.add_command(label='Named Chain', command=self._event('<<CreateNamedArrow>>'))
+        arc.add_command(label='Chain depth...', command=self._event('<<ChangeArrowDepth>>'))
         arc.add_separator()
         arc.add_command(label='Delete', command=self._event('<<DeleteDependencies>>'))
         self.add_cascade(label='Dependency', menu=arc)

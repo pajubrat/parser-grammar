@@ -1137,7 +1137,7 @@ class PhraseStructure:
 
     def gloss(X):
         def LF_features(head):
-            lfs = [f[3:] for f in head.features if f[:2] == 'LF']
+            lfs = [f[3:] for f in head.features if f and f[:2] == 'LF']
             return '.'.join(sorted(lfs))
 
         pf = ''
@@ -1169,7 +1169,7 @@ class PhraseStructure:
         for cat in PhraseStructure.major_cats:
             if cat in head.features:
                 return cat + suffix
-        return 'X' + suffix
+        return '?' + suffix
 
     def copy_for_chain(X, babtize='1'):
         def silence_phonologically(h):
@@ -1264,7 +1264,7 @@ class PhraseStructure:
                 return f'[{X.left()} {X.right()}]' + chain_index_str
 
     def get_phonological_string(X):
-        return ''.join(sorted([f[3:] for f in X.features if f[:2] == 'PF']))
+        return ''.join(sorted([f[3:] for f in X.features if f and f[:2] == 'PF']))
 
     def tidy_names(X, counter):
         def rebaptize(X, old_identity, new_identity):

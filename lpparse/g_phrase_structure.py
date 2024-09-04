@@ -159,7 +159,8 @@ class GPhraseStructure(PhraseStructure):
     def boundary_points(self):
         boundary = set()
         if self.compressed:
-            boundary.add((self.x, self.y))
+            boundary.add((self.left().x, self.left().y))
+            boundary.add((self.right().x, self.right().y))
         else:
             boundary.add((self.x, self.y))
             if self.complex():
@@ -216,8 +217,6 @@ class GPhraseStructure(PhraseStructure):
             self.right().move_y(amount)
 
     def label_size(self):
-        if not self.terminal() and GPhraseStructure.image_parameter_phrasal_complex_heads:
-            return 0            # Complex heads [X Y]^0 do not generate label stacks
         if self.compressed:     # Compressed triangles only have custom labels
             offset = 1
             if self.custom_phonology and self.custom_phonology != '$n/a$':
@@ -227,6 +226,8 @@ class GPhraseStructure(PhraseStructure):
             if self.custom_features and self.custom_phonology != '$n/a$':
                 offset += 1
             return offset
+        if not self.terminal() and GPhraseStructure.image_parameter_phrasal_complex_heads:
+            return 0            # Complex heads [X Y]^0 do not generate label stacks
         return len(self.label_stack)
 
     def generate_label_stack(self):

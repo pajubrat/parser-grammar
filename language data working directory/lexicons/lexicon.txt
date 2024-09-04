@@ -358,9 +358,9 @@ Pekka_0acc	::	Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[acc(0)] LANG:FI
 Pekkahan	:: Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[nom]#[hAn] LANG:FI
 PEKKA		:: Pekka-#φ#sg#3p#def#nonhum#def#proper_name#[nom]#[foc]
 Pekka-  	:: PF:Pekka LF:Pekka N R:REF:PROPER_NAME -SEM:directional LANG:FI
-pelattiin	:: pelaa-#v#asp#impss1#T#pst#Fin#Vn LANG:FI
+pelattiin	:: pelaa-#impss#T/fin#pst#Vn LANG:FI
 pelaa-		:: PF:pelaa- LF:play V LANG:FI
-peli		:: peli-#D#sg#3p#def#r_expression#[acc(0)] LANG:FI
+peli		:: peli-#D#sg#3p#def#r_expression#[ACC(0)] LANG:FI
 peli-		:: PF:peli LF:game N LANG:FI
 pelottaa	:: pelkä-#cau#T/fin#[V] LANG:FI
 pelkää		:: pelkä-#v#T/fin#[V] LANG:FI
@@ -519,55 +519,55 @@ yritta- 	:: PF:yritta LF:try V +COMP:A/inf +COMP:-Φ  LANG:EN SEM:internal
 
 # Pronouns
 
-minä		:: minä-#D/pro#[nom]#sg#1p#def#hum#pron LANG:FI
-minua		:: minä-#D/pro#[par]#sg#1p#def#hum#pron LANG:FI
-minua*		:: minua-#D/pro#[par]#sg#1p#def#hum#pron LANG:FI
-minun		:: minä-#D/pro#[gen]#sg#1p#def#hum#pron LANG:FI
+minä		:: minä-#D#[nom]#sg#1p#def#hum#pron LANG:FI
+minua		:: minä-#D#[par]#sg#1p#def#hum#pron LANG:FI
+minua*		:: minua-#D#[par]#sg#1p#def#hum#pron LANG:FI
+minun		:: minä-#D#[gen]#sg#1p#def#hum#pron LANG:FI
 minä- 		:: PF:minä LF:I N PHI_N LANG:FI
 minua-		:: PF:minua LF:I N PHI_N LANG:FI
-sinä		:: sinä-#D/pro#[nom]#sg#2p#def#hum#pron LANG:FI
-sinua		:: sinä-#D/pro#[par]#sg#2p#def#hum#pron LANG:FI
-sinun		:: sinä-#D/pro#[gen]#sg#2p#def#hum#pron LANG:FI
+sinä		:: sinä-#D#[nom]#sg#2p#def#hum#pron LANG:FI
+sinua		:: sinä-#D#[par]#sg#2p#def#hum#pron LANG:FI
+sinun		:: sinä-#D#[gen]#sg#2p#def#hum#pron LANG:FI
 sinä-		:: PF:sinä LF:you N PHI_N LANG:FI
-hän			:: hän-#D/pro#[nom]#sg#3p#def#hum#pron LANG:FI
-häntä		:: hän-#D/pro#[par]#sg#3p#def#hum#pron LANG:FI
-hänen		:: hän-#D/pro#[gen]#sg#3p#def#hum#pron LANG:FI
-hänet		:: hän-#D/pro#[acc(t)]#sg#3p#def#hum LANG:FI
+hän			:: hän-#D#[nom]#sg#3p#def#hum#pron LANG:FI
+häntä		:: hän-#D#[par]#sg#3p#def#hum#pron LANG:FI
+hänen		:: hän-#D#[gen]#sg#3p#def#hum#pron LANG:FI
+hänet		:: hän-#D#[acc(t)]#sg#3p#def#hum LANG:FI
 hän-		:: PF:hän LF:s/he N PHI_N LANG:FI
-me_FI		:: me-#D/pro#[nom]#pl#1p#def#hum#pron LANG:FI
-me			:: me-#D/pro#[nom]#pl#1p#def#hum#pron LANG:FI
-meidän		:: me-#D/pro#[gen]#pl#1p#def#hum#pron LANG:FI
-meitä		:: me-#D/pro#[par]#pl#1p#def#hum#pron LANG:FI
+me_FI		:: me-#D#[nom]#pl#1p#def#hum#pron LANG:FI
+me			:: me-#D#[nom]#pl#1p#def#hum#pron LANG:FI
+meidän		:: me-#D#[gen]#pl#1p#def#hum#pron LANG:FI
+meitä		:: me-#D#[par]#pl#1p#def#hum#pron LANG:FI
 me- 		:: PF:me LF:we N PHI_N LANG:FI
-te			:: te-#D/pro#[nom]#pl#2p#def#hum#pron LANG:FI
-teidän		:: te-#D/pro#[gen]#pl#2p#def#hum#pron LANG:FI
-teitä		:: te-#D/pro#[par]#pl#2p#def#hum#pron LANG:FI
+te			:: te-#D#[nom]#pl#2p#def#hum#pron LANG:FI
+teidän		:: te-#D#[gen]#pl#2p#def#hum#pron LANG:FI
+teitä		:: te-#D#[par]#pl#2p#def#hum#pron LANG:FI
 te- 		:: PF:te LF:you N PHI_N LANG:FI
-he			:: he-#D/pro#[nom]#pl#3p#def#hum#pron LANG:FI
-heidän		:: he-#D/pro#[gen]#pl#3p#def#hum#pron LANG:FI
-heitä		:: he-#D/pro#[par]#pl#3p#def#hum#pron LANG:FI
-niiden		:: he-#D/pro#[gen]#pl#3p#def#nonhum#pron LANG:FI
-niitä		:: he-#D/pro#[par]#pl#3p#def#nonhum#pron LANG:FI
+he			:: he-#D#[nom]#pl#3p#def#hum#pron LANG:FI
+heidän		:: he-#D#[gen]#pl#3p#def#hum#pron LANG:FI
+heitä		:: he-#D#[par]#pl#3p#def#hum#pron LANG:FI
+niiden		:: he-#D#[gen]#pl#3p#def#nonhum#pron LANG:FI
+niitä		:: he-#D#[par]#pl#3p#def#nonhum#pron LANG:FI
 he- 		:: PF:he LF:they N PHI_N LANG:FI
 se			:: se-#[nom]#sg#3p#def#nonhum#pron LANG:FI
 se'			:: se-#[nom]#sg#3p#def#nonhum#pron LANG:FI
 se			:: se-#sg#3p#def#nonhum#pron LANG:FI
 sen			:: se-#[acc(n)]#sg#3p#def#nonhum#pron LANG:FI
 sen/3		:: se-#sg#3p#def#nonhum#pron LANG:FI
-sen/2		:: se_N-#D/pro#[gen]#sg#3p#def#nonhum#pron LANG:FI
-sen			:: se_N-#D/pro#[gen]#sg#3p#def#nonhum#pron LANG:FI
+sen/2		:: se_N-#D#[gen]#sg#3p#def#nonhum#pron LANG:FI
+sen			:: se_N-#D#[gen]#sg#3p#def#nonhum#pron LANG:FI
 sitä		:: se-#[par]#sg#3p#def#nonhum#pron LANG:FI
 se-			:: PF:se LF:the/that D LANG:FI
-se			:: se_N-#D/pro#[nom]#sg#3p#def#nonhum#pron LANG:FI
-sitä		:: se_N-#D/pro#[par]#sg#3p#def#nonhum#pron LANG:FI
-sen			:: se_N-#D/pro#[gen]#sg#3p#def#nonhum#pron LANG:FI
+se			:: se_N-#D#[nom]#sg#3p#def#nonhum#pron LANG:FI
+sitä		:: se_N-#D#[par]#sg#3p#def#nonhum#pron LANG:FI
+sen			:: se_N-#D#[gen]#sg#3p#def#nonhum#pron LANG:FI
 se_N-		:: PF:se LF:the/that N LANG:FI
 itseään		:: itse-#D/refl#3p#sg#def#[par]#reflexive LANG:FI
 itseäni		:: itse-#D/refl#1p#sg#def#[par]#reflexive LANG:FI
 itsensä_gen	:: itse-#D/refl#3p#sg#def#[gen]#reflexive LANG:FI
 itse-		:: PF:itse LF:self N PHI_N LANG:FI
 ne/D		:: PF:ne LF:those D PHI:NUM:PL PHI:PER:3 LANG:FI
-ne			:: ne-#D/pro#3p#pl#def#nonhum#[nom]#pron LANG:FI
+ne			:: ne-#D#3p#pl#def#nonhum#[nom]#pron LANG:FI
 ne-			:: PF:ne LF:those N LANG:FI
 niiden		:: ne#[gen]#pron
 

@@ -281,7 +281,7 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def label_offset(self, gps):
         if gps.compressed:
-            return self.S['tsize'] * 1.2 * self.compressed_node_label_stack(gps)
+            return gps.label_size() * self.S['tsize'] * self.S['text_spacing']
         return self.S['text_spacing'] * self.S['tsize'] * gps.label_size()
 
     def get_Y_coord(self, gps):
@@ -293,7 +293,7 @@ class PhraseStructureCanvas(tk.Canvas):
         return self.Y_coord_zero_level(gps)
 
     def Y_coord_complex_node(self, gps):
-        return gps.left().Y + self.S['text_spacing'] * self.S['tsize'] * gps.label_size()
+        return gps.left().Y + self.label_offset(gps)
 
     def Y_coord_zero_level(self, gps):
         x = gps

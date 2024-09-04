@@ -10,6 +10,8 @@ from GUI_main_application import DatasetView, LexiconView, SpeakerModelView, Res
 from GUI_phrase_structure_graphics import PhraseStructureGraphics
 import pickle
 from tkinter import ttk, filedialog
+from phrase_structure import PhraseStructure
+from g_phrase_structure import GPhraseStructure
 
 
 class Application(tk.Tk):
@@ -60,6 +62,7 @@ class Application(tk.Tk):
         self.bind('<<Settings>>', self.modify_settings)
         self.bind('<<CreateNewFromFile>>', self.create_new_from_corpus_file)
         self.bind('<<ExamineDerivationalLog>>', self.examine_derivational_log)
+        self.bind('<<NewImage>>', self.new_image)
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def on_closing(self):
@@ -146,9 +149,15 @@ class Application(tk.Tk):
         self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
 
     def run_study_with_images(self, *_):
-        image_window = PhraseStructureGraphics(self, settings=None, speaker_model=None, gps=None, title='')
+        image_window = PhraseStructureGraphics(self, settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings, speaker_model=None, gps=None, title='')
         image_window.withdraw()
         self.run_study(image_window=image_window)
+
+    def new_image(self, *_):
+        X = PhraseStructure()
+        X.features.add('X')
+        GX = GPhraseStructure(PhraseStructure(X))
+        image_window = PhraseStructureGraphics(self, settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings, speaker_model=None, gps=GX, title='')
 
     def run_study(self, *_, **kwargs):
         self.local_file_system.initialize_output_files(self.settings)

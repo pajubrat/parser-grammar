@@ -287,6 +287,11 @@ class MainMenu(tk.Menu):
         examine_results_menu.add_command(label='Examine log...', command=self._event('<<ExamineDerivationalLog>>'))
         self.add_cascade(label='Results', menu=examine_results_menu)
 
+        # Image menu
+        image_menu = tk.Menu(self, tearoff=False, font=menu_font)
+        image_menu.add_command(label='New Image', command=self._event('<<NewImage>>'))
+        self.add_cascade(label='Image', menu=image_menu)
+
         # Settings menu
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
         settings_menu.add_command(label='Settings...', command=self._event('<<Settings>>'))
