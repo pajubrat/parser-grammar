@@ -123,13 +123,17 @@ class GPhraseStructure(PhraseStructure):
             self.right().initialize_logical_space()
 
     def remove_overlap(self):
+        if self.application.settings.retrieve('image_parameter_remove_overlap', True):
+            self.remove_overlap_()
+
+    def remove_overlap_(self):
         """Stretches child nodes apart if their offspring create overlap"""
         # Horizontal overlap
         if self.complex():
             if not self.left().compressed:
-                self.left().remove_overlap()
+                self.left().remove_overlap_()
             if not self.right().compressed:
-                self.right().remove_overlap()
+                self.right().remove_overlap_()
 
             # Remove horizontal overlap from each row
             overlap = 0

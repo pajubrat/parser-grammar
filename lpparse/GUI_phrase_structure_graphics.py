@@ -158,9 +158,13 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<EnableHeadChains>>', self.enable_head_chains)
         self.bind('<<DisableHeadChains>>', self.disable_head_chains)
         self.bind('<<ShowFeatures>>', self.show_features)
+        self.bind('<<CanvasLayoutControlEnable>>', self.canvas_layout_control_enable)
+        self.bind('<<CanvasLayoutControlDisable>>', self.canvas_layout_control_disable)
+        self.bind('<<RecalculateLayout>>', self.recalculate_layout)
         self.bind('<Control-s>', self.save)
-        self.bind('+', self.widen_node)
-        self.bind('-', self.squeeze_node)
+        self.bind('<Key-+>', self.widen_node)
+        self.bind('<Key-->', self.squeeze_node)
+        self.bind('<Key-l>', self.use_custom_label)
         # Show phrase structure image
         self.initialize_and_show_image()
 
@@ -291,6 +295,15 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     # ---------------------------------------------------------------------------------
     # Menu actions
+
+    def recalculate_layout(self, *_):
+        self.update_contents(True)
+
+    def canvas_layout_control_enable(self, *_):
+        self.application.settings.set('image_parameter_remove_overlap', True)
+
+    def canvas_layout_control_disable(self, *_):
+        self.application.settings.set('image_parameter_remove_overlap', False)
 
     def squeeze_node(self, *_):
         for gps in self.canvas.selected_objects:
@@ -732,7 +745,7 @@ class PhraseStructureGraphics(tk.Toplevel):
     def update_contents(self, recalculate=True, x_offset=0, y_offset=0):
         if recalculate:
             self.root_gps.initialize_logical_space()
-            self.root_gps.remove_overlap()
+        self.root_gps.remove_overlap()
         self.recalculate_labels(self.root_gps)
         self.canvas.redraw(self.root_gps, False, x_offset, y_offset)
         self.canvas.focus_set()
@@ -1036,6 +1049,7 @@ class GraphicsMenu(tk.Menu):
 
         image_properties_menu = tk.Menu(self, tearoff=False, font=menu_font)
         image_properties_menu.add_command(label='Fit Phrase Structure', command=self._event('<<FitPhraseStructure>>'))
+        image_properties_menu.add_command(label='Recalculate layout', command=self._event('<<RecalculateLayout>>'))
         self.add_cascade(label='Image', menu=image_properties_menu)
 
         # Select image menu
@@ -1186,6 +1200,11 @@ class GraphicsMenu(tk.Menu):
         # Settings menu
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
 
+        submenu_remove_overlap = tk.Menu(settings_menu, tearoff=False, font=menu_font)
+        submenu_remove_overlap.add_command(label='Enable', command=self._event('<<CanvasLayoutControlEnable>>'))
+        submenu_remove_overlap.add_command(label='Disable', command=self._event('<<CanvasLayoutControlDisable>>'))
+        settings_menu.add_cascade(label='Canvas Layout Control', menu=submenu_remove_overlap)
+        settings_menu.add_separator()
         #Submenu for complex head style
         submenu_complex_head_style = tk.Menu(settings_menu, tearoff=False, font=menu_font)
         submenu_complex_head_style.add_command(label='Stack', command=self._event('<<ComplexHeadStyle_Stack>>'))

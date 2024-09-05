@@ -38,7 +38,7 @@ class PhraseStructureCanvas(tk.Canvas):
                     gps.move_y(+0.5)
                 if event.keysym == 'Up':
                     gps.move_y(-0.5)
-            self.parent.update_contents(False)
+        self.parent.update_contents(False)
 
     def _on_mouse_click(self, *_):
         if self.find_withtag('current'):
