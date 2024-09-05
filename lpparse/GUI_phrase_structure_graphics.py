@@ -9,14 +9,14 @@ from GUI_gphrase_structure_canvas import PhraseStructureCanvas
 
 class PhraseStructureGraphics(tk.Toplevel):
     """Window hosting the canvas"""
-    def __init__(self, root, **kwargs):
-        super().__init__(root)
-        self.settings = kwargs['settings']
+    def __init__(self, application, **kwargs):
+        super().__init__(application)
+        GPhraseStructure.application = application
         self.title("Phrase Structure Graphics")
         self.geometry(('2800x1500+100+100'))
         self.speaker_model = kwargs['speaker_model']
         self.image_title = kwargs['title']
-        self.root = root
+        self.application = application
         self.feature_visualizations = {}
         self.root_gps = kwargs['gps']  # Current phrase structure on screen
         self.original_gps = self.root_gps
@@ -25,22 +25,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.phase_structure_title = None
         self.label = None
         self.stored_filename = None
-
-        # Settings for drawing
-        self.S = {'grid': 150,
-                  'margins': 200,
-                  'y_grid': 180,
-                  'y_margins': 300,
-                  'fit_margins': 100,
-                  'canvas_width': 2480,
-                  'canvas_height': 1400,
-                  'label_padding': 1,
-                  'text_spacing': 1.5,
-                  'tshrink': 1.1,
-                  'arc_curvature': 2,
-                  'Y_offset_for_arrow': 50,
-                  'tsize': 42}
-
         # Line styles
         self.line_style = {'phrasal_chain': {'fill': 'black', 'dash': None, 'width': 2},
                            'head_chain': {'fill': 'black', 'dash': None, 'width': 2},
@@ -52,7 +36,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=4, column=0)
         self.canvas.focus_set()
-        self.canvas.configure(width=self.S['canvas_width'], height=self.S['canvas_height'], background='white')
+        self.canvas.configure(width=self.application.settings.retrieve('image_parameter_canvas_width'), height=self.application.settings.retrieve('image_parameter_canvas_height'), background='white')
         # Scrollbars for the canvas
         xscroll = tk.Scrollbar(self, command=self.canvas.xview, orient=tk.HORIZONTAL)
         xscroll.grid(row=3, column=0, sticky='new')
@@ -81,12 +65,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.grid()
 
         # Features shown in figures on the basis of settings
-        if self.settings:
-            GPhraseStructure.draw_features = {feature.strip() for feature in self.settings.retrieve('image_parameter_features', None).split(';')}
-            mapping_str = self.settings.retrieve('image_parameter_visualization', '')
-            # Generate lexical feature visualizations
-            if mapping_str:
-                self.parse_feature_visualizations(mapping_str)
+        GPhraseStructure.draw_features = {feature.strip() for feature in self.application.settings.retrieve('image_parameter_features', None).split(';')}
+        mapping_str = self.application.settings.retrieve('image_parameter_visualization', '')
+        # Generate lexical feature visualizations
+        if mapping_str:
+            self.parse_feature_visualizations(mapping_str)
 
         self.bind('<<SaveAsStructure>>', self.save_as)
         self.bind('<<Save>>', self.save)
@@ -241,12 +224,12 @@ class PhraseStructureGraphics(tk.Toplevel):
         the model) or do nothing (image provided later). This function is also called if the user changed settings.
         """
         self.canvas.delete('all')
-        GPhraseStructure.image_parameter_phrasal_complex_heads = self.root.settings.retrieve('image_parameter_phrasal_complex_heads', False)
-        GPhraseStructure.image_parameter_covert_complex_heads = self.root.settings.retrieve('image_parameter_covert_complex_heads', False)
+        GPhraseStructure.image_parameter_phrasal_complex_heads = self.application.settings.retrieve('image_parameter_phrasal_complex_heads', False)
+        GPhraseStructure.image_parameter_covert_complex_heads = self.application.settings.retrieve('image_parameter_covert_complex_heads', False)
         if self.speaker_model:
             # Derivation (sequence of phrase structures, whole output from the model)
             self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
-            if self.settings.retrieve('image_parameter_shrink_all_DPs', False):
+            if self.application.settings.retrieve('image_parameter_shrink_all_DPs', False):
                 self.shrink_all_DPs()
         elif self.root_gps:
             # Single GPS (usually loaded from separate file)
@@ -296,10 +279,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.lift()
         x1, y1, x2, y2 = self.canvas.bbox('all')
         self.update_contents(False, margins-x1, margins-y1)
-        if x2 - x1 > self.S['canvas_width']:
+        if x2 - x1 > self.application.settings.retrieve('image_parameter_canvas_width'):
             width = x2 - x1
         else:
-            width = self.S['canvas_width']    # This matches with A4
+            width = self.application.settings.retrieve('image_parameter_canvas_width')    # This matches with A4
         height = y2 - y1 + margins * 2
         self.canvas.configure(width=width, height=height, background='white')
 
@@ -341,14 +324,14 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.draw_phrase_structure_from_derivation(title='PF-interface')
 
     def fit_phrase_structure(self, *_):
-        self.fit_into_screen_and_show(self.S['fit_margins'])
+        self.fit_into_screen_and_show(self.application.settings.retrieve('image_parameter_fit_margins'))
 
     def change_curvature(self, *_):
-        self.S['arc_curvature'] = float(simpledialog.askstring(title='Change arc curvature', prompt='Curvature (0-5)', parent=self))
+        self.application.settings.store('image_parameter_arc_curvature', float(simpledialog.askstring(title='Change arc curvature', prompt='Curvature (0-5)', parent=self)))
         self.update_contents()
 
     def change_arrow_depth(self, *_):
-        self.S['Y_offset_for_arrow'] = float(simpledialog.askstring(title='Change chain depth', prompt='Curvature (0-200)', parent=self))
+        self.application.settings.store('image_parameter_Y_offset_for_arrow', float(simpledialog.askstring(title='Change chain depth', prompt='Curvature (0-200)', parent=self)))
         self.update_contents()
 
     def label_subscript(self, *_):
@@ -405,7 +388,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 if gps.right():
                     delete_all_custom_fields_(gps.right())
         delete_all_custom_fields_(self.root_gps)
-        self.parent.update_contents()
+        self.update_contents()
 
     def new_features(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -479,7 +462,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 affix_lst = gps.get_affix_list()
                 # If covert complex heads are set to be disabled, we enable them first
                 if [a for a in affix_lst if a.copied]:
-                    self.settings.store('image_parameter_covert_complex_heads', True)
+                    self.application.settings.store('image_parameter_covert_complex_heads', True)
                 last_affix = gps.get_affix_list()[-1]
                 last_affix.const = [H]
                 H.mother_ = last_affix
@@ -625,11 +608,11 @@ class PhraseStructureGraphics(tk.Toplevel):
                 self.update_contents()
 
     def enable_phrasal_chains(self, *_):
-        self.settings.data['image_parameter_phrasal_chains'] = True
+        self.application.settings.store('image_parameter_phrasal_chains', True)
         self.update_contents()
 
     def disable_phrasal_chains(self, *_):
-        self.settings.data['image_parameter_phrasal_chains'] = False
+        self.application.settings.store('image_parameter_phrasal_chains', False)
         self.update_contents()
 
     def only_label(self, *_):
@@ -749,7 +732,7 @@ class PhraseStructureGraphics(tk.Toplevel):
     def update_contents(self, recalculate=True, x_offset=0, y_offset=0):
         if recalculate:
             self.root_gps.initialize_logical_space()
-        self.root_gps.remove_overlap()
+            self.root_gps.remove_overlap()
         self.recalculate_labels(self.root_gps)
         self.canvas.redraw(self.root_gps, False, x_offset, y_offset)
         self.canvas.focus_set()
@@ -773,7 +756,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                     source_gps = gps
                     target_gps = self.canvas.selected_objects[i + 1]
                     source_gps.custom_arcs.append((target_gps, 'label'))
-        self.canvas.redraw(self.root_gps)
+        self.update_contents(False)
 
     def create_named_arrow(self, *_):
         self.label = simpledialog.askstring(title='Label for arrow', prompt='Label', parent=self)
@@ -809,7 +792,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_arcs = []
             gps.custom_arrows = []
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def custom_text(self, *_):
         if self.canvas.selected_objects:
@@ -817,13 +800,13 @@ class PhraseStructureGraphics(tk.Toplevel):
             for gps in self.selected_objects_into_gps_list():
                 gps.custom_text = text
                 self.label_stack_update(gps)
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def empty_text(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_text = None
             self.label_stack_update(gps)
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def custom_features(self, *_):
         if self.canvas.selected_objects:
@@ -831,19 +814,19 @@ class PhraseStructureGraphics(tk.Toplevel):
             for gps in self.selected_objects_into_gps_list():
                 gps.custom_features = features
                 self.label_stack_update(gps)
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def default_features(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_features = None
             self.label_stack_update(gps)
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def empty_features(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_features = ['$n/a$']
             self.label_stack_update(gps)
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def custom_gloss(self, *_):
         if self.canvas.selected_objects:
@@ -851,19 +834,19 @@ class PhraseStructureGraphics(tk.Toplevel):
             for gps in self.selected_objects_into_gps_list():
                 gps.custom_gloss = gloss
                 self.label_stack_update(gps)
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def default_gloss(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_gloss = None
             self.label_stack_update(gps)
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def empty_gloss(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_gloss = '$n/a$'
             self.label_stack_update(gps)
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def custom_phonology(self, *_):
         if self.canvas.selected_objects:
@@ -872,27 +855,27 @@ class PhraseStructureGraphics(tk.Toplevel):
                 gps.custom_phonology = phon
                 self.label_stack_update(gps)
                 gps.ellipsis = False
-        self.canvas.redraw(self.root_gps)
+        self.update_contents(False)
 
     def mark_ellipsis(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.ellipsis=True
             self.label_stack_update(gps)
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def default_phonology(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_phonology = None
             self.label_stack_update(gps)
             gps.ellipsis = False
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def empty_phonology(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_phonology = '$n/a$'
             self.label_stack_update(gps)
             gps.ellipsis = False
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def default_label(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -900,8 +883,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.subscript = None
             gps.superscript = None
             self.label_stack_update(gps)
-        self.deselect_all()
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def use_custom_label(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -917,8 +899,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.subscript = None
             gps.superscript = None
             self.label_stack_update(gps)
-        self.deselect_all()
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def selected_objects_into_gps_list(self):
         return self.canvas.selected_objects
@@ -932,7 +913,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             # Compress the object
             if gps.complex():
                 gps.compressed = True
-        self.canvas.redraw(gps.top())
+        self.update_contents(False)
 
     def decompress_node(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -987,48 +968,47 @@ class PhraseStructureGraphics(tk.Toplevel):
     def determine_position_of_highest_node(self, gps):
         """Determines the canvas size on the basis of the phrase structure object"""
         left_x, right_x, depth = gps.find_boundaries(0, 0, 0)
-        return abs(left_x) * self.S['grid'] + self.S['margins'], self.S['y_grid'] / 4
+        return abs(left_x) * self.application.settings.retrieve('image_parameter_grid') + self.application.settings.retrieve('image_parameter_margins'), self.application.settings.retrieve('image_parameter_y_grid') / 4
 
     # ------------------------------------------------------------------------------------------
     # Change of settings (from menu)
 
     def complex_head_style_stack(self, *_):
-        self.root.settings.set('image_parameter_phrasal_complex_heads', False)
+        self.application.settings.set('image_parameter_phrasal_complex_heads', False)
         GPhraseStructure.image_parameter_phrasal_complex_heads = False
         self.root_gps = self.original_gps
         self.update_settings()
 
     def complex_head_style_standard(self, *_):
-        self.root.settings.set('image_parameter_phrasal_complex_heads', True)
+        self.application.settings.set('image_parameter_phrasal_complex_heads', True)
         GPhraseStructure.image_parameter_phrasal_complex_heads = True
         self.update_settings()
 
     def covert_heads_enable(self, *_):
-        self.root.settings.set('image_parameter_covert_complex_heads', True)
+        self.application.settings.set('image_parameter_covert_complex_heads', True)
         GPhraseStructure.image_parameter_covert_complex_heads = True
         self.update_settings()
 
     def covert_heads_disable(self, *_):
-        self.root.settings.set('image_parameter_covert_complex_heads', False)
+        self.application.settings.set('image_parameter_covert_complex_heads', False)
         GPhraseStructure.image_parameter_covert_complex_heads = False
         self.update_settings()
 
     def enable_head_chains(self, *_):
-        self.root.settings.set('image_parameter_head_chains', True)
+        self.application.settings.set('image_parameter_head_chains', True)
         self.update_settings()
 
     def disable_head_chains(self, *_):
-        self.root.settings.set('image_parameter_head_chains', False)
+        self.application.settings.set('image_parameter_head_chains', False)
         self.update_settings()
 
     def show_features(self, *_):
-        features =  simpledialog.askstring(title='Show features', prompt='Features', parent=self)
-        self.root.settings.set('image_parameter_features', features)
+        features = simpledialog.askstring(title='Show features', prompt='Features', parent=self)
+        self.application.settings.set('image_parameter_features', features)
         GPhraseStructure.draw_features = {f.strip() for f in features.split(';')}
         self.update_settings()
 
     def update_settings(self):
-        self.settings = self.root.settings
         self.initialize_and_show_image()
 
 # -------------------------------------------------------------------------------------------

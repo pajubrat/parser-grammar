@@ -5,17 +5,33 @@ from tkinter import filedialog
 
 
 class Settings:
-    def __init__(self, local_file_system, app_settings_dict=None):
-        self.data = {}
-        self.data.update(app_settings_dict)
+    def __init__(self, application):
+        self.application = application
+        self.data = application.local_file_system.root_settings
+        self.data.update(self.default_settings())
         self.folders = {}
         self.external_sources = {}
-        self.load_and_initialize_settings(local_file_system)
+        self.load_and_initialize_settings()
 
-    def load_and_initialize_settings(self, local_file_system):
-        local_file_system.load_settings(self)
+    def load_and_initialize_settings(self):
+        self.data.update(self.application.local_file_system.load_settings())
         self.process_settings()
         self.create_settings_for_file_system()
+
+    def default_settings(self):
+         return {'image_parameter_grid': 150,
+                  'image_parameter_margins': 200,
+                  'image_parameter_y_grid': 180,
+                  'image_parameter_y_margins': 300,
+                  'image_parameter_fit_margins': 100,
+                  'image_parameter_canvas_width': 2480,
+                  'image_parameter_canvas_height': 1400,
+                  'image_parameter_label_padding': 1,
+                  'image_parameter_text_spacing': 1.5,
+                  'image_parameter_tshrink': 1.1,
+                  'image_parameter_arc_curvature': 2,
+                  'image_parameter_Y_offset_for_arrow': 50,
+                  'image_parameter_tsize': 42}
 
     def create_settings_for_file_system(self, corpus_filename=None):
         if corpus_filename:
@@ -24,6 +40,9 @@ class Settings:
         self.folders['study'] = Path(self.retrieve('file_study_folder'))
         self.folders['lexicon'] = Path(self.retrieve('file_lexicon_folder'))
         self.set_external_resources()
+
+    def update(self, dict):
+        self.data.update(dict)
 
     def reset_settings(self):
         self.data = {}

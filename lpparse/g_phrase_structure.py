@@ -4,9 +4,7 @@ from phrase_structure import PhraseStructure
 class GPhraseStructure(PhraseStructure):
     """Phrase Structure class that has additional properties related to tree drawing"""
 
-    draw_features = {}
-    image_parameter_phrasal_complex_heads = False
-    image_parameter_covert_complex_heads = False
+    application = None  # Application handle for settings
 
     def __init__(self, source=None, left=None, right=None):
         super().__init__(left, right)
@@ -22,7 +20,7 @@ class GPhraseStructure(PhraseStructure):
         self.custom_label = None
 
         if not source.terminal():
-            if GPhraseStructure.image_parameter_phrasal_complex_heads and source.zero_level() and len(source.const) > 0:
+            if GPhraseStructure.application.settings.retrieve('image_parameter_phrasal_complex_heads') and source.zero_level() and len(source.const) > 0:
                 self.create_constituents([GPhraseStructure(const) for const in self.complex_head_transform(source).const])
                 self.relabel()
                 self.phrasal_zero = True
@@ -62,7 +60,7 @@ class GPhraseStructure(PhraseStructure):
                 C = x
             else:
                 C = PhraseStructure(C, x)
-                if not GPhraseStructure.image_parameter_covert_complex_heads:
+                if not GPhraseStructure.application.settings.retrieve('image_parameter_covert_complex_heads'):
                     if C.right().copied:
                         C.features.add(C.right().label())
                         C.features.add(C.right().index())
@@ -226,7 +224,7 @@ class GPhraseStructure(PhraseStructure):
             if self.custom_features and self.custom_phonology != '$n/a$':
                 offset += 1
             return offset
-        if not self.terminal() and GPhraseStructure.image_parameter_phrasal_complex_heads:
+        if not self.terminal() and GPhraseStructure.application.settings.retrieve('image_parameter_phrasal_complex_heads'):
             return 0            # Complex heads [X Y]^0 do not generate label stacks
         return len(self.label_stack)
 

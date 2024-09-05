@@ -9,6 +9,9 @@ def interpretable_phi_feature(f):
 def unvalued_phi_feature(f):
     return phi_feature(f) and f[-1] == '_'
 
+def unvalued_counterparty(goal_feature, X):
+    return f'PHI:{goal_feature.split(":")[1]}:_' in X.features
+
 def valued_phi_feature(f):
     return phi_feature(f) and f[-1] != '_'
 

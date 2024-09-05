@@ -30,10 +30,11 @@ class Application(tk.Tk):
         tk_font = font.nametofont('TkDefaultFont')
         tk_font.configure(size=20)
 
-        self.local_file_system = LocalFileSystem()
-        self.settings = Settings(self.local_file_system, self.local_file_system.read_app_settings(arg_lst))
-        self.speaker_model, self.language_guesser, self.input_data = self.set_up_experiment(self.settings)
-        self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
+        self.local_file_system = LocalFileSystem(self)
+        self.local_file_system.read_app_settings(arg_lst)
+        self.settings = Settings(self)
+        self.speaker_model, self.language_guesser, self.input_data = self.set_up_experiment()
+        self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary()
 
         # Set up widgets for the main window
         self.grid_columnconfigure(0, weight=1)
@@ -59,7 +60,6 @@ class Application(tk.Tk):
         self.bind('<<SaveStudy>>', self.save_study)
         self.bind('<<LoadStudy>>', self.load_study)
         self.bind('<<LoadPhraseStructure>>', self.load_phrase_structure)
-        self.bind('<<Settings>>', self.modify_settings)
         self.bind('<<CreateNewFromFile>>', self.create_new_from_corpus_file)
         self.bind('<<ExamineDerivationalLog>>', self.examine_derivational_log)
         self.bind('<<NewImage>>', self.new_image)
@@ -71,11 +71,8 @@ class Application(tk.Tk):
     def examine_derivational_log(self, event):
         LogTextWindow(self, self.settings.external_sources["log_file_name"], 'Derivation')
 
-    def modify_settings(self, event):
-        self.settings.change_settings(self)
-
     def create_new_from_corpus_file(self, *_):
-        self.local_file_system.create_new_from_corpus_file(self.settings)
+        self.local_file_system.create_new_from_corpus_file()
         self.load_study()
 
     def setup_widgets(self):
@@ -96,12 +93,12 @@ class Application(tk.Tk):
         self.status_bar.grid(row=2, column=0, columnspan=2, sticky='e')
 
     def save_study(self, *_):
-        self.local_file_system.save_study(self.settings)
+        self.local_file_system.save_study()
 
     def load_study(self, *_):
         if self.settings.load_settings_with_user_input():
-            self.speaker_model, self.language_guesser, self.input_data = self.set_up_experiment(self.settings)
-            self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary(self.settings)
+            self.speaker_model, self.language_guesser, self.input_data = self.set_up_experiment()
+            self.lex_dictionary = self.local_file_system.read_lexicons_into_dictionary()
             self.reset_widgets()
             self.setup_widgets()
 
@@ -111,8 +108,7 @@ class Application(tk.Tk):
             # Open the phrase structure with the first speaker model available (SM contains settings)
             PhraseStructureGraphics(self, speaker_model=None,
                                     gps=pickle.load(input_file),
-                                    title=filename,
-                                    settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings)
+                                    title=filename)
 
     def reset_widgets(self):
         self.lexicon_frame.destroy()
@@ -121,17 +117,17 @@ class Application(tk.Tk):
         self.results_frame.destroy()
         self.status_bar.destroy()
 
-    def set_up_experiment(self, settings):
-        lg = LanguageGuesser(settings)
+    def set_up_experiment(self):
+        lg = LanguageGuesser(self.settings)
         speaker_model = {}
         for language in lg.languages:
-            speaker_model[language] = SpeakerModel(settings, language)
+            speaker_model[language] = SpeakerModel(self.settings, language)
             speaker_model[language].initialize()
-        input_data = self.local_file_system.read_test_corpus(settings)
+        input_data = self.local_file_system.read_test_corpus()
         return speaker_model, lg, input_data
 
     def analyze_one(self, *_):
-        self.local_file_system.initialize_output_files(self.settings)
+        self.local_file_system.initialize_output_files()
         ad_hoc_data_item = {'index': self.dataset_frame.selected_data_item,
                             'word_list': self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['word_list']}
         language = self.language_guesser.guess_language(ad_hoc_data_item)
@@ -139,10 +135,7 @@ class Application(tk.Tk):
         print(f'\n{self.speaker_model[language].results}')
         if self.speaker_model[language].results.syntax_semantics:
             self.results_frame.fill_with_data(self.speaker_model[language])
-            PhraseStructureGraphics(self, settings=self.speaker_model[language].settings,
-                                    speaker_model=self.speaker_model[language],
-                                    gps=None,
-                                    title='')   # Show phrase structure images
+            PhraseStructureGraphics(self, speaker_model=self.speaker_model[language], gps=None, title='')   # Show phrase structure images
         else:
             LogTextWindow(self, self.settings.external_sources["log_file_name"], 'Derivation')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())
@@ -160,7 +153,7 @@ class Application(tk.Tk):
         image_window = PhraseStructureGraphics(self, settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings, speaker_model=None, gps=GX, title='')
 
     def run_study(self, *_, **kwargs):
-        self.local_file_system.initialize_output_files(self.settings)
+        self.local_file_system.initialize_output_files()
         for data_item in self.input_data.get_all():
             language = self.language_guesser.guess_language(data_item)
             self.speaker_model[language].parse_sentence(data_item)

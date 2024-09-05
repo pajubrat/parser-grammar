@@ -7,94 +7,94 @@ import logging
 from tkinter import filedialog
 
 class LocalFileSystem:
-    def __init__(self):
+    def __init__(self, application):
+        self.application = application
+        self.root_settings = {}
         self.external_sources = {}
         self.encoding = 'utf-8'
         self.file_handle = {}
         self.output_files = ['simple log', 'results', 'resources', 'errors', 'descriptive', 'numeration output']
 
-    def initialize_output_files(self, settings):
-        self.configure_logging(settings)
+    def initialize_output_files(self):
+        self.configure_logging()
         for output_file in self.output_files:
-            self.open_output_file(output_file, settings)
+            self.open_output_file(output_file)
 
-    def open_output_file(self, filename, settings):
-        self.file_handle[filename] = open(settings.external_sources[filename], 'w', 1, encoding=self.encoding)
-        self.stamp(self.file_handle[filename], settings)
+    def open_output_file(self, filename):
+        self.file_handle[filename] = open(self.application.settings.external_sources[filename], 'w', 1, encoding=self.encoding)
+        self.stamp(self.file_handle[filename])
 
-    def save_app_settings(self, settings):
+    def save_app_settings(self):
         output_file = open('$app_settings.txt', 'w', encoding=self.encoding)
-        output_file.write(f'file_study_configuration={settings["file_study_configuration"]}')
-        output_file.write(f'file_study_folder={settings["file_study_folder"]}')
-        for key, value in settings.app_settings.items():
+        output_file.write(f'file_study_configuration={self.application.settings["file_study_configuration"]}')
+        output_file.write(f'file_study_folder={self.application.settings["file_study_folder"]}')
+        for key, value in self.application.settings.app_settings.items():
             output_file.write(f'{key}={value}\n')
 
     def read_app_settings(self, argument_lst):
-        app_settings_dict = {}
         try:
             for line in open('$app_settings.txt', encoding=self.encoding):
                 if '=' in line:
                     key, value = line.split('=')
-                    app_settings_dict[key.strip()] = value.strip()
+                    self.root_settings[key.strip()] = value.strip()
         except IOError:
             print(f'Could not find the application settings file $app_settings.txt.')
             print(f'Make sure this file exists in the root directory.')
             sys.exit()
-
         for arg in argument_lst:
             if arg.endswith('.lpg'):
-                app_settings_dict['open_with'] = arg
+                self.root_settings['open_with'] = arg
 
-        return app_settings_dict
-
-    def load_settings(self, settings):
-        if 'full_name' not in settings.data:
-            name = settings.retrieve('file_study_configuration', '')
-            folder = settings.retrieve('file_study_folder', '')
-            settings.data['full_name'] = folder + '/' + name
+    def load_settings(self):
+        settings = {}
+        if 'full_name' not in self.root_settings:
+            name = self.root_settings.get('file_study_configuration', '')
+            folder = self.root_settings.get('file_study_folder', '')
+            self.root_settings['full_name'] = folder + '/' + name
         try:
-            for line in open(settings.retrieve('full_name'), encoding=self.encoding):
+            for line in open(self.root_settings['full_name'], encoding=self.encoding):
                 line = line.strip().replace('\t', '')
                 if line and not line.startswith('#'):
                     key, value = line.split('=')
                     key = key.strip()
                     value = value.strip()
-                    if key in settings.data and key != 'file_study_configuration' and key != 'file_study_folder':
-                        settings.data[key] += '; ' + value      #   New values are added
+                    if key in self.root_settings and key != 'file_study_configuration' and key != 'file_study_folder':
+                        settings[key] += '; ' + value      #   New values are added
                     else:
-                        settings.data[key] = value
+                        settings[key] = value
         except IOError:
             print(f'The application settings ($app_settings.txt) points to\n '
-                  f'the study configuration file {settings.retrieve("full_name")},\n'
+                  f'the study configuration file {self.application.settings.retrieve("full_name")},\n'
                   f'but the file does not seem to exist.')
             sys.exit()
+        return settings
 
-    def create_new_from_corpus_file(self, settings):
+    def create_new_from_corpus_file(self):
         corpus_filename = filedialog.askopenfilename(title='Create new study from corpus file',
                                                      defaultextension='.txt',
                                                      initialdir='./language data working directory')
-        settings.create_settings_for_file_system(corpus_filename)
+        self.application.settings.create_settings_for_file_system(corpus_filename)
 
-    def save_study(self, settings):
+    def save_study(self):
         filename = filedialog.asksaveasfilename(title='Save study',
                                                 defaultextension='.txt',
                                                 initialdir='.')
         if filename:
             try:
                 with open(filename, 'w', encoding=self.encoding) as f:
-                    for key in settings.data.keys():
-                        value = settings.retrieve(key, '')
+                    for key in self.application.settings.data.keys():
+                        value = self.application.settings.retrieve(key, '')
                         f.write(f'{str(key)} = {str(value)}\n')
             except IOError:
                 print(f'Saving the study was unsuccessful.')
                 sys.exit()
 
-    def read_test_corpus(self, settings):
+    def read_test_corpus(self):
         input_data = LanguageData()
         cont = True
-        input_file = settings.data['file_study_folder'] + '/' + settings.data['file_test_corpus']
-        if settings.retrieve('use_numeration', False):
-            input_file = settings.external_sources["numeration output"]
+        input_file = self.application.settings.data['file_study_folder'] + '/' + self.application.settings.data['file_test_corpus']
+        if self.application.settings.retrieve('use_numeration', False):
+            input_file = self.application.settings.external_sources["numeration output"]
         index = 0
         try:
             for line in open(input_file, encoding=self.encoding):
@@ -146,14 +146,14 @@ class LocalFileSystem:
         line = line.strip().replace(' ', '').replace('=>', '')
         return line.split('.')
 
-    def stamp(self, file_handle, settings):
-        file_handle.write(self.stamp_string(settings))
+    def stamp(self, file_handle):
+        file_handle.write(self.stamp_string())
 
-    def stamp_string(self, settings):
-        stri = f'@  Simulation parameters: {settings.data}\n'
+    def stamp_string(self):
+        stri = f'@  Simulation parameters: {self.application.settings.data}\n'
         stri += f'@  Time: {datetime.datetime.now()}\n'
-        stri += f'@  Test sentences: {settings.external_sources["test_corpus_file_name"]}\n'
-        stri += f'@  Logs: {settings.external_sources["log_file_name"]}\n\n\n'
+        stri += f'@  Test sentences: {self.application.settings.external_sources["test_corpus_file_name"]}\n'
+        stri += f'@  Logs: {self.application.settings.external_sources["log_file_name"]}\n\n\n'
         return stri
 
     def save_output(self, speaker_model, data_dict):
@@ -196,24 +196,14 @@ class LocalFileSystem:
             prefix = ''
         self.file_handle['resources'].write(prefix + ' '.join(map(str, sentence_lst)) + '\n\n')
 
-    def configure_logging(self, settings):
-        handler = logging.FileHandler(settings.external_sources["log_file_name"], 'w', 'utf-8')
+    def configure_logging(self):
+        handler = logging.FileHandler(self.application.settings.external_sources["log_file_name"], 'w', 'utf-8')
         handler.terminator = ''
         logging.basicConfig(level=logging.INFO, handlers=[handler], format='%(message)s')
         self.logger_handle = handler
-        if not settings.retrieve('general_parameter_logging', True):
+        if not self.application.settings.retrieve('general_parameter_logging', True):
             disable_all_logging()
-        log(self.stamp_string(settings))
-
-    def read_lexicons_into_dictionary(self, settings):
-        lexicon_dict = {}
-        for lexicon_file in [file.strip() for file in settings.retrieve('file_lexicons', '').split(';')] + \
-                            [file.strip() for file in settings.retrieve('file_redundancy_rules', '').split(';')]:
-            lexicon_dict[lexicon_file] = {}
-            lexical_entries = open(settings.folders['lexicon'] / lexicon_file, encoding='utf8').readlines()
-            for lex, features in [e.strip().split('::') for e in lexical_entries if '::' in e]:
-                lexicon_dict[lexicon_file][lex] = {}
-        return lexicon_dict
+        log(self.stamp_string())
 
     def add_columns_to_resources_file(self, resources, experimental_groups):
         self.file_handle['resources'].write("Number,Sentence,")
@@ -226,8 +216,18 @@ class LocalFileSystem:
             self.file_handle['resources'].write(f'{key},')
         self.file_handle['resources'].write("Execution time (ms)\t\n")
 
-    def process_numeration(self, settings):
-        for line in open(settings.external_sources["numeration"], encoding=self.encoding):
+    def read_lexicons_into_dictionary(self):
+        lexicon_dict = {}
+        for lexicon_file in [file.strip() for file in self.application.settings.retrieve('file_lexicons', '').split(';')] + \
+                            [file.strip() for file in self.application.settings.retrieve('file_redundancy_rules', '').split(';')]:
+            lexicon_dict[lexicon_file] = {}
+            lexical_entries = open(self.application.settings.folders['lexicon'] / lexicon_file, encoding='utf8').readlines()
+            for lex, features in [e.strip().split('::') for e in lexical_entries if '::' in e]:
+                lexicon_dict[lexicon_file][lex] = {}
+        return lexicon_dict
+
+    def process_numeration(self):
+        for line in open(self.application.settings.external_sources["numeration"], encoding=self.encoding):
             line = line.strip()
             if not line or line.startswith('#'):
                 continue

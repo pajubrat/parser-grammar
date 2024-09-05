@@ -756,26 +756,25 @@ class PhraseStructure:
 
     def value(X, goal):
         log(f'valued features ')
-        PP = X.phi_bundles()
-        for phi in (f for f in goal.head().features if X.feature_gate(f)):
+        P = set().union(*X.phi_bundles())
+        for phi in (goal_feature for goal_feature in goal.head().features if interpretable_phi_feature(goal_feature) and
+                                                                             unvalued_counterparty(goal_feature, X) and
+                                                                             (not P or X.feature_gate(goal_feature, P))):
             log(f'[{phi[5:]}] ')
             X.features.discard(f'PHI:{phi.split(":")[1]}:_')
             X.features.add(f'{phi[1:]}')
         X.features.update({'ΦLF'})
         X.features.add(f'PHI:IDX:{goal.head().get_id()}')
 
-    def feature_gate(X, feature):
+    def feature_gate(X, goal_feature, P):
         """
         Feature A can be valued for B at probe head X iff
         (1) B is an unvalued feature of the same type as A
-        (2) X contains overtly valued phi-bundle with the same type as A (gate condition)
+        (2) probe X contains overtly valued phi-bundle with the same type as A (gate condition)
         """
-        PP = X.phi_bundles()
-        P = set().union(*PP)
-        if feature.startswith('iPHI') and f'PHI:{feature.split(":")[1]}:_' in X.features:           # Condition (1)
-            for p in P:
-                if feature.split(":")[1] == p.split(':')[0]:                                        # Condition (2)
-                    return True
+        for p in P:
+            if goal_feature.split(":")[1] == p.split(':')[0]:          # Condition (2)
+                return True
 
     def phi_bundles(X):
         return [set(phi[4:].split(',')) for phi in X.features if valued_phi_feature(phi) and not phi.startswith('i') and 'IDX' not in phi]
