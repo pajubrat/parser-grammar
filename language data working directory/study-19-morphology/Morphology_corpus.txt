@@ -1,4 +1,4 @@
-
+	
 & 2. Syntactic opaqueness
 
 	& 2.1 Verbal inner layer: causatives, reflexives, frequentatives, semelfactive, thematic vowel
@@ -7,7 +7,7 @@
 	
 			# Simple bimorphemic causative
 			
-			%	Sirkku kuiva-#TA#v#T/fin#prs#[V] sukkaa
+				Sirkku kuiva-#TA#v#T/fin#prs#[V] sukkaa
 				'Sirkku.nom dry.cau.prs.3sg sock.par'
 
 			# Causative without direct object is ungrammatical
@@ -38,6 +38,15 @@
 				lyhyt-#TA#minen
 				'short.cau.abs'	/lyhentäminen/
 
+				Sirkku pino-#TA#v#T/fin#prs#[V] sukkaa
+				'Sirkku stack(N).cau.v.prs.3sg sock.par'
+
+				Sirkku pino-#TA#TA#v#T/fin#prs#[V] sukkaa
+				'Sirkku stack(N).cau.cau.v.prs.3sg sock.par'
+
+				Sirkku pino-#TA#TA#TA#v#T/fin#prs#[V] sukkaa
+				'Sirkku stack(N).cau.cau.cau.v.prs.3sg sock.par'
+
 		& 2.1.2 Reflexives
 		
 			# Simple bimorphemic reflexive
@@ -66,8 +75,14 @@
 		
 		& 2.1.4 frequentatives
 
-			# to add
-	
+			# Standard, simple example
+
+			Sirkku laula-#skele#T/fin#prs#[V]	
+			'Sirkku.nom sing-freq-prs.3sg'
+									
+			*Sirkku laula-#skele#T/fin#prs#[V] sukkaa	
+			'Sirkku.nom sing-freq-prs.3sg sock.par'
+
 		& 2.1.5 Thematic vowel
 		
 			# to add
@@ -139,119 +154,86 @@
 				*Pekka haluaa maala-#TA#TA#UTU#A/inf talon
 				'Pekka wants paint-cau-cau-refl-a/inf house-acc
 		
-		& 2.2.3 Finite layer
+		& 2.3 Finite layer
 		
+			# Finite clause
 			
+				Pekka ihailee Merjaa
+				'Pekka.nom admire.prs.3sg Merja.par'
 
-#---------------------------------------------------------------------------------------------
-END
- 
- puu#stO#TA#minen
-
-		maalasi#C/fin#[kO] Pekka taloa
-		'paint.pst.3sg.C.Q Pekka.nom house.par'
-
-
-			sukka kuiva-#TA#UTU#T/fin#prs#[V]
-			'sock.nom dry-cau-refl-prs.3sg'
-
-
-		Sirkku kuiva-#TA#TA#v#T/fin#prs#[V] sukkaa
-		'Sirkku.nom dru.cau.cau.prs.3sg sock.par'
-	
-		Sirkku kuiva-#TA#TA#TA#v#T/fin#prs#[V] sukkaa
-		'Sirkku.nom dry.cau.cau.cau.prs.3sg sock.par'
-
-		Sirkku kuiva-#TA#UTU#TA#v#T/fin#prs#[V] sukkaa
-		'Sirkku dru.cau.relf.cau.prs.3sg sock.par'
-
-END
-
-	& 2.1 yes/no interrogatives
-	
-		Pekka maalasi taloa
-		'Pekka.nom paint.pst.3sg house.par'
-		
-		maalasi#C/fin#[kO] Pekka taloa
-		'paint.pst.3sg.C.Q Pekka.nom house.par'
-		
-		*Pekka maalasi#C/fin#[kO] Pekka taloa
-		'Pekka.nom paint.pst.3sg.C.Q Pekka.nom house.par'
-
-
-	& 2.3 Intransitives
-
-		& Grammatical intransitives with complex EHM predicates
-
-			Sirkku laula-#skele#T/fin#prs#[V]	
-			'Sirkku.nom sing-freq-prs.3sg'
-
-			sukka kuiva-#UTU#T/fin#prs#[V]
-			'sukka.nom dry-refl-prs.3sg'
+				Pekka maalasi taloa
+				'Pekka.nom paint.pst.3sg house.par'
+				
+		& 2.4 C-layer (yes/no interrogatives)
 			
-			sukka kuiva-#TA#UTU#T/fin#prs#[V]
-			'sock.nom dry-cau-refl-prs.3sg'
+			maalasi#C/fin#[kO] Pekka taloa
+			'paint.pst.3sg.C.Q Pekka.nom house.par'
+		
+		 	maalaa-#TA#v#T/fin#[V]#C/fin#[kO] Pekka taloa
+			'paint-cau-v-T/fin-prs.3sg-C.Q Pekka.nom house.par'
+		
+			*Pekka maalasi#C/fin#[kO] Pekka taloa
+			'Pekka.nom paint.pst.3sg.C.Q Pekka.nom house.par'
 
-		& Ungrammatical intransitives with complex EHM predicates and illicit direct argument
-
-			*Sirkku laula-#skele#T/fin#prs#[V] sukkaa	
-			'Sirkku.nom sing-freq-prs.3sg sock.par'
-
-			*Sirkku kuiva-#UTU#T/fin#prs#[V] sukkaa
-			'Sirkku.nom dry-refl-prs.3sg sock.par'
-
-			*Sirkku kuiva-#TA#UTU#T/fin#prs#[V] sukkaa
-			'Sirkku.nom dry-cau-refl-prs.3sg sock.par'
-
-	& 2.4 Transitives
-
-		Sirkku kuiva-#TA#v#T/fin#prs#[V] sukkaa
-		'Sirkku.nom dry-cau-v-prs-3sg sock.par'
-
-		Sirkku pino-#TA#UTU#T/fin#prs#[V]
-		'Sirkku stack-cau-refl-prs-3sg'
-
-		kuiva-#TA#UTU#minen
-		'dry-cau-refl-n'
+		& 2.5 Participles
 	
-	& 2.5 Denominal causatives
-	
-		Sirkku pino-#TA#v#T/fin#prs#[V] sukkaa
-		'Sirkku stack(N).cau.v.prs.3sg sock.par'
-
-		Sirkku pino-#TA#TA#v#T/fin#prs#[V] sukkaa
-		'Sirkku stack(N).cau.cau.v.prs.3sg sock.par'
-
-		Sirkku pino-#TA#TA#TA#v#T/fin#prs#[V] sukkaa
-		'Sirkku stack(N).cau.cau.cau.v.prs.3sg sock.par'
-
-	& 2.6 Participles
-	
-		& Transitive stem
+			& Transitive stem
 		
-			miehen teke-#mA kello-
-			'man.gen make-ma/prtc watch'
-		
-			miehen tekemä kello-
-			'man.gen make-v-ma/prtc watch'
-		
-			kelloa teke-#vA mies-
-			'watch.par make-va/prtc man'
-		
-			kelloa teke-#v#vA mies-
-			'watch.par make-v-va/prtc man'
+				miehen teke-#mA kello-
+				'man.gen make-ma/prtc watch'
+			
+				miehen tekemä kello-
+				'man.gen make-v-ma/prtc watch'
+			
+				kelloa teke-#vA mies-
+				'watch.par make-va/prtc man'
+			
+				kelloa teke-#v#vA mies-
+				'watch.par make-v-va/prtc man'
 			
 		& Intransitive stem
 		
-			nukku-#vA mies-
-			'sleep-va/prtc man'
-			
-			kuiva-#TA#UTU#vA mies-
-			'dry-cau-refl-va/prtc man'
-			
-& 1. Stranding
+				nukku-#vA mies-
+				'sleep-va/prtc man'
+				
+				kuiva-#TA#UTU#vA mies-
+				'dry-cau-refl-va/prtc man'
+				
+& 3. Stranding 
 
-	& 1.1 Verbal morphemes
+	# Verbal causatives
+	
+		# Causative stacking should not stack external/internal postverbal arguments
+		
+			Sirkku kuiva-#TA#v#T/fin#prs#[V] sukkaa
+			'Sirkku.nom dry.cau.prs.3sg sock.par'
+
+			*Sirkku kuiva-#TA#TA#v#T/fin#prs#[V] Pekka sukkaa
+			'Sirkku.nom dry.cau.prs.3sg Pekka.nom sock.par'
+			#Intended: 'Sirkku causes Pekka to dry the sock.'
+
+			*Sirkku kuiva-#TA#TA#v#T/fin#prs#[V] Pekan_acc sukkaa
+			'Sirkku.nom dry.cau.prs.3sg Pekka.acc sock.par'
+			#Intended: 'Sirkku causes Pekka to dry the sock.'	
+		
+		# Causatives inside reflexive should not introduce external/internal postverbal arguments
+		
+			sukka kuiva-#TA#TA#UTU#T/fin#prs#[V]
+			'sock.nom dry-cau-cau-refl-prs.3sg'
+			
+			Sirkku kuiva-#TA#TA#UTU#T/fin#prs#[V] sukkaa
+			'Sirkku.nom dry-cau-cau-refl-prs.3sg'
+
+			Sirkku kuiva-#TA#TA#UTU#T/fin#prs#[V] sukan_acc
+			'Sirkku.nom dry-cau-cau-refl-prs.3sg'
+
+	# Denominal causatives
+	
+			
+
+& 4. Free/bound morpheme tests
+
+	& 4.1 Verbal morphemes
 
 		& T/fin + inflection
 		
@@ -309,7 +291,7 @@ END
 			Sirkku haluaa laula-#(t)A
 			'Sirkku.nom want.prs.3sg sing-a/inf'
 			
-	& 1.2 Nominal and adjectival morphemes
+	& 4.2 Nominal and adjectival morphemes
 	
 		& tAr
 		

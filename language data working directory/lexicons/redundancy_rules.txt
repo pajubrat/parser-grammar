@@ -18,14 +18,14 @@
 # Verbal domain
 
 	v   		:: 	Φ V θ ASP 					+COMP:V -COMP:V/INTR,v,IMPSS +SPEC:D,φ,ø
-	V   		:: 	θ Φ -ΦPF ASP 				-SPEC:Fin
+	V   		:: 	θ Φ ASP 					-SPEC:Fin
 	BE-			::	V COPULA LF:be 				-COMP:Fins
 	v*			:: 	Φ* V						+COMP:V
 	Pr			::	θ ESS 						+COMP:N,A,a
 	Pr2			::	θ Pr TRA 					+COMP:N,A,a
 	V/TR 		:: 								+COMP:Inf,P,D,φ,ø,V
 	V/INTR 		:: 								+COMP:P,ø -COMP:D,φ
-	ε LANG:FI	:: -ΦPF θ 						!wCOMP:θ -wCOMP:P
+	ε LANG:FI	:: θ	 						!wCOMP:θ -wCOMP:P
 
 # Nominal domain
 
@@ -107,7 +107,6 @@
 		P LANG:FI		::  Φ*
 		A LANG:FI		::	Φ*
 		VA/inf LANG:FI	::	Φ*
-		V/TR LANG:FI	::	-ΦPF 
 		v LANG:FI		::  Φ* -ΦPF
 		Fin LANG:FI		::  Φ* ?ΦLF
 		T/prt LANG:FI	::	Φ*
