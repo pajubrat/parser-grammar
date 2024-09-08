@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from g_phrase_structure import GPhraseStructure
 
 class PhraseStructureCanvas(tk.Canvas):
     """Canvas for drawing and manipulating phrase structure objects"""
@@ -12,7 +12,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.selected_objects = []   # selected (logical, phrase structure) objects
         self.parent = parent
         self.configure(scrollregion=(0, 0, 5000, 5000))
-        self.node_to_gps = {}
+        self.ID_to_object = {}
         self.info = None
         self.label_style = {'label': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize'))),
                             'PFtrace': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic", "overstrike"),
@@ -43,16 +43,22 @@ class PhraseStructureCanvas(tk.Canvas):
     def _on_mouse_click(self, *_):
         if self.find_withtag('current'):
             cur = self.find_withtag('current')[0]
-            self.selected_objects = [self.node_to_gps[str(cur)]]
+            tag = self.gettags('current')[0]
+            if tag == 'node':
+                self.selected_objects = [self.ID_to_object[str(cur)]]
+            if tag == 'dependency':
+                self.selected_dependency = self.ID_to_object[str(cur)]
+                print(self.selected_dependency)
         else:
             self.selected_objects = []
+            self.selected_dependency = None
             self.selected_canvas_object = None
         self.parent.update_contents(False)
 
     def _on_ctrl_mouse_click(self, *_):
         if self.find_withtag('current'):
             if self.gettags('current')[0] == 'node':
-                self.selected_objects.append(self.node_to_gps[str(self.find_withtag('current')[0])])
+                self.selected_objects.append(self.ID_to_object[str(self.find_withtag('current')[0])])
         else:
             self.selected_objects = []
         self.parent.update_contents(False)
@@ -62,7 +68,7 @@ class PhraseStructureCanvas(tk.Canvas):
             selected = self.find_withtag('current')[0]
             tag = self.gettags('current')[0]
             if tag == 'node':
-                gps = self.node_to_gps[str(selected)]
+                gps = self.ID_to_object[str(selected)]
                 if gps.zero_level():
                     self.parent.infoframe.config(text=gps.itext(), anchor='nw', justify='left', state='active', bg='yellow')
                     self.info = self.create_window((2200, 700), height=1200, width=500, window=self.parent.infoframe)
@@ -118,7 +124,7 @@ class PhraseStructureCanvas(tk.Canvas):
                               tag='node',
                               font=("Times New Roman", self.application.settings.retrieve('image_parameter_tsize')))
 
-        self.node_to_gps[str(ID)] = gps
+        self.ID_to_object[str(ID)] = gps
         gps.ID = ID
         self.tag_bind(ID, '<Enter>', self._show_info)
         self.tag_bind(ID, '<Leave>', self._hide_info)
@@ -208,7 +214,7 @@ class PhraseStructureCanvas(tk.Canvas):
                 Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
 
                 # Add the node to the mapping from nodes to affixes
-                self.node_to_gps[str(ID)] = affix
+                self.ID_to_object[str(ID)] = affix
                 affix.ID = str(ID)
 
                 # Add events to the first element (i == 0 when producing the label)
@@ -217,25 +223,9 @@ class PhraseStructureCanvas(tk.Canvas):
                     self.tag_bind(ID, '<Leave>', self._hide_info)
 
     def draw_dependencies(self, gps):
-        # head chains
-        if self.application.settings.retrieve('image_parameter_head_chains', True) and gps.head_chain_target:
-            if gps.sister() != gps.head_chain_target or self.application.settings.retrieve(
-                    'image_parameter_trivial_head_chains', False) or not gps.nonverbal():
-                self.draw_dependency('head_chain', gps, gps.head_chain_target)
-        # phrasal chains
-        if self.application.settings.retrieve('image_parameter_phrasal_chains', True):
-            if gps.hasChain() and gps.sister():
-                target = gps.sister().find_node_with_identity(gps.hasChain())
-                if target:
-                    self.draw_dependency('phrasal_chain', gps, target)
-        # custom arcs
-        if len(gps.custom_arcs) > 0:
-            for endpoint, label in gps.custom_arcs:
-                self.draw_dependency('custom', gps, endpoint, label)
-        # custom arrows
-        if len(gps.custom_arrows) > 0:
-            for target, label, arrow_type in gps.custom_arrows:
-                self.draw_arrow(gps, target, label, arrow_type)
+        if len(gps.dependencies) > 0:
+            for dep in gps.dependencies:
+                self.draw_dependency(dep)
         if gps.complex() and not gps.compressed:
                 self.draw_dependencies(gps.left())
                 self.draw_dependencies(gps.right())
@@ -251,40 +241,44 @@ class PhraseStructureCanvas(tk.Canvas):
             return '[' + text + ']'
         return text
 
-    def get_lowered_Y_coord_for_arrow(self, source, target):
+    def get_lowered_Y_coord_for_arrow(self, dep):
         Y_offset = self.application.settings.retrieve('image_parameter_Y_offset_for_arrow')
-        if self.get_Y_coord(target) > self.get_Y_coord(source):
-            return self.get_Y_coord(target) + Y_offset
-        return self.get_Y_coord(source) + Y_offset
+        if self.calculate_Y_coord(dep.target_gps) > self.calculate_Y_coord(dep.source_gps):
+            return self.calculate_Y_coord(dep.target_gps) + Y_offset + dep.Y_offset
+        return self.calculate_Y_coord(dep.source_gps) + Y_offset + dep.Y_offset
 
-    def draw_arrow(self, source, target, label, arrow_type):
-        coords = [(source.X, self.get_Y_coord(source)),
-                  (source.X, self.get_lowered_Y_coord_for_arrow(source, target)),
-                  (target.X, self.get_lowered_Y_coord_for_arrow(source, target)),
-                  (target.X, self.get_Y_coord(target))]
-        self.create_line(*coords,
+    def draw_dependency(self, dep):
+        coords = [(dep.source_gps.X + dep.spx + dep.source_X_offset, self.calculate_Y_coord(dep.source_gps) + dep.spy),
+                  (dep.source_gps.X + dep.spx + dep.source_X_offset, self.get_lowered_Y_coord_for_arrow(dep)),
+                  (dep.target_gps.X + dep.epx + dep.target_X_offset, self.get_lowered_Y_coord_for_arrow(dep)),
+                  (dep.target_gps.X + dep.epx + dep.target_X_offset, self.calculate_Y_coord(dep.target_gps) + dep.epy)]
+        ID = self.create_line(*coords,
+                         splinesteps=50,
                          dash=self.parent.line_style['arrow']['dash'],
-                         arrow=arrow_type,
+                         arrow=dep.arrow_type,
+                         activefill='red',
+                         tag='dependency',
                          arrowshape=(2, 20, 20),
-                         width=self.parent.line_style['arrow']['width'], smooth=False, tag='arrow',
+                         width=self.parent.line_style['arrow']['width'], smooth=dep.smooth,
                          fill=self.parent.line_style['arrow']['fill'])
-        if label:
-            mX = abs(source.X + target.X)/2
-            mY = self.get_lowered_Y_coord_for_arrow(source, target) + 30
+        if dep.label:
+            mX = abs(dep.source_gps.X + dep.target_gps.X) / 2
+            mY = self.get_lowered_Y_coord_for_arrow(dep.source_gps, dep.target_gps) + 30
             self.create_text((mX, mY),
                              fill='black',
                              activefill='red',
                              tag='label_text',
-                             text=label,
+                             text=dep.label,
                              anchor='c',
                              font=self.label_style['arrow_label'])
+        self.ID_to_object[str(ID)] = dep
 
     def label_offset(self, gps):
         if gps.compressed:
             return gps.label_size() * self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
         return self.application.settings.retrieve('image_parameter_text_spacing') * self.application.settings.retrieve('image_parameter_tsize') * gps.label_size()
 
-    def get_Y_coord(self, gps):
+    def calculate_Y_coord(self, gps):
         for x in gps.dominating_nodes():
             if x.compressed:
                 return x.Y  # GPS is inside compressed node
@@ -304,15 +298,3 @@ class PhraseStructureCanvas(tk.Canvas):
         return gps.Y + \
                (self.application.settings.retrieve('image_parameter_text_spacing') * self.application.settings.retrieve('image_parameter_tsize') * gps.label_size()) + \
                (self.application.settings.retrieve('image_parameter_text_spacing') * complex_head_Y_offset)
-
-    def draw_dependency(self, style, source_gps, target_gps, text=''):
-        coords = [(source_gps.X, self.get_Y_coord(source_gps)),
-                  (source_gps.X + abs(source_gps.X - target_gps.X)/2, target_gps.Y + int(self.application.settings.retrieve('image_parameter_grid') * self.application.settings.retrieve('image_parameter_arc_curvature'))),
-                  (target_gps.X, self.get_Y_coord(target_gps))]
-        self.create_line(*coords,
-                         splinesteps=50,
-                         dash=self.parent.line_style[style]['dash'],
-                         width=self.parent.line_style[style]['width'],
-                         smooth=True,
-                         tag=style,
-                         fill=self.parent.line_style[style]['fill'])

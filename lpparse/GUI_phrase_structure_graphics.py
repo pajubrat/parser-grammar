@@ -25,6 +25,8 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.phase_structure_title = None
         self.label = None
         self.stored_filename = None
+        self.inventory = {'dependencies': []}
+        self.lst_dependencies = []
         # Line styles
         self.line_style = {'phrasal_chain': {'fill': 'black', 'dash': None, 'width': 2},
                            'head_chain': {'fill': 'black', 'dash': None, 'width': 2},
@@ -36,7 +38,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=4, column=0)
         self.canvas.focus_set()
-        self.canvas.configure(width=self.application.settings.retrieve('image_parameter_canvas_width'), height=self.application.settings.retrieve('image_parameter_canvas_height'), background='white')
+        self.canvas.configure(closeenough=10, width=self.application.settings.retrieve('image_parameter_canvas_width'), height=self.application.settings.retrieve('image_parameter_canvas_height'), background='white')
         # Scrollbars for the canvas
         xscroll = tk.Scrollbar(self, command=self.canvas.xview, orient=tk.HORIZONTAL)
         xscroll.grid(row=3, column=0, sticky='new')
@@ -119,6 +121,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<CreateNamedArrow>>', self.create_named_arrow)
         self.bind('<<ChangeArrowDepth>>', self.change_arrow_depth)
         self.bind('<<ChangeCurvature>>', self.change_curvature)
+        self.bind('<<CustomDependency>>', self.custom_dependency)
         self.bind('<<AddXP>>', self.add_XP)
         self.bind('<<AddDP>>', self.add_DP)
         self.bind('<<AddHead>>', self.add_Head)
@@ -164,6 +167,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<Control-s>', self.save)
         self.bind('<Key-+>', self.widen_node)
         self.bind('<Key-->', self.squeeze_node)
+        self.bind('<Key-c>', self.create_forward_arrow)
         self.bind('<Key-l>', self.use_custom_label)
         # Show phrase structure image
         self.initialize_and_show_image()
@@ -211,7 +215,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         column += 1
         self.button_img11 = tk.PhotoImage(file='./lpparse/image resources/squeeze.png').subsample(2, 2)
         self.create_button(self.button_img11, self.squeeze_node, self.ribbon, pad,column)
-
 
     def create_button(self, image, command, ribbon, pad, column):
         tk.Button(ribbon, command=command,
@@ -292,6 +295,22 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def save_image_as_postscript(self, filename=''):
         self.canvas.postscript(file=filename + '.eps', colormode='color')
+
+    def implement_chains(self, gps):
+        # head chains
+        if self.application.settings.retrieve('image_parameter_head_chains', True) and gps.head_chain_target:
+            if gps.sister() != gps.head_chain_target or self.application.settings.retrieve(
+                    'image_parameter_trivial_head_chains', False) or not gps.nonverbal():
+                gps.dependencies.append(Dependency(gps, gps.head_chain_target, 'none', '', True))
+        # phrasal chains
+        if self.application.settings.retrieve('image_parameter_phrasal_chains', True):
+            if gps.hasChain() and gps.sister():
+                target = gps.sister().find_node_with_identity(gps.hasChain())
+                if target:
+                    gps.dependencies.append(Dependency(gps, target, 'none', '', False))
+        if gps.complex() and not gps.compressed:
+            self.implement_chains(gps.left())
+            self.implement_chains(gps.right())
 
     # ---------------------------------------------------------------------------------
     # Menu actions
@@ -745,8 +764,10 @@ class PhraseStructureGraphics(tk.Toplevel):
     def update_contents(self, recalculate=True, x_offset=0, y_offset=0):
         if recalculate:
             self.root_gps.initialize_logical_space()
+            self.implement_chains(self.root_gps)
         self.root_gps.remove_overlap()
         self.recalculate_labels(self.root_gps)
+        self.remove_dependency_overlaps()
         self.canvas.redraw(self.root_gps, False, x_offset, y_offset)
         self.canvas.focus_set()
 
@@ -763,48 +784,68 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.update_contents(False)
 
     def create_arc(self, *_):
-        if len(self.canvas.selected_objects) > 1:
-            for i, gps in enumerate(self.canvas.selected_objects):
-                if i < len(self.canvas.selected_objects) - 1:
-                    source_gps = gps
-                    target_gps = self.canvas.selected_objects[i + 1]
-                    source_gps.custom_arcs.append((target_gps, 'label'))
-        self.update_contents(False)
+        self.create_dependency(smooth=True, arrowtype='none', label='')
 
     def create_named_arrow(self, *_):
-        self.label = simpledialog.askstring(title='Label for arrow', prompt='Label', parent=self)
-        self.create_arrow()
-        self.label = None
+        label = simpledialog.askstring(title='Label for arrow', prompt='Label', parent=self)
+        self.create_dependency(arrowtype='last', smooth=False, label=label)
 
     def deselect_all(self):
         self.canvas.selected_objects = []
         self.update_contents(False)
 
     def create_forward_arrow(self, *_):
-        self.create_arrow_('last')
+        self.create_dependency(arrowtype='last', smooth=False, label='')
 
     def create_backward_arrow(self, *_):
-        self.create_arrow_('first')
+        self.create_dependency(arrowtype='first', smooth=False, label='')
 
     def create_bidirectional_arrow(self, *_):
-        self.create_arrow_('both')
+        self.create_dependency(arrowtype='both', smooth=False, label='')
 
     def create_arrow(self, *_):
-        self.create_arrow_('none')
+        self.create_dependency(arrowtype='none', smooth=False, label='')
 
-    def create_arrow_(self, arrowtype):
+    def create_dependency(self, **kwargs):
         if len(self.canvas.selected_objects) > 1:
             for i, gps in enumerate(self.canvas.selected_objects):
                 if i < len(self.canvas.selected_objects) - 1:
-                    source_gps = gps
-                    target_gps = self.canvas.selected_objects[i + 1]
-                    source_gps.custom_arrows.append((target_gps, self.label, arrowtype))
+                    dep = Dependency()
+                    dep.source_gps = gps
+                    dep.target_gps = self.canvas.selected_objects[i + 1]
+                    dep.arrow_type = kwargs['arrowtype']
+                    dep.smooth = kwargs['smooth']
+                    dep.label = kwargs['label']
+                    gps.dependencies.append(dep)
+                    self.inventory['dependencies'].append(dep)
             self.update_contents(False)
+            self.canvas.selected_objects = []
+
+    def remove_dependency_overlaps(self):
+        def source_dependencies_for_node(X):
+            return [dep for dep in self.inventory['dependencies'] if dep.source_gps == X]
+
+        def target_dependencies_for_node(X):
+            return [dep for dep in self.inventory['dependencies'] if dep.target_gps == X]
+
+        for dep in self.inventory['dependencies']:
+            sources = source_dependencies_for_node(dep.source_gps)
+            targets = target_dependencies_for_node(dep.source_gps)
+            if len(sources) > 0 and len(targets) > 0:
+                if dep.source_gps.X < dep.target_gps.X:
+                    dep.source_X_offset = 10
+                    for dep2 in targets:
+                        dep2.target_X_offset = -10
+                else:
+                    dep.source_X_offset = -10
+                    for dep2 in targets:
+                        dep2.target_X_offset = +10
 
     def delete_dependencies(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            gps.custom_arcs = []
-            gps.custom_arrows = []
+            for dep in gps.dependencies:
+                self.inventory['dependencies'].remove(dep)
+            gps.dependencies = []
         self.update_contents(False)
 
     def custom_text(self, *_):
@@ -983,6 +1024,9 @@ class PhraseStructureGraphics(tk.Toplevel):
         left_x, right_x, depth = gps.find_boundaries(0, 0, 0)
         return abs(left_x) * self.application.settings.retrieve('image_parameter_grid') + self.application.settings.retrieve('image_parameter_margins'), self.application.settings.retrieve('image_parameter_y_grid') / 4
 
+    def custom_dependency(self, *_):
+        DependencyDialog()
+
     # ------------------------------------------------------------------------------------------
     # Change of settings (from menu)
 
@@ -1131,21 +1175,17 @@ class GraphicsMenu(tk.Menu):
         self.add_cascade(label='Node', underline=0, menu=node)
 
         arc = tk.Menu(self, tearoff=False, font=menu_font)
+        arc.add_command(label='Forward Chain', command=self._event('<<CreateForwardArrow>>'))
+        arc.add_command(label='Backward Chain', command=self._event('<<CreateBackwardArrow>>'))
+        arc.add_command(label='Bidirectional Chain', command=self._event('<<CreateBidirectionalArrow>>'))
+        arc.add_command(label='Directionless Chain', command=self._event('<<CreateArrow>>'))
+        arc.add_separator()
         arc.add_command(label='Curved', command=self._event('<<CreateArc>>'))
         arc.add_command(label='Change Curvature', command=self._event('<<ChangeCurvature>>'))
         arc.add_separator()
-
-        arc_submenu = tk.Menu(arc, tearoff=False, font=menu_font)
-        arc_submenu.add_command(label='Forward', command=self._event('<<CreateForwardArrow>>'))
-        arc_submenu.add_command(label='Backward', command=self._event('<<CreateBackwardArrow>>'))
-        arc_submenu.add_command(label='Bidirectional', command=self._event('<<CreateBidirectionalArrow>>'))
-        arc_submenu.add_command(label='No direction', command=self._event('<<CreateArrow>>'))
-        arc.add_cascade(label='Chain...', menu=arc_submenu)
-
-        arc.add_command(label='Named Chain', command=self._event('<<CreateNamedArrow>>'))
-        arc.add_command(label='Chain depth...', command=self._event('<<ChangeArrowDepth>>'))
-        arc.add_separator()
         arc.add_command(label='Delete', command=self._event('<<DeleteDependencies>>'))
+        arc.add_separator()
+        arc.add_command(label='Custom Dependency...', command=self._event('<<CustomDependency>>'))
         self.add_cascade(label='Dependency', menu=arc)
 
         ps = tk.Menu(self, tearoff=False, font=menu_font)
@@ -1230,3 +1270,104 @@ class GraphicsMenu(tk.Menu):
         settings_menu.add_cascade(label='Phrasal chains...', menu=submenu_chains_phrasal)
 
         self.add_cascade(label='Settings', menu=settings_menu)
+
+# --------------------------------------------------------------------------------------------
+# Definitions for linguistic objects that can appear on canvas
+
+
+class Dependency():
+    def __init__(self, source=None, target=None, arrow_type='non', label='', smooth=False):
+        self.source_gps = source
+        self.target_gps = target
+        self.arrow_type = arrow_type
+        self.label = label
+        self.smooth = smooth
+        self.Y_offset = 0
+        self.source_X_offset = 0
+        self.target_X_offset = 0
+        self.spx = 0
+        self.spy = 0
+        self.epx = 0
+        self.epy = 0
+
+
+class DependencyDialog(tk.Toplevel):
+    def __init__(self, dep=None):
+        super().__init__()
+        self.title("Dependency")
+        dfont = ('Times New Roman', 30)
+
+        if dep:
+            frameInfo = tk.LabelFrame(self, text='Dependency', font=dfont)
+            tk.Label(frameInfo, text=f'{dep.source_gps}').grid(row=0, column=0)
+            tk.Label(frameInfo, text=f'{dep.target_gps}').grid(row=0, column=1)
+            frameInfo.grid(row=0, column=0)
+
+        frameDirection = tk.LabelFrame(self, text='Direction', font=dfont)
+        arrow_options = ['Forward', 'Backwards', 'Bidirectional', 'No direction']
+        selDirection = tk.StringVar()
+        if dep:
+            if dep.arrow_type == 'last':
+                selDirection.set('Forward')
+            if dep.arrow_type == 'first':
+                selDirection.set('Backwards')
+            if dep.arrow_type == 'none':
+                selDirection.set('No direction')
+            if dep.arrow_type == 'both':
+                selDirection.set('Bidirectional')
+        else:
+            selDirection.set('Forward')
+        for i, option in enumerate(arrow_options):
+            tk.Radiobutton(frameDirection, padx=10, pady=10, justify='left', text=option, variable=selDirection, value=option, font=dfont).grid(row=0, column=i)
+        frameDirection.grid(row=1, column=0, columnspan=2, sticky='wne')
+
+        frameSmooth = tk.LabelFrame(self, text='Curved', font=dfont)
+        selSmooth = tk.BooleanVar()
+        if dep:
+            selSmooth.set(dep.smooth)
+        tk.Checkbutton(frameSmooth, padx=10, pady=10, variable=selSmooth, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameSmooth.grid(row=1, column=2, sticky='nw')
+
+        frameLabel = tk.LabelFrame(self, text='Label', font=dfont)
+        selLabel = tk.StringVar()
+        if dep:
+            selLabel.set(dep.label)
+        tk.Entry(frameLabel, textvariable=selLabel, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameLabel.grid(row=2, column=0)
+
+        frameY_offset = tk.LabelFrame(self, text='Y-axis offset', font=dfont)
+        selYoffset = tk.IntVar()
+        if dep:
+            selYoffset.set(dep.Y_offset)
+        tk.Entry(frameY_offset, textvariable=selYoffset, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameY_offset.grid(row=2, column=1)
+
+        frameXY = tk.LabelFrame(self, text='Position', font=dfont, padx=20, pady=20)
+        selSpx = tk.IntVar()
+        selSpy = tk.IntVar()
+        selEpx = tk.IntVar()
+        selEpy = tk.IntVar()
+        if dep:
+            selSpx.set(dep.spx)
+            selSpy.set(dep.spy)
+            selEpx.set(dep.epx)
+            selEpy.set(dep.spx)
+        frameSpx = tk.LabelFrame(frameXY, text='Spx', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpx, textvariable=selSpx, font=dfont).grid(row=0, column=0)
+        frameSpx.grid(row=0, column=0)
+        frameSpy = tk.LabelFrame(frameXY, text='Spy', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpy, textvariable=selSpy, font=dfont).grid(row=0, column=0)
+        frameSpy.grid(row=0, column=1)
+        frameEpx = tk.LabelFrame(frameXY, text='Epx', font=dfont, padx=20, pady=20)
+        tk.Entry(frameEpx, textvariable=selEpx, font=dfont).grid(row=0, column=0)
+        frameEpx.grid(row=0, column=2)
+        frameEpy = tk.LabelFrame(frameXY, text='Epy', font=dfont, padx=20, pady=20)
+        tk.Entry(frameEpy, textvariable=selEpy, font=dfont).grid(row=0, column=0)
+        frameEpy.grid(row=0, column=3)
+        frameXY.grid(row=3, column=0, columnspan=3)
+
+        buttonOK = tk.Button(self, text='OK', font=dfont, padx=20, pady=20, command=self.ok)
+        buttonOK.grid(row=4, column=4, columnspan=2, sticky='e')
+
+    def ok(self):
+        self.destroy()
