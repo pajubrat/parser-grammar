@@ -7,6 +7,8 @@ import pickle
 from GUI_gphrase_structure_canvas import PhraseStructureCanvas
 
 
+# todo shrink into DP should preserve phrasal status
+
 class PhraseStructureGraphics(tk.Toplevel):
     """Window hosting the canvas"""
     def __init__(self, application, **kwargs):
@@ -112,6 +114,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<EmptyText>>', self.empty_text)
         self.bind('<<CreateArc>>', self.create_arc)
         self.bind('<<DeleteDependencies>>', self.delete_dependencies)
+        self.bind('<<DeleteAllDependencies>>', self.delete_all_dependencies)
         self.bind('<<CreateForwardArrow>>', self.create_forward_arrow)
         self.bind('<<CreateBackwardArrow>>', self.create_backward_arrow)
         self.bind('<<CreateBidirectionalArrow>>', self.create_bidirectional_arrow)
@@ -244,11 +247,12 @@ class PhraseStructureGraphics(tk.Toplevel):
             pass    # Canvas is prepared but there will be no image
         self.update_contents()
 
-    def draw_phrase_structure(self, X):
+    def initialize_and_draw_phrase_structure(self, X):
         """Deletes content from the canvas and draws X on it"""
         self.canvas.delete('all')
         self.root_gps = GPhraseStructure(X.top().copy())
         self.root_gps.initialize_logical_space()
+        self.find_head_chains(self.root_gps)
         self.root_gps.remove_overlap()
         spx, spy = self.determine_position_of_highest_node(self.root_gps)
         self.canvas.draw_to_canvas(self.root_gps, spx, spy)
@@ -264,7 +268,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         else:
             self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, self.index_of_analysis_shown)
         self.index_of_analysis_shown = self.canvas.derivational_index
-        self.draw_phrase_structure(X)
+        self.initialize_and_draw_phrase_structure(X)
 
     def get_ps_from_speaker_model(self, speaker_model, index):
         """Returns the phrase structure object to be drawn, None otherwise"""
@@ -275,7 +279,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas.delete('all')
         self.canvas.title = ''
         self.canvas.derivational_index = 0
-        self.draw_phrase_structure(X)
         self.fit_into_screen_and_show()
         self.update()
         self.save_image_as_postscript(filename)
@@ -294,18 +297,28 @@ class PhraseStructureGraphics(tk.Toplevel):
     def save_image_as_postscript(self, filename=''):
         self.canvas.postscript(file=filename + '.eps', colormode='color')
 
+    def find_head_chains(self, gps):
+        gps.head_chain_target = gps.find_head_chain()
+        if gps.find_nonstandard_head_chain():
+            gps.head_chain_target = gps.find_nonstandard_head_chain()
+        if gps.left():
+            self.find_head_chains(gps.left())
+        if gps.right():
+            self.find_head_chains(gps.right())
+
     def implement_chains(self, gps):
-        # head chains
         if self.application.settings.retrieve('image_parameter_head_chains', True) and gps.head_chain_target:
             if gps.sister() != gps.head_chain_target or self.application.settings.retrieve(
                     'image_parameter_trivial_head_chains', False) or not gps.nonverbal():
                 self.inventory['dependencies'].append(Dependency(gps, gps.head_chain_target, 'none', '', True))
+                gps.head_chain_target = None
         # phrasal chains
         if self.application.settings.retrieve('image_parameter_phrasal_chains', True):
             if gps.hasChain() and gps.sister():
                 target = gps.sister().find_node_with_identity(gps.hasChain())
                 if target:
                     self.inventory['dependencies'].append(Dependency(gps, target, 'none', '', False))
+                    gps.features = {f for f in gps.features if not gps.startswith('CHAIN:')}
         if gps.complex() and not gps.compressed:
             self.implement_chains(gps.left())
             self.implement_chains(gps.right())
@@ -550,18 +563,22 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def template_VP(self, *_):
         self.root_gps = self.VP()
-        self.update_contents()
+        self.template_cleanup()
 
     def template_vP(self, *_):
         self.root_gps = self.vP()
-        self.update_contents()
+        self.template_cleanup()
 
     def template_TP(self, *_):
         self.root_gps = self.TP()
-        self.update_contents()
+        self.template_cleanup()
 
     def template_CP(self, *_):
         self.root_gps = self.CP()
+        self.template_cleanup()
+
+    def template_cleanup(self):
+        self.inventory['dependencies'] = []
         self.update_contents()
 
     def add_Head(self, *_):
@@ -792,6 +809,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         if self.canvas.selected_dependency:
             self.inventory['dependencies'].remove(self.canvas.selected_dependency)
             self.update_contents(False)
+
+    def delete_all_dependencies(self, *_):
+        self.inventory['dependencies'] = []
+        self.update_contents(False)
 
     def create_forward_arrow(self, *_):
         self.create_dependency(arrowtype='last', smooth=False, label='')
@@ -1193,6 +1214,7 @@ class GraphicsMenu(tk.Menu):
         dep.add_command(label='Change Curvature', command=self._event('<<ChangeCurvature>>'))
         dep.add_separator()
         dep.add_command(label='Delete', command=self._event('<<DeleteDependencies>>'))
+        dep.add_command(label='Delete All', command=self._event('<<DeleteAllDependencies>>'))
         dep.add_separator()
         dep.add_command(label='Modify...', command=self._event('<<ModifyDependency>>'))
         dep.add_command(label='Custom Dependency...', command=self._event('<<CustomDependency>>'))

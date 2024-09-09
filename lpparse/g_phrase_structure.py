@@ -110,9 +110,6 @@ class GPhraseStructure(PhraseStructure):
 
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
-        self.head_chain_target = self.find_head_chain()
-        if self.find_nonstandard_head_chain():
-            self.head_chain_target = self.find_nonstandard_head_chain()
         if self.complex():
             self.left().x = self.x - 1
             self.left().y = self.y + 1
