@@ -18,7 +18,6 @@ class GPhraseStructure(PhraseStructure):
         self.flip = False
 
         self.custom_label = None
-
         if not source.terminal():
             if GPhraseStructure.application.settings.retrieve('image_parameter_phrasal_complex_heads') and source.zero_level() and len(source.const) > 0:
                 self.create_constituents([GPhraseStructure(const) for const in self.complex_head_transform(source).const])
@@ -44,6 +43,7 @@ class GPhraseStructure(PhraseStructure):
         self.source = source
         self.node_identity = source.node_identity
         self.compressed = False
+        self.compressed_into_head = False
         self.label_stack = self.generate_label_stack()
         self.custom_arcs = []
         self.ellipsis = None
@@ -76,12 +76,12 @@ class GPhraseStructure(PhraseStructure):
             C.mother_ = M
         return C
 
-    def relabel(GX):
-        if GX.left():
-            GX.left().relabel()
-        if GX.right():
-            GX.right().relabel()
-            GX.custom_label = GX.right().label() + '°'
+    def relabel(gps):
+        if gps.left():
+            gps.left().relabel()
+        if gps.right():
+            gps.right().relabel()
+            gps.custom_label = gps.right().label() + '°'
 
     # Allows left-right flipping during image creation
     def left(self):
@@ -125,7 +125,7 @@ class GPhraseStructure(PhraseStructure):
     def remove_overlap_(self):
         """Stretches child nodes apart if their offspring create overlap"""
         # Horizontal overlap
-        if self.complex():
+        if self.complex() and not self.compressed_into_head:
             if not self.left().compressed:
                 self.left().remove_overlap_()
             if not self.right().compressed:
@@ -146,17 +146,19 @@ class GPhraseStructure(PhraseStructure):
 
             # Remove vertical overlap from each column (i.e. high label stack overlaps with constituent below)
             # This brute force algorithm is inefficient (todo)
-            if not self.left().compressed:
-                lst = self.left().rich_labels() # Find high labels from LEFT that can in principle overlap
+            if not self.left().compressed and not self.compressed_into_head:
+                lst = self.left().rich_labels()     # Find high labels from LEFT that can in principle overlap
                 for node in lst:
-                    if not self.right().compressed:
+                    if not self.right().compressed and not self.compressed_into_head:
                         if self.right().vertical_overlap(node): # find overlaps from RIGHT
                             self.left().move_x(-0.5)            # and if found, stretch
                             self.right().move_x(0.5)
 
     def boundary_points(self):
         boundary = set()
-        if self.compressed:
+        if self.compressed_into_head:
+            boundary.add((self.x, self.y))
+        elif self.compressed:
             boundary.add((self.left().x, self.left().y))
             boundary.add((self.right().x, self.right().y))
         else:
@@ -173,16 +175,16 @@ class GPhraseStructure(PhraseStructure):
             right_x = self.x
         if self.y > depth:
             depth = self.y
-        if self.complex() and not self.compressed:
+        if self.complex() and not self.compressed and not self.compressed_into_head:
             left_x, right_x, depth = self.left().find_boundaries(left_x, right_x, depth)
             left_x, right_x, depth = self.right().find_boundaries(left_x, right_x, depth)
         return left_x, right_x, depth
 
     def rich_labels(self):
         lst = []
-        if self.left():
+        if self.left() and not self.left().compressed_into_head:
             lst += self.left().rich_labels()
-        if self.right():
+        if self.right() and not self.right().compressed_into_head:
             lst += self.right().rich_labels()
         if self.label_size() > 2:
             lst.append(self)
@@ -191,11 +193,11 @@ class GPhraseStructure(PhraseStructure):
     def vertical_overlap(self, node):
         if self.x == node.x and self.y == node.y + 1:
             return True
-        if self.left():
+        if self.left() and not self.compressed_into_head:
             Z = self.left().vertical_overlap(node)
             if Z:
                 return True
-        if self.right():
+        if self.right() and not self.compressed_into_head:
             Z = self.right().vertical_overlap(node)
             if Z:
                 return Z

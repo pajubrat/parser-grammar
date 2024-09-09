@@ -24,7 +24,7 @@ class Settings:
                   'image_parameter_y_grid': 180,
                   'image_parameter_y_margins': 300,
                   'image_parameter_fit_margins': 100,
-                  'image_parameter_canvas_width': 2480,
+                  'image_parameter_canvas_width': 2200,
                   'image_parameter_canvas_height': 1400,
                   'image_parameter_label_padding': 1,
                   'image_parameter_text_spacing': 1.5,

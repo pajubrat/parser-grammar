@@ -107,8 +107,7 @@ class PhraseStructureCanvas(tk.Canvas):
         color = 'black'
         if gps in self.selected_objects:
             color = 'red'
-
-        if gps.complex():
+        if gps.complex() and not gps.compressed_into_head:
             self.create_complex_node(gps, (X1, Y1), spx, spy, color)
         else:
             self.create_primitive_node(gps, X1, Y1, color)
@@ -120,7 +119,7 @@ class PhraseStructureCanvas(tk.Canvas):
 
         # Create text holding the complex label (e.g., XP)
         ID = self.create_text(M_const_coord,
-                              text=self.feature_conversion_for_images(gps.label_stack[0]),
+                              text=gps.label_stack[0][0],
                               fill=color,
                               activefill='red',
                               tag='node',
@@ -167,7 +166,7 @@ class PhraseStructureCanvas(tk.Canvas):
         # Reproduce the head and all of its affixes
         for j, affix in enumerate(gps.get_affix_list(), start=1):
             # Do not reproduce affixes if blocked by settings
-            if (affix.copied and not self.application.settings.retrieve('image_parameter_covert_complex_heads', False)) or \
+            if (affix.zero_level() and affix.copied and not self.application.settings.retrieve('image_parameter_covert_complex_heads', False)) or \
                     (j > 1 and not self.application.settings.retrieve('image_parameter_complex_heads', True)):
                 break
 
@@ -215,18 +214,20 @@ class PhraseStructureCanvas(tk.Canvas):
                 # Update the offset
                 Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
 
-                # Add the node to the mapping from nodes to affixes
-                self.ID_to_object[str(ID)] = affix
-                affix.ID = str(ID)
-
                 # Add events to the first element (i == 0 when producing the label)
                 if i == 0:
                     self.tag_bind(ID, '<Enter>', self._show_info)
                     self.tag_bind(ID, '<Leave>', self._hide_info)
 
+                # Add the node to the mapping from nodes to affixes
+                self.ID_to_object[str(ID)] = affix
+                affix.ID = str(ID)
+
     def draw_dependencies(self):
         for dep in self.parent.inventory['dependencies']:
-            self.draw_dependency(dep)
+            if not {x for x in dep.source_gps.dominating_nodes() if x.compressed_into_head or x.compressed}:
+                if not {x for x in dep.target_gps.dominating_nodes() if x.compressed_into_head or x.compressed}:
+                    self.draw_dependency(dep)
 
     def feature_conversion_for_images(self, label_item):
         text = label_item[0]

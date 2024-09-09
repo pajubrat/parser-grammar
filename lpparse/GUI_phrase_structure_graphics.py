@@ -7,8 +7,6 @@ import pickle
 from GUI_gphrase_structure_canvas import PhraseStructureCanvas
 
 
-# todo shrink into DP should preserve phrasal status
-
 class PhraseStructureGraphics(tk.Toplevel):
     """Window hosting the canvas"""
     def __init__(self, application, **kwargs):
@@ -84,6 +82,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<FirstImage>>', self.first_image)
         self.bind('<<CaptureImage>>', self.save_image)
         self.bind('<<CompressNode>>', self.compress_node)
+        self.bind('<<CompressNodeIntoHead>>', self.compress_node_into_head)
         self.bind('<<DecompressNode>>', self.decompress_node)
         self.bind('<<SqueezeNode>>', self.squeeze_node)
         self.bind('<<WidenNode>>', self.widen_node)
@@ -310,7 +309,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         if self.application.settings.retrieve('image_parameter_head_chains', True) and gps.head_chain_target:
             if gps.sister() != gps.head_chain_target or self.application.settings.retrieve(
                     'image_parameter_trivial_head_chains', False) or not gps.nonverbal():
-                self.inventory['dependencies'].append(Dependency(gps, gps.head_chain_target, 'none', '', True))
+                self.inventory['dependencies'].append(Dependency(gps, gps.head_chain_target, 'none', '', False))
                 gps.head_chain_target = None
         # phrasal chains
         if self.application.settings.retrieve('image_parameter_phrasal_chains', True):
@@ -392,10 +391,7 @@ class PhraseStructureGraphics(tk.Toplevel):
     def shrink_all_DPs(self, *_):
         def shrink_all_DPs_(gps):
             if {'D', 'φ'} & gps.head().features:
-                gps.const = []
-                gps.custom_label = 'DP'
-                gps.copied = False
-                self.label_stack_update(gps)
+                gps.compressed_into_head = True
             else:
                 if gps.left():
                     shrink_all_DPs_(gps.left())
@@ -1000,12 +996,20 @@ class PhraseStructureGraphics(tk.Toplevel):
             # Compress the object
             if gps.complex():
                 gps.compressed = True
-        self.update_contents(False)
+        self.update_contents(True)
+
+    def compress_node_into_head(self, *_):
+        for gps in self.canvas.selected_objects:
+            # Compress the object
+            if gps.complex():
+                gps.compressed_into_head = True
+        self.update_contents(True)
 
     def decompress_node(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.compressed = False
-        self.canvas.redraw(gps.top())
+            gps.compressed_into_head = False
+        self.update_contents(True)
 
     def parse_feature_visualizations(self, stri):
         """
@@ -1137,7 +1141,8 @@ class GraphicsMenu(tk.Menu):
 
         # Node menu
         node = tk.Menu(self, tearoff=False, font=menu_font)
-        node.add_command(label='Compress', command=self._event('<<CompressNode>>'))
+        node.add_command(label='Compress (Triangle)', command=self._event('<<CompressNode>>'))
+        node.add_command(label='Compress (Head)', command=self._event('<<CompressNodeIntoHead>>'))
         node.add_command(label='Decompress', command=self._event('<<DecompressNode>>'))
 
         submenu_Shape = tk.Menu(node, tearoff=0, font=menu_font)
