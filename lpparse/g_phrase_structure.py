@@ -46,7 +46,6 @@ class GPhraseStructure(PhraseStructure):
         self.compressed = False
         self.label_stack = self.generate_label_stack()
         self.custom_arcs = []
-        self.dependencies = []
         self.ellipsis = None
         self.ID = None
 

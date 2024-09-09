@@ -10,6 +10,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.title = None
         self.derivational_index = None
         self.selected_objects = []   # selected (logical, phrase structure) objects
+        self.selected_dependency = None
         self.parent = parent
         self.configure(scrollregion=(0, 0, 5000, 5000))
         self.ID_to_object = {}
@@ -46,9 +47,10 @@ class PhraseStructureCanvas(tk.Canvas):
             tag = self.gettags('current')[0]
             if tag == 'node':
                 self.selected_objects = [self.ID_to_object[str(cur)]]
+                self.selected_dependency = None
             if tag == 'dependency':
                 self.selected_dependency = self.ID_to_object[str(cur)]
-                print(self.selected_dependency)
+                self.selected_objects = []
         else:
             self.selected_objects = []
             self.selected_dependency = None
@@ -92,7 +94,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.update_status_bar(spx)
         self.info_text = self.create_text((2000, 300), state='hidden')  # Show information about selected objects
         self.project_into_canvas(gps, spx, spy)
-        self.draw_dependencies(gps)
+        self.draw_dependencies()
 
     def project_into_canvas(self, gps, spx, spy):
         """Projects the logical phase structure object into canvas"""
@@ -222,13 +224,9 @@ class PhraseStructureCanvas(tk.Canvas):
                     self.tag_bind(ID, '<Enter>', self._show_info)
                     self.tag_bind(ID, '<Leave>', self._hide_info)
 
-    def draw_dependencies(self, gps):
-        if len(gps.dependencies) > 0:
-            for dep in gps.dependencies:
-                self.draw_dependency(dep)
-        if gps.complex() and not gps.compressed:
-                self.draw_dependencies(gps.left())
-                self.draw_dependencies(gps.right())
+    def draw_dependencies(self):
+        for dep in self.parent.inventory['dependencies']:
+            self.draw_dependency(dep)
 
     def feature_conversion_for_images(self, label_item):
         text = label_item[0]
@@ -252,18 +250,23 @@ class PhraseStructureCanvas(tk.Canvas):
                   (dep.source_gps.X + dep.spx + dep.source_X_offset, self.get_lowered_Y_coord_for_arrow(dep)),
                   (dep.target_gps.X + dep.epx + dep.target_X_offset, self.get_lowered_Y_coord_for_arrow(dep)),
                   (dep.target_gps.X + dep.epx + dep.target_X_offset, self.calculate_Y_coord(dep.target_gps) + dep.epy)]
+        if self.selected_dependency == dep:
+            color = 'red'
+        else:
+            color = 'black'
         ID = self.create_line(*coords,
-                         splinesteps=50,
-                         dash=self.parent.line_style['arrow']['dash'],
-                         arrow=dep.arrow_type,
-                         activefill='red',
-                         tag='dependency',
-                         arrowshape=(2, 20, 20),
-                         width=self.parent.line_style['arrow']['width'], smooth=dep.smooth,
-                         fill=self.parent.line_style['arrow']['fill'])
+                              splinesteps=50,
+                              dash=self.parent.line_style['arrow']['dash'],
+                              arrow=dep.arrow_type,
+                              activefill='red',
+                              tag='dependency',
+                              arrowshape=(2, 20, 20),
+                              width=self.parent.line_style['arrow']['width'],
+                              smooth=dep.smooth,
+                              fill=color)
         if dep.label:
             mX = abs(dep.source_gps.X + dep.target_gps.X) / 2
-            mY = self.get_lowered_Y_coord_for_arrow(dep.source_gps, dep.target_gps) + 30
+            mY = self.get_lowered_Y_coord_for_arrow(dep) + 30
             self.create_text((mX, mY),
                              fill='black',
                              activefill='red',
