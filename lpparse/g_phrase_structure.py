@@ -48,6 +48,9 @@ class GPhraseStructure(PhraseStructure):
         self.custom_arcs = []
         self.ellipsis = None
         self.ID = None
+        self.highlight = False
+        self.special_left_constituent_marking = []
+        self.special_right_constituent_marking = []
 
     def complex_head_transform(self, X):
         M = X.mother()

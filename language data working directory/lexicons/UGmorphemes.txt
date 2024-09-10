@@ -34,7 +34,7 @@
 
 # Nominal domain
 
-	a0		:: a LF:a PF:a
+	a0		:: a LF:a PF:a +COMP:A,√,0 +SPEC:Adv
 	A 		:: A LF:A PF:A
 	DET		:: DET LF:DET PF:DET
 	Qn		:: Qn LF:Qn PF:Qn
@@ -71,7 +71,7 @@
 		
 		# Verbal
 		
-		TA				:: V CAU ε 	PF:-TA		LF:cause			 V/TR LANG:FI
+		TA				:: V CAU ε 		PF:-TA		LF:cause			 V/TR LANG:FI
 		ile,ele,skele	:: V FREQ ε		PF:-ile		LF:frequent  		-wCOMP:FREQ,EVE2,MOM2,RSLT LANG:FI
 		U,UTU			:: V REFL ε		PF:-utu		LF:become 	 		-wCOMP:FREQ,V/INTR,EVE2 V/INTR LANG:FI
 		AhtA			:: V MOM1 ε		PF:-AhtA	LF:moderated 		!wCOMP:V,V/INTR -wCOMP:ε LANG:FI

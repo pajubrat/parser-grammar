@@ -221,21 +221,55 @@
 
 			*Sirkku kuiva-#TA#TA#v#T/fin#prs#[V] Pekan_acc sukkaa
 			'Sirkku.nom dry.cau.prs.3sg Pekka.acc sock.par'
-			#Intended: 'Sirkku causes Pekka to dry the sock.'	
+			#Intended: 'Sirkku causes Pekka to dry the sock.'
+			
+			*Sirkku kuiva-#TA#TA#TA#v#T/fin#prs#[V] Pekka Pekka sukkaa
+			'Sirkku.nom dry.cau.prs.3sg Pekka.nom Pekka.nom sock.par'
+			#Intended: 'Sirkku causes Pekka1 to cause Pekka2 to dry the sock.'
 		
-		# Causatives inside reflexive should not introduce external/internal postverbal arguments
+		# Causatives wrapped insided reflexives should not introduce external/internal postverbal arguments
 		
 			sukka kuiva-#TA#TA#UTU#T/fin#prs#[V]
 			'sock.nom dry-cau-cau-refl-prs.3sg'
 			
-			Sirkku kuiva-#TA#TA#UTU#T/fin#prs#[V] sukkaa
+			*Sirkku kuiva-#TA#TA#UTU#T/fin#prs#[V] sukkaa
 			'Sirkku.nom dry-cau-cau-refl-prs.3sg'
 
-			Sirkku kuiva-#TA#TA#UTU#T/fin#prs#[V] sukan_acc
+			*Sirkku kuiva-#TA#TA#UTU#T/fin#prs#[V] sukan_acc
 			'Sirkku.nom dry-cau-cau-refl-prs.3sg'
 
-	# Denominal causatives
+	# Denominal causatives and stranding
+
+		# Verify that nominal/adjectival modifiers cannot modify the causativised stem to rule out IHM/Cau-NP analysis
 	
+			Sirkku kenkä-#TA#v#T/fin#prs#[V] Pekan_gen hevosen
+			'Sirkku shoe-cau-v-prs-3sg Pekka.gen horse.acc'
+			'*Sirkku causes the horse to have Pekka's shoes.'
+				
+			Sirkku kenkä-#TA#v#T/fin#prs#[V] pienen hevosen
+			'Sirkku.nom shoe-cau-v-prs-3sg small.acc horse.acc'
+			'*Sirkku causes the horse to have small shoes.'
+			
+			Sirkku kenkä-#TA#v#T/fin#prs#[V] tämän hevosen/2
+			'Sirkku.nom shoe-cau-v-prs-3sg this.acc horse.acc'
+			'*Sirkku causes the horse to have this shoe.'
+		
+		# Verify that postverbal nominal modifiers are ungrammatical in denominal intransitives, ruling out IHM/Refl-NP analysis
+
+			Sirkku kenkä-#TA#UTU#T/fin#prs#[V]
+			'Sirkku.nom shoe-cau-relf-prs-3sg'
+
+			*Sirkku kenkä-#TA#UTU#T/fin#prs#[V] Pekan_gen
+			'Sirkku.nom shoe-cau-relf-prs-3sg Pekka.gen'
+			#Intended: 'Sirkku is caused to have Pekka's shoes'
+			
+			*Sirkku kenkä-#TA#UTU#T/fin#prs#[V] pienen
+			'Sirkku.nom shoe-cau-relf-prs-3sg small.acc'
+			#Intended: 'Sirkku is caused to have small shoes'
+
+			*Sirkku kenkä-#TA#UTU#T/fin#prs#[V] tämän
+			'Sirkku.nom shoe-cau-relf-prs-3sg this.acc (this=D^0, not DP)'
+			#Intended: 'Sirkku is caused to have this shoe.'
 			
 & 4. Free/bound morpheme tests
 

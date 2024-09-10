@@ -68,6 +68,10 @@ Helsingissä	:: Helsinki-#φ#sg#3p#def#r_expression#ssa LANG:FI
 Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression#[nom] LANG:FI
 Helsinki	:: Helsinki-#φ#sg#3p#def#r_expression LANG:EN
 Helsinki-	:: PF:Helsinki LF:Helsinki N R:REF:PROPER_NAME LANG:FI
+hevonen		:: hevos-#φ#sg#3p LANG:FI
+hevosen		:: hevos-#φ#sg#3p#[ACC] LANG:FI
+hevosen/2	:: N PF:hevosen LF:horse LANG:FI
+hevos-		:: N PF:hevonen LF:horse LANG:FI
 hiljaa		:: hiljaa-#Adv LANG:FI
 hiljaa-		:: PF:hiljaa LF:silent LANG:FI
 ihailen		:: ihaile-#v#T/fin#prs#n LANG:FI
@@ -314,7 +318,7 @@ nukuttiin	:: nukku-#impss#T/fin#pst#asp LANG:FI
 nukkua		:: nukku-#A/inf LANG:FI
 nukkui		:: nukku-#T/fin#pst#[V] LANG:FI
 nukkuu		:: nukku-#T/fin#prs#[V] LANG:FI
-nuku-		:: PF:nuku- LF:sleep V V/INTR -COMP:T -COMP:T/fin -COMP:Neg/fin LANG:FI
+nukku-		:: PF:nuku- LF:sleep V V/INTR -COMP:T -COMP:T/fin -COMP:Neg/fin LANG:FI
 odotti		:: odotta-#T/fin#[V] LANG:FI
 odotta-		:: PF:odotta- LF:wait V -COMP:ESSA/inf LANG:FI
 ollut		:: BE-#T/prt#sg_ LANG:FI
@@ -377,6 +381,7 @@ pestä		:: pese-#A/inf LANG:FI
 pese		:: pese-#v#asp#T#prs LANG:FI
 pese/2		:: pese-#v LANG:FI
 pese-		:: PF:pese- LF:wash V V/TR ASP:BOUNDED LANG:FI
+pienen		:: pieni-#a0 LANG:FI
 pieni		:: pieni-#a0 LANG:FI
 pieni-		:: PF:pieni- LF:small 0 LANG:FI
 pino-		:: PF:pino LF:stack N LANG:FI
@@ -485,8 +490,9 @@ tyttö		:: tyttö-#φ#r_expression LANG:FI
 tyttö-		:: PF:tyttö LF:girl N LANG:FI
 työtä		:: työ-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 työ-		:: PF:työ LF:work N -COMP:D -COMP:φ LANG:FI
-tämä		:: tämä-#D#sg#3p#def
-tätä		:: D#sg#3p#def#[par]
+tämän		:: D#sg#3p#def#[ACC] LANG:FI
+tämä		:: tämä-#D#sg#3p#def LANG:FI
+tätä		:: D#sg#3p#def#[par] LANG:FI
 tämä-		:: PF:tämä LF:this N PHI LANG:FI
 tä_ssä		:: PF:tä-ssä LF:this D PHI LANG:FI
 täytyy		:: täydy-#T/fin#prs#[V] LANG:FI

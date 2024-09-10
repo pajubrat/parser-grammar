@@ -91,6 +91,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<MoveDown>>', self.move_down)
         self.bind('<<MoveLeft>>', self.move_left)
         self.bind('<<MoveRight>>', self.move_right)
+        self.bind('<<CutRightConstituent>>', self.cut_right_constituent)
+        self.bind('<<CutLeftConstituent>>', self.cut_left_constituent)
+        self.bind('<<AddCircleLeftConstituent>>', self.add_circle_left_constituent)
+        self.bind('<<AddCircleRightConstituent>>', self.add_circle_right_constituent)
+        self.bind('<<DeleteSpecialMarkings>>', self.delete_special_markings)
         self.bind('<<CustomLabel>>', self.use_custom_label)
         self.bind('<Alt-l>', self.use_custom_label)
         self.bind('<<DefaultLabel>>', self.default_label)
@@ -111,6 +116,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<NewFeatures>>', self.new_features)
         self.bind('<<ChangeOriginalLabel>>', self.change_original_label)
         self.bind('<<EmptyText>>', self.empty_text)
+        self.bind('<<HighlightNode>>', self.highlight)
         self.bind('<<CreateArc>>', self.create_arc)
         self.bind('<<DeleteDependencies>>', self.delete_dependencies)
         self.bind('<<DeleteAllDependencies>>', self.delete_all_dependencies)
@@ -118,8 +124,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<CreateBackwardArrow>>', self.create_backward_arrow)
         self.bind('<<CreateBidirectionalArrow>>', self.create_bidirectional_arrow)
         self.bind('<<CreateArrow>>', self.create_arrow)
-        self.bind('<<ChangeArrowDepth>>', self.change_arrow_depth)
-        self.bind('<<ChangeCurvature>>', self.change_curvature)
         self.bind('<<CustomDependency>>', self.custom_dependency)
         self.bind('<<AddXP>>', self.add_XP)
         self.bind('<<AddDP>>', self.add_DP)
@@ -222,7 +226,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                   image=image,
                   font=('Calibri', 20),
                   bg='white',
-                  fg='black').grid(row=0, column=column, sticky=tk.E, padx=pad, pady=pad)
+                  fg='black').grid(row=0, column=column, sticky=tk.E, padx=pad, pady=pad, ipadx=pad, ipady=pad)
 
     def initialize_and_show_image(self):
         """
@@ -367,14 +371,6 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def fit_phrase_structure(self, *_):
         self.fit_into_screen_and_show(self.application.settings.retrieve('image_parameter_fit_margins'))
-
-    def change_curvature(self, *_):
-        self.application.settings.store('image_parameter_arc_curvature', float(simpledialog.askstring(title='Change arc curvature', prompt='Curvature (0-5)', parent=self)))
-        self.update_contents()
-
-    def change_arrow_depth(self, *_):
-        self.application.settings.store('image_parameter_Y_offset_for_arrow', float(simpledialog.askstring(title='Change chain depth', prompt='Curvature (0-200)', parent=self)))
-        self.update_contents()
 
     def label_subscript(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -703,6 +699,33 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.move_x(+0.5)
         self.canvas.redraw(self.root_gps)
 
+    def cut_right_constituent(self, *_):
+        for gps in self.selected_objects_into_gps_list():
+            gps.special_right_constituent_marking.append('cut')
+        self.update_contents(False)
+
+    def cut_left_constituent(self, *_):
+        for gps in self.selected_objects_into_gps_list():
+            gps.special_left_constituent_marking.append('cut')
+        self.update_contents(False)
+
+    def add_circle_left_constituent(self, *_):
+        for gps in self.selected_objects_into_gps_list():
+            gps.special_left_constituent_marking.append('ball')
+        self.update_contents(False)
+
+    def add_circle_right_constituent(self, *_):
+        for gps in self.selected_objects_into_gps_list():
+            gps.special_right_constituent_marking.append('ball')
+        self.update_contents(False)
+
+    def delete_special_markings(self, *_):
+        for gps in self.selected_objects_into_gps_list():
+            gps.special_left_constituent_marking = []
+            gps.special_right_constituent_marking = []
+            gps.highlight = False
+        self.update_contents(False)
+
     def save_as(self, *_):
         filename = filedialog.asksaveasfilename() + '.gps'
         self.stored_filename = filename
@@ -795,7 +818,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.update_contents(False)
 
     def create_arc(self, *_):
-        self.create_dependency(smooth=True, arrowtype='none', label='')
+        self.create_dependency(smooth='raw', arrowtype='none', label='')
 
     def deselect_all(self):
         self.canvas.selected_objects = []
@@ -811,16 +834,16 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.update_contents(False)
 
     def create_forward_arrow(self, *_):
-        self.create_dependency(arrowtype='last', smooth=False, label='')
+        self.create_dependency(arrowtype='last', smooth='', label='')
 
     def create_backward_arrow(self, *_):
-        self.create_dependency(arrowtype='first', smooth=False, label='')
+        self.create_dependency(arrowtype='first', smooth='', label='')
 
     def create_bidirectional_arrow(self, *_):
-        self.create_dependency(arrowtype='both', smooth=False, label='')
+        self.create_dependency(arrowtype='both', smooth='', label='')
 
     def create_arrow(self, *_):
-        self.create_dependency(arrowtype='none', smooth=False, label='')
+        self.create_dependency(arrowtype='none', smooth='', label='')
 
     def create_dependency(self, **kwargs):
         if len(self.canvas.selected_objects) > 1:
@@ -889,6 +912,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             gps.custom_text = None
             self.label_stack_update(gps)
+        self.update_contents(False)
+
+    def highlight(self, *_):
+        for gps in self.selected_objects_into_gps_list():
+            gps.highlight = True
         self.update_contents(False)
 
     def custom_features(self, *_):
@@ -1141,23 +1169,40 @@ class GraphicsMenu(tk.Menu):
 
         # Node menu
         node = tk.Menu(self, tearoff=False, font=menu_font)
+        node.add_command(label='Highlight', command=self._event('<<HighlightNode>>'))
         node.add_command(label='Compress (Triangle)', command=self._event('<<CompressNode>>'))
         node.add_command(label='Compress (Head)', command=self._event('<<CompressNodeIntoHead>>'))
         node.add_command(label='Decompress', command=self._event('<<DecompressNode>>'))
-
-        submenu_Shape = tk.Menu(node, tearoff=0, font=menu_font)
-        submenu_Shape.add_command(label='Squeeze', underline=0, command=self._event('<<SqueezeNode>>'))
-        submenu_Shape.add_command(label='Widen', underline=0, command=self._event('<<WidenNode>>'))
-        submenu_Shape.add_command(label='Make Symmetric', underline=0, command=self._event('<<MakeSymmetric>>'))
+        node.add_separator()
+        if True:
+            submenu_Shape = tk.Menu(node, tearoff=0, font=menu_font)
+            submenu_Shape.add_command(label='Squeeze', underline=0, command=self._event('<<SqueezeNode>>'))
+            submenu_Shape.add_command(label='Widen', underline=0, command=self._event('<<WidenNode>>'))
+            submenu_Shape.add_command(label='Make Symmetric', underline=0, command=self._event('<<MakeSymmetric>>'))
         node.add_cascade(label='Constituent Shape...', underline=0, menu=submenu_Shape)
-
-        submenu_Move = tk.Menu(node, tearoff=0, font=menu_font)
-        submenu_Move.add_command(label='Up', underline=0, command=self._event('<<MoveUP>>'))
-        submenu_Move.add_command(label='Right', underline=0, command=self._event('<<MoveRight>>'))
-        submenu_Move.add_command(label='Down', underline=0, command=self._event('<<MoveDown>>'))
-        submenu_Move.add_command(label='Left', underline=0, command=self._event('<<MoveLeft>>'))
+        if True:
+            submenu_Special = tk.Menu(node, tearoff=0, font=menu_font)
+            if True:
+                subsubmenu_Const = tk.Menu(submenu_Special, tearoff=0, font=menu_font)
+                subsubmenu_Const.add_command(label='Left', command=self._event('<<CutLeftConstituent>>'))
+                subsubmenu_Const.add_command(label='Right', command=self._event('<<CutRightConstituent>>'))
+            submenu_Special.add_cascade(label='Cut...', menu=subsubmenu_Const)
+            if True:
+                subsubmenu_Const2 = tk.Menu(submenu_Special, tearoff=0, font=menu_font)
+                subsubmenu_Const2.add_command(label='Left', command=self._event('<<AddCircleLeftConstituent>>'))
+                subsubmenu_Const2.add_command(label='Right', command=self._event('<<AddCircleRightConstituent>>'))
+            submenu_Special.add_cascade(label='Circle...', menu=subsubmenu_Const2)
+        node.add_cascade(label='Special Constituent...', menu=submenu_Special)
+        node.add_cascade(label='Delete All Specials', command=self._event('<<DeleteSpecialMarkings>>'))
+        node.add_separator()
+        node.add_separator()
+        if True:
+            submenu_Move = tk.Menu(node, tearoff=0, font=menu_font)
+            submenu_Move.add_command(label='Up', underline=0, command=self._event('<<MoveUP>>'))
+            submenu_Move.add_command(label='Right', underline=0, command=self._event('<<MoveRight>>'))
+            submenu_Move.add_command(label='Down', underline=0, command=self._event('<<MoveDown>>'))
+            submenu_Move.add_command(label='Left', underline=0, command=self._event('<<MoveLeft>>'))
         node.add_cascade(label='Move..', underline=0, menu=submenu_Move)
-
         node.add_separator()
         node.add_command(label='Clear', command=self._event('<<ClearNode>>'))
         node.add_command(label='Only label', command=self._event('<<OnlyLabel>>'))
@@ -1214,15 +1259,13 @@ class GraphicsMenu(tk.Menu):
         dep.add_command(label='Backward Chain', command=self._event('<<CreateBackwardArrow>>'))
         dep.add_command(label='Bidirectional Chain', command=self._event('<<CreateBidirectionalArrow>>'))
         dep.add_command(label='Directionless Chain', command=self._event('<<CreateArrow>>'))
-        dep.add_separator()
-        dep.add_command(label='Curved', command=self._event('<<CreateArc>>'))
-        dep.add_command(label='Change Curvature', command=self._event('<<ChangeCurvature>>'))
-        dep.add_separator()
-        dep.add_command(label='Delete', command=self._event('<<DeleteDependencies>>'))
-        dep.add_command(label='Delete All', command=self._event('<<DeleteAllDependencies>>'))
+        dep.add_command(label='Curved Chain', command=self._event('<<CreateArc>>'))
         dep.add_separator()
         dep.add_command(label='Modify...', command=self._event('<<ModifyDependency>>'))
         dep.add_command(label='Custom Dependency...', command=self._event('<<CustomDependency>>'))
+        dep.add_separator()
+        dep.add_command(label='Delete', command=self._event('<<DeleteDependencies>>'))
+        dep.add_command(label='Delete All', command=self._event('<<DeleteAllDependencies>>'))
         self.add_cascade(label='Dependency', menu=dep)
 
         ps = tk.Menu(self, tearoff=False, font=menu_font)
@@ -1313,7 +1356,7 @@ class GraphicsMenu(tk.Menu):
 
 
 class Dependency():
-    def __init__(self, source=None, target=None, arrow_type='none', label='', smooth=False):
+    def __init__(self, source=None, target=None, arrow_type='none', label='', smooth=''):
         self.source_gps = source
         self.target_gps = target
         self.arrow_type = arrow_type
@@ -1415,7 +1458,11 @@ class DependencyDialog(tk.Toplevel):
         else:
             source_gps = None
             target_gps = None
-        dep = Dependency(source_gps, target_gps, self.arrow_map[self.selDirection.get()], self.selLabel.get(), self.selSmooth.get())
+        if self.selSmooth.get():
+            smooth = 'raw'
+        else:
+            smooth = ''
+        dep = Dependency(source_gps, target_gps, self.arrow_map[self.selDirection.get()], self.selLabel.get(), smooth)
         dep.spx = self.selSpx.get()
         dep.spy = self.selSpy.get()
         dep.epx = self.selEpx.get()

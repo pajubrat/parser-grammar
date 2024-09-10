@@ -107,10 +107,23 @@ class PhraseStructureCanvas(tk.Canvas):
         color = 'black'
         if gps in self.selected_objects:
             color = 'red'
+
         if gps.complex() and not gps.compressed_into_head:
             self.create_complex_node(gps, (X1, Y1), spx, spy, color)
         else:
             self.create_primitive_node(gps, X1, Y1, color)
+
+        if gps.highlight:
+            self.highlight(gps, X1, Y1)
+
+    def highlight(self, gps, X, Y):
+        if gps.mother():
+            if gps.is_right():
+                self.create_line(X+80, Y-80, X+30, Y-30, arrowshape=(20, 20, 10), arrow='last', width=10)
+            if gps.is_left():
+                self.create_line(X - 80, Y - 80, X - 30, Y - 30, arrowshape=(20, 20, 10), arrow='last', width=10)
+        else:
+            self.create_line(X + 100, Y, X + 50, Y, arrowshape=(20, 20, 10), arrow='last', width=10)
 
     def create_complex_node(self, gps, M_const_coord, spx, spy, color='black'):
 
@@ -150,6 +163,25 @@ class PhraseStructureCanvas(tk.Canvas):
             self.draw_adjunct_line(M_coord, D_coord)
         else:
             self.create_line(self.Y_frame(M_coord, 1), self.Y_frame(D_coord, -1), width=2, fill='black')
+        self.add_special_constituent_marking(gps, self.Y_frame(M_coord, 1), self.Y_frame(D_coord, -1))
+
+    def add_special_constituent_marking(self, gps, M_coord, D_coord):
+        # Find middle point
+        mx = M_coord[0] + (D_coord[0] - M_coord[0])/2
+        my = M_coord[1] + (D_coord[1] - M_coord[1])/2
+        # Add special markings at the middle point
+        if gps.is_left():
+            if 'cut' in gps.mother().special_left_constituent_marking:
+                self.create_line((mx - 15, my - 25, mx + 15, my + 25), fill='black', width=4)
+                self.create_line((mx - 5, my - 35, mx + 25, my + 15), fill='black', width=4)
+            if 'ball' in gps.mother().special_left_constituent_marking:
+                self.create_oval((mx - 10, my - 10, mx + 10, my + 10), fill='black')
+        if gps.is_right():
+            if 'cut' in gps.mother().special_right_constituent_marking:
+                self.create_line((mx + 15, my - 25, mx - 15, my + 25), fill='black', width=4)
+                self.create_line((mx + 5, my - 35, mx - 25, my + 15), fill='black', width=4)
+            if 'ball' in gps.mother().special_right_constituent_marking:
+                self.create_oval((mx-10, my-10, mx+10, my+10), fill='black')
 
     def draw_adjunct_line(self, M_coord, D_coord):
         MX = M_coord[0] - abs(D_coord[0] - M_coord[0]) / 5 - 18 / 2
