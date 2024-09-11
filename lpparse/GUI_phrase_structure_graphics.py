@@ -169,10 +169,12 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<CanvasLayoutControlDisable>>', self.canvas_layout_control_disable)
         self.bind('<<RecalculateLayout>>', self.recalculate_layout)
         self.bind('<Control-s>', self.save)
-        self.bind('<Key-+>', self.widen_node)
-        self.bind('<Key-->', self.squeeze_node)
+        self.bind('<Key-w>', self.widen_node)
+        self.bind('<Key-s>', self.squeeze_node)
         self.bind('<Key-c>', self.create_forward_arrow)
         self.bind('<Key-l>', self.use_custom_label)
+        self.bind('<Control-l>', self.change_original_label)
+        self.bind('<Key-e>', self.expand_phrase_structure)
         # Show phrase structure image
         self.initialize_and_show_image()
 
@@ -757,6 +759,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 Y.mother_ = gps
                 gps.const = [X, Y]
                 gps.features = set()
+                self.canvas.selected_objects = [Y]
                 self.update_contents()
 
     def shrink_phrase_structure(self, *_):
@@ -767,10 +770,9 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_into_DP(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            gps.const = []
-            gps.custom_label = 'DP'
-            gps.copied = False
-            gps.compressed = False
+            if {'D', 'φ'} & gps.head().features:
+                gps.compressed_into_head = True
+                gps.compressed = False
             self.label_stack_update(gps)
         self.update_contents()
 
@@ -1404,7 +1406,10 @@ class DependencyDialog(tk.Toplevel):
         frameSmooth = tk.LabelFrame(frameDependencyType, text='Curved', font=dfont)
         self.selSmooth = tk.BooleanVar()
         if dep:
-            self.selSmooth.set(dep.smooth)
+            if dep.smooth:
+                self.selSmooth.set(True)
+            else:
+                self.selSmooth.set(False)
         tk.Checkbutton(frameSmooth, padx=10, pady=10, variable=self.selSmooth, font=dfont).grid(row=0, column=0, sticky='nw')
         frameSmooth.grid(row=0, column=5, sticky='ns')
         frameDependencyType.grid(row=1, column=0, sticky='we')

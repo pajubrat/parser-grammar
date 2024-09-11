@@ -39,7 +39,7 @@ class PhraseStructureCanvas(tk.Canvas):
                     gps.move_y(+0.5)
                 if event.keysym == 'Up':
                     gps.move_y(-0.5)
-        self.parent.update_contents(False)
+            self.parent.update_contents(False)
 
     def _on_mouse_click(self, *_):
         if self.find_withtag('current'):
@@ -310,7 +310,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.ID_to_object[str(ID)] = dep
 
     def label_offset(self, gps):
-        if gps.compressed:
+        if gps.compressed or gps.compressed_into_head:
             return gps.label_size() * self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
         return self.application.settings.retrieve('image_parameter_text_spacing') * self.application.settings.retrieve('image_parameter_tsize') * gps.label_size()
 
@@ -323,6 +323,8 @@ class PhraseStructureCanvas(tk.Canvas):
         return self.Y_coord_zero_level(gps)
 
     def Y_coord_complex_node(self, gps):
+        if gps.compressed_into_head:
+            return gps.Y + self.label_offset(gps)
         return gps.left().Y + self.label_offset(gps)
 
     def Y_coord_zero_level(self, gps):

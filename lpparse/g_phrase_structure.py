@@ -208,8 +208,9 @@ class GPhraseStructure(PhraseStructure):
     def move_x(self, amount):
         """Moves a node and its offspring"""
         self.x = self.x + amount
-        if self.complex():
+        if self.left():
             self.left().move_x(amount)
+        if self.right():
             self.right().move_x(amount)
 
     def move_y(self, amount):
@@ -220,7 +221,7 @@ class GPhraseStructure(PhraseStructure):
             self.right().move_y(amount)
 
     def label_size(self):
-        if self.compressed:     # Compressed triangles only have custom labels
+        if self.compressed or self.compressed_into_head:     # Compressed triangles only have custom labels
             offset = 1
             if self.custom_phonology and self.custom_phonology != '$n/a$':
                 offset += 1
