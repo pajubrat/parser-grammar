@@ -184,10 +184,15 @@ class PhraseStructureCanvas(tk.Canvas):
                 self.create_oval((mx-10, my-10, mx+10, my+10), fill='black')
 
     def draw_adjunct_line(self, M_coord, D_coord):
-        MX = M_coord[0] - abs(D_coord[0] - M_coord[0]) / 5 - 18 / 2
-        MY = M_coord[1] + abs(D_coord[1] - M_coord[1] + int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_label_padding'))) / 5 - 18 / 2
-        self.create_oval(MX, MY, MX + 18, MY + 18, width=1, fill='black')
-        self.create_line((MX + 18 / 2, MY + 18 / 2), self.Y_frame(D_coord, -1), width=2, fill='black')
+        closeness_to_mother = 10     # the larger the number, the closer
+        size_of_circle = 18         # in pixels
+        if D_coord[0] > M_coord[0]:
+            MX = M_coord[0] + (D_coord[0] - M_coord[0]) / closeness_to_mother - size_of_circle/2
+        else:
+            MX = M_coord[0] - (M_coord[0] - D_coord[0]) / closeness_to_mother - size_of_circle/2
+        MY = self.Y_frame(M_coord, 1)[1]
+        self.create_oval(MX, MY, MX + size_of_circle, MY + size_of_circle, width=1, fill='black')
+        self.create_line((MX + size_of_circle/2, MY + size_of_circle/2), self.Y_frame(D_coord, -1), width=2, fill='black')
 
     def Y_frame(self, coord, direction):
         return coord[0], coord[1] + direction * int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_label_padding'))
