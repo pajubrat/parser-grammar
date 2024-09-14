@@ -437,7 +437,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             old_label = gps.label()
             gps.features = {f for f in gps.features if not f.startswith('PF:') and not f.startswith('LF:') and f != old_label}
-            gps.features.add(simpledialog.askstring(title='Change the original label', prompt='New label', parent=self))
+            new_label = simpledialog.askstring(title='Change the original label', prompt='New label', parent=self)
+            gps.features.add(new_label)
+            if new_label not in PhraseStructure.major_cats:
+                PhraseStructure.major_cats.insert(0, new_label)
             self.label_stack_update(gps)
             self.update_contents()
 
@@ -639,6 +642,7 @@ class PhraseStructureGraphics(tk.Toplevel):
     def make_adjunct(self, *_):
         for gps in self.selected_objects_into_gps_list():
             if gps.complex():
+                self.application.settings.store('image_parameter_adjuncts', True)
                 gps.adjunct = True
                 self.update_contents()
 
@@ -747,7 +751,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         with open(filename, 'rb') as input_file:
             self.root_gps = pickle.load(input_file)
             self.stored_filename = filename
+            self.clear_inventory()
             self.update_contents()
+
+    def clear_inventory(self):
+        self.inventory = {'dependencies': []}
 
     def expand_phrase_structure(self, *_):
         for gps in self.selected_objects_into_gps_list():
@@ -1279,7 +1287,7 @@ class GraphicsMenu(tk.Menu):
         submenu_ps.add_command(label='C', command=self._event('<<AddC>>'))
         submenu_ps.add_command(label='T', command=self._event('<<AddT>>'))
         submenu_ps.add_command(label='V', command=self._event('<<AddV>>'))
-        ps.add_cascade(label='Add...', menu=submenu_ps)
+        ps.add_cascade(label='Add Left...', menu=submenu_ps)
 
         submenu_expand_ps = tk.Menu(ps, tearoff=False, font=menu_font)
         submenu_expand_ps.add_command(label='Phrase', command=self._event('<<ExpandPhraseStructure>>'))
