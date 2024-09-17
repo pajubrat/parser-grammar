@@ -571,9 +571,10 @@ se			:: se_N-#D#[nom]#sg#3p#def#nonhum#pron LANG:FI
 sitä		:: se_N-#D#[par]#sg#3p#def#nonhum#pron LANG:FI
 sen			:: se_N-#D#[gen]#sg#3p#def#nonhum#pron LANG:FI
 se_N-		:: PF:se LF:the/that N LANG:FI
-itseään		:: itse-#D/refl#3p#sg#def#[par]#reflexive LANG:FI
-itseäni		:: itse-#D/refl#1p#sg#def#[par]#reflexive LANG:FI
-itsensä_gen	:: itse-#D/refl#3p#sg#def#[gen]#reflexive LANG:FI
+itseä		:: itse-#D#3p#sg#def#[par]#reflexive LANG:FI
+itseään		:: itse-#D#3p#sg#def#[par]#reflexive LANG:FI
+itseäni		:: itse-#D#3p#sg#def#[par]#reflexive LANG:FI
+itsensä_gen	:: itse-#D#3p#sg#def#[gen]#reflexive LANG:FI
 itse-		:: PF:itse LF:self N PHI_N LANG:FI
 ne/D		:: PF:ne LF:those D PHI:NUM:PL PHI:PER:3 LANG:FI
 ne			:: ne-#D#3p#pl#def#nonhum#[nom]#pron LANG:FI
@@ -689,7 +690,7 @@ promises 	:: promise-#v#T/fin#[-s] LANG:EN
 promise- 	:: PF:promise LF:promise V SEM:internal LANG:EN 
 problem		:: PF:problem LF:problem N LANG:EN
 sister		:: PF:sister LF:sister N LANG:EN
-sleeps		:: sleep-#T/fin#[-s] LANG:EN
+sleeps		:: sleep-#T/fin#prs#[-s] LANG:EN
 sleep- 		:: PF:sleep LF:sleep V V/INTR LANG:EN
 lives		:: live-#T/fin#[-s] LANG:EN
 live-		:: PF:live LF:live V V/INTR LANG:EN

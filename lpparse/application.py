@@ -158,12 +158,12 @@ class Application(tk.Tk):
             language = self.language_guesser.guess_language(data_item)
             self.speaker_model[language].parse_sentence(data_item)
             self.local_file_system.save_output(self.speaker_model[language], data_item)
-            if not data_item['part_of_conversation']:
-                self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
             if kwargs and kwargs['image_window']:
                 self.save_result_image(language, kwargs['image_window'], data_item)
             else:
                 print(self.speaker_model[language].results)
+            if not data_item['part_of_conversation']:
+                self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
         self.local_file_system.close_all_output_files()
         sp = list(self.speaker_model.keys())[0]
         self.speaker_model[sp].results.report_results_to_console()

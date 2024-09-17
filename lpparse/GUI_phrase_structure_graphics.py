@@ -237,8 +237,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         the model) or do nothing (image provided later). This function is also called if the user changed settings.
         """
         self.canvas.delete('all')
-        GPhraseStructure.image_parameter_phrasal_complex_heads = self.application.settings.retrieve('image_parameter_phrasal_complex_heads', False)
-        GPhraseStructure.image_parameter_covert_complex_heads = self.application.settings.retrieve('image_parameter_covert_complex_heads', False)
         if self.speaker_model:
             # Derivation (sequence of phrase structures, whole output from the model)
             self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
@@ -315,15 +313,15 @@ class PhraseStructureGraphics(tk.Toplevel):
         if self.application.settings.retrieve('image_parameter_head_chains', True) and gps.head_chain_target:
             if gps.sister() != gps.head_chain_target or self.application.settings.retrieve(
                     'image_parameter_trivial_head_chains', False) or not gps.nonverbal():
-                self.inventory['dependencies'].append(Dependency(gps, gps.head_chain_target, 'none', '', False))
+                self.inventory['dependencies'].append(Dependency(gps, gps.head_chain_target, 'none', '', True))
                 gps.head_chain_target = None
         # phrasal chains
         if self.application.settings.retrieve('image_parameter_phrasal_chains', True):
             if gps.hasChain() and gps.sister():
                 target = gps.sister().find_node_with_identity(gps.hasChain())
                 if target:
-                    self.inventory['dependencies'].append(Dependency(gps, target, 'none', '', False))
-                    gps.features = {f for f in gps.features if not gps.startswith('CHAIN:')}
+                    self.inventory['dependencies'].append(Dependency(gps, target, 'last', '', False))
+                    gps.features = {f for f in gps.features if not f.startswith('CHAIN:')}
         if gps.complex() and not gps.compressed:
             self.implement_chains(gps.left())
             self.implement_chains(gps.right())
@@ -390,6 +388,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         def shrink_all_DPs_(gps):
             if {'D', 'φ'} & gps.head().features:
                 gps.compressed_into_head = True
+                gps.custom_phonology = gps.right().get_phonological_string()
             else:
                 if gps.left():
                     shrink_all_DPs_(gps.left())
@@ -1366,7 +1365,7 @@ class GraphicsMenu(tk.Menu):
 
 
 class Dependency():
-    def __init__(self, source=None, target=None, arrow_type='none', label='', smooth=''):
+    def __init__(self, source=None, target=None, arrow_type='none', label='', smooth=False):
         self.source_gps = source
         self.target_gps = target
         self.arrow_type = arrow_type

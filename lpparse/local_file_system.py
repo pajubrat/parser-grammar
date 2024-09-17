@@ -104,6 +104,10 @@ class LocalFileSystem:
                     break
                 if not line or line.startswith('#') or line.startswith("\'") or line.startswith('&'):
                     continue
+                if line.startswith('BEGIN'):
+                    input_data.reset()
+                    index = 0
+                    continue
                 if line.startswith('%'):
                     # We take only this line
                     index = 0

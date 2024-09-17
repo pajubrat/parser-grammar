@@ -1,11 +1,11 @@
 
 author= Anon
 year= 2024
-date= January
-study_id= 19
-study_folder=			language data working directory/study-19-Morphology
-test_corpus=			Morphology_corpus.txt
-numeration=				Morphology_numeration.txt
+date= Suptember
+study_id= 10
+study_folder=			language data working directory/study-10-binding-theory
+test_corpus=			binding_theory_corpus.txt
+numeration=				X
 
 # GENERAL SIMULATION PARAMETERS
 only_first_solution = False
@@ -16,8 +16,8 @@ logging = True
 use_numeration = False
 
 # FILES
-file_study_folder=language data working directory/study-19-morphology
-file_test_corpus=morphology_corpus.txt
+file_study_folder=language data working directory/study-10-binding-theory
+file_test_corpus=binding_theory_corpus.txt
 file_lexicon_folder=language data working directory/lexicons
 file_lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
 file_redundancy_rules=redundancy_rules.txt
@@ -25,17 +25,17 @@ file_redundancy_rules=redundancy_rules.txt
 # IMAGE PARAMETERS
 image_parameter_words = True
 image_parameter_glosses = True
-image_parameter_adjuncts = True
-image_parameter_complex_heads = True
+image_parameter_adjuncts = False
+image_parameter_complex_heads = False
 image_parameter_head_chains = True
-image_parameter_phrasal_complex_heads = True
+image_parameter_phrasal_chains = True
+image_parameter_phrasal_complex_heads = False
 image_parameter_covert_complex_heads = False
 image_parameter_trivial_head_chains = False
-image_parameter_phrasal_chains = False
-image_parameter_DP_hypothesis = True
+image_parameter_DP_hypothesis = False
 image_parameter_shrink_all_DPs = True
 image_parameter_chain_curvature = 1.5
-image_parameter_features = ε
+image_parameter_features = REF@@
 image_parameter_visualization = ### > ###
 
 # UG COMPONENTS

@@ -1,70 +1,150 @@
+
+
 # Binding theory corpus, September 2021, Pauli Brattico
 # Condition A. An anaphor must be locally bound.
 # Condition B. A pronoun must not be locally bound.
 # Condition C. An R-expression can not be bound.
 
-# Condition C
+& 1. Initial binding condition tests (English) #1-9
 
-	John admires Bill
-	¦-> Binding: John[a] admire Bill[b]
+	# Condition C
 
-	he 's brother admires Bill
-	¦-> Binding: he[b] brother[a] admire Bill[b,c]
+		John admires Bill
+		¦-> Binding: John[a] admire Bill[b]
 
-	Bill said that John admires Tim
-	¦-> Binding: Bill[a] say John[b] admire Tim[c]
+		he 's brother admires Bill
+		¦-> Binding: he[b] brother[a] admire Bill[b,c]
 
-# Condition A
+		Bill said that John admires Tim
+		¦-> Binding: Bill[a] say John[b] admire Tim[c]
 
-	John admires himself
-	¦-> Binding: John[a] admire self[a]
+	# Condition A
 
-	he 's brother admires himself
-	¦-> Binding: he[a] brother[b] admire self[b]
+		John admires himself
+		¦-> Binding: John[a] admire self[a]
 
-	Bill said that John admires himself
-	¦-> Binding: Bill[a] say John[b] admire self[b]
+		he 's brother admires himself
+		¦-> Binding: he[a] brother[b] admire self[b]
 
-# Condition B
+		Bill said that John admires himself
+		¦-> Binding: Bill[a] say John[b] admire self[b]
 
-	John admires him
-	¦-> Binding: John(1) admire him(2)
+	# Condition B
 
-	he 's brother admires him
-	¦-> Binding: he(2) brother(1) admire him(2,3)
+		John admires him
+		¦-> Binding: John[a] admire him[b]
+
+		he 's brother admires him
+		¦-> Binding: he[a] brother[b] admire him[a,c]
+		
+		Bill said that John admires him
+		¦-> Binding: Bill[a] say John[b] admire him[a,c]
+
+& 2. Simple conversation tests (English) #10-33
+
+	# Condition C
+
+		Tim;
+		John admires Bill
+
+		Tim;
+		he 's brother admires Bill
+
+		Tim;
+		Bill said that John admires Tim
+
+	# Condition A
+
+		Tim;
+		John admires himself
+
+		Tim;
+		he 's brother admires himself
+
+		Tim;
+		Bill said that John admires himself
+
+	# Condition B
+
+		Tim;
+		John admires him
+
+		Tim;
+		he 's brother admires him
+		
+		Tim;
+		Bill said that John admires him
+
+	# Sequence of pronouns
 	
-	Bill said that John admires him
-	¦-> Binding: Bill(1) say John(2) admire him(1,3)
+		Tim;
+		he admires himself
+
+		Tim;
+		he admires him
+		
+& 3. Basic binding principles in Finnish
+
+	& 3.1 Condition A
+	
+		Pekka ihailee itseä#An
+		'Pekka.nom admire.3sg.prs self.par-Px3'
+		¦-> Binding: Pekka[a] ihaile- itse[a]
+
+		Pekan_gen sisko ihailee itseä#An
+		'Pekka.gen sister.nom admire.3sg.prs self.par-Px3'
+		¦-> Binding: Pekka[b] sisko[a] ihaile- itse[a]
+
+		Pekka sanoi että Merja ihailee itseä#An
+		'Pekka.nom said that Merja.nom admire.prs.3sg self.par-px3'
+		¦-> Binding: Pekka[a] sano- Merja[b] ihaile- itse[b]
+
+	& 3.2 Condition B
+	
+		Pekka ihailee häntä
+		'Pekka.nom admire-prs.3sg he.par'
+		¦-> Binding: Pekka[a] ihaile- hän[b]
+		
+		Pekan_gen sisko ihailee häntä
+		'Pekka-gen sister.nom admire.prs.3sg he.par'
+		¦-> Binding: Pekka[b] sisko[a] ihaile- hän[b,c]
+		
+		Pekka sanoi että Merja ihailee häntä
+		'Pekka said that Merja.nom admire.prs.3sg he.par'
+		¦-> Binding: Pekka[a] sano- Merja[b] ihaile- hän[a,c]
+		
+	& 3.3 Condition C
+	
+		Pekka ihailee Merjaa
+		'Pekka.nom admire.prs.3sg Merja.par'
+		¦-> Binding: Pekka[a] ihaile- Merja[b]
+		
+		Pekan_gen sisko ihailee Pekkaa
+		'Pekka.gen sister.nom admire.prs.3sg Pekka.par'
+		¦-> Binding: Pekka[b] sisko[a] ihaile- Pekka[b,c]
+		
+		Pekka sanoi että Merja ihailee Pekkaa
+		'Pekka said that Merja.nom admire.prs.3sg Pekka.par'
+		¦-> Binding: Pekka[a] sano- Merja[b] ihaile- Pekka[c]
+
+& 4. Null subjects 
+
+	
 
 END
-
+#---------------------------------------------------------------------
 
 & 0. Sentences from the article, organized by the article flow, for easier reference
 
+
+
 	& 0.1 Binding conditions
 		
-		Pekka ihailee itseään
-		'Pekka.NOM admire.3SG.PRS self.PAR.PX/3SG'
-
-		Pekka ihailee itseäni
-		'Pekka.NOM admire.3SG.PRS self.PAR.PX/3SG'
-
-		minä ihailen itseään
-		'I.NOM admire.1SG.PRS self.PAR.PX/3SG'
-
-		minä ihailen itseäni
-		'I.NOM admire.1SG.PRS self.PAR.PX/1SG'
-
 		itseään ihailee Pekka
 		'self.PAR.Px/3sg admire.3SG.PAR Pekka.NOM'
 
 		itseään#[kO] Pekka ihailee
 		'self.PAR.Q Pekka.NOM admire.3SG.PRS'
-
-		Pekka nayttaa lahtevan
-		'Pekka.NOM seem.PRS.3SG leave.VA/INF'
-
-		John admires herself
 		
 		Pekka ihailee häntä
 		'Pekka.NOM admire.3SG.PRS he.PAR'
@@ -443,14 +523,9 @@ END
 	
 		& 3.4.2 Ungrammatical, assignment 'John ~ himself' not possible
 		
-			& 3.4.2.1 English
-		
-				John='s sister admires himself
-
 			& 3.4.2.2 Finnish example, grammatical
 				
-				Pekan_gen sisko ihailee itseään
-				'Pekka.GEN sister.NOM admire.3SG.PRS self.PAR.Px/3sg'
+
 	
 	& 3.6 Reflexives and control
 	
