@@ -127,10 +127,57 @@
 		'Pekka said that Merja.nom admire.prs.3sg Pekka.par'
 		¦-> Binding: Pekka[a] sano- Merja[b] ihaile- Pekka[c]
 
-& 4. Null subjects 
+& 4. Null subjects and finite control
 
-	
+	# Basic null subject clauses
 
+		ihailen Merjaa
+		¦-> Binding: T/pro[a] ihaile- Merja[b]
+		
+		minä ihailen Merjaa
+		'I.nom admire.prs.3sg Merja.par'
+		¦-> Binding: minä[a] ihaile- Merja[b]
+
+	# Special properties of third person null subjects
+
+		*ihailee Merjaa
+		'admire.prs.3sg Merja.par'
+		
+		Pekka sanoo että ihailee Merjaa
+		'Pekka.nom says that admire.prs.3sg Merja.par'
+		¦-> Binding: Pekka[a] sano- ihaile- Merja[b]
+
+	# Binding conditions with third person null subjects
+
+		# Third person (special pattern)
+		
+			Pekka sanoo että ihailee häntä
+			'Pekka says that admire.prs.3sg he.par
+			¦-> Binding: Pekka[a] sano- ihaile- hän[b]
+			
+			Pekka sanoo että ihailee itseä#An
+			'Pekka says that admire.prs.3sg self.par-px3'
+			¦-> Binding: Pekka[a] sano- ihaile- itse[a]
+
+		# First person (generalizes to the rest)
+
+			Pekka sanoo että ihailen Merjaa
+			'Pekka says that admire.prs.1sg Merja.par'
+			¦-> Binding: Pekka[a] sano- ihaile-[b] Merja[c]
+			
+			Pekka sanoo että ihailen häntä
+			'Pekka says that admire.prs.1sg he.par'
+			¦-> Binding: Pekka[a] sano- ihaile-[b] häntä[a,c]
+
+			Pekka sanoo että ihailen itseä#ni
+			'Pekka says that admire.prs.1sg self.par-px3'
+			¦-> Binding: Pekka[a] sano- ihaile-[b] itse[b]
+		
+& X. Phi-clashes
+
+%	John admires Bill
+
+		
 END
 #---------------------------------------------------------------------
 

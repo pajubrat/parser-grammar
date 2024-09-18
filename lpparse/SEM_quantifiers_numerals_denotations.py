@@ -2,6 +2,7 @@
 # It mediates between the syntax-semantics interface and the global discourse inventory
 # Responds to R-features ([R:...], [PHI:...])
 from support import log
+from phi import valued_phi_feature, phi_map
 from phrase_structure import PhraseStructure
 import itertools
 
@@ -83,6 +84,10 @@ class QuantifiersNumeralsDenotations:
             self.all_assignments.append(self.calculate_assignment_weight(assignment, ref_constituents_lst))    #   Calculate assignment weights
 
     def calculate_assignment_weight(self, assignment, ref_constituents_lst):
+        """Calculates weights for assignments and returns a weighted assignment.
+        Assignment = dictionary {IDX(QND): IDX(GLOBAL) for all referential expressions in the sentence
+        ref_constituent_lst = list of tuples (IDX, head (str), X, list of possible denotations)
+        """
         weighted_assignment = assignment.copy()
         weighted_assignment['weight'] = 1
         log(f'\n\t\t\tAssignment {self.print_assignment(weighted_assignment)} ')
@@ -90,10 +95,23 @@ class QuantifiersNumeralsDenotations:
         for expression in ref_constituents_lst:
             if not self.binding_conditions(expression, assignment):
                 weighted_assignment['weight'] = 0
-                log('-')
+                log('-(B)')
+        if not self.semantic_compability(assignment):
+            weighted_assignment['weight'] = 0
+            log('-(S)')
         if weighted_assignment['weight'] > 0:
             log('+')
         return weighted_assignment
+
+    def semantic_compability(self, assignment):
+        """Examines if the assignment contains semantic clashes between the meaning of the expression (QND space)
+        and the semantic object in the global inventory. This version is limited to verifying only phi-information.
+        """
+        for key, value in assignment.items():
+            if self.inventory[key].get('Phi properties', set()) != \
+                    self.narrow_semantics.global_cognition.inventory[value].get('Phi properties', set()):
+                return False
+        return True
 
     def print_assignment(self, assignment):
         stri = ''
@@ -130,7 +148,11 @@ class QuantifiersNumeralsDenotations:
                 stri += ' ' + relevant_content(X)
 
             # Create binding tags at the end of referential expressions
-            if X.mother() and X.is_right() and X.sister() and X.sister().get_idx_tuple('QND'):
+            if X.zero_level() and not X.referential() and X.get_idx_tuple('QND'):
+                idx = X.get_idx_tuple('QND')[0]
+                self.determine_BindingIndexes(idx)
+                stri += f' {X.label()}/pro[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
+            elif X.mother() and X.check({'N'}) and X.is_right() and X.sister() and X.sister().get_idx_tuple('QND'):
                 idx = X.sister().get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f'[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
@@ -177,8 +199,19 @@ class QuantifiersNumeralsDenotations:
 
     def extrapolate_semantic_attributes(self, X):
         semantic_attributes_dict = self.narrow_semantics.default_attributes(X, 'QND')
+        semantic_attributes_dict.update(self.project_phi_features(X))
         semantic_attributes_dict['Semantic type'] = {'§Thing'}
         return semantic_attributes_dict
+
+    def project_phi_features(self, X):
+        interpreted_phi_dict = {'Phi properties': set()}
+        PHI = [f.split(':')[2].split(',') for f in X.features if valued_phi_feature(f)]
+        for phi_lst in PHI:
+            for phi in phi_lst:
+                sem_phi = phi_map(phi)
+                if sem_phi:
+                    interpreted_phi_dict['Phi properties'].add(phi_map(phi))
+        return interpreted_phi_dict
 
     def detect_phi_conflicts(self, ps):
         for phi in ps.head().get_phi_set():

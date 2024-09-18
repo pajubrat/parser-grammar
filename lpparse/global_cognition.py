@@ -30,7 +30,8 @@ class GlobalCognition:
     def project(self, X, semantic_object_dict):
         return self.create_object({'Semantic space': 'GLOBAL',
                                    'Reference': semantic_object_dict['Reference'],
-                                   'Semantic type': semantic_object_dict.get('Semantic type', 'unknown')})
+                                   'Semantic type': semantic_object_dict.get('Semantic type', 'unknown'),
+                                   'Phi properties': semantic_object_dict.get('Phi properties', '')})
 
     def create_object(self, ontology_attributes_dict):
         idx = self.consume_index()
@@ -39,14 +40,15 @@ class GlobalCognition:
         return str(idx)
 
     def get_compatible_objects(self, filter_criteria):
+        # filter_criterial = QND attributes dict
+
+        def inclusion(field):
+            return field not in {'Denotations', 'Semantic space', 'Denotation weights', 'Reference', 'Operator', 'Referring constituent'}
+
         idx_list = []
         for idx in self.inventory:
-            select_this_item = True
-            for field in self.inventory[idx]:
-                if field not in {'Denotations', 'Semantic space', 'Denotation weights', 'Reference', 'Operator', 'Referring constituent'}:
-                    if field in filter_criteria and filter_criteria[field] != self.inventory[idx][field]:
-                        select_this_item = False  # The object is rejected if a mismatching (field, value) pair is found.
-                        break
-            if select_this_item:
+            mismatches = [field for field in self.inventory[idx].keys() if inclusion(field) and
+                          filter_criteria.get(field, None) != self.inventory[idx][field]]
+            if not mismatches:
                 idx_list.append(idx)
         return idx_list
