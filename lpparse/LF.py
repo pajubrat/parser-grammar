@@ -9,6 +9,7 @@ def self_selectional_feature(f):
 
 class LF:
     def __init__(self, speaker_model):
+        self.logging = True
         self.speaker_model = speaker_model
         self.failed_feature = ''
         self.LF_legibility_tests = self.determine_legilibity_tests()
@@ -38,6 +39,7 @@ class LF:
         return [test for test in all_legibility_tests if self.speaker_model.settings.retrieve(test[0], True)]
 
     def pass_LF_legibility(self, X, logging=True):
+        self.logging = logging
         self.failed_feature = ''
         if not X.copied:
             if X.zero_level():
@@ -60,7 +62,8 @@ class LF:
         for key in [f.split(':')[0] for f in X.features if 'COMP' in f or 'SPEC' in f or 'SELF' in f]:
             if key in self.selection_violation_test.keys():
                 if not self.selection_violation_test[key](X, X.get_selection_features(key)):
-                    log(f'\t\t{X} failed {key}: {X.get_selection_features(key)} ')
+                    if self.logging:
+                        log(f'\t\t{X} failed {key}: {X.get_selection_features(key)} ')
                     return True     # Failed test
 
     def final_tail_check(self, goal):
@@ -80,4 +83,3 @@ class LF:
             return ps
         self.active_test_battery = self.LF_legibility_tests
         return self.pass_LF_legibility(detached(ps.copy()), False)
-

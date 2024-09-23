@@ -61,7 +61,9 @@ class QuantifiersNumeralsDenotations:
         self.create_assignments_from_denotations(self.calculate_possible_denotations(X))
         self.narrow_semantics.speaker_model.results.store_output_field('Binding', self.assignment_output_string(X)[1:])
         log(f'\n\t\t\tSummary: {self.assignment_output_string(X)}')
-        return self.all_assignments
+        # Currently we return only assignments for printout which have nonzero weight
+        weighted_assignments = [assignment for assignment in self.all_assignments if assignment.get('weight', 0) > 0]
+        return len(weighted_assignments), self.print_assignments(weighted_assignments)
 
     def calculate_possible_denotations(self, X):
         denotations_lst = []
@@ -107,19 +109,18 @@ class QuantifiersNumeralsDenotations:
         """Examines if the assignment contains semantic clashes between the meaning of the expression (QND space)
         and the semantic object in the global inventory. This version is limited to verifying only phi-information.
         """
-        for key, value in assignment.items():
-            if self.inventory[key].get('Phi properties', set()) != \
-                    self.narrow_semantics.global_cognition.inventory[value].get('Phi properties', set()):
+        for QND_idx, G_idx in assignment.items():
+            object1 = self.inventory[QND_idx]
+            object2 = self.narrow_semantics.global_cognition.inventory[G_idx]
+            if not self.narrow_semantics.global_cognition.ontological_compatibility(object1, object2):
                 return False
         return True
 
     def print_assignment(self, assignment):
-        stri = ''
-        if 'weight' in assignment and assignment['weight'] > 0:
-            for key, value in assignment.items():
-                if key != 'weight':
-                    stri += f'{self.get_object(key)["Reference"]} ~ {value}, '
-        return stri
+        return ', '.join(f'{self.get_object(item[0])["Reference"]} ~ {item[1]}' for item in assignment.items() if item[0].isdigit() and assignment.get('weight', 0) > 0)
+
+    def print_assignments(self, assignments_dict):
+        return '; '.join(self.print_assignment(assignment) for assignment in assignments_dict)
 
     def binding_conditions(self, exp, assignment):
         def evaluate(semantic_object, rule_, semantic_working_memory):
@@ -204,13 +205,18 @@ class QuantifiersNumeralsDenotations:
         return semantic_attributes_dict
 
     def project_phi_features(self, X):
-        interpreted_phi_dict = {'Phi properties': set()}
-        PHI = [f.split(':')[2].split(',') for f in X.features if valued_phi_feature(f)]
+        def remove_phi_prefix(feature):
+            if feature.startswith('iPHI:'):
+                return feature[5:]
+            return feature[4:]
+
+        interpreted_phi_dict = {}
+        PHI = [remove_phi_prefix(f).split(',') for f in X.features if valued_phi_feature(f)]
         for phi_lst in PHI:
             for phi in phi_lst:
                 sem_phi = phi_map(phi)
                 if sem_phi:
-                    interpreted_phi_dict['Phi properties'].add(phi_map(phi))
+                    interpreted_phi_dict[sem_phi[0]] = sem_phi[1]
         return interpreted_phi_dict
 
     def detect_phi_conflicts(self, ps):

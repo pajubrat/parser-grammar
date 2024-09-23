@@ -20,6 +20,20 @@ class Results:
         self.speaker_model = speaker_model
         self.sentence = None
 
+    def reset_output_fields(self):
+        self.output_fields = {'Thematic roles': [],
+                              'Indexing by Agree': [],
+                              'Predicates': [],
+                              'Aspect': [],
+                              'DIS-features': [],
+                              'Operator bindings': [],
+                              'Semantic space': '',
+                              'Speaker attitude': [],
+                              'Assignments': [],
+                              'Number of assignments': [],
+                              'Information structure': []
+                              }
+
     def initialize(self, lst):
         self.sentence = lst
         self.syntax_semantics = []
@@ -29,17 +43,7 @@ class Results:
         self.execution_time_results = []
         self.first_solution_found = False                       # Registers when the first solution if found
         self.number_of_ambiguities = 0
-        self.output_fields = {'Thematic roles': [],
-                                        'Indexing by Agree': [],
-                                        'Predicates': [],
-                                        'Aspect': [],
-                                        'DIS-features': [],
-                                        'Operator bindings': [],
-                                        'Semantic space': '',
-                                        'Speaker attitude': [],
-                                        'Assignments': [],
-                                        'Information structure': []
-                              }
+        self.reset_output_fields()
         self.resources = {"Total Time": {'ms': 0, 'n': 1},
                           "Garden Paths": {'ms': 1458, 'n': 0},
                           "Sensory Processing": {'ms': 75, 'n': 0},
@@ -96,8 +100,17 @@ class Results:
     def recorded_step(self, index):
         return self.recorded_steps[index][0], self.recorded_steps[index][1], self.recorded_steps[index][2]
 
-    def store_solution(self, ps, data_item):
-        self.syntax_semantics.append((ps, self.output_fields, data_item))
+    def store_solution(self, X, data_item):
+        self.syntax_semantics.append((X, self.output_fields, data_item))
+
+    def get_output_field(self, key):
+        """Returns item [key] from the output field of the first result where it is found"""
+        for tup in self.syntax_semantics:
+            if tup[1].get(key, False):
+                return tup[1][key]
+
+    def retrieve_output_field(self, key):
+        return self.output_fields.get(key, None)
 
     def store_output_field(self, key, value):
         """
@@ -138,7 +151,7 @@ class Results:
             self.resources[key]['n'] += 1
         if key == 'Sensory Processing':
             log(f'\n\t\t{key} of /#{target}/')
-        elif key != 'Agree' and key != 'Lexical Retrieval':
+        elif key != 'Agree' and key != 'Lexical Retrieval' and 'Extraposition' not in key:
             log(f'\n\t\t{key}({target.illustrate()}) => {target.top()} ')
 
     def log_success(self, ps):
@@ -230,45 +243,42 @@ class Results:
         return lst_QND + lst_PRE + lst_GLOBAL
 
     def __str__(self):
-        stri = ''
+        stri = '\n'
         if len(self.syntax_semantics) > 0:
             number_of_solutions = len(self.syntax_semantics)
             parse_number = 1
-            for parse, semantic_interpretation, data_item in self.syntax_semantics:
+            for parse, output_fields, data_item in self.syntax_semantics:
                 if number_of_solutions == 1:
                     stri += f'\n\t{parse}\n'
                 else:
-                    stri += f'\t{chr(96 + parse_number)}. {parse}\n'
-                stri += f'\n\tDescriptive output:\n\n{self.formatted_semantics_output()}'
-                stri += f'\tPrediction errors:\n\n{self.prediction_errors(data_item)}\n'
+                    stri += f'\n\t{chr(96 + parse_number)}. {parse}\n'
+                stri += f'\n\tDescriptive output:\n\n{self.formatted_semantics_output(output_fields)}'
+                stri += f'\tPrediction errors:\n\n{self.prediction_errors(data_item, output_fields)}\n'
                 parse_number = parse_number + 1
             stri += f'\n\tResources:\n\n{self.format_resource_output(self.resources)} \n'
             stri += f'\n\tGlobal ontology:\n{self.format_semantic_interpretation_simple()}'
         return stri
 
-    def prediction_errors(self, data_item):
+    def prediction_errors(self, data_item, output_fields):
         stri = ''
         for key in data_item.keys():
-            if key in self.output_fields:
-                if data_item[key] != ','.join(self.output_fields[key]):
-                    stri += '\t\t' + data_item[key] + ' ~ ' + ','.join(self.output_fields[key]) + f' ({key})'
+            if key in output_fields:
+                if data_item[key] != ','.join(output_fields[key]):
+                    stri += '\t\t' + data_item[key] + ' / ' + ','.join(output_fields[key]) + f' ({key})'
         if stri:
             return stri
         return '\t\tNone'
 
-    def formatted_semantics_output(self):
+    def formatted_semantics_output(self, output_fields):
         stri = ''
-        for i, key in enumerate(self.output_fields):
-            if self.output_fields[key]:
-                stri += f'\t\t{i}.' + key + ':\n\n'
-                for value in self.output_fields[key]:
-                    if key == 'Assignments':
-                        if self.speaker_model.narrow_semantics.quantifiers_numerals_denotations_module.print_assignment(value):
-                            stri += '\t\t\t'
-                            stri += self.speaker_model.narrow_semantics.quantifiers_numerals_denotations_module.print_assignment(value) + '\n'
-                    else:
-                        stri += '\t\t\t' + str(value) + '\n'
-                stri += '\n'
+        for i, key in enumerate(output_fields):
+            if output_fields[key]:
+                values = output_fields[key]
+                if ';' in values[0]:
+                    values = values[0].split(';')
+                stri += f'\t\t{i}.' + key + ':\n\n\t\t\t'
+                stri += '\n\t\t\t'.join(str(value).strip() for value in values)
+                stri += '\n\n'
         stri += '\n'
         return stri
 

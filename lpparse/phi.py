@@ -1,18 +1,17 @@
 import itertools
 
-phi_map_dict = {'1': 'first person',
-                '2': 'second person',
-                '3': 'third person',
-                'PL': 'plural',
-                'SG': 'singular',
-                'HUM': 'human',
-                'NONHUM': 'non-human',
-                'M': 'masculine',
-                'F': 'feminine'}
-
+phi_map_dict = {'PER:1': ('Person', 'first'),
+                'PER:2': ('Person', 'second'),
+                'PER:3': ('Person', 'third'),
+                'NUM:PL': ('Number', 'plural'),
+                'NUM:SG': ('Number', 'singular'),
+                'HUM:HUM': ('Class', 'human'),
+                'HUM:NONHUM': ('Class', 'nonhuman'),
+                'GEN:M': ('Gender', 'm'),
+                'GEN:F': ('Gender', 'f')}
 
 def phi_map(phi_feature):
-    return phi_map_dict.get(phi_feature, '')
+    return phi_map_dict.get(phi_feature, ())
 
 def phi_feature(f):
     return 'PHI:' in f
@@ -27,7 +26,7 @@ def unvalued_counterparty(goal_feature, X):
     return f'PHI:{goal_feature.split(":")[1]}:_' in X.features
 
 def valued_phi_feature(f):
-    return phi_feature(f) and f[-1] != '_' and len(f.split(':')) == 3
+    return phi_feature(f) and f[-1] != '_'
 
 def interpretable_phi_features(probe):
     return {phi for phi in probe.head().features if interpretable_phi_feature(phi)}

@@ -57,9 +57,10 @@ class OperatorVariableModule:
                 self.bindings.append(f'Operator {binding["Head"].illustrate()}[{operator_feature}] bound by speaker.')
 
     def project_operator_objects_into_discourse_inventory(self, binding):
-        idx, space = self.speaker_model.narrow_semantics.get_idx_tuple(binding["Head"].head(), 'OP')
-        if idx:
-            self.speaker_model.narrow_semantics.semantic_action['OP']['Get'](idx)['Bound by'] = binding["Head"]
+        pass
+        #idx, space = self.speaker_model.narrow_semantics.get_idx_tuple(binding["Head"].head(), 'OP')
+        #if idx:
+        #    self.speaker_model.narrow_semantics.semantic_action['OP']['Get'](idx)['Bound by'] = binding["Head"]
 
     @staticmethod
     def scope_marker(head):

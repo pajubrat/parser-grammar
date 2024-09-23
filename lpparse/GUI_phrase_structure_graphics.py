@@ -80,6 +80,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<NextImage>>', self.next_image)
         self.bind('<<PreviousImage>>', self.previous_image)
         self.bind('<<FirstImage>>', self.first_image)
+        self.bind('<<NextLFImage>>', self.nextLFimage)
         self.bind('<<CaptureImage>>', self.save_image)
         self.bind('<<CompressNode>>', self.compress_node)
         self.bind('<<CompressNodeIntoHead>>', self.compress_node_into_head)
@@ -253,6 +254,7 @@ class PhraseStructureGraphics(tk.Toplevel):
     def initialize_and_draw_phrase_structure(self, X):
         """Deletes content from the canvas and draws X on it"""
         self.canvas.delete('all')
+        self.inventory['dependencies'] = []
         self.root_gps = GPhraseStructure(X.top().copy())
         self.root_gps.initialize_logical_space()
         self.find_head_chains(self.root_gps)
@@ -262,14 +264,21 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def draw_phrase_structure_from_derivation(self, **kwargs):
         """Retrieves step from the derivation and calls the drawing function to present it on canvas"""
+        start_index = kwargs.get('start', 0)
+        if start_index > len(self.speaker_model.results.recorded_steps):
+            start_index = 0
         if 'step' in kwargs:
             self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, kwargs['step'])
         if 'title' in kwargs:
             for step, item in enumerate(self.speaker_model.results.recorded_steps):
-                if item[2] == kwargs['title']:
+                if item[2] == kwargs['title'] and step > start_index:
                     self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, step)
+                    break
+            else:
+                return
         else:
             self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, self.index_of_analysis_shown)
+        self.canvas.delete('all')
         self.index_of_analysis_shown = self.canvas.derivational_index
         self.initialize_and_draw_phrase_structure(X)
 
@@ -362,12 +371,6 @@ class PhraseStructureGraphics(tk.Toplevel):
                 else:
                     gps.left().move_x(l-r)
         self.canvas.redraw(self.root_gps)
-
-    def LF(self, *_):
-        self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
-
-    def PF(self, *_):
-        self.draw_phrase_structure_from_derivation(title='PF-interface')
 
     def fit_phrase_structure(self, *_):
         self.fit_into_screen_and_show(self.application.settings.retrieve('image_parameter_fit_margins'))
@@ -1081,7 +1084,7 @@ class PhraseStructureGraphics(tk.Toplevel):
     def next_image(self, *_):
         if self.speaker_model.results.recorded_steps:
             if self.index_of_analysis_shown < len(self.speaker_model.results.recorded_steps) - 1:
-                self.draw_phrase_structure_from_derivatio(step=self.index_of_analysis_show + 1)
+                self.draw_phrase_structure_from_derivation(step=self.index_of_analysis_shown + 1)
 
     def previous_image(self, *_):
         if self.speaker_model.results.recorded_steps:
@@ -1092,6 +1095,15 @@ class PhraseStructureGraphics(tk.Toplevel):
     def first_image(self, *_):
         if self.speaker_model.results.recorded_steps:
             self.draw_phrase_structure_from_derivation(step=0)
+
+    def LF(self, *_):
+        self.draw_phrase_structure_from_derivation(title='Accepted LF-interface', start=0)
+
+    def PF(self, *_):
+        self.draw_phrase_structure_from_derivation(title='PF-interface')
+
+    def nextLFimage(self, *_):
+        self.draw_phrase_structure_from_derivation(title='Accepted LF-interface', start=self.index_of_analysis_shown + 1)
 
     def determine_position_of_highest_node(self, gps):
         """Determines the canvas size on the basis of the phrase structure object"""
@@ -1170,10 +1182,12 @@ class GraphicsMenu(tk.Menu):
         # Select image menu
         select_image = tk.Menu(self, tearoff=False, font=menu_font)
         select_image.add_command(label='PF-interface', command=self._event('<<PF>>'))
-        select_image.add_command(label='LF-interface', command=self._event('<<LF>>'))
+        select_image.add_command(label='First LF-interface', command=self._event('<<LF>>'))
+        select_image.add_command(label='Next LF-interface', command=self._event('<<NextLFImage>>'))
         select_image.add_command(label='Next image', command=self._event('<<NextImage>>'))
         select_image.add_command(label='Previous image', command=self._event('<<PreviousImage>>'))
         select_image.add_command(label='First image', command=self._event('<<FirstImage>>'))
+
         self.add_cascade(label='Source image', menu=select_image)
 
         # Node menu

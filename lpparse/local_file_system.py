@@ -178,11 +178,12 @@ class LocalFileSystem:
         if len(speaker_model.results.syntax_semantics) > 0 and not data_item["grammaticality"] or len(speaker_model.results.syntax_semantics) == 0 and data_item["grammaticality"]:
             r = f'\n{data_item["index"]}. {data_item["expression"]}'
             self.file_handle['errors'].write(r)
-        for key in data_item.keys():
-            if key in speaker_model.results.output_fields:
-                if data_item[key] != ','.join(speaker_model.results.output_fields[key]):
-                    r = f'\n{data_item["index"]}. {data_item["expression"]} ({key})\n\n\tPredicted:\t\t{data_item[key]}\n\tOutcome:\t\t{",".join(speaker_model.results.output_fields[key])}\n\n'
-                    self.file_handle['descriptive'].write(r)
+        if len(speaker_model.results.syntax_semantics) > 0:
+            for key in data_item.keys():
+                if speaker_model.results.get_output_field(key):
+                    if data_item[key] != ','.join(speaker_model.results.get_output_field(key)):
+                        r = f'\n{data_item["index"]}. {data_item["expression"]} ({key})\n\n\tPredicted:\t\t{data_item[key]}\n\tOutcome:\t\t{",".join(speaker_model.results.get_output_field(key))}\n\n'
+                        self.file_handle['descriptive'].write(r)
 
     def save_resources(self, speaker_model, count, sentence, experimental_group):
         if count == 1:

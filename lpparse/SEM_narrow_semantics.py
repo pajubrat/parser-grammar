@@ -84,17 +84,25 @@ class NarrowSemantics:
         self.thematic_roles_module.failure = False
         self.operator_variable_module.interpretation_failed = False
         self.pragmatic_pathway.interpretation_failed = False
+        self.quantifiers_numerals_denotations_module.reset()
+        if not self.speaker_model.ongoing_conversation:
+            self.global_cognition.reset()
 
     def postsyntactic_semantic_interpretation(self, ps):
-        self.reset_for_new_interpretation()
+        # self.reset_for_new_interpretation()
         self.speaker_model.results.store_output_field('LF', f'{ps}')
         self.interpret_(ps)
+
         # Inventory projection and ontology
-        if self.speaker_model.settings.retrieve('general_parameter_project_objects', True) and not self.speaker_model.results.first_solution_found:
+        if self.speaker_model.settings.retrieve('general_parameter_project_objects', True):  # and not self.speaker_model.results.first_solution_found:
             self.inventory_projection(ps)
+
         # Assignments
-        if self.speaker_model.settings.retrieve('general_parameter_calculate_assignments', True) and not self.speaker_model.results.first_solution_found:
-            self.speaker_model.results.store_output_field('Assignments', self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps))
+        if self.speaker_model.settings.retrieve('general_parameter_calculate_assignments', True):
+            n, weighted_assignments = self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps)
+            self.speaker_model.results.store_output_field('Assignments', weighted_assignments)
+            self.speaker_model.results.store_output_field('Number of assignments', str(n))
+
         # Information structure
         if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and ps.finite():
             self.speaker_model.results.store_output_field('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))

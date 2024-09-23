@@ -29,6 +29,7 @@ class SpeakerModel:
         self.Experimental_functions = ExperimentalFunctions(self)
         self.embedding = 0
         self.data_item = None
+        self.ongoing_conversation = False
 
     def initialize(self):
         self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
@@ -46,6 +47,9 @@ class SpeakerModel:
 
         # Bookkeeping and logging
         self.data_item = data_item
+        if data_item.get("part_of_conversation", False):
+            self.ongoing_conversation = True
+
         self.sentence = data_item["word_list"]
         log_new_sentence(self, data_item["index"], data_item["word_list"])
         PhraseStructure.chain_index = 0
@@ -110,8 +114,8 @@ class SpeakerModel:
             self.derivational_search_function(W.copy(), lst, index + 1)
         else:
             self.results.record_derivational_step(X, 'Phrase structure in syntactic working memory')
-            for N, transfer, address_label in self.plausibility_metrics.filter_and_rank(X, W):
-                new_constituent = X.target_left_branch(N).attach(N, W, transfer, address_label)
+            for N in self.plausibility_metrics.filter_and_rank(X.top(), W):
+                new_constituent = X.target_left_branch(N).attach(N, W)
                 self.derivational_search_function(new_constituent.top().copy(), lst, index + 1)
                 if self.exit:
                     break
@@ -131,34 +135,30 @@ class SpeakerModel:
             return True
 
     # Evaluates a complete solution at the LF-interface and semantic interpretation
-    def evaluate_complete_solution(self, ps):
-        self.results.record_derivational_step(ps, 'PF-interface')
+    def evaluate_complete_solution(self, X):
+        self.results.record_derivational_step(X, 'PF-interface')
         log(f'\n\n\tPF/LF-interface mapping: ----------------------------------------------------------------------------\n ')
-        log(f'\n\t\tPF-interface {ps}\n')
-        ps.transfer_to_LF()
-        ps = ps.top()
-        ps.tidy_names(1)
-        log(f'\n\n\t\tLF-interface {ps}\n')
-        self.results.record_derivational_step(ps, 'LF-interface')
+        log(f'\n\t\tPF-interface {X}\n')
+        X.transfer_to_LF()
+        X = X.top()
+        X.tidy_names(1)
+        log(f'\n\n\t\tLF-interface {X}\n')
+        self.results.record_derivational_step(X, 'LF-interface')
 
         # Postsyntactic tests (LF-interface legibility and semantic interpretation)
-        if self.postsyntactic_tests(ps):
+        if self.LF.pass_LF_legibility(X) and self.LF.final_tail_check(X) and self.narrow_semantics.postsyntactic_semantic_interpretation(X):
             self.results.update_resources(PhraseStructure.resources, self.sentence)
-            self.results.store_solution(ps, self.data_item)
-            self.results.log_success(ps)
-            self.results.record_derivational_step(ps, 'Accepted LF-interface')
+            self.results.store_solution(X, self.data_item)
+            self.results.log_success(X)
+            self.results.record_derivational_step(X, 'Accepted LF-interface')
             if self.settings.retrieve('general_parameter_only_first_solution', True):
                 self.exit = True
         else:
+            self.results.report_failure(X)
+            self.results.reset_output_fields()
             self.narrow_semantics.reset_for_new_interpretation()
-            self.results.report_failure(ps)
 
         # Register one garden path if we evaluated complete solution but
         # there has not been any accepted solutions
         if not self.results.first_solution_found:
-            self.results.consume_resources("Garden Paths", ps)
-
-    def postsyntactic_tests(self, X):
-        return self.LF.pass_LF_legibility(X) and \
-               self.LF.final_tail_check(X) and \
-               self.narrow_semantics.postsyntactic_semantic_interpretation(X)
+            self.results.consume_resources("Garden Paths", X)

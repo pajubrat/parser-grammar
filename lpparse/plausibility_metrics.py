@@ -58,7 +58,7 @@ class PlausibilityMetrics:
         self.not_word_specs = None
         self.word_tail_set = None
 
-    def filter_and_rank(self, ps, w):
+    def filter_and_rank(self, X, w):
         set_logging(False)
         if not w:
             return []
@@ -67,48 +67,21 @@ class PlausibilityMetrics:
             return []
 
         # Input integrity test
-        if not ps or not w:
+        if not X or not w:
             return []
 
-        elif ps.word_internal() and self.dispersion_filter_active():
-            solutions = [(ps.bottom(), True, self.generate_address_label())]
+        elif X.word_internal() and self.dispersion_filter_active():
+            merge_sites = X.bottom()
         else:
             log(f'\n\t\tFiltering and ranking merge sites...')
-            nodes_available = self.filter(ps.geometrical_minimal_search(), w)
+            nodes_available = self.filter(X.geometrical_minimal_search(), w)
             merge_sites = self.rank_merge_right_(nodes_available, w)
-            solutions = self.evaluate_transfer(merge_sites)
 
         set_logging(True)
-        log(f'\n\t\tRanking:')
-        for i, (site, transfer, address_label) in enumerate(solutions, start=1):
-            log('\n')
-            if transfer:
-                log("{:<80}{}".format(f'\t\t({i}) [{site}↓+ {w.label()}°]', f'{address_label}'))
-            else:
-                log("{:<80}{}".format(f'\t\t({i}) [{site} + {w.label()}°]', f'{address_label}'))
-        return solutions
-
-    def evaluate_transfer(self, all_merge_sites):
-        solutions = []
-        for site in all_merge_sites:
-            if site.complex():
-                solutions.append((site, True, self.generate_address_label()))
-            else:
-                if site.affix():
-                    if {'φ', 'D', 'P', 'A', 'D/rel', 'EXPL'} & site.features:
-                        solutions.append((site, True, self.generate_address_label()))
-                        solutions.append((site, False, self.generate_address_label()))
-                    else:
-                        solutions.append((site, False, self.generate_address_label()))
-                        solutions.append((site, True, self.generate_address_label()))
-                else:
-                    solutions.append((site, False, self.generate_address_label()))
-
-        return solutions
-
-    def generate_address_label(self):
-        self.address_label += 1
-        return '$' + hex(self.address_label) + '$'
+        log(f'\n\tRanking:')
+        for i, site in enumerate(merge_sites, start=1):
+            log(f'\n\t\t{i}.{site} + {w}')
+        return merge_sites
 
     def dispersion_filter_active(self):
         return True
@@ -182,7 +155,7 @@ class PlausibilityMetrics:
 
     def rank_merge_right_(self, site_list, word):
         self.word = word
-        self.not_word_specs =  convert_features_for_parsing(word.specifiers_not_licensed())
+        self.not_word_specs = convert_features_for_parsing(word.specifiers_not_licensed())
         self.word_tail_set = word.get_tail_sets()
 
         # Create baseline default weighting order (default order is decided by input parameters in study config file)
@@ -231,15 +204,14 @@ class PlausibilityMetrics:
     def filter(self, list_of_sites_in_active_working_memory, w):
         adjunction_sites = []
         for N in list_of_sites_in_active_working_memory:
-            if N.does_not_accept_any_complements():
-                log(f'Reject {N} + {w} because {N} does not accept complementizers. ')
-                continue
             if N.complex() and self.left_branch_filter(N):
                 log(f'Reject {N} + {w} due to bad left branch ({self.speaker_model.LF.error_report_for_external_callers})...')
                 continue
-            if self.word_breaking_filter(N, w):
+            if self.word_breaking_filter(N, w) and not N.bottom():
                 log(f'Reject {N} + {w} because it breaks words. ')
                 continue
+            if self.left_branch_filter(N):
+                pass
             if N.impossible_sequence(w):
                  log(f'Reject {N} + {w} because the sequence is impossible. ')
                  continue

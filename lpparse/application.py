@@ -139,7 +139,7 @@ class Application(tk.Tk):
         else:
             LogTextWindow(self, self.settings.external_sources["log_file_name"], 'Derivation')
             self.results_frame.results_treeview.delete(*self.results_frame.results_treeview.get_children())
-        self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
+        self.speaker_model[language].narrow_semantics.global_cognition.reset()
 
     def run_study_with_images(self, *_):
         image_window = PhraseStructureGraphics(self, settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings, speaker_model=None, gps=None, title='')
@@ -163,7 +163,8 @@ class Application(tk.Tk):
             else:
                 print(self.speaker_model[language].results)
             if not data_item['part_of_conversation']:
-                self.speaker_model[language].narrow_semantics.global_cognition.end_conversation()
+                self.speaker_model[language].ongoing_conversation = False
+                self.speaker_model[language].narrow_semantics.global_cognition.reset()
         self.local_file_system.close_all_output_files()
         sp = list(self.speaker_model.keys())[0]
         self.speaker_model[sp].results.report_results_to_console()

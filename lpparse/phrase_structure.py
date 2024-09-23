@@ -757,9 +757,7 @@ class PhraseStructure:
     def value(X, goal):
         log(f'valued features ')
         P = set().union(*X.phi_bundles())
-        for phi in (goal_feature for goal_feature in goal.head().features if interpretable_phi_feature(goal_feature) and
-                                                                             unvalued_counterparty(goal_feature, X) and
-                                                                             (not P or X.feature_gate(goal_feature, P))):
+        for phi in [goal_feature for goal_feature in goal.head().features if interpretable_phi_feature(goal_feature) and unvalued_counterparty(goal_feature, X) and (not P or X.feature_gate(goal_feature, P))]:
             log(f'[{phi[5:]}] ')
             X.features.discard(f'PHI:{phi.split(":")[1]}:_')
             X.features.add(f'{phi[1:]}')
@@ -957,7 +955,7 @@ class PhraseStructure:
 
     def control(X):
         unvalued_phi = X.get_unvalued_minimal_phi()
-        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'} and not X.get_valued_phi_types() & {'PHI:NUM', 'PHI:PER'}:
+        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'} and not X.get_valued_phi_types() & {'PHI:NUM', 'PHI:PER'} and not X.check({'PHI:NUM:SG,PER:3'}):
             return X.standard_control()
         elif unvalued_phi & {'PHI:DET:_'}:
             return X.finite_control()
@@ -1023,28 +1021,23 @@ class PhraseStructure:
         Y.mother_ = bottom_affix
         return X.top()
 
-    def attach(X, site, terminal_lexical_item, transfer, address_label):
-        if site.zero_level() and site.bottom_affix().word_internal():
+    def attach(X, site, terminal_lexical_item):
+        if site.bottom_affix().word_internal() and site.check({'C'}) or site.bottom_affix().License_EHM():
             const = X.head_attachment(terminal_lexical_item)
         else:
-            const = X.phrasal_attachment(terminal_lexical_item, transfer)
+            const = X.regular_attachment(terminal_lexical_item)
         X.speaker_model.results.consume_resources("Merge", const)
-        log(f'{address_label}\n')
         return const
 
     def head_attachment(X, terminal_lexical_item):
         return X.bottom_affix().sink(terminal_lexical_item)
 
-    def phrasal_attachment(X, terminal_lexical_item, transfer):
-        new_left_branch = X
-        m = X.mother()
+    def regular_attachment(X, terminal_lexical_item):
         set_logging(False)
-        if transfer:
-            ps, m = X.detached()
-            new_left_branch = X.transfer_to_LF()
-            new_left_branch.mother_ = m
-        set_logging(True)
+        ps, m = X.detached()
+        new_left_branch = X.transfer_to_LF()
         new_left_branch.mother_ = m
+        set_logging(True)
         new_constituent = new_left_branch.Merge_inside(terminal_lexical_item)
         return new_constituent
 
