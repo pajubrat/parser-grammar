@@ -10,9 +10,6 @@ def mandatory(f):
 def illicit(f):
     return f.startswith('-')
 
-def convert_features_for_parsing(features):
-    return {f[1:] if f.startswith('!') else f for f in features}
-
 def negative_features(features_to_check):
     return {feature[1:] for feature in features_to_check if feature[0] == '*'}
 

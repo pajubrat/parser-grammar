@@ -870,10 +870,22 @@ class PhraseStructure:
                 return True
 
     def specifiers_not_licensed(X):
-        return {f[6:] for f in X.features if f[:5] == '-SPEC'}
+        return set().union(*{frozenset(f[6:].split(',')) for f in X.features if f.startswith('-SPEC:')})
 
-    def rare_specs(X):
-        return {f[6:] for f in X.features if f[:5] == '%SPEC'}
+    def specifiers_licensed(X):
+        return set().union(*{frozenset(f[6:].split(',')) for f in X.features if f.startswith('+SPEC:')})
+
+    def complements_not_licensed(X):
+        return set().union(*{frozenset(f[6:].split(',')) for f in X.features if f.startswith('-COMP:')})
+
+    def complements_licensed(X):
+        return set().union(*{frozenset(f[6:].split(',')) for f in X.features if f.startswith('+COMP:')})
+
+    def spec_selection(X, Y):
+        return X.complex() and X.check(Y.specifiers_licensed())
+
+    def comp_selection(X, Y):
+        return Y.check(X.complements_licensed())
 
     def semantic_match(X, b):
         a_head = X.head()
@@ -1406,12 +1418,6 @@ class PhraseStructure:
 
     def word_internal(X):
         return X.bottom().bottom_affix().internal
-
-    def impossible_sequence(X, w):
-        return X.zero_level() and 'T/fin' in X.head().features and 'T/fin' in w.features
-
-    def is_word_internal(X):
-        return X.mother_ and X.sister() and X.sister().zero_level() and X.sister().word_internal()
 
     def phase_head(X):
         return X.zero_level() and X.check_some(PhraseStructure.phase_heads) and not X.check_some(PhraseStructure.phase_heads_exclude)
