@@ -38,6 +38,18 @@ class QuantifiersNumeralsDenotations:
             return f'{X.max().illustrate()}'
         return f'pro({X})'
 
+    def compatible(self, idx1, idx2):
+        def included(field):
+            """Defines which ontological attributes are included in the comparisons"""
+            return field in {'Number', 'Person', 'Class', 'Gender'}
+
+        for attribute_pair in itertools.product(self.inventory[idx1].items(), self.inventory[idx2].items()):
+            if included(attribute_pair[0][0]) and \
+                    attribute_pair[0][0] == attribute_pair[1][0] and \
+                    attribute_pair[0][1] != attribute_pair[1][1]:
+                return False
+        return True
+
     def reconstruct_assignments(self, X):
         """
         Creates assignments for all referential expressions
@@ -86,7 +98,8 @@ class QuantifiersNumeralsDenotations:
             self.all_assignments.append(self.calculate_assignment_weight(assignment, ref_constituents_lst))    #   Calculate assignment weights
 
     def calculate_assignment_weight(self, assignment, ref_constituents_lst):
-        """Calculates weights for assignments and returns a weighted assignment.
+        """
+        Calculates weights for assignments and returns a weighted assignment.
         Assignment = dictionary {IDX(QND): IDX(GLOBAL) for all referential expressions in the sentence
         ref_constituent_lst = list of tuples (IDX, head (str), X, list of possible denotations)
         """
@@ -101,13 +114,16 @@ class QuantifiersNumeralsDenotations:
         if not self.semantic_compability(assignment):
             weighted_assignment['weight'] = 0
             log('-(S)')
+        if self.internal_inconsistency(assignment):
+            weighted_assignment['weight'] = 0
+            log('-(IC)')
         if weighted_assignment['weight'] > 0:
             log('+')
         return weighted_assignment
 
     def semantic_compability(self, assignment):
         """Examines if the assignment contains semantic clashes between the meaning of the expression (QND space)
-        and the semantic object in the global inventory. This version is limited to verifying only phi-information.
+        and the semantic object in the global inventory. This version is limited to verifying phi-information.
         """
         for QND_idx, G_idx in assignment.items():
             object1 = self.inventory[QND_idx]
@@ -115,6 +131,18 @@ class QuantifiersNumeralsDenotations:
             if not self.narrow_semantics.global_cognition.ontological_compatibility(object1, object2):
                 return False
         return True
+
+    def internal_inconsistency(self, assignment):
+        """Verifies that the assignments are internally consistent.
+        Internal consistency means that if two expressions A and B denote the same object O,
+        A and B do not mismatch in their semantic attributes. This test is needed in cases where
+        the relevant attribute is not defined at O.
+        """
+        for QND_idx, G_idx in assignment.items():
+            for QND_idx2, G_idx2 in assignment.items():
+                if QND_idx2 != QND_idx and G_idx2 == G_idx:
+                    if not self.compatible(QND_idx, QND_idx2):
+                        return True
 
     def print_assignment(self, assignment):
         return ', '.join(f'{self.get_object(item[0])["Reference"]} ~ {item[1]}' for item in assignment.items() if item[0].isdigit() and assignment.get('weight', 0) > 0)
@@ -168,8 +196,7 @@ class QuantifiersNumeralsDenotations:
             if self.coreference(i, idx):    # If X and Y co-refer, they must have the same binding index
                 self.inventory[i]['BindingIndexes'] = {chr(int(i)+96)}
                 self.inventory[idx]['BindingIndexes'] = {chr(int(i)+96)}
-                log(f'===>{i}, {idx}')
-            if self.overlapping_reference(i, idx): # If X and Y overlap in denotation, both binding indexes are shown
+            if self.overlapping_reference(i, idx):  # If X and Y overlap in denotation, both binding indexes are shown
                 self.inventory[idx]['BindingIndexes'].add(chr(int(i)+96))
 
     def coreference(self, idx1, idx2):

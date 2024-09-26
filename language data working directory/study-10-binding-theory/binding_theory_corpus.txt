@@ -105,6 +105,23 @@
 		Bill admires himself.
 		¦-> Number of assignments: 3
 
+	& 2.5 Intra-clausal coherence
+	
+		hän/2;
+		Pekan_gen sisko ihailee Merjaa
+		'Pekka-gen sister admire.prs.3sg Merja.par'
+		¦-> Binding: Pekka[c] sisko[b] ihaile- Merja[d]
+
+		hän/2;
+		Pekan_gen sisko ihailee häntä
+		'Pekka-gen sister admire.prs.3sg he.par'
+		¦-> Binding: Pekka[c] sisko[b] ihaile- hän[c,d]
+		
+		hän/2
+		Pekan_gen sisko ihailee itseä#An
+		'Pekka.gen sister admire.prs.3sg self.par-px3'
+		¦-> Binding: Pekka[b] sisko[a] ihaile- itse[a]
+		
 & 3. Basic binding principles in Finnish
 
 	& 3.1 Condition A
@@ -214,6 +231,8 @@
 			John admires Mary
 			¦-> Number of assignments: 1
 
+			# Absent in Finnish
+			
 			Pekka ihailee Jukkaa
 			'Pekka.nom admires.prs.3sg Jukka.par'
 			¦-> Number of assignments: 2
@@ -306,7 +325,53 @@
 			hän ihailee itseään
 			'he.nom admire.prs.3sg self.par.px3'
 			¦-> Number of assignments: 2
+		
+		# Finnish reflexives with and without PX
+		
+			minä ihailen itseä#ni
+			'I.nom admire.prs.3sg self.par-px1sg'
+			¦-> Number of assignments: 2
 	
+			minä ihailen itseä#An
+			'I.nom admire.prs.3sg self.par-px3'
+			¦-> Number of assignments: 0
+	
+			Pekka ihailee itseä#ni
+			'Pekka.nom admire.prs.3sg self.par-px1sg'
+			¦-> Number of assignments: 0
+	
+			Pekka ihailee itseä#An
+			'Pekka.nom admire.prs.3sg self.par-px3'
+			¦-> Number of assignments: 2
+	
+			minä ihailen itseä
+			'I.nom admire.prs.3sg self.par'
+			¦-> Number of assignments: 2
+			
+			Pekka ihailee itseä
+			'Pekka.nom admire.prs.3sg self.par'
+			¦-> Number of assignments: 2
+	
+		# Finnish reflexives, number mismatches
+		
+			me ihailemme itseä#An
+			'we.nom admire.prs.1pl self.par-px3'
+			¦-> Number of assignments: 0
+			
+			minä ihailen itseä#mme
+			'I.nom admire.prs.1sg self.par-1pl'
+			¦-> Number of assignments: 0
+		
+	& 5.3 Mismatches in conversations
+	
+		Tim;
+		she admires herself
+		¦-> Number of assignments: 2
+		
+		Tim;
+		he admires himself
+		¦-> Number of assignments: 3
+		
 & 6. Reconstruction
 
 	& 6.1 Ā-chains
@@ -341,7 +406,7 @@
 		'Merja.par admire.prs.3sg Pekka.gen sister.'
 		¦-> Binding: Pekka[b] sisko[a] Merja[c] ihaile-
 	
-	& 6.3 A-chains
+	& 6.3 A-chains ("raising construction")
 	
 		Pekka näyttää ihailevan itseä#An
 		'Pekka.nom seem.prs.3sg admire.va/inf self.par.px3'
@@ -354,19 +419,19 @@
 		¦-> Binding: John[a] want admire self[a]
 		
 		John wants Mary to/inf admire herself
-		¦-> Binding: John[a] want to Mary[b] admire self[b]
+		¦-> Binding: John[a] want Mary[b] admire self[b]
 
 		John wants to/inf admire him
 		¦-> Binding: John[a] want admire him[b]
 		
 		John wants Mary to/inf admire him
-		¦-> Binding: John[a] want to Mary[b] admire him[a,c]
+		¦-> Binding: John[a] want Mary[b] admire him[a,c]
 		
 		John wants to/inf admire Mary
 		¦-> Binding: John[a] want admire Mary[b]
 		
 		John wants Mary to/inf admire Bill
-		¦-> Binding: John[a] want to Mary[b] admire Bill[c]
+		¦-> Binding: John[a] want Mary[b] admire Bill[c]
 	
 		John wants himself to/inf admire Mary
 		¦-> Binding: John[a] want self[a] admire Mary[c]
@@ -381,6 +446,24 @@
 	
 		Pekka käski Merjan_gen ihailla itseä#An
 		¦-> Binding: Pekka[a] käske- Merja[b] ihaile- itse[b]
+		
+		Pekka haluaa ihailla häntä
+		¦-> Binding: Pekka[a] halua- ihaile- hän[b]
+		
+		Pekka käski Merjan_gen ihailla häntä
+		¦-> Binding: Pekka[a] käske- Merja[b] ihaile- hän[a,c]
+		
+		Pekka haluaa ihailla Merjaa
+		¦-> Binding: Pekka[a] halua- ihaile- Merja[b]
+		
+		Pekka käski Merjan_gen ihailla Jukkaa
+		¦-> Binding: Pekka[a] käske- Merja[b] ihaile- Jukka[c]
+
+		Pekan_gen sisko haluaa ihailla itseä#An
+		¦-> Binding: Pekka[b] sisko[a] halua- ihaile- itse[a]
+	
+		Pekan_gen sisko käski Merjan_gen ihailla itseä#An
+		¦-> Binding: Pekka[b] sisko[a] käske- Merja[c] ihaile- itse[c]
 		
 		Pekka haluaa ihailla häntä
 		¦-> Binding: Pekka[a] halua- ihaile- hän[b]

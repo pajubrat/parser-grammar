@@ -30,6 +30,7 @@ class NarrowSemantics:
                      'Get': self.quantifiers_numerals_denotations_module.get_object,
                      'Update': self.quantifiers_numerals_denotations_module.update_discourse_inventory,
                      'Accept': self.quantifiers_numerals_denotations_module.accept,
+                     'Compatible': self.quantifiers_numerals_denotations_module.compatible,
                      'Presentation': self.quantifiers_numerals_denotations_module.object_presentation},
              'PRE': {'Remove': self.predicates_relations_events_module.remove_object,
                      'Project': self.predicates_relations_events_module.project,

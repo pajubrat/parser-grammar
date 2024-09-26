@@ -214,7 +214,8 @@ class PhraseStructure:
             return X.right_sister()
 
     def selector(X):
-        return X.next(X.upward_path, lambda x: x.zero_level())
+        if X.max().sister() and X.max().sister().zero_level() and X.max().sister().is_left():
+            return X.max().sister()
 
     def specifier_sister(X):
         if X.is_left():
@@ -480,6 +481,8 @@ class PhraseStructure:
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
     def transfer_to_LF(X):
+        if X.terminal():
+            return X
         Y, m = X.detached()
         for op in PhraseStructure.transfer_sequence:
             PhraseStructure.transfer_operation = op
@@ -733,10 +736,10 @@ class PhraseStructure:
     def value_from_goal(X, goal):
         if goal:
             log(f'\n\t\tAgree({X}°, {goal.head()}) ')
-            if goal.feature_mismatch_test(X.phi_bundles()):
+            if not goal.feature_mismatch_test(X.phi_bundles()):
                 X.value(goal)
             else:
-                log(f'failed.')
+                log(f'failed ({",".join(f"{tuple[0]}/G ~ {tuple[1]}/P" for tuple in goal.feature_mismatch_test(X.phi_bundles()))}).')
                 X.features.add('*')
 
     def feature_mismatch_test(X, PP):
@@ -748,8 +751,7 @@ class PhraseStructure:
         matched with phi-bundles at the probe.
         Note 1: The feature format is TYPE:VALUE with (i)PHI removed.
         """
-        return not mismatch(unlicensed_phi_features_at_goal(X.head().interpretable_phi_features(), PP),
-                            set().union(*PP))
+        return mismatch(unlicensed_phi_features_at_goal(X.head().interpretable_phi_features(), PP), set().union(*PP))
 
     def interpretable_phi_features(X):
         return {f[5:] for f in X.features if f.startswith('iPHI:')}
@@ -833,7 +835,7 @@ class PhraseStructure:
             X.features.add('Φ*')
             X.features.add('Φ')
             if X.selected_by_SEM_internal_predicate():
-                X.features = X.features | {'-ΦLF'}
+                X.features.add('-ΦLF')
 
     # Feature processing -----------------------------------------------------------------------------
 
