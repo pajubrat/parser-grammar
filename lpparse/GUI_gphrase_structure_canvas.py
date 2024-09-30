@@ -14,6 +14,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.parent = parent
         self.configure(scrollregion=(0, 0, 5000, 5000))
         self.ID_to_object = {}
+        self.scaling_factor = 1
         self.info = None
         self.label_style = {'label': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize'))),
                             'PFtrace': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic", "overstrike"),
@@ -46,8 +47,11 @@ class PhraseStructureCanvas(tk.Canvas):
             cur = self.find_withtag('current')[0]
             tag = self.gettags('current')[0]
             if tag == 'node':
+                self.addtag_withtag('selected', tk.CURRENT)
                 self.selected_objects = [self.ID_to_object[str(cur)]]
                 self.selected_dependency = None
+                self.bind('<Motion>', self.drag_and_drop_node)
+                self.bind('<ButtonRelease-1>', self.deselect)
             if tag == 'dependency':
                 self.selected_dependency = self.ID_to_object[str(cur)]
                 self.selected_objects = []
@@ -55,7 +59,24 @@ class PhraseStructureCanvas(tk.Canvas):
             self.selected_objects = []
             self.selected_dependency = None
             self.selected_canvas_object = None
+            self.parent.update_contents(False)
+
+    def deselect(self, event):
+        self.unbind('<Motion>')
+        self.dtag('selected')
         self.parent.update_contents(False)
+
+    def drag_and_drop_node(self, event):
+        x, y = event.x, event.y
+        xc, yc = self.coords('selected')
+        if x - xc > self.application.settings.retrieve('image_parameter_grid', 150) / 2:
+            self.parent.move_right()
+        if xc - x > self.application.settings.retrieve('image_parameter_grid', 150) / 2:
+            self.parent.move_left()
+        if y - yc > self.application.settings.retrieve('image_parameter_y_grid', 180) / 2:
+            self.parent.move_down()
+        if yc - y > self.application.settings.retrieve('image_parameter_y_grid', 180) / 2:
+            self.parent.move_up()
 
     def _on_ctrl_mouse_click(self, *_):
         if self.find_withtag('current'):
@@ -95,6 +116,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.info_text = self.create_text((2000, 300), state='hidden')  # Show information about selected objects
         self.project_into_canvas(gps, spx, spy)
         self.draw_dependencies()
+        self.scale("all", 0, 0, self.scaling_factor, self.scaling_factor)
 
     def project_into_canvas(self, gps, spx, spy):
         """Projects the logical phase structure object into canvas"""
@@ -136,12 +158,14 @@ class PhraseStructureCanvas(tk.Canvas):
                               fill=color,
                               activefill='red',
                               tag='node',
-                              font=("Times New Roman", self.application.settings.retrieve('image_parameter_tsize')))
+                              font=("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') * self.scaling_factor)))
 
         self.ID_to_object[str(ID)] = gps
         gps.ID = ID
         self.tag_bind(ID, '<Enter>', self._show_info)
         self.tag_bind(ID, '<Leave>', self._hide_info)
+        if gps in self.selected_objects:
+            self.addtag_withtag('selected', ID)
         if gps.compressed:
             self.create_line(self.Y_frame(M_const_coord, 1), self.Y_frame(L_const_coord, 0.5), width=2, fill='black')
             self.create_line(self.Y_frame(M_const_coord, 1), self.Y_frame(R_const_coord, 0.5), width=2, fill='black')
@@ -150,7 +174,13 @@ class PhraseStructureCanvas(tk.Canvas):
             for i, label_item in enumerate(gps.label_stack):
                 if label_item[1] != 'label':
                     text = self.feature_conversion_for_images(label_item)
-                    self.create_text((M_const_coord[0], L_const_coord[1] + Y_offset), fill=color, activefill='red', tag='node', text=text, anchor='center', font=self.label_style[label_item[1]])
+                    self.create_text((M_const_coord[0], L_const_coord[1] + Y_offset),
+                                     fill=color,
+                                     activefill='red',
+                                     tag='node',
+                                     text=text,
+                                     anchor='center',
+                                     font=(self.label_style[label_item[1]][0], int(self.label_style[label_item[1]][1] * self.scaling_factor)))
                     Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
         else:
             self.draw_constituent_line(gps.left(), L_const_coord, M_const_coord)
@@ -229,7 +259,7 @@ class PhraseStructureCanvas(tk.Canvas):
                                       tag='node',
                                       text=text,
                                       anchor='center',
-                                      font=self.label_style[style])
+                                      font=(self.label_style[style][0], int(self.label_style[style][1] * self.scaling_factor)))
                 # Subscript and superscript
                 if label_item[1] == 'label' and affix.subscript:
                     self.create_text((X1 + (len(text)-1) * 15 + self.application.settings.retrieve('image_parameter_grid') / 6, Y1 + Y_offset + self.application.settings.retrieve('image_parameter_tsize') / 4),
@@ -259,6 +289,8 @@ class PhraseStructureCanvas(tk.Canvas):
                 # Add the node to the mapping from nodes to affixes
                 self.ID_to_object[str(ID)] = affix
                 affix.ID = str(ID)
+                if gps in self.selected_objects:
+                    self.addtag_withtag('selected', ID)
 
     def draw_dependencies(self):
         for dep in self.parent.inventory['dependencies']:

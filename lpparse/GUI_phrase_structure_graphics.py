@@ -75,6 +75,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<Save>>', self.save)
         self.bind('<<LoadAsStructure>>', self.load_as_structure)
         self.bind('<<FitPhraseStructure>>', self.fit_phrase_structure)
+        self.bind('<<ResetScaling>>', self.reset_scaling)
         self.bind('<<LF>>', self.LF)
         self.bind('<<PF>>', self.PF)
         self.bind('<<NextImage>>', self.next_image)
@@ -169,6 +170,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<CanvasLayoutControlEnable>>', self.canvas_layout_control_enable)
         self.bind('<<CanvasLayoutControlDisable>>', self.canvas_layout_control_disable)
         self.bind('<<RecalculateLayout>>', self.recalculate_layout)
+        self.bind('<MouseWheel>', self.zoomer)
         self.bind('<Control-s>', self.save)
         self.bind('<Key-w>', self.widen_node)
         self.bind('<Key-s>', self.squeeze_node)
@@ -296,6 +298,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.save_image_as_postscript(filename)
 
     def fit_into_screen_and_show(self, margins=0):
+        """
+        Collects all elements on the canvas and optimizes its size. Size optimization uses the
+        width settings unless the image is larger.
+        """
         self.lift()
         x1, y1, x2, y2 = self.canvas.bbox('all')
         self.update_contents(False, margins-x1, margins-y1)
@@ -334,6 +340,17 @@ class PhraseStructureGraphics(tk.Toplevel):
         if gps.complex() and not gps.compressed:
             self.implement_chains(gps.left())
             self.implement_chains(gps.right())
+
+    def zoomer(self, event):
+        if event.delta > 0:
+            self.canvas.scaling_factor += 0.1
+        elif event.delta < 0 and self.canvas.scaling_factor > 0.5:
+            self.canvas.scaling_factor -= 0.1
+        self.update_contents(False)
+
+    def reset_scaling(self, event):
+        self.canvas.scaling_factor = 1
+        self.update_contents(False)
 
     # ---------------------------------------------------------------------------------
     # Menu actions
@@ -1177,6 +1194,7 @@ class GraphicsMenu(tk.Menu):
         image_properties_menu = tk.Menu(self, tearoff=False, font=menu_font)
         image_properties_menu.add_command(label='Fit Phrase Structure', command=self._event('<<FitPhraseStructure>>'))
         image_properties_menu.add_command(label='Recalculate layout', command=self._event('<<RecalculateLayout>>'))
+        image_properties_menu.add_command(label='Reset scaling', command=self._event('<<ResetScaling>>'))
         self.add_cascade(label='Image', menu=image_properties_menu)
 
         # Select image menu
