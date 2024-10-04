@@ -50,6 +50,12 @@ Phi Level test = False
 UG_parameter_phase_heads = C;v;FORCE;Inf;IMPSS
 UG_parameter_phase_heads_exclude = φ;v-;TO/inf
 
+# Four conditions regulating word formation										
+head_complement_selection = True
+epsilon = True
+w_selection = True
+UG_parameter_middle_field_HM = True
+
 #	Semantics
 calculate_assignments = False
 calculate_pragmatics = True
