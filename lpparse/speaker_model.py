@@ -115,23 +115,18 @@ class SpeakerModel:
         else:
             self.results.record_derivational_step(X, 'Phrase structure in syntactic working memory')
             for N in self.plausibility_metrics.filter_and_rank(X.top(), W):
-                new_constituent = X.target_left_branch(N).attach(N, W)
-                self.derivational_search_function(new_constituent.top().copy(), lst, index + 1)
+                Y = X.target_left_branch(N).attach(N, W).bottom().reconstruct(cyclic=True).top()
+                self.derivational_search_function(Y.copy(), lst, index + 1)
                 if self.exit:
                     break
         self.narrow_semantics.pragmatic_pathway.forget_object(W)
 
-    def circuit_breaker(self, ps, lst, index):
+    def circuit_breaker(self, X, lst, index):
         set_logging(True)
         if self.exit:
             return True
-
-        # If there are no more words, the solution is evaluated
-        # at LF-interface and postsyntactically
         if index == len(lst):
-            self.embedding = 0
-            log_instance.indent_level = self.embedding
-            self.evaluate_complete_solution(ps)
+            self.evaluate_complete_solution(X)
             return True
 
     # Evaluates a complete solution at the LF-interface and semantic interpretation
@@ -139,7 +134,7 @@ class SpeakerModel:
         self.results.record_derivational_step(X, 'PF-interface')
         log(f'\n\n\tPF/LF-interface mapping: ----------------------------------------------------------------------------\n ')
         log(f'\n\t\tPF-interface {X}\n')
-        X.transfer_to_LF()
+        X.transfer()
         X = X.top()
         X.tidy_names(1)
         log(f'\n\n\t\tLF-interface {X}\n')

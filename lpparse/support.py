@@ -64,7 +64,7 @@ def extract_key_and_value(line):
 def log(text):
     if log_instance.logging and not log_instance.disabled:
         if text.startswith('\n'):
-            text2 = '\n' + '\t'*log_instance.indent_level + text[1:]
+            text2 = '\n' + text[1:]
         else:
             text2 = text
         my_log.info(text2)

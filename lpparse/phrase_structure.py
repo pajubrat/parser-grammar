@@ -17,77 +17,9 @@ class PhraseStructure:
     phase_heads = {'ph', 'φ'}   # Phase heads set for all calculations
     phase_heads_exclude = set()
     resources = {"Merge-1": {"ms": 0, "n": 0}}
-    chain_index = 0	
+    chain_index = 0
     node_identity = 0
     transfer_operation = None
-    instructions =        {'Head': {'type': 'Head Chain',
-                                    'test integrity': lambda x: x.affix() and
-                                                                not x.right().copied and
-                                                                not x.License_EHM(),
-                                    'repair': lambda x: x.create_chain(),
-                                    'selection': lambda x: True,
-                                    'intervention': lambda x: False,
-                                    'legible': lambda x, y: y.properly_selected() and
-                                                            not y.empty_finite_EPP() and
-                                                            y.right_sister() != x,
-                                    'single operation': False,
-                                    'prepare': lambda x: x.prepare_head_chain()},
-                           'Phrasal': {'type': 'Phrasal Chain',
-                                       'test integrity': lambda x: not x.copied and
-                                                                   x.complex() and
-                                                                   x.is_left() and
-                                                                   not x.expletive() and
-                                                                   x.container() and
-                                                                   not x.container().theta_predicate() and
-                                                                   x.container().EF(),
-                                       'repair': lambda x: x.create_chain(),
-                                       'selection': lambda x: x.zero_level() and not x.finite(),
-                                       'intervention': lambda x: x.zero_level() and x.referential(),
-                                       'legible': lambda x, y: x.Abar_legible(y),
-                                       'prepare': lambda x: x.prepare_phrasal_chain()},
-                           'Feature': {'type': 'Feature Inheritance',
-                                       'test integrity': lambda x: x.check({'Φ?'}) or x.highest_finite_head(),
-                                       'repair': lambda x: x.feature_inheritance(),
-                                       'single operation': False},
-                           'A-chain':  {'type': 'Phrasal Chain',
-                                        'repair': lambda x: x.create_chain(),
-                                        'selection': lambda x: x.has_vacant_phrasal_position(),
-                                        'legible': lambda x, y: True,
-                                        'intervention': lambda x: not x.zero_level() and x.referential(),
-                                        'test integrity': lambda x: not x.copied and
-                                                                    x.complex() and
-                                                                    x.is_left() and
-                                                                    x.container() and
-                                                                    x.container().EF(),
-                                        'prepare': lambda x: x.prepare_phrasal_chain()},
-                           'Agree': {'type': 'Agree',
-                                     'test integrity': lambda x: x.is_unvalued(),
-                                     'repair': lambda x: PhraseStructure.speaker_model.Experimental_functions.Agree(x)},
-                           'Extraposition': {'type': 'Extraposition',
-                                             'test integrity': lambda x: x.zero_level() and
-                                                                         (x.top().contains_finiteness() or
-                                                                          x.top().referential()) and
-                                                                         x.selection_violation() and
-                                                                         x.sister() and
-                                                                         not x.sister().adjunct,
-                                             'repair': lambda x: x.extrapose()},
-                           'Right Scramble': {'type': 'Right Scrambling',
-                                              'test integrity': lambda x: not x.copied and x.trigger_right_node_scrambling(),
-                                              'repair': lambda x: x.right_scrambling()},
-                           'Left Scramble': {'type': 'Left Scrambling',
-                                             'test integrity': lambda x: x.complex() and not x.copied and x.trigger_scrambling(),
-                                             'repair': lambda x: x.reconstruct_scrambling()},
-                           'Last Resort Extraposition': {'type': 'Last Resort Extraposition',
-                                                         'test integrity': lambda x: (x.top().contains_finiteness() or x.top().referential()) and not PhraseStructure.speaker_model.LF.LF_legibility_test_detached(x.top()),
-                                                         'repair': lambda x: x.last_resort_extrapose()}}
-    transfer_sequence = [instructions['Head'],
-                         instructions['Feature'],
-                         instructions['Extraposition'],
-                         instructions['Right Scramble'],
-                         instructions['Left Scramble'],
-                         instructions['Phrasal'],
-                         instructions['Agree'],
-                         instructions['Last Resort Extraposition']]
 
     def __init__(self, left=None, right=None):
         self.const = []
@@ -140,6 +72,9 @@ class PhraseStructure:
 
     def is_right(X):
         return X.mother() and X.mother().right() == X
+
+    def complex_head(X):
+        return len(X.get_affix_list()) > 1
 
     def affix(X):
         if X.left() == X.right():
@@ -210,8 +145,8 @@ class PhraseStructure:
             return X.sister()
 
     def complement(X):
-        if X.zero_level():
-            return X.right_sister()
+        if X.zero_level() and X.is_left():
+            return X.sister()
 
     def selector(X):
         if X.max().sister() and X.max().sister().zero_level() and X.max().sister().is_left():
@@ -429,9 +364,9 @@ class PhraseStructure:
                     return True
                 if PhraseStructure.speaker_model.settings.retrieve('epsilon', True):
                     if x.affix().copied:
-                        return x.License_EHM()      # [ε] blocks IHM
+                        return x.EHM()      # [ε] blocks IHM
                     else:
-                        if not x.License_EHM():     # [ε] licenses EHM
+                        if not x.EHM():     # [ε] licenses EHM
                             return True
                 x = x.affix()
 
@@ -450,7 +385,7 @@ class PhraseStructure:
 
     def in_thematic_position(X):
         return (X.max().container() and X.max().container().thematic_head()) or \
-               (X.max().container().complement() == X.max())
+               (X.max().container() and X.max().container().complement() == X.max())
 
     def projection_principle_failure(X):
         return (X.max().projection_principle_applies() and
@@ -480,75 +415,11 @@ class PhraseStructure:
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
-    def transfer_to_LF(X):
-        if X.terminal():
-            return X
+    def transfer(X):
         Y, m = X.detached()
-        for op in PhraseStructure.transfer_sequence:
-            PhraseStructure.transfer_operation = op
-            Y.reconstruct(op)
+        for Z in (x for x in [Y.bottom()] + Y.bottom().upward_path()):
+            Z.reconstruct(cyclic=False)
         return Y.reattach(m)
-
-    def reconstruct(X, op):
-        for Y in (x for x in [X.bottom()] + X.bottom().upward_path() if op['test integrity'](x)):
-            op['repair'](Y)
-            X.speaker_model.results.record_derivational_step(Y.top(), f"{op['type']} ({Y})")
-            PhraseStructure.speaker_model.results.consume_resources(op['type'], Y)
-
-    def create_chain(X):
-        head, target = PhraseStructure.transfer_operation['prepare'](X)
-        if head:
-            head.form_chain(target)
-            if PhraseStructure.transfer_operation['test integrity'](target):
-                target.create_chain()   # Recursion, successive-cyclicity
-
-    def prepare_head_chain(X):
-        return X, X.right().copy_for_chain()
-
-    def prepare_phrasal_chain(X):
-        if X.A_bar_operator():
-            X.prepare_A_bar_chain(X.container())
-        elif X.referential():
-            PhraseStructure.transfer_operation = PhraseStructure.instructions['A-chain']    # Last Resort option
-        else:
-            return None, None
-        return X.container(), X.copy_for_chain()
-
-    def prepare_A_bar_chain(X, probe):
-        if not X == probe.next(probe.edge):
-            probe = X.project_phonologically_null_head()
-        probe.copy_criterial_features(X)
-        probe.features = PhraseStructure.speaker_model.lexicon.apply_redundancy_rules(probe.features)
-
-    def project_phonologically_null_head(X):
-        probe = X.sister().Merge_inside(PhraseStructure(), 'left').left()
-        probe.features |= probe.add_scope_information()
-        return probe
-
-    def form_chain(X, target):
-        for head in (x for x in X.minimal_search_domain().minimal_search(PhraseStructure.transfer_operation['intervention']) if
-                     PhraseStructure.transfer_operation['selection'](x)):
-            if head != X and head.test_merge(target, PhraseStructure.transfer_operation['legible'], 'left'):
-                break
-            target.remove()
-        else:
-            if not X.top().bottom().test_merge(target, PhraseStructure.transfer_operation['legible'], 'right'):
-                target.remove()
-                if X.sister() and not target.scan_criterial_features('ΔOP'):
-                    X.sister().Merge_inside(target, 'left')
-                else:
-                    X.top().bottom().Merge_inside(target, 'right')  # Last Resort option
-
-    def has_vacant_phrasal_position(X):
-        return X.gapless_head() or X.is_right()
-
-    def scan_criterial_features(X, feature):
-        criterial_features = X.scan_features(feature)
-        if 'OP*' not in criterial_features:
-            X.head().features = X.head().features | criterial_features
-        for f in list(criterial_features):
-            if 'OP' in f:
-                return True
 
     def scan_features(X, feature):
         if X.zero_level():
@@ -561,27 +432,6 @@ class PhraseStructure:
         for f in [g for g in specifier.head().features if g.startswith('Δ')]:
             X.features.add(f[1:])
             X.features.add('OP:_')
-
-    def test_merge(X, target, legible, direction):
-        X.specifier_sister().Merge_inside(target, direction)
-        return legible(X, target)
-
-    def Abar_legible(X, target):
-        # Conditions for accepting [SpecXP] as landing site
-        if target == X.local_edge and X.SPEC_selection():
-            return True
-        # Effect of [CompXP] as landing site
-        if target.is_right():
-            target.adjunct = False
-        # Conditions for accepting [CompXP] as landing site
-        if X.complement() == target and X.COMP_selection():
-            return True
-
-    def gapless_head(X):
-        return X.zero_level() and X.aunt() and X.aunt().zero_level()
-
-    def has_nonthematic_specifier(X):
-        return X.EF() and X.local_edge() and X.local_edge().extended_subject()
 
     def add_scope_information(X):
         if not X.non_scopal():
@@ -596,79 +446,18 @@ class PhraseStructure:
     # Scrambling ==========================================================================
 
     def trigger_scrambling(X):
-        return not X.legible_adjunct() and \
-               X.adjoinable() and \
-               X.floatable() and \
-               not X.operator_in_scope_position() and \
-               not X.expletive() and \
-               X.container()
-
-    def trigger_right_node_scrambling(X):
-        return X.focus_right_node().trigger_scrambling()
-
-    def right_scrambling(X):
-        if not X.focus_right_node().in_situ_scrambling_solution():
-            X.focus_right_node().reconstruct_scrambling()
-
-    def in_situ_scrambling_solution(X):
-        X.head().externalize_structure()
-        return X.legible_adjunct() or X.head().adverbial() or not X.top().contains_finiteness()
-
-    def focus_right_node(X):
-        if X.is_left():
-            return X.geometrical_sister()
-        return X
-
-    def legible_adjunct(X):
-        return X.head().tail_test() and (X.is_right() or (X.is_left() and X.in_thematic_position()))
+        return not X.head().tail_test() and X.adjoinable() and X.floatable() and \
+               not X.operator_in_scope_position() and X.container()
 
     def reconstruct_scrambling(X):
-        starting_point = X.container()
-        virtual_test_item = X.copy()
-        scrambled_phrase = X
-
-        node = starting_point
-        for node in X.local_tense_edge().minimal_search(lambda x: x.intervention_condition_for_scrambling(X, X.local_tense_edge())):
-            node.merge_scrambled_phrase(virtual_test_item)
-            if node.test_adjunction_solution(scrambled_phrase, virtual_test_item, starting_point, 'left'):
-                break
-        else:
-            node.Merge_inside(virtual_test_item, 'right')
-            virtual_test_item.adjunct = False
-            node.test_adjunction_solution(scrambled_phrase, virtual_test_item, starting_point, 'right')
-            scrambled_phrase.adjunct = False
+        X.externalize_structure()
+        for x in X.local_tense_edge().minimal_search():
+            if x.tail_test(tail_sets=X.get_tail_sets()):
+                return x.mother().Merge_left(X.copy_for_chain())
+        return X.container().Merge_right(X.copy_for_chain())
 
     def local_tense_edge(X):
         return next((node.mother() for node in X.upward_path() if node.finite() or node.force()), X.top())
-
-    def intervention_condition_for_scrambling(X, target, local_tense_edge):
-        return (X.mother() == target or
-                X.mother().copied or
-                (X.force() and X.container() == local_tense_edge.head()) or
-                (X.zero_level() and X.referential()))
-
-    def test_adjunction_solution(X, scrambled_phrase, virtual_test_item, starting_point, direction):
-        if virtual_test_item.valid_reconstructed_adjunct():
-            virtual_test_item.remove()
-            scrambled_phrase.externalize_structure()
-            s = X.merge_scrambled_phrase(scrambled_phrase.copy_for_chain(), direction)
-            PhraseStructure.speaker_model.narrow_semantics.pragmatic_pathway.unexpected_order_occurred(s, starting_point)
-            return True
-        virtual_test_item.remove()
-
-    def merge_scrambled_phrase(X, reconstructed_floater, direction='left'):
-        target_node = X
-        if direction == 'left':
-            if X.is_left():
-                target_node = X.mother()
-            if reconstructed_floater.adverbial_adjunct():
-                target_node.Merge_inside(reconstructed_floater, 'right')
-            else:
-                target_node.Merge_inside(reconstructed_floater, 'left')
-        else:
-            target_node.Merge_inside(reconstructed_floater, 'right')
-            reconstructed_floater.adjunct = False
-        return reconstructed_floater
 
     def externalize_structure(X):
         if X and X.head().is_adjoinable() and X.mother():
@@ -693,7 +482,7 @@ class PhraseStructure:
 
     def transfer_adjunct(X):
         detached_phrase, m = X.detached()
-        detached_phrase.transfer_to_LF()
+        detached_phrase.transfer()
         detached_phrase.mother_ = m
         return detached_phrase
 
@@ -724,7 +513,7 @@ class PhraseStructure:
 
     # Agreement ---------------------------------------------------------------------------------------------
     def AgreeLF(X):
-        X.value_from_goal(X.get_goal())
+        return X.Agree(X.get_goal())
 
     def get_goal(X):
         return next((x for x in X.minimal_search_domain().minimal_search(lambda x: x.phase_head())
@@ -733,13 +522,12 @@ class PhraseStructure:
     def goal_selection(X):
         return not X.copied and (X.head().referential() or X.phase_head())
 
-    def value_from_goal(X, goal):
-        if goal:
-            log(f'\n\t\tAgree({X}°, {goal.head()}) ')
+    def Agree(X, goal):
+        if X.is_unvalued() and goal:
             if not goal.feature_mismatch_test(X.phi_bundles()):
                 X.value(goal)
+                return goal
             else:
-                log(f'failed ({",".join(f"{tuple[0]}/G ~ {tuple[1]}/P" for tuple in goal.feature_mismatch_test(X.phi_bundles()))}).')
                 X.features.add('*')
 
     def feature_mismatch_test(X, PP):
@@ -757,10 +545,8 @@ class PhraseStructure:
         return {f[5:] for f in X.features if f.startswith('iPHI:')}
 
     def value(X, goal):
-        log(f'valued features ')
         P = set().union(*X.phi_bundles())
         for phi in [goal_feature for goal_feature in goal.head().features if interpretable_phi_feature(goal_feature) and unvalued_counterparty(goal_feature, X) and (not P or X.feature_gate(goal_feature, P))]:
-            log(f'[{phi[5:]}] ')
             X.features.discard(f'PHI:{phi.split(":")[1]}:_')
             X.features.add(f'{phi[1:]}')
         X.features.update({'ΦLF'})
@@ -805,27 +591,15 @@ class PhraseStructure:
     def phi_index(X):
         return next((f.split(':')[2] for f in X.features if f.startswith('PHI:IDX:')), None)
 
-    # Extraposition
-    def cutoff_point_for_last_resort_extraposition(X):
-        return X.zero_level() and \
-               X.is_adjoinable() and \
-               X.aunt() and \
-               (X.aunt().complex() or (X.aunt().zero_level() and not X.aunt().COMP_selection()))
-
     def license_extraposition(X):
         return X.top().contains_finiteness() or X.top().referential()
 
     def extrapose(X):
-        if not X.COMP_selection():
+        if X.sister() and not X.COMP_selection():
             X.sister().head().externalize_structure()
         if not X.SPEC_selection():
             X.head().externalize_structure()
-        PhraseStructure.speaker_model.results.consume_resources('Extraposition', X)
-
-    def last_resort_extrapose(X):
-        if X.zero_level() and X.cutoff_point_for_last_resort_extraposition():
-            X.externalize_structure()
-            PhraseStructure.speaker_model.results.consume_resources('Last Resort Extraposition', X)
+        return X
 
     def feature_inheritance(X):
         if X.highest_finite_head():
@@ -836,6 +610,7 @@ class PhraseStructure:
             X.features.add('Φ')
             if X.selected_by_SEM_internal_predicate():
                 X.features.add('-ΦLF')
+        return X
 
     # Feature processing -----------------------------------------------------------------------------
 
@@ -887,7 +662,7 @@ class PhraseStructure:
         return X.complex() and X.check(Y.specifiers_licensed())
 
     def comp_selection(X, Y):
-        return Y.check(X.complements_licensed())
+        return X.zero_level() and Y.check_some(X.complements_licensed())
 
     def semantic_match(X, b):
         a_head = X.head()
@@ -924,19 +699,26 @@ class PhraseStructure:
 
     # Tail-processing ---------------------------------------------------------------------------
 
-    def tail_test(X):
-        pos_tsets = {frozenset(positive_features(tset)) for tset in X.get_tail_sets() if positive_features(tset)}
-        neg_tsets = {frozenset(negative_features(tset)) for tset in X.get_tail_sets() if negative_features(tset)}
-        checked_pos_tsets = {tset for tset in pos_tsets if X.tail_condition(tset)}
-        checked_neg_tsets = {tset for tset in neg_tsets if X.tail_condition(tset)}
-        return pos_tsets == checked_pos_tsets and not checked_neg_tsets
+    def tail_test(X, **kwargs):
+        tail_sets = kwargs.get('tail_sets', X.get_tail_sets())
+        weak_test = kwargs.get('weak_test', X.referential() or X.preposition())
+        direction = kwargs.get('direction', 'left')
+        positive_tsets = {frozenset(positive_features(tset)) for tset in tail_sets if positive_features(tset)}
+        negative_tsets = {frozenset(negative_features(tset)) for tset in tail_sets if negative_features(tset)}
+        checked_pos_tsets = {tset for tset in positive_tsets if X.tail_condition(tset, weak_test, direction)}
+        checked_neg_tsets = {tset for tset in negative_tsets if X.tail_condition(tset, weak_test, direction)}
+        return positive_tsets == checked_pos_tsets and not checked_neg_tsets
 
-    def tail_condition(X, tset):
-        if X.referential() or X.preposition():
-            for m in (x for x in X.upward_path() if x.zero_level() and x.check_some(tset)):
-                return m.check(tset)
-        if not X.referential():
-            return X.check_container(tset) or X.check_aunt(tset)
+    def tail_condition(X, tail_set, weak_test, direction):
+        if weak_test:
+            context = [x for x in X.upward_path() if x.zero_level()]
+            if direction == 'right':
+                context.insert(X)
+            for m in context:
+                if m.check_some(tail_set):
+                    return m.check(tail_set)
+        else:
+            return X.check_container(tail_set) or X.check_aunt(tail_set)
 
     def check_container(X, tset):
         return X.max().container() and X.max().container().check(tset)
@@ -1001,6 +783,12 @@ class PhraseStructure:
             return PhraseStructure(B, X)
         return PhraseStructure(X, B)
 
+    def Merge_right(X, Y):
+        return X.Merge_inside(Y, 'right')
+
+    def Merge_left(X, Y):
+        return X.Merge_inside(Y, 'left')
+
     def substitute(X, local_structure):
         if local_structure[0]:                                                              # If N had a mother
             if not local_structure[1]:                                                      # If N was right...
@@ -1035,25 +823,103 @@ class PhraseStructure:
         Y.mother_ = bottom_affix
         return X.top()
 
-    def attach(X, site, terminal_lexical_item):
-        if site.bottom_affix().word_internal() and site.check({'C'}) or site.bottom_affix().License_EHM():
-            const = X.head_attachment(terminal_lexical_item)
+    def attach(X, N, W):
+        if N.bottom_affix().word_internal() and (PhraseStructure.speaker_model.settings.retrieve('UG_parameter_middle_field_HM', True) or N.check({'C'}) or N.bottom_affix().EHM()):
+            Y = X.head_attachment(W)
         else:
-            const = X.regular_attachment(terminal_lexical_item)
-        X.speaker_model.results.consume_resources("Merge", const)
-        return const
+            Y = X.regular_attachment(W)
+        X.speaker_model.results.consume_resources('Merge', Y, N, W)
+        return Y
 
     def head_attachment(X, terminal_lexical_item):
         return X.bottom_affix().sink(terminal_lexical_item)
 
     def regular_attachment(X, terminal_lexical_item):
+        return X.transfer_detached().Merge_inside(terminal_lexical_item)
+
+    def transfer_detached(X):
         set_logging(False)
         ps, m = X.detached()
-        new_left_branch = X.transfer_to_LF()
+        new_left_branch = X.transfer()
         new_left_branch.mother_ = m
         set_logging(True)
-        new_constituent = new_left_branch.Merge_inside(terminal_lexical_item)
-        return new_constituent
+        return new_left_branch
+
+    def detached(X):
+        m = X.mother()
+        X.mother_ = None
+        return X, m
+
+    def Affect_a(X, Y, **kwargs):
+        logg = kwargs.get('log', False)
+        if Y and not Y.copied:
+            if logg:
+                log(f"\n\t\t{kwargs['type']}({Y})")
+            if kwargs['type'] == 'A-chain':
+                if Y.complex() and not Y.get_tail_sets() and not Y.operator_features() and not Y.sister().operator_features():
+                    return Y
+                else:
+                    return None
+            if kwargs['type'] == 'Ā-chain' and Y.container():
+                Y.container().features = Y.container().features | Y.operator_features()
+            return Y
+
+    def reconstruct(X, **kwargs):
+
+        trigger = {'A-chain': lambda x: x.zero_level() and x.EF() and not (x.internal and x.terminal()),
+                   'Scrambling': lambda x: x.max().trigger_scrambling(),
+                   'Agree': lambda x: x.zero_level() and x.is_left() and x.is_unvalued() and not x.check({'ΦLF'}),
+                   'IHM': lambda x: x.complex_head() and not x.EHM() and not x.check({'C'}),
+                   'Extrapose': lambda x: x.zero_level() and x.is_left() and x.selection_violation(),
+                   'Ā-chain': lambda x: x.zero_level() and x.is_right() and x.thematic_head(),
+                   'Feature inheritance': lambda x: x.check({'Φ?'}) or (x.highest_finite_head() and not x.check({'!PER'}))
+                    }
+
+        cyclic = kwargs.get('cyclic', True)
+        Y = X
+
+        type = 'Feature inheritance'
+        if trigger[type](X) and X.Affect_a(X, type=type):
+            X.Affect_a(X, type=type, log=True).feature_inheritance()
+
+        type = 'A-chain'
+        if cyclic and trigger[type](X) and X.Affect_a(X.sister(), type=type):
+            Y = X.Merge_right(X.Affect_a(X.sister(), type=type, log=True).copy_for_chain()).right()
+
+        type = 'Scrambling'
+        if not cyclic and trigger[type](X):
+            X.Affect_a(X.max(), type=type, log=True).reconstruct_scrambling()
+
+        type = 'Agree'
+        if trigger['Agree'](X) and X.Affect_a(X, type=type):
+            X.Affect_a(X, type=type, log=True).AgreeLF()
+
+        type = 'IHM'
+        if trigger[type](X) and X.Affect_a(X.affix(), type=type):
+            Y = Y.Merge_right(X.Affect_a(X.affix(), type=type, log=True).copy_for_chain()).right()
+
+        type = 'Extrapose'
+        if not cyclic and trigger[type](X) and X.Affect_a(X, type=type):
+            Y = X.Affect_a(X, type=type, log=True).extrapose()
+
+        type = 'Ā-chain'
+        target = None
+        if trigger[type](Y):
+            if Y.sister().zero_level():
+                target = next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None)
+                if Y.Affect_a(target, type=type):
+                    Y = Y.Merge_left(target.copy_for_chain()).right()
+            if not cyclic and not Y.COMP_selection():
+                target = next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(Y.get_selection_features('+COMP')) and Y.tail_test(tail_sets=x.get_tail_sets(), direction='right')), None)
+                if Y.Affect_a(target, type=type):
+                    Y = Y.Merge_right(target.copy_for_chain()).right()
+            if target:
+                Y.Affect_a(target, type=type, log=True)
+
+        if cyclic:
+            log(f'\n')
+
+        return Y.top()
 
     def copy(X):
         ps_ = PhraseStructure()
@@ -1073,11 +939,6 @@ class PhraseStructure:
         if X:
             return X.copy()
         return None
-
-    def detached(X):
-        m = X.mother()
-        X.mother_ = None
-        return X, m
 
     def reattach(X, m):
         X.top().mother_ = m
@@ -1270,7 +1131,14 @@ class PhraseStructure:
                 return f'[{X.left()} {X.right()}]' + chain_index_str
 
     def get_phonological_string(X):
-        return ''.join(sorted([f[3:] for f in X.features if f and f[:2] == 'PF']))
+        stri = ''
+        for i, affix in enumerate(X.get_affix_list()):
+            if not affix.copied:
+                if i > 0:
+                    stri += '(' + ''.join(sorted([f[3:] for f in affix.features if f and f[:2] == 'PF'])) + ')'
+                else:
+                    stri += ''.join(sorted([f[3:] for f in affix.features if f and f[:2] == 'PF']))
+        return stri
 
     def tidy_names(X, counter):
         def rebaptize(X, old_identity, new_identity):
@@ -1458,10 +1326,10 @@ class PhraseStructure:
     def AgreeLF_has_occurred(X):
         return X.check({'ΦLF'})
 
-    def A_bar_operator(X):
-        return X.scan_criterial_features('ΔOP')
+    def operator_features(X):
+        return X.scan_features('ΔOP')
 
-    def License_EHM(X):
+    def EHM(X):
         return 'ε' in X.features
 
     def create_node_identity(X):

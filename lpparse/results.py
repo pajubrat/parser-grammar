@@ -47,6 +47,7 @@ class Results:
         self.resources = {"Total Time": {'ms': 0, 'n': 1},
                           "Garden Paths": {'ms': 1458, 'n': 0},
                           "Sensory Processing": {'ms': 75, 'n': 0},
+                          "Reconstruction": {'ms': 0, 'n': 0},
                           "Lexical Retrieval": {'ms': 50, 'n': 0},
                           "Merge": {'ms': 7, 'n': 0},
                           "Head Chain": {'ms': 7, 'n': 0},
@@ -146,13 +147,19 @@ class Results:
     def interpretation(self, solution, semantic_attribute):
         return solution[1][semantic_attribute]
 
-    def consume_resources(self, key, target):
+    def consume_resources(self, key, target, X=None, Y=None, comment=''):
         if not self.first_solution_found:
             self.resources[key]['n'] += 1
         if key == 'Sensory Processing':
             log(f'\n\t\t{key} of /#{target}/')
+        elif key == 'Merge':
+            log(u'\n\u0370' + f'\t{key}({X}, {Y}) = {target.top()}\n')
+        elif key == 'Reconstruction':
+            log(f'\n\t\t{comment} = {target}')
         elif key != 'Agree' and key != 'Lexical Retrieval' and 'Extraposition' not in key:
-            log(f'\n\t\t{key}({target.illustrate()}) => {target.top()} ')
+            log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}')
+            if comment:
+                log(f'({comment})')
 
     def log_success(self, ps):
         log('\n\t\tAccepted.\n')

@@ -16,10 +16,10 @@ class PlausibilityMetrics:
                                                  'weight': self.speaker_model.settings.retrieve('comp_selection', 100),
                                                  'log': '+Comp selection'},
              'negative_semantics_match':        {'condition': self.negative_semantic_match,
-                                                 'weight': self.speaker_model.settings.retrieve('negative_semantics_match', -100),
+                                                 'weight': self.speaker_model.settings.retrieve('negative_semantics_match', 100),
                                                  'log': 'Semantic mismatch'},
              'lf_legibility_condition':         {'condition': self.lf_legibility_condition,
-                                                 'weight': self.speaker_model.settings.retrieve('lf_legibility_condition', -100),
+                                                 'weight': self.speaker_model.settings.retrieve('lf_legibility_condition', 100),
                                                  'log': '-LF-legibility for left branch'}
              }
 
@@ -34,27 +34,29 @@ class PlausibilityMetrics:
     def filter_and_rank(self, X, w):
         if X.word_internal():
             return [X.bottom()]
-        log(f'\n\t\tFiltering and ranking merge sites...')
         return self.rank(self.filter(X.geometrical_minimal_search(), w), w)
 
     def filter(self, right_edge, w):
         set_logging(False)
         return [N for N in right_edge if not (N.complex() and not self.left_branch_filter(N)) and not self.word_breaking_filter(N, w)]
 
-    def rank(self, site_list, word):
+    def rank(self, site_list, W):
         weighted_list = []
-        for site, new_weight in self.create_baseline_weighting([(site, 0) for site in site_list]):
+        for X, new_weight in self.create_baseline_weighting([(site, 0) for site in site_list]):
             for key in self.plausibility_conditions:
-                if self.plausibility_conditions[key]['condition'](site, word):
+                if self.plausibility_conditions[key]['condition'](X, W):
                     new_weight = new_weight + self.plausibility_conditions[key]['weight']
-            weighted_list.append((site, new_weight))
+                else:
+                    new_weight = new_weight - self.plausibility_conditions[key]['weight']
+            weighted_list.append((X, new_weight))
 
-        merge_sites = [site for site, priority in sorted(weighted_list, key=itemgetter(1))][::-1]
         set_logging(True)
-        log(f'\n\tRanking:')
-        for i, site in enumerate(merge_sites, start=1):
-            log(f'\n\t\t{i}.{site} + {word}')
-        return merge_sites
+        merge_sites = [(site, priority) for site, priority in sorted(weighted_list, key=itemgetter(1))][::-1]
+        log(f'\n\tRanking:\n')
+        for i, X in enumerate(merge_sites, start=1):
+            log(f'\n\t\t{i}.{X[0]} + {W} ({X[1]})')
+        log('\n')
+        return [X[0] for X in merge_sites]
 
     @staticmethod
     def spec_selection(X, Y):
@@ -72,7 +74,7 @@ class PlausibilityMetrics:
 
     def lf_legibility_condition(self, site, word):
         if not site.zero_level():
-            left_branch_copy = site.copy().transfer_to_LF()
+            left_branch_copy = site.copy().transfer()
             if not self.speaker_model.LF.pass_LF_legibility(left_branch_copy, False):
                 return True
 
@@ -99,7 +101,7 @@ class PlausibilityMetrics:
             return [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
 
     def left_branch_filter(self, N):
-        left_branch = N.copy().transfer_to_LF()
+        left_branch = N.copy().transfer()
         self.speaker_model.LF.active_test_battery = self.left_branch_filter_test_battery
         return self.speaker_model.LF.pass_LF_legibility(left_branch, False)
 
