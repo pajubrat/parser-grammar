@@ -36,7 +36,7 @@ class GlobalCognition:
     def create_object(self, ontology_attributes_dict):
         idx = self.consume_index()
         self.inventory[str(idx)] = ontology_attributes_dict
-        log(f'\n\t\t\tProject object ({idx}, GLOBAL) for {ontology_attributes_dict["Reference"]}')
+        log(f'\n\t\tProject object ({idx}, GLOBAL) for {ontology_attributes_dict["Reference"]}')
         return str(idx)
 
     def ontological_compatibility(self, attribute_dict1, attribute_dict2):

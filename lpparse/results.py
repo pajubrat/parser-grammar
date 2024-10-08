@@ -162,7 +162,7 @@ class Results:
                 log(f'({comment})')
 
     def log_success(self, ps):
-        log('\n\t\tAccepted.\n')
+        log(u'\n\n\u03F4''\tACCEPTED.\n')
         print('X', end='', flush=True)
         if not self.first_solution_found:
             log('\n\tComplete ontology:')

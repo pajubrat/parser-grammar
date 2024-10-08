@@ -132,12 +132,11 @@ class SpeakerModel:
     # Evaluates a complete solution at the LF-interface and semantic interpretation
     def evaluate_complete_solution(self, X):
         self.results.record_derivational_step(X, 'PF-interface')
-        log(f'\n\n\tPF/LF-interface mapping: ----------------------------------------------------------------------------\n ')
-        log(f'\n\t\tPF-interface {X}\n')
+        log('\n\n----Noncyclic derivation------------------------------------------------------------------------------\n')
         X.transfer()
         X = X.top()
         X.tidy_names(1)
-        log(f'\n\n\t\tLF-interface {X}\n')
+        log(f'\n\tLF-interface {X}\n')
         self.results.record_derivational_step(X, 'LF-interface')
 
         # Postsyntactic tests (LF-interface legibility and semantic interpretation)

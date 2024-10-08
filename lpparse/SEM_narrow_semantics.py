@@ -90,7 +90,7 @@ class NarrowSemantics:
             self.global_cognition.reset()
 
     def postsyntactic_semantic_interpretation(self, ps):
-        # self.reset_for_new_interpretation()
+        log(f'\n----Semantic interpretation---------------------------------------------------------------------------\n')
         self.speaker_model.results.store_output_field('LF', f'{ps}')
         self.interpret_(ps)
 
@@ -136,7 +136,7 @@ class NarrowSemantics:
                 self.interpret_(X.right())
 
     def inventory_projection(self, X):
-        log(f'\n\t\tObject projections:')
+        log(f'\n\tObject projections:')
         for space in self.semantic_spaces:
             self.inventory_projection_(X, space)
 

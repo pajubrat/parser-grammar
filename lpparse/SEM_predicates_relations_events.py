@@ -24,7 +24,7 @@ class PredicatesRelationsEvents:
         self.inventory[idx].update_contents(criteria)
 
     def project(self, X, idx):
-        log(f'\n\t\t\tProject {X.label()}-event ({idx}, PRE)')
+        log(f'\n\t\tProject {X.label()}-event ({idx}, PRE)')
         self.inventory[idx] = self.default_attributes(X)
         return self.inventory[idx]
 

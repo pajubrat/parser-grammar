@@ -21,6 +21,48 @@ class PhraseStructure:
     node_identity = 0
     transfer_operation = None
 
+    OP = {'Feature inheritance':
+              {'TRIGGER': lambda x: x.check({'Φ?'}) or (x.highest_finite_head() and not x.check({'!PER'})),
+               'cyclic': lambda cyclic: True,
+               'TARGET': lambda x: x,
+               'TRANSFORM': lambda x, y: PhraseStructure.feature_inheritance(y)},
+          'A-chain':
+              {'TRIGGER': lambda x: x.zero_level() and x.EF() and not (x.internal and x.terminal()),
+               'cyclic': lambda cyclic: cyclic,
+               'TARGET': lambda x: x.sister(),
+               'TRANSFORM': lambda x, y: x.Merge_right(y.copy_for_chain()).left()},
+          'Scrambling': {'TRIGGER': lambda x: x.max().trigger_scrambling(),
+                         'cyclic': lambda cyclic: not cyclic,
+                         'TARGET': lambda x: x.max(),
+                         'TRANSFORM': lambda x, y: y.reconstruct_scrambling()},
+          'Agree':
+              {'TRIGGER': lambda x: x.zero_level() and x.is_left() and x.is_unvalued() and not x.check({'ΦLF'}),
+               'cyclic': lambda cyclic: True,
+               'TARGET': lambda x: x,
+               'TRANSFORM': lambda x, y: x.AgreeLF()},
+          'IHM':
+              {'TRIGGER': lambda x: x.complex_head() and not x.EHM() and not x.check({'C'}),
+               'cyclic': lambda cyclic: True,
+               'TARGET': lambda x: x.affix(),
+               'TRANSFORM': lambda x, y: x.sister().Merge_right(y.copy_for_chain()).right() if x.is_left() and x.sister() else x.Merge_right(y.copy_for_chain()).right()},
+          'Extrapose':
+              {'TRIGGER': lambda x: x.zero_level() and x.is_left() and x.selection_violation(),
+               'cyclic': lambda cyclic: not cyclic,
+               'TARGET': lambda x: x,
+               'TRANSFORM': lambda x, y: x.extrapose()},
+          'Cyclic Ā-chain':
+              {'TRIGGER': lambda x: x.zero_level() and x.is_right() and x.thematic_head() and x.sister().zero_level(),
+               'cyclic': lambda cyclic: True,
+               'TARGET': lambda Y: next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(
+                   Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
+               'TRANSFORM': lambda x, y: x.Merge_left(y)},
+          'Noncyclic Ā-chain':
+              {'TRIGGER': lambda x: not x.COMP_selection(),
+               'cyclic': lambda cyclic: not cyclic,
+               'TARGET': lambda Y: next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(
+                   Y.get_selection_features('+COMP')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
+               'TRANSFORM': lambda x, y: x.Merge_right(y.copy_for_chain())}}
+
     def __init__(self, left=None, right=None):
         self.const = []
         if left and right:
@@ -526,9 +568,9 @@ class PhraseStructure:
         if X.is_unvalued() and goal:
             if not goal.feature_mismatch_test(X.phi_bundles()):
                 X.value(goal)
-                return goal
             else:
                 X.features.add('*')
+        return X
 
     def feature_mismatch_test(X, PP):
         """
@@ -850,74 +892,26 @@ class PhraseStructure:
         X.mother_ = None
         return X, m
 
-    def Affect_a(X, Y, **kwargs):
-        logg = kwargs.get('log', False)
+    def Select(X, Y, **kwargs):
         if Y and not Y.copied:
-            if logg:
-                log(f"\n\t\t{kwargs['type']}({Y})")
             if kwargs['type'] == 'A-chain':
                 if Y.complex() and not Y.get_tail_sets() and not Y.operator_features() and not Y.sister().operator_features():
                     return Y
                 else:
                     return None
-            if kwargs['type'] == 'Ā-chain' and Y.container():
+            if (kwargs['type'] == 'Cyclic Ā-chain' or kwargs['type'] == 'Noncyclic Ā-chain') and Y.container():
                 Y.container().features = Y.container().features | Y.operator_features()
             return Y
 
     def reconstruct(X, **kwargs):
-
-        trigger = {'A-chain': lambda x: x.zero_level() and x.EF() and not (x.internal and x.terminal()),
-                   'Scrambling': lambda x: x.max().trigger_scrambling(),
-                   'Agree': lambda x: x.zero_level() and x.is_left() and x.is_unvalued() and not x.check({'ΦLF'}),
-                   'IHM': lambda x: x.complex_head() and not x.EHM() and not x.check({'C'}),
-                   'Extrapose': lambda x: x.zero_level() and x.is_left() and x.selection_violation(),
-                   'Ā-chain': lambda x: x.zero_level() and x.is_right() and x.thematic_head(),
-                   'Feature inheritance': lambda x: x.check({'Φ?'}) or (x.highest_finite_head() and not x.check({'!PER'}))
-                    }
-
-        cyclic = kwargs.get('cyclic', True)
         Y = X
-
-        type = 'Feature inheritance'
-        if trigger[type](X) and X.Affect_a(X, type=type):
-            X.Affect_a(X, type=type, log=True).feature_inheritance()
-
-        type = 'A-chain'
-        if cyclic and trigger[type](X) and X.Affect_a(X.sister(), type=type):
-            Y = X.Merge_right(X.Affect_a(X.sister(), type=type, log=True).copy_for_chain()).right()
-
-        type = 'Scrambling'
-        if not cyclic and trigger[type](X):
-            X.Affect_a(X.max(), type=type, log=True).reconstruct_scrambling()
-
-        type = 'Agree'
-        if trigger['Agree'](X) and X.Affect_a(X, type=type):
-            X.Affect_a(X, type=type, log=True).AgreeLF()
-
-        type = 'IHM'
-        if trigger[type](X) and X.Affect_a(X.affix(), type=type):
-            Y = Y.Merge_right(X.Affect_a(X.affix(), type=type, log=True).copy_for_chain()).right()
-
-        type = 'Extrapose'
-        if not cyclic and trigger[type](X) and X.Affect_a(X, type=type):
-            Y = X.Affect_a(X, type=type, log=True).extrapose()
-
-        type = 'Ā-chain'
-        target = None
-        if trigger[type](Y):
-            if Y.sister().zero_level():
-                target = next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None)
-                if Y.Affect_a(target, type=type):
-                    Y = Y.Merge_left(target.copy_for_chain()).right()
-            if not cyclic and not Y.COMP_selection():
-                target = next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(Y.get_selection_features('+COMP')) and Y.tail_test(tail_sets=x.get_tail_sets(), direction='right')), None)
-                if Y.Affect_a(target, type=type):
-                    Y = Y.Merge_right(target.copy_for_chain()).right()
-            if target:
-                Y.Affect_a(target, type=type, log=True)
-
-        if cyclic:
-            log(f'\n')
+        for type, op in PhraseStructure.OP.items():
+            CYCLIC = op['cyclic'](kwargs.get('cyclic', True))
+            S = Y.Select(op['TARGET'](Y), type=type)
+            if CYCLIC and op['TRIGGER'](Y) and S:
+                log(f'\n\t{type}({S})')
+                Y = op['TRANSFORM'](Y, S)
+                log(f' = {Y.top()}')
 
         return Y.top()
 

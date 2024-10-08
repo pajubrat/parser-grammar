@@ -17,7 +17,7 @@ class QuantifiersNumeralsDenotations:
         self.all_assignments = []
 
     def project(self, X, idx):
-        log(f'\n\t\t\tProject object ({idx}, QND) for {X.max().illustrate()}')
+        log(f'\n\t\tProject object ({idx}, QND) for {X.max().illustrate()}')
         self.inventory[idx] = self.extrapolate_semantic_attributes(X)
         return self.inventory[idx]
 
@@ -69,10 +69,10 @@ class QuantifiersNumeralsDenotations:
         If two Exp have the same index, they are synonyms in grammatical sense (e.g., pro and subject). If they have the same denotation,
         they are coreferential. Binding regulates coreferentiality.
         """
-        log(f'\n\t\tDenotations:')
+        log(f'\n\tDenotations:')
         self.create_assignments_from_denotations(self.calculate_possible_denotations(X))
         self.narrow_semantics.speaker_model.results.store_output_field('Binding', self.assignment_output_string(X)[1:])
-        log(f'\n\t\t\tSummary: {self.assignment_output_string(X)}')
+        log(f'\n\t\tSummary: {self.assignment_output_string(X)}')
         # Currently we return only assignments for printout which have nonzero weight
         weighted_assignments = [assignment for assignment in self.all_assignments if assignment.get('weight', 0) > 0]
         return len(weighted_assignments), self.print_assignments(weighted_assignments)
@@ -87,12 +87,12 @@ class QuantifiersNumeralsDenotations:
                 if X.has_idx('QND'):
                     idx, space = X.get_idx_tuple('QND')
                     self.inventory[idx]['Denotations'] = self.create_all_denotations(X)
-                    log(f'\n\t\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
+                    log(f'\n\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
                     denotations_lst = [(idx, f'{X.illustrate()}', X, self.inventory[idx]['Denotations'])]
         return denotations_lst
 
     def create_assignments_from_denotations(self, ref_constituents_lst):
-        log(f'\n\t\tAssignments: ')
+        log(f'\n\tAssignments: ')
         for assignment in itertools.product(*[tup[3] for tup in ref_constituents_lst]):                        #   Create all possible assignments (tup[3] = connection of denotations)
             assignment = {tup[0]: assignment[i] for i, tup in enumerate(ref_constituents_lst)}                 #   Create assignment dict (because the rest is based on dicts)
             self.all_assignments.append(self.calculate_assignment_weight(assignment, ref_constituents_lst))    #   Calculate assignment weights
@@ -105,7 +105,7 @@ class QuantifiersNumeralsDenotations:
         """
         weighted_assignment = assignment.copy()
         weighted_assignment['weight'] = 1
-        log(f'\n\t\t\tAssignment {self.print_assignment(weighted_assignment)} ')
+        log(f'\n\t\tAssignment {self.print_assignment(weighted_assignment)} ')
 
         for expression in ref_constituents_lst:
             if not self.binding_conditions(expression, assignment):

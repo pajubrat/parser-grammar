@@ -6,7 +6,7 @@ class Predicates:
         self.operation_failed = False
 
     def reconstruct(self, probe):
-        log(f'\n\t\t\tArgument for {probe}°')
+        log(f'\n\tArgument for {probe}°')
         arg = probe.identify_argument()
         if arg:
             log(f': {self.print_target(probe, arg)}')

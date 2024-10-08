@@ -31,7 +31,7 @@ class ThematicRoles:
             theta_role = 'Patient'
         if assignee:
             if assignee.head().check({'EXPL'}):
-                log(f'\n\t\t\tExpletive cannot receive a thematic role from {ps}.')
+                log(f'\n\t\tExpletive cannot receive a thematic role from {ps}.')
                 self.failure = True
                 return
             if assignee.head().referential():
