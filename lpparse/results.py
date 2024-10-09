@@ -210,10 +210,10 @@ class Results:
 
         reply = ''
         if not ps.zero_level():
-            reply += self.show_primitive_constituents(ps.left())
-            reply += self.show_primitive_constituents(ps.right())
+            reply += self.show_primitive_constituents(ps.L())
+            reply += self.show_primitive_constituents(ps.R())
         else:
-            for head in ps.get_affix_list():
+            for head in ps.affixes():
                 if head.copied:
                     break
                 reply += f'\t\t{head.get_phonological_string():<11} {sorted_by_relevance(head.features)}\n'

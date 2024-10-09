@@ -132,8 +132,8 @@ class NarrowSemantics:
                 if self.failure():
                     return
             else:
-                self.interpret_(X.left())
-                self.interpret_(X.right())
+                self.interpret_(X.L())
+                self.interpret_(X.R())
 
     def inventory_projection(self, X):
         log(f'\n\tObject projections:')
@@ -143,8 +143,8 @@ class NarrowSemantics:
     def inventory_projection_(self, X, space):
         if not X.copied and space != 'GLOBAL':
             if X.complex():
-                self.inventory_projection_(X.left(), space)
-                self.inventory_projection_(X.right(), space)
+                self.inventory_projection_(X.L(), space)
+                self.inventory_projection_(X.R(), space)
             else:
                 if self.semantic_action[space]['Accept'](X):
                     idx = str(self.global_cognition.consume_index(space))
@@ -154,7 +154,7 @@ class NarrowSemantics:
 
                     # For heuristic purposes so that referential arguments are recognized by BT
                     if space == 'QND':
-                        X.head().features.add('REF')
+                        X.H().features.add('REF')
 
     def failure(self):
         if self.phi_interpretation_failed or \
@@ -167,10 +167,10 @@ class NarrowSemantics:
 
     def interpret_tail_features(self, ps):
         def in_scope_of(ps, feature_set):
-            return next((const for const in ps.upward_path() if feature_set.issubset(const.features)), None)
+            return next((const for const in ps.path() if feature_set.issubset(const.features)), None)
 
         def get_tailed_head(ps, tail_set):
-            return next((const for const in ps.upward_path() if const.zero_level() and const.check_some(tail_set) and const.check(tail_set)), None)
+            return next((const for const in ps.path() if const.zero_level() and const.check_some(tail_set) and const.check(tail_set)), None)
 
         def interpret_argument_tailing(ps, tailed_head):
             if tailed_head:

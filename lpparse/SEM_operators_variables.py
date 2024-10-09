@@ -29,14 +29,14 @@ class OperatorVariableModule:
 
     @staticmethod
     def find_overt_scope(head, operator_feature):
-        return next(({'Head': head, 'Scope': scope, 'Overt': True} for scope in head.upward_path() if
+        return next(({'Head': head, 'Scope': scope, 'Overt': True} for scope in head.path() if
                      {operator_feature, 'Fin'}.issubset(scope.features)), {'Head': head, 'Scope': None, 'Overt': False})
 
     @staticmethod
     def interpret_covert_scope(binding):
         if not binding['Scope'] and '!SCOPE' not in binding['Head'].features:
             return next(({'Head': binding['Head'], 'Scope': scope, 'Overt': False}
-                         for scope in binding['Head'].upward_path() if
+                         for scope in binding['Head'].path() if
                          scope.finite_left_periphery()),
                         {'Head': binding['Head'], 'Scope': None, 'Overt': False})
         return binding

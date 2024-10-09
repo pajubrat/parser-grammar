@@ -40,8 +40,8 @@ class Discourse:
         if not ps.copied:
             idx = self.get_inventory_index(ps)
             if idx:
-                self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
-                self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
+                self.records_of_attentional_processing[idx]['Name'] = f'{ps.H().max().illustrate()}'
+                self.records_of_attentional_processing[idx]['Constituent'] = ps.H()
 
     def interpret_discourse_features(self, ps):
         self.refresh_inventory(ps)
@@ -82,48 +82,48 @@ class Discourse:
     def collect_arguments(self, ps):
         arguments = set()
         if ps.complex():
-            if self.narrow_semantics.get_idx_tuple(ps.left().head(), 'QND'):
-                arguments.add(ps.left().head())
-            if self.narrow_semantics.get_idx_tuple(ps.right().head(), 'QND'):
-                arguments.add(ps.right().head())
-            if ps.right().adjunct:
-                arguments = arguments | self.collect_arguments(ps.right())
-                arguments = arguments | self.collect_arguments(ps.left())
+            if self.narrow_semantics.get_idx_tuple(ps.L().H(), 'QND'):
+                arguments.add(ps.L().H())
+            if self.narrow_semantics.get_idx_tuple(ps.R().H(), 'QND'):
+                arguments.add(ps.R().H())
+            if ps.R().adjunct:
+                arguments = arguments | self.collect_arguments(ps.R())
+                arguments = arguments | self.collect_arguments(ps.L())
             else:
-                arguments = arguments | self.collect_arguments(ps.right())
+                arguments = arguments | self.collect_arguments(ps.R())
         return arguments
 
     def out_of_proposition_scope(self, ps, scope):
-        if ps.left.zero_level():
-            if ps.left.finite():
-                if ps.left.finite_tense():
+        if ps.L.zero_level():
+            if ps.L.finite():
+                if ps.L.finite_tense():
                     if ps != scope:
                         return True
-        if ps.right.zero_level():
-            if ps.right.finite():
+        if ps.R.zero_level():
+            if ps.R.finite():
                 if ps != scope:
                     return True
 
     def locate_proposition(self, ps):
-        return next((node for node in ps if node.complex() and node.left.finite_tense()), None)
+        return next((node for node in ps if node.complex() and node.L.finite_tense()), None)
 
     def get_force_features(self, ps):
-        return {f for f in ps.head().features if f[:5] == 'FORCE'}
+        return {f for f in ps.H().features if f[:5] == 'FORCE'}
 
     def compute_speaker_attitude(self, ps):
-        if self.get_force_features(ps.head()):
-            for count, force_feature in enumerate(self.get_force_features(ps.head())):
+        if self.get_force_features(ps.H()):
+            for count, force_feature in enumerate(self.get_force_features(ps.H())):
                 if force_feature in self.attitudes:
                     return self.attitudes[force_feature]
         else:
             return 'Declarative'
 
     def unexpected_order_occurred(self, ps, starting_point_head):
-        if self.narrow_semantics.speaker_model.results.first_solution_found or not self.get_inventory_index(ps.head()):
+        if self.narrow_semantics.speaker_model.results.first_solution_found or not self.get_inventory_index(ps.H()):
             return
 
-        idx = self.get_inventory_index(ps.head())
-        if starting_point_head in {const for const in ps.head().upward_path() if const.zero_level()}:
+        idx = self.get_inventory_index(ps.H())
+        if starting_point_head in {const for const in ps.H().path() if const.zero_level()}:
             direction = 'High'
         else:
             direction = 'Low'

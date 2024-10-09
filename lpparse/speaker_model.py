@@ -17,35 +17,32 @@ class SpeakerModel:
                'TARGET': lambda x: x,
                'TRANSFORM': lambda x, y: x.feature_inheritance()},
           'A-chain':
-              {'TRIGGER': lambda x: x.zero_level() and x.EF() and not (x.internal and x.terminal()) and
-                                    x.is_right() and x.sister() and x.sister().complex() and not x.sister().operator_features(),
+              {'TRIGGER': lambda x: x.zero_level() and x.EF() and not (x.internal and x.terminal()) and x.is_R() and x.sister() and x.sister().complex() and not x.sister().operator_features(),
                'TARGET': lambda x: x.sister(),
-               'TRANSFORM': lambda x, y: x + y},
+               'TRANSFORM': lambda x, y: x * y},
           'Scrambling': {'TRIGGER': lambda x: x.max().trigger_scrambling(),
                          'TARGET': lambda x: x,
                          'TRANSFORM': lambda x, y: x.max().reconstruct_scrambling()},
           'Agree':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_left() and x.is_unvalued() and not x.check({'ΦLF'}),
+              {'TRIGGER': lambda x: x.zero_level() and x.is_L() and x.is_unvalued() and not x.check({'ΦLF'}),
                'TARGET': lambda x: x,
                'TRANSFORM': lambda x, y: x.AgreeLF()},
           'IHM':
               {'TRIGGER': lambda x: x.complex_head() and not x.EHM() and not x.check({'C'}) and not x.affix().copied,
                'TARGET': lambda x: x.affix(),
-               'TRANSFORM': lambda x, y: x.sister() + y if x.is_left() and x.sister() else x + y},
+               'TRANSFORM': lambda x, y: x.sister() * y if x.is_L() and x.sister() else x * y},
           'Extrapose':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_left() and x.selection_violation(),
+              {'TRIGGER': lambda x: x.zero_level() and x.is_L() and x.selection_violation(),
                'TARGET': lambda x: x,
                'TRANSFORM': lambda x, y: x.extrapose()},
           'Cyclic Ā-chain':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_right() and x.thematic_head() and x.sister().zero_level(),
-               'TARGET': lambda Y: next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(
-                   Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
-               'TRANSFORM': lambda x, y: y + x},
+              {'TRIGGER': lambda x: x.zero_level() and x.is_R() and x.thematic_head() and x.sister().zero_level(),
+               'TARGET': lambda Y: next((x for x in Y.path() if x.operator_features() and x.H().check_some(Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
+               'TRANSFORM': lambda x, y: y * x},
           'Noncyclic Ā-chain':
               {'TRIGGER': lambda x: not x.COMP_selection() and PhraseStructure.noncyclic_derivation,
-               'TARGET': lambda Y: next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(
-                   Y.get_selection_features('+COMP')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
-               'TRANSFORM': lambda x, y: x + y}}
+               'TARGET': lambda Y: next((x for x in Y.path() if x.operator_features() and x.H().check_some(Y.get_selection_features('+COMP')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
+               'TRANSFORM': lambda x, y: x * y}}
 
     def __init__(self, settings, language='XX'):
         self.settings = settings
@@ -150,8 +147,8 @@ class SpeakerModel:
         else:
             self.results.record_derivational_step(X, 'Phrase structure in syntactic working memory')
             for N in self.plausibility_metrics.filter_and_rank(X.top(), W):
-                Y = X.target_left_branch(N).attach(N, W).bottom().reconstruct().top()
-                self.derivational_search_function(Y.copy(), lst, index + 1)
+                Y = X.target_left_branch(N).transfer().attach(W).bottom().reconstruct()
+                self.derivational_search_function(Y, lst, index + 1)
                 if self.exit:
                     break
         self.narrow_semantics.pragmatic_pathway.forget_object(W)

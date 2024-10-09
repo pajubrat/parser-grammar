@@ -319,10 +319,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         gps.head_chain_target = gps.find_head_chain()
         if gps.find_nonstandard_head_chain():
             gps.head_chain_target = gps.find_nonstandard_head_chain()
-        if gps.left():
-            self.find_head_chains(gps.left())
-        if gps.right():
-            self.find_head_chains(gps.right())
+        if gps.L():
+            self.find_head_chains(gps.L())
+        if gps.R():
+            self.find_head_chains(gps.R())
 
     def implement_chains(self, gps):
         if self.application.settings.retrieve('image_parameter_head_chains', True) and gps.head_chain_target:
@@ -338,8 +338,8 @@ class PhraseStructureGraphics(tk.Toplevel):
                     self.inventory['dependencies'].append(Dependency(gps, target, 'last', '', False))
                     gps.features = {f for f in gps.features if not f.startswith('CHAIN:')}
         if gps.complex() and not gps.compressed:
-            self.implement_chains(gps.left())
-            self.implement_chains(gps.right())
+            self.implement_chains(gps.L())
+            self.implement_chains(gps.R())
 
     def zoomer(self, event):
         if event.delta > 0:
@@ -367,26 +367,26 @@ class PhraseStructureGraphics(tk.Toplevel):
     def squeeze_node(self, *_):
         for gps in self.canvas.selected_objects:
             if gps.complex():
-                gps.left().move_x(0.5)
-                gps.right().move_x(-0.5)
+                gps.L().move_x(0.5)
+                gps.R().move_x(-0.5)
         self.canvas.redraw(self.root_gps)
 
     def widen_node(self, *_):
         for gps in self.canvas.selected_objects:
             if gps.complex():
-                gps.left().move_x(-0.5)
-                gps.right().move_x(+0.5)
+                gps.L().move_x(-0.5)
+                gps.R().move_x(+0.5)
         self.canvas.redraw(self.root_gps)
 
     def make_symmetric(self, *_):
         for gps in self.canvas.selected_objects:
             if gps.complex():
-                l = gps.x - gps.left().x
-                r = gps.right().x - gps.x
+                l = gps.x - gps.L().x
+                r = gps.R().x - gps.x
                 if l < r:
-                    gps.right().move_x(-(r-l))
+                    gps.R().move_x(-(r - l))
                 else:
-                    gps.left().move_x(l-r)
+                    gps.L().move_x(l - r)
         self.canvas.redraw(self.root_gps)
 
     def fit_phrase_structure(self, *_):
@@ -406,26 +406,26 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_all_DPs(self, *_):
         def shrink_all_DPs_(gps):
-            if {'D', 'φ'} & gps.head().features:
+            if {'D', 'φ'} & gps.H().features:
                 gps.compressed_into_head = True
-                gps.custom_phonology = gps.right().get_phonological_string()
+                gps.custom_phonology = gps.R().get_phonological_string()
             else:
-                if gps.left():
-                    shrink_all_DPs_(gps.left())
-                if gps.right():
-                    shrink_all_DPs_(gps.right())
+                if gps.L():
+                    shrink_all_DPs_(gps.L())
+                if gps.R():
+                    shrink_all_DPs_(gps.R())
         shrink_all_DPs_(self.root_gps)
         self.update_contents(True)
 
     def compress_all_DPs(self, *_):
         def compress_all_DPs_(gps):
-            if {'D', 'φ'} & gps.head().features:
+            if {'D', 'φ'} & gps.H().features:
                 gps.compressed = True
             else:
-                if gps.left():
-                    compress_all_DPs_(gps.left())
-                if gps.right():
-                    compress_all_DPs_(gps.right())
+                if gps.L():
+                    compress_all_DPs_(gps.L())
+                if gps.R():
+                    compress_all_DPs_(gps.R())
         compress_all_DPs_(self.root_gps)
         self.update_contents(False)
 
@@ -439,10 +439,10 @@ class PhraseStructureGraphics(tk.Toplevel):
                 gps.custom_text = None
                 self.label_stack_update(gps)
             else:
-                if gps.left():
-                    delete_all_custom_fields_(gps.left())
-                if gps.right():
-                    delete_all_custom_fields_(gps.right())
+                if gps.L():
+                    delete_all_custom_fields_(gps.L())
+                if gps.R():
+                    delete_all_custom_fields_(gps.R())
         delete_all_custom_fields_(self.root_gps)
         self.update_contents()
 
@@ -465,16 +465,16 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def add_T(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            Y = gps.mother()
-            right = gps.is_right()
+            Y = gps.M()
+            right = gps.is_R()
             T = GPhraseStructure(PhraseStructure())
             T.features = {'T'}
             Host = GPhraseStructure(PhraseStructure(), T, gps)
             if Y:
                 if right:
-                    Y.const = [Y.left(), Host]
+                    Y.const = [Y.L(), Host]
                 else:
-                    Y.const = [Host, Y.right()]
+                    Y.const = [Host, Y.R()]
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
@@ -482,16 +482,16 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def add_V(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            Y = gps.mother()
-            right = gps.is_right()
+            Y = gps.M()
+            right = gps.is_R()
             V = GPhraseStructure(PhraseStructure())
             V.features = {'V'}
             Host = GPhraseStructure(PhraseStructure(), V, gps)
             if Y:
                 if right:
-                    Y.const = [Y.left(), Host]
+                    Y.const = [Y.L(), Host]
                 else:
-                    Y.const = [Host, Y.right()]
+                    Y.const = [Host, Y.R()]
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
@@ -499,16 +499,16 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def add_C(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            Y = gps.mother()
-            right = gps.is_right()
+            Y = gps.M()
+            right = gps.is_R()
             C = GPhraseStructure(PhraseStructure())
             C.features = {'C'}
             Host = GPhraseStructure(PhraseStructure(), C, gps)
             if Y:
                 if right:
-                    Y.const = [Y.left(), Host]
+                    Y.const = [Y.L(), Host]
                 else:
-                    Y.const = [Host, Y.right()]
+                    Y.const = [Host, Y.R()]
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
@@ -518,11 +518,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             if not gps.complex():
                 H = GPhraseStructure(PhraseStructure())
-                affix_lst = gps.get_affix_list()
+                affix_lst = gps.affixes()
                 # If covert complex heads are set to be disabled, we enable them first
                 if [a for a in affix_lst if a.copied]:
                     self.application.settings.store('image_parameter_covert_complex_heads', True)
-                last_affix = gps.get_affix_list()[-1]
+                last_affix = gps.affixes()[-1]
                 last_affix.const = [H]
                 H.mother_ = last_affix
                 H.features.add('PF:X')
@@ -599,15 +599,15 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def add_Head(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            Y = gps.mother()
-            right = gps.is_right()
+            Y = gps.M()
+            right = gps.is_R()
             X = GPhraseStructure(PhraseStructure())
             Host = GPhraseStructure(PhraseStructure(), X, gps)
             if Y:
                 if right:
-                    Y.const = [Y.left(), Host]
+                    Y.const = [Y.L(), Host]
                 else:
-                    Y.const = [Host, Y.right()]
+                    Y.const = [Host, Y.R()]
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
@@ -615,8 +615,8 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def add_XP(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            Z = gps.mother()
-            right = gps.is_right()
+            Z = gps.M()
+            right = gps.is_R()
 
             # Create DP
             X = GPhraseStructure(PhraseStructure())
@@ -627,9 +627,9 @@ class PhraseStructureGraphics(tk.Toplevel):
             Host = GPhraseStructure(PhraseStructure(), XP, gps)
             if Z:
                 if right:
-                    Z.const = [Z.left(), Host]
+                    Z.const = [Z.L(), Host]
                 else:
-                    Z.const = [Host, Z.right()]
+                    Z.const = [Host, Z.R()]
                 Host.mother_ = Z
             else:
                 self.root_gps = Host
@@ -637,8 +637,8 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def add_DP(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            Y = gps.mother()
-            right = gps.is_right()
+            Y = gps.M()
+            right = gps.is_R()
 
             # Create DP
             D = GPhraseStructure(PhraseStructure())
@@ -650,9 +650,9 @@ class PhraseStructureGraphics(tk.Toplevel):
             Host = GPhraseStructure(PhraseStructure(), DP, gps)
             if Y:
                 if right:
-                    Y.const = [Y.left(), Host]
+                    Y.const = [Y.L(), Host]
                 else:
-                    Y.const = [Host, Y.right()]
+                    Y.const = [Host, Y.R()]
                 Host.mother_ = Y
             else:
                 self.root_gps = Host
@@ -797,7 +797,7 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_into_DP(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            if {'D', 'φ'} & gps.head().features:
+            if {'D', 'φ'} & gps.H().features:
                 gps.compressed_into_head = True
                 gps.compressed = False
             self.label_stack_update(gps)
@@ -805,18 +805,18 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def delete_phrase_structure(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            if gps.mother():
-                if gps.is_left():
-                    preserved_sister = gps.mother().right()
+            if gps.M():
+                if gps.is_L():
+                    preserved_sister = gps.M().R()
                 else:
-                    preserved_sister = gps.mother().left()
+                    preserved_sister = gps.M().L()
                 # Delete X and its mother, move the sister upwards
-                if gps.mother().mother():
-                    grandmother = gps.mother().mother()
-                    if gps.mother().is_right():
-                        grandmother.const = [grandmother.left(), preserved_sister]
+                if gps.M().M():
+                    grandmother = gps.M().M()
+                    if gps.M().is_R():
+                        grandmother.const = [grandmother.L(), preserved_sister]
                     else:
-                        grandmother.const = [preserved_sister, grandmother.right()]
+                        grandmother.const = [preserved_sister, grandmother.R()]
                     preserved_sister.mother_ = grandmother
                 # We preserve only the sister
                 else:
@@ -837,8 +837,8 @@ class PhraseStructureGraphics(tk.Toplevel):
     def recalculate_labels(self, gps):
         gps.generate_label_stack()
         if gps.complex():
-            self.recalculate_labels(gps.left())
-            self.recalculate_labels(gps.right())
+            self.recalculate_labels(gps.L())
+            self.recalculate_labels(gps.R())
 
     def reverse_phrase_structure(self, *_):
         for gps in self.selected_objects_into_gps_list():

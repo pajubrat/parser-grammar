@@ -53,51 +53,51 @@ class GPhraseStructure(PhraseStructure):
         self.special_right_constituent_marking = []
 
     def complex_head_transform(self, X):
-        M = X.mother()
+        M = X.M()
         C = None
 
-        for x in X.get_affix_list()[::-1]:
+        for x in X.affixes()[::-1]:
             x.const = []
             if not C:
                 C = x
             else:
                 C = PhraseStructure(C, x)
                 if not GPhraseStructure.application.settings.retrieve('image_parameter_covert_complex_heads'):
-                    if C.right().copied:
-                        C.features.add(C.right().label())
-                        C.features.add(C.right().index())
+                    if C.R().copied:
+                        C.features.add(C.R().label())
+                        C.features.add(C.R().index())
                         C.features.add('create_head_chain_here')
                         C.const = []
-                    elif C.left().copied:
-                        C.left().features.add('create_head_chain_here')
-                        C.left().copied = False
+                    elif C.L().copied:
+                        C.L().features.add('create_head_chain_here')
+                        C.L().copied = False
         if M:
-            if X.left():
-                M.const = [M.right(), C]
+            if X.L():
+                M.const = [M.R(), C]
             else:
-                M.const = [C, M.left()]
+                M.const = [C, M.L()]
             C.mother_ = M
         return C
 
     def relabel(gps):
-        if gps.left():
-            gps.left().relabel()
-        if gps.right():
-            gps.right().relabel()
-            gps.custom_label = gps.right().label() + '°'
+        if gps.L():
+            gps.L().relabel()
+        if gps.R():
+            gps.R().relabel()
+            gps.custom_label = gps.R().label() + '°'
 
     # Allows left-right flipping during image creation
-    def left(self):
+    def L(self):
         if self.flip:
-            return super().right()
+            return super().R()
         else:
-            return super().left()
+            return super().L()
 
-    def right(self):
+    def R(self):
         if self.flip:
-            return super().left()
+            return super().L()
         else:
-            return super().right()
+            return super().R()
 
     def dominating_nodes(self):
         x = self
@@ -108,18 +108,18 @@ class GPhraseStructure(PhraseStructure):
         return lst
 
     def find_Agree(self):
-        if self.zero_level() and self.is_left() and 'ΦLF' in self.features:
+        if self.zero_level() and self.is_L() and 'ΦLF' in self.features:
             pass
 
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
         if self.complex():
-            self.left().x = self.x - 1
-            self.left().y = self.y + 1
-            self.left().initialize_logical_space()
-            self.right().x = self.x + 1
-            self.right().y = self.y + 1
-            self.right().initialize_logical_space()
+            self.L().x = self.x - 1
+            self.L().y = self.y + 1
+            self.L().initialize_logical_space()
+            self.R().x = self.x + 1
+            self.R().y = self.y + 1
+            self.R().initialize_logical_space()
 
     def remove_overlap(self):
         if self.application.settings.retrieve('image_parameter_remove_overlap', True):
@@ -129,46 +129,46 @@ class GPhraseStructure(PhraseStructure):
         """Stretches child nodes apart if their offspring create overlap"""
         # Horizontal overlap
         if self.complex() and not self.compressed_into_head:
-            if not self.left().compressed:
-                self.left().remove_overlap_()
-            if not self.right().compressed:
-                self.right().remove_overlap_()
+            if not self.L().compressed:
+                self.L().remove_overlap_()
+            if not self.R().compressed:
+                self.R().remove_overlap_()
 
             # Remove horizontal overlap from each row
             overlap = 0
-            LC_right_boundary = self.left().boundary_points()
-            RC_left_boundary = self.right().boundary_points()
+            LC_right_boundary = self.L().boundary_points()
+            RC_left_boundary = self.R().boundary_points()
             for L_bp in LC_right_boundary:
                 for R_bp in RC_left_boundary:
                     if L_bp[1] == R_bp[1]:
                         if L_bp[0] >= R_bp[0] and L_bp[0] - R_bp[0] >= overlap:
                             overlap = L_bp[0] - R_bp[0] + 1
             if overlap > 0:
-                self.left().move_x(-overlap/2)
-                self.right().move_x(overlap/2)
+                self.L().move_x(-overlap / 2)
+                self.R().move_x(overlap / 2)
 
             # Remove vertical overlap from each column (i.e. high label stack overlaps with constituent below)
             # This brute force algorithm is inefficient (todo)
-            if not self.left().compressed and not self.compressed_into_head:
-                lst = self.left().rich_labels()     # Find high labels from LEFT that can in principle overlap
+            if not self.L().compressed and not self.compressed_into_head:
+                lst = self.L().rich_labels()     # Find high labels from LEFT that can in principle overlap
                 for node in lst:
-                    if not self.right().compressed and not self.compressed_into_head:
-                        if self.right().vertical_overlap(node): # find overlaps from RIGHT
-                            self.left().move_x(-0.5)            # and if found, stretch
-                            self.right().move_x(0.5)
+                    if not self.R().compressed and not self.compressed_into_head:
+                        if self.R().vertical_overlap(node): # find overlaps from RIGHT
+                            self.L().move_x(-0.5)            # and if found, stretch
+                            self.R().move_x(0.5)
 
     def boundary_points(self):
         boundary = set()
         if self.compressed_into_head:
             boundary.add((self.x, self.y))
         elif self.compressed:
-            boundary.add((self.left().x, self.left().y))
-            boundary.add((self.right().x, self.right().y))
+            boundary.add((self.L().x, self.L().y))
+            boundary.add((self.R().x, self.R().y))
         else:
             boundary.add((self.x, self.y))
             if self.complex():
-                boundary = boundary | self.left().boundary_points()
-                boundary = boundary | self.right().boundary_points()
+                boundary = boundary | self.L().boundary_points()
+                boundary = boundary | self.R().boundary_points()
         return boundary
 
     def find_boundaries(self, left_x, right_x, depth):
@@ -179,16 +179,16 @@ class GPhraseStructure(PhraseStructure):
         if self.y > depth:
             depth = self.y
         if self.complex() and not self.compressed and not self.compressed_into_head:
-            left_x, right_x, depth = self.left().find_boundaries(left_x, right_x, depth)
-            left_x, right_x, depth = self.right().find_boundaries(left_x, right_x, depth)
+            left_x, right_x, depth = self.L().find_boundaries(left_x, right_x, depth)
+            left_x, right_x, depth = self.R().find_boundaries(left_x, right_x, depth)
         return left_x, right_x, depth
 
     def rich_labels(self):
         lst = []
-        if self.left() and not self.left().compressed_into_head:
-            lst += self.left().rich_labels()
-        if self.right() and not self.right().compressed_into_head:
-            lst += self.right().rich_labels()
+        if self.L() and not self.L().compressed_into_head:
+            lst += self.L().rich_labels()
+        if self.R() and not self.R().compressed_into_head:
+            lst += self.R().rich_labels()
         if self.label_size() > 2:
             lst.append(self)
         return lst
@@ -196,29 +196,29 @@ class GPhraseStructure(PhraseStructure):
     def vertical_overlap(self, node):
         if self.x == node.x and self.y == node.y + 1:
             return True
-        if self.left() and not self.compressed_into_head:
-            Z = self.left().vertical_overlap(node)
+        if self.L() and not self.compressed_into_head:
+            Z = self.L().vertical_overlap(node)
             if Z:
                 return True
-        if self.right() and not self.compressed_into_head:
-            Z = self.right().vertical_overlap(node)
+        if self.R() and not self.compressed_into_head:
+            Z = self.R().vertical_overlap(node)
             if Z:
                 return Z
 
     def move_x(self, amount):
         """Moves a node and its offspring"""
         self.x = self.x + amount
-        if self.left():
-            self.left().move_x(amount)
-        if self.right():
-            self.right().move_x(amount)
+        if self.L():
+            self.L().move_x(amount)
+        if self.R():
+            self.R().move_x(amount)
 
     def move_y(self, amount):
         """Moves a node and its offspring"""
         self.y = self.y + amount
         if self.complex():
-            self.left().move_y(amount)
-            self.right().move_y(amount)
+            self.L().move_y(amount)
+            self.R().move_y(amount)
 
     def label_size(self):
         if self.compressed or self.compressed_into_head:     # Compressed triangles only have custom labels
@@ -288,13 +288,13 @@ class GPhraseStructure(PhraseStructure):
     def find_max_label_size(self, label_size):
         """Finds the maximal label size for a phrase structure (to determine canvas margins)"""
         if self.zero_level():
-            ls = self.label_size() * len(self.get_affix_list())
+            ls = self.label_size() * len(self.affixes())
             if ls > label_size:
                 return ls
             return label_size
         if self.complex():
-            label_size = self.left().find_max_label_size(label_size)
-            label_size = self.right().find_max_label_size(label_size)
+            label_size = self.L().find_max_label_size(label_size)
+            label_size = self.R().find_max_label_size(label_size)
         return label_size
 
     def hasChain(self):

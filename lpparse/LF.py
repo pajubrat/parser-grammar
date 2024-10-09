@@ -52,9 +52,9 @@ class LF:
                         self.error_report_for_external_callers = f'{X} failed {test_name}.'
                         return False
             else:
-                if not self.pass_LF_legibility(X.left(), logging):
+                if not self.pass_LF_legibility(X.L(), logging):
                     return False
-                if not self.pass_LF_legibility(X.right(), logging):
+                if not self.pass_LF_legibility(X.R(), logging):
                     return False
         return True
 
@@ -68,9 +68,9 @@ class LF:
 
     def final_tail_check(self, goal):
         if goal.complex():
-            if not goal.left().copied and not self.final_tail_check(goal.left()):
+            if not goal.L().copied and not self.final_tail_check(goal.L()):
                 return False
-            if not goal.right().copied and not self.final_tail_check(goal.right()):
+            if not goal.R().copied and not self.final_tail_check(goal.R()):
                 return False
         if goal.zero_level() and goal.get_tail_sets() and not goal.tail_test():
             log(f'\n\t\tPost-syntactic tail test for \'{goal.illustrate()}\' failed. @@')

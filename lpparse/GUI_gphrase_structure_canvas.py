@@ -139,18 +139,18 @@ class PhraseStructureCanvas(tk.Canvas):
             self.highlight(gps, X1, Y1)
 
     def highlight(self, gps, X, Y):
-        if gps.mother():
-            if gps.is_right():
+        if gps.M():
+            if gps.is_R():
                 self.create_line(X+80, Y-80, X+30, Y-30, arrowshape=(20, 20, 10), arrow='last', width=10)
-            if gps.is_left():
+            if gps.is_L():
                 self.create_line(X - 80, Y - 80, X - 30, Y - 30, arrowshape=(20, 20, 10), arrow='last', width=10)
         else:
             self.create_line(X + 100, Y, X + 50, Y, arrowshape=(20, 20, 10), arrow='last', width=10)
 
     def create_complex_node(self, gps, M_const_coord, spx, spy, color='black'):
 
-        L_const_coord = (spx + gps.left().x * self.application.settings.retrieve('image_parameter_grid'), spy + gps.left().y * self.application.settings.retrieve('image_parameter_y_grid'))
-        R_const_coord = (spx + gps.right().x * self.application.settings.retrieve('image_parameter_grid'), spy + gps.right().y * self.application.settings.retrieve('image_parameter_y_grid'))
+        L_const_coord = (spx + gps.L().x * self.application.settings.retrieve('image_parameter_grid'), spy + gps.L().y * self.application.settings.retrieve('image_parameter_y_grid'))
+        R_const_coord = (spx + gps.R().x * self.application.settings.retrieve('image_parameter_grid'), spy + gps.R().y * self.application.settings.retrieve('image_parameter_y_grid'))
 
         # Create text holding the complex label (e.g., XP)
         ID = self.create_text(M_const_coord,
@@ -183,10 +183,10 @@ class PhraseStructureCanvas(tk.Canvas):
                                      font=(self.label_style[label_item[1]][0], int(self.label_style[label_item[1]][1] * self.scaling_factor)))
                     Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
         else:
-            self.draw_constituent_line(gps.left(), L_const_coord, M_const_coord)
-            self.draw_constituent_line(gps.right(), R_const_coord, M_const_coord)
-            self.project_into_canvas(gps.left(), spx, spy)
-            self.project_into_canvas(gps.right(), spx, spy)
+            self.draw_constituent_line(gps.L(), L_const_coord, M_const_coord)
+            self.draw_constituent_line(gps.R(), R_const_coord, M_const_coord)
+            self.project_into_canvas(gps.L(), spx, spy)
+            self.project_into_canvas(gps.R(), spx, spy)
 
     def draw_constituent_line(self, gps, D_coord, M_coord):
         if self.application.settings.retrieve('image_parameter_adjuncts', False) and gps and gps.adjunct:
@@ -200,17 +200,17 @@ class PhraseStructureCanvas(tk.Canvas):
         mx = M_coord[0] + (D_coord[0] - M_coord[0])/2
         my = M_coord[1] + (D_coord[1] - M_coord[1])/2
         # Add special markings at the middle point
-        if gps.is_left():
-            if 'cut' in gps.mother().special_left_constituent_marking:
+        if gps.is_L():
+            if 'cut' in gps.M().special_left_constituent_marking:
                 self.create_line((mx - 15, my - 25, mx + 15, my + 25), fill='black', width=4)
                 self.create_line((mx - 5, my - 35, mx + 25, my + 15), fill='black', width=4)
-            if 'ball' in gps.mother().special_left_constituent_marking:
+            if 'ball' in gps.M().special_left_constituent_marking:
                 self.create_oval((mx - 10, my - 10, mx + 10, my + 10), fill='black')
-        if gps.is_right():
-            if 'cut' in gps.mother().special_right_constituent_marking:
+        if gps.is_R():
+            if 'cut' in gps.M().special_right_constituent_marking:
                 self.create_line((mx + 15, my - 25, mx - 15, my + 25), fill='black', width=4)
                 self.create_line((mx + 5, my - 35, mx - 25, my + 15), fill='black', width=4)
-            if 'ball' in gps.mother().special_right_constituent_marking:
+            if 'ball' in gps.M().special_right_constituent_marking:
                 self.create_oval((mx-10, my-10, mx+10, my+10), fill='black')
 
     def draw_adjunct_line(self, M_coord, D_coord):
@@ -231,7 +231,7 @@ class PhraseStructureCanvas(tk.Canvas):
         Y_offset = 0    # Y_offset determines the lower boundary of the node + its label(s) when adding elements
 
         # Reproduce the head and all of its affixes
-        for j, affix in enumerate(gps.get_affix_list(), start=1):
+        for j, affix in enumerate(gps.affixes(), start=1):
             # Do not reproduce affixes if blocked by settings
             if (affix.zero_level() and affix.copied and not self.application.settings.retrieve('image_parameter_covert_complex_heads', False)) or \
                     (j > 1 and not self.application.settings.retrieve('image_parameter_complex_heads', True)):
@@ -362,7 +362,7 @@ class PhraseStructureCanvas(tk.Canvas):
     def Y_coord_complex_node(self, gps):
         if gps.compressed_into_head:
             return gps.Y + self.label_offset(gps)
-        return gps.left().Y + self.label_offset(gps)
+        return gps.L().Y + self.label_offset(gps)
 
     def Y_coord_zero_level(self, gps):
         x = gps

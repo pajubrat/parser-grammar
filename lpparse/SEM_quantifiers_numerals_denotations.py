@@ -81,8 +81,8 @@ class QuantifiersNumeralsDenotations:
         denotations_lst = []
         if not X.copied:
             if X.complex():
-                denotations_lst += self.calculate_possible_denotations(X.left())
-                denotations_lst += self.calculate_possible_denotations(X.right())
+                denotations_lst += self.calculate_possible_denotations(X.L())
+                denotations_lst += self.calculate_possible_denotations(X.R())
             else:
                 if X.has_idx('QND'):
                     idx, space = X.get_idx_tuple('QND')
@@ -170,9 +170,9 @@ class QuantifiersNumeralsDenotations:
 
         stri = ''
         if not X.copied:
-            if X.left() and X.right():
-                stri += self.assignment_output_string(X.left())
-                stri += self.assignment_output_string(X.right())
+            if X.L() and X.R():
+                stri += self.assignment_output_string(X.L())
+                stri += self.assignment_output_string(X.R())
             if X.zero_level() and relevant_content(X):
                 stri += ' ' + relevant_content(X)
 
@@ -181,7 +181,7 @@ class QuantifiersNumeralsDenotations:
                 idx = X.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f' {X.label()}/pro[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
-            elif X.mother() and X.check({'N'}) and X.is_right() and X.sister() and X.sister().get_idx_tuple('QND'):
+            elif X.M() and X.check({'N'}) and X.is_R() and X.sister() and X.sister().get_idx_tuple('QND'):
                 idx = X.sister().get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f'[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
@@ -217,7 +217,7 @@ class QuantifiersNumeralsDenotations:
         return feature.split(':')[0] == 'R'
 
     def get_R_features(self, ps):
-        return [feature for feature in ps.head().features if self.R_feature(feature)]
+        return [feature for feature in ps.H().features if self.R_feature(feature)]
 
     def parse_R_feature(self, R_feature):
         components = R_feature.split(':')
@@ -247,7 +247,7 @@ class QuantifiersNumeralsDenotations:
         return interpreted_phi_dict
 
     def detect_phi_conflicts(self, ps):
-        for phi in ps.head().get_phi_set():
+        for phi in ps.H().get_phi_set():
             if phi[-1] == '*':
                 log(f'\n\t\t\t{ps.illustrate()} has a phi-feature conflict with {phi}.')
                 self.narrow_semantics.phi_interpretation_failed = True

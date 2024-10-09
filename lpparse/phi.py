@@ -29,7 +29,7 @@ def valued_phi_feature(f):
     return phi_feature(f) and f[-1] != '_'
 
 def interpretable_phi_features(probe):
-    return {phi for phi in probe.head().features if interpretable_phi_feature(phi)}
+    return {phi for phi in probe.H().features if interpretable_phi_feature(phi)}
 
 def unlicensed_phi_features_at_goal(G, PP):
     return G - set().union(*{frozenset(phi) for phi in PP if phi <= G})

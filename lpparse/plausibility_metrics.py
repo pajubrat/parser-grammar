@@ -32,7 +32,7 @@ class PlausibilityMetrics:
         self.baseline_weights = []
 
     def filter_and_rank(self, X, w):
-        if X.word_internal():
+        if X.w_internal():
             return [X.bottom()]
         return self.rank(self.filter(X.geometrical_minimal_search(), w), w)
 
@@ -107,5 +107,5 @@ class PlausibilityMetrics:
 
     @staticmethod
     def word_breaking_filter(N, w):
-        if N.complex() and N.mother():
-            return N.mother().left().internal and N.left().internal
+        if N.complex() and N.M():
+            return N.M().L().internal and N.L().internal
