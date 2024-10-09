@@ -12,6 +12,41 @@ from Experimental_functions import ExperimentalFunctions
 from results import Results
 
 class SpeakerModel:
+    OP = {'Feature inheritance':
+              {'TRIGGER': lambda x: x.check({'Φ?'}) or (x.highest_finite_head() and not x.check({'!PER'})),
+               'TARGET': lambda x: x,
+               'TRANSFORM': lambda x, y: x.feature_inheritance()},
+          'A-chain':
+              {'TRIGGER': lambda x: x.zero_level() and x.EF() and not (x.internal and x.terminal()) and
+                                    x.is_right() and x.sister() and x.sister().complex() and not x.sister().operator_features(),
+               'TARGET': lambda x: x.sister(),
+               'TRANSFORM': lambda x, y: x + y},
+          'Scrambling': {'TRIGGER': lambda x: x.max().trigger_scrambling(),
+                         'TARGET': lambda x: x,
+                         'TRANSFORM': lambda x, y: x.max().reconstruct_scrambling()},
+          'Agree':
+              {'TRIGGER': lambda x: x.zero_level() and x.is_left() and x.is_unvalued() and not x.check({'ΦLF'}),
+               'TARGET': lambda x: x,
+               'TRANSFORM': lambda x, y: x.AgreeLF()},
+          'IHM':
+              {'TRIGGER': lambda x: x.complex_head() and not x.EHM() and not x.check({'C'}) and not x.affix().copied,
+               'TARGET': lambda x: x.affix(),
+               'TRANSFORM': lambda x, y: x.sister() + y if x.is_left() and x.sister() else x + y},
+          'Extrapose':
+              {'TRIGGER': lambda x: x.zero_level() and x.is_left() and x.selection_violation(),
+               'TARGET': lambda x: x,
+               'TRANSFORM': lambda x, y: x.extrapose()},
+          'Cyclic Ā-chain':
+              {'TRIGGER': lambda x: x.zero_level() and x.is_right() and x.thematic_head() and x.sister().zero_level(),
+               'TARGET': lambda Y: next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(
+                   Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
+               'TRANSFORM': lambda x, y: y + x},
+          'Noncyclic Ā-chain':
+              {'TRIGGER': lambda x: not x.COMP_selection() and PhraseStructure.noncyclic_derivation,
+               'TARGET': lambda Y: next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(
+                   Y.get_selection_features('+COMP')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
+               'TRANSFORM': lambda x, y: x + y}}
+
     def __init__(self, settings, language='XX'):
         self.settings = settings
         self.sentence = []
@@ -115,7 +150,7 @@ class SpeakerModel:
         else:
             self.results.record_derivational_step(X, 'Phrase structure in syntactic working memory')
             for N in self.plausibility_metrics.filter_and_rank(X.top(), W):
-                Y = X.target_left_branch(N).attach(N, W).bottom().reconstruct(cyclic=True).top()
+                Y = X.target_left_branch(N).attach(N, W).bottom().reconstruct().top()
                 self.derivational_search_function(Y.copy(), lst, index + 1)
                 if self.exit:
                     break
@@ -133,6 +168,7 @@ class SpeakerModel:
     def evaluate_complete_solution(self, X):
         self.results.record_derivational_step(X, 'PF-interface')
         log('\n\n----Noncyclic derivation------------------------------------------------------------------------------\n')
+        PhraseStructure.noncyclic_derivation = True
         X.transfer()
         X = X.top()
         X.tidy_names(1)
@@ -156,3 +192,5 @@ class SpeakerModel:
         # there has not been any accepted solutions
         if not self.results.first_solution_found:
             self.results.consume_resources("Garden Paths", X)
+
+        PhraseStructure.noncyclic_derivation = False

@@ -19,49 +19,7 @@ class PhraseStructure:
     resources = {"Merge-1": {"ms": 0, "n": 0}}
     chain_index = 0
     node_identity = 0
-    transfer_operation = None
-
-    OP = {'Feature inheritance':
-              {'TRIGGER': lambda x: x.check({'Φ?'}) or (x.highest_finite_head() and not x.check({'!PER'})),
-               'cyclic': lambda cyclic: True,
-               'TARGET': lambda x: x,
-               'TRANSFORM': lambda x, y: PhraseStructure.feature_inheritance(y)},
-          'A-chain':
-              {'TRIGGER': lambda x: x.zero_level() and x.EF() and not (x.internal and x.terminal()),
-               'cyclic': lambda cyclic: cyclic,
-               'TARGET': lambda x: x.sister(),
-               'TRANSFORM': lambda x, y: x.Merge_right(y.copy_for_chain()).left()},
-          'Scrambling': {'TRIGGER': lambda x: x.max().trigger_scrambling(),
-                         'cyclic': lambda cyclic: not cyclic,
-                         'TARGET': lambda x: x.max(),
-                         'TRANSFORM': lambda x, y: y.reconstruct_scrambling()},
-          'Agree':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_left() and x.is_unvalued() and not x.check({'ΦLF'}),
-               'cyclic': lambda cyclic: True,
-               'TARGET': lambda x: x,
-               'TRANSFORM': lambda x, y: x.AgreeLF()},
-          'IHM':
-              {'TRIGGER': lambda x: x.complex_head() and not x.EHM() and not x.check({'C'}),
-               'cyclic': lambda cyclic: True,
-               'TARGET': lambda x: x.affix(),
-               'TRANSFORM': lambda x, y: x.sister().Merge_right(y.copy_for_chain()).right() if x.is_left() and x.sister() else x.Merge_right(y.copy_for_chain()).right()},
-          'Extrapose':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_left() and x.selection_violation(),
-               'cyclic': lambda cyclic: not cyclic,
-               'TARGET': lambda x: x,
-               'TRANSFORM': lambda x, y: x.extrapose()},
-          'Cyclic Ā-chain':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_right() and x.thematic_head() and x.sister().zero_level(),
-               'cyclic': lambda cyclic: True,
-               'TARGET': lambda Y: next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(
-                   Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
-               'TRANSFORM': lambda x, y: x.Merge_left(y)},
-          'Noncyclic Ā-chain':
-              {'TRIGGER': lambda x: not x.COMP_selection(),
-               'cyclic': lambda cyclic: not cyclic,
-               'TARGET': lambda Y: next((x for x in Y.upward_path() if x.operator_features() and x.head().check_some(
-                   Y.get_selection_features('+COMP')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
-               'TRANSFORM': lambda x, y: x.Merge_right(y.copy_for_chain())}}
+    noncyclic_derivation = False
 
     def __init__(self, left=None, right=None):
         self.const = []
@@ -78,6 +36,7 @@ class PhraseStructure:
         self.internal = False
         self.rebaptized = False
         self.stop = False
+        self.focus = False
         self.nn = None
         if left and left.adjunct and left.zero_level():
             self.adjunct = True
@@ -99,6 +58,7 @@ class PhraseStructure:
         X.const = lst
         for x in X.const:
             x.mother_ = X
+        return X
 
     def terminal(X):
         return not X.const
@@ -289,6 +249,20 @@ class PhraseStructure:
     def reference_head(X):
         return {'π', 'D', 'φ'} & X.features
 
+    def new_focus(X):
+        return next((x for x in X.const[::-1] if X.complex() and x.zero_level()), X)
+
+    def reconstruct(X):
+        for type, op in PhraseStructure.speaker_model.OP.items():
+            Y = op['TARGET'](X)
+            if Y and not Y.copied and op['TRIGGER'](X):
+                log(f'\n\t{type}({Y})')
+                if Y != X:
+                    Y = Y.chaincopy()
+                X = op['TRANSFORM'](X, Y).new_focus()
+                log(f' = {X.top()}')
+        return X.top()
+
     # Virtual pronouns -----------------------------------------------------------------------
     def pro_argument(X):
         if X.independent_pro_from_overt_agreement() or X.complete_agreement_suffixes():
@@ -460,7 +434,7 @@ class PhraseStructure:
     def transfer(X):
         Y, m = X.detached()
         for Z in (x for x in [Y.bottom()] + Y.bottom().upward_path()):
-            Z.reconstruct(cyclic=False)
+            Z.reconstruct()
         return Y.reattach(m)
 
     def scan_features(X, feature):
@@ -495,8 +469,8 @@ class PhraseStructure:
         X.externalize_structure()
         for x in X.local_tense_edge().minimal_search():
             if x.tail_test(tail_sets=X.get_tail_sets()):
-                return x.mother().Merge_left(X.copy_for_chain())
-        return X.container().Merge_right(X.copy_for_chain())
+                return X.chaincopy() + x.mother()
+        return X.container() + X.chaincopy()
 
     def local_tense_edge(X):
         return next((node.mother() for node in X.upward_path() if node.finite() or node.force()), X.top())
@@ -770,14 +744,6 @@ class PhraseStructure:
                X.max().mother().sister() and \
                X.max().mother().sister().check(tset)
 
-    def tail_match(X, constituent_from_MB, direction):
-        X.Merge_inside(constituent_from_MB.copy(), direction)   # Test merge
-        if direction == 'right':                                # Presupposition
-            X.geometrical_sister().adjunct = True
-        result = X.geometrical_sister().head().tail_test()      # Test
-        X.geometrical_sister().remove()                         # Remove trial unit
-        return result
-
     # Recovery ---------------------------------------------------------------------------------------------------
 
     def is_possible_antecedent(X, antecedent):
@@ -812,52 +778,31 @@ class PhraseStructure:
 
     # Structure building --------------------------------------------------------------------------
 
-    def Merge_inside(X, C, direction=''):
-        local_structure = (X.mother(), X.is_left())         # Snapshot of the local structure
-        X = X.asymmetric_merge(C, direction)                # Create new constituent X
-        X.substitute(local_structure)                       # Insert X back into the local structure
-        return X
+    def insert_left(X, Y):
+        return X.create_constituents([Y, X.right()]).left()
 
-    # Asymmetric Merge is a generalization of the bottom-up Merge (__init__) that can be provided with directionality
-    def asymmetric_merge(X, B, direction='right'):
+    def insert_right(X, Y):
+        return X.create_constituents([X.left(), Y]).right()
+
+    def Merge_inside(Xa, Y, dir=''):
+        if Xa.is_left():
+            return Xa.mother().insert_left(Xa.Merge_(Y, dir))
+        elif Xa.is_right():
+            return Xa.mother().insert_right(Xa.Merge_(Y, dir))
+        return Xa.Merge_(Y, dir)
+
+    def Merge_(X, Y, dir):
+        if dir == 'left':
+            return PhraseStructure(Y, X)
+        return PhraseStructure(X, Y)
+
+    def __add__(X, Y):
         X.consume_resources('Merge-1', X)
-        if direction == 'left':
-            return PhraseStructure(B, X)
-        return PhraseStructure(X, B)
-
-    def Merge_right(X, Y):
-        return X.Merge_inside(Y, 'right')
-
-    def Merge_left(X, Y):
-        return X.Merge_inside(Y, 'left')
-
-    def substitute(X, local_structure):
-        if local_structure[0]:                                                              # If N had a mother
-            if not local_structure[1]:                                                      # If N was right...
-                local_structure[0].create_constituents([local_structure[0].left(), X])   # the new constituent will be right,
-            else:                                                                           # otherwise the new constituent will be left.
-                local_structure[0].create_constituents([X, local_structure[0].right()])
-            X.mother_ = local_structure[0]                                                # The new constituent will have the same mother as N had (substitution)
-
-    def merge_around(X, reconstructed_object, legibility=lambda x: True):
-        if not (X.Merge_inside(reconstructed_object, 'right') and legibility(reconstructed_object)):
-            reconstructed_object.remove()
-            if not (X.Merge_inside(reconstructed_object, 'left') and legibility(reconstructed_object)):
-                reconstructed_object.remove()
-                return True
-
-    def remove(X):
         if X.mother():
-            mother_, sister, grandmother = X.context()
-            sister.mother_ = sister.mother().mother()
-            if mother_.is_right():
-                grandmother.const = [grandmother.left(), sister]
-            elif mother_.is_left():
-                grandmother.const = [sister, grandmother.right()]
-            X.mother_ = None
-
-    def context(X):
-        return X.mother(), X.geometrical_sister(), X.mother().mother()
+            return X.Merge_inside(Y)
+        elif Y.mother():
+            return Y.Merge_inside(X, 'left')
+        return PhraseStructure(X, Y)
 
     def sink(X, Y):
         bottom_affix = X.bottom().get_affix_list()[-1]
@@ -867,17 +812,11 @@ class PhraseStructure:
 
     def attach(X, N, W):
         if N.bottom_affix().word_internal() and (PhraseStructure.speaker_model.settings.retrieve('UG_parameter_middle_field_HM', True) or N.check({'C'}) or N.bottom_affix().EHM()):
-            Y = X.head_attachment(W)
+            Y = X.bottom_affix().sink(W)
         else:
-            Y = X.regular_attachment(W)
+            Y = X.transfer_detached() + W
         X.speaker_model.results.consume_resources('Merge', Y, N, W)
         return Y
-
-    def head_attachment(X, terminal_lexical_item):
-        return X.bottom_affix().sink(terminal_lexical_item)
-
-    def regular_attachment(X, terminal_lexical_item):
-        return X.transfer_detached().Merge_inside(terminal_lexical_item)
 
     def transfer_detached(X):
         set_logging(False)
@@ -891,29 +830,6 @@ class PhraseStructure:
         m = X.mother()
         X.mother_ = None
         return X, m
-
-    def Select(X, Y, **kwargs):
-        if Y and not Y.copied:
-            if kwargs['type'] == 'A-chain':
-                if Y.complex() and not Y.get_tail_sets() and not Y.operator_features() and not Y.sister().operator_features():
-                    return Y
-                else:
-                    return None
-            if (kwargs['type'] == 'Cyclic Ā-chain' or kwargs['type'] == 'Noncyclic Ā-chain') and Y.container():
-                Y.container().features = Y.container().features | Y.operator_features()
-            return Y
-
-    def reconstruct(X, **kwargs):
-        Y = X
-        for type, op in PhraseStructure.OP.items():
-            CYCLIC = op['cyclic'](kwargs.get('cyclic', True))
-            S = Y.Select(op['TARGET'](Y), type=type)
-            if CYCLIC and op['TRIGGER'](Y) and S:
-                log(f'\n\t{type}({S})')
-                Y = op['TRANSFORM'](Y, S)
-                log(f' = {Y.top()}')
-
-        return Y.top()
 
     def copy(X):
         ps_ = PhraseStructure()
@@ -937,9 +853,6 @@ class PhraseStructure:
     def reattach(X, m):
         X.top().mother_ = m
         return X.top()
-
-    def __add__(X, incoming_constituent):
-        return X.Merge_inside(incoming_constituent)
 
     def get_index(X, target):
         for i, node in enumerate(X.geometrical_minimal_search()):
@@ -1032,7 +945,7 @@ class PhraseStructure:
                 return cat + suffix
         return '?' + suffix
 
-    def copy_for_chain(X, babtize='1'):
+    def chaincopy(X, babtize='1'):
         def silence_phonologically(h):
             if not h.features:
                 h.features = {'null'}
