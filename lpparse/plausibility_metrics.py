@@ -32,13 +32,13 @@ class PlausibilityMetrics:
         self.baseline_weights = []
 
     def filter_and_rank(self, X, w):
-        if X.w_internal():
+        if X.bottom().w_internal():
             return [X.bottom()]
         return self.rank(self.filter(X.geometrical_minimal_search(), w), w)
 
     def filter(self, right_edge, w):
         set_logging(False)
-        return [N for N in right_edge if not (N.complex() and not self.left_branch_filter(N)) and not self.word_breaking_filter(N, w)]
+        return [N for N in right_edge if not (N.complex() and not self.left_branch_filter(N))]
 
     def rank(self, site_list, W):
         weighted_list = []

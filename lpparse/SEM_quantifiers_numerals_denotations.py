@@ -201,11 +201,11 @@ class QuantifiersNumeralsDenotations:
 
     def coreference(self, idx1, idx2):
         assignments = [a for a in self.all_assignments if a['weight'] > 0]
-        disjoint_assignments = [a for a in assignments if a[idx1] != a[idx2]]
+        disjoint_assignments = [a for a in assignments if idx1 in a.keys() and idx2 in a.keys() and a[idx1] != a[idx2]]
         return assignments and not disjoint_assignments
 
     def disjoint_reference(self, idx1, idx2):
-        return next((False for a in self.all_assignments if a[idx1] == a[idx2] and a['weight'] > 0), True)
+        return next((False for a in self.all_assignments if idx1 in a.keys() and idx2 in a.keys() and a[idx1] == a[idx2] and a['weight'] > 0), True)
 
     def overlapping_reference(self, idx1, idx2):
         return not self.coreference(idx1, idx2) and not self.disjoint_reference(idx1, idx2)

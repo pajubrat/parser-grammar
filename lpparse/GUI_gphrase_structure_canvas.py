@@ -20,7 +20,7 @@ class PhraseStructureCanvas(tk.Canvas):
                             'PFtrace': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic", "overstrike"),
                             'PF': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic"),
                             'gloss': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
-                            'feature': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
+                            'feature': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')) * 0.8),
                             'subscript': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') * 0.5)),
                             'arrow_label': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') * 0.75)),
                             'info': ("Courier", int(self.application.settings.retrieve('image_parameter_tsize') * 0.25))}
@@ -252,6 +252,11 @@ class PhraseStructureCanvas(tk.Canvas):
                 else:
                     style = label_item[1]
 
+                # Modify label font size based on scaling factor
+                scaled_font = list(self.label_style[style])
+                scaled_font[1] = int(self.label_style[style][1] * self.scaling_factor)
+                scaled_font = tuple(scaled_font)
+
                 # Create text
                 ID = self.create_text((X1, Y1 + Y_offset),
                                       fill=color,
@@ -259,7 +264,7 @@ class PhraseStructureCanvas(tk.Canvas):
                                       tag='node',
                                       text=text,
                                       anchor='center',
-                                      font=(self.label_style[style][0], int(self.label_style[style][1] * self.scaling_factor)))
+                                      font=scaled_font)
                 # Subscript and superscript
                 if label_item[1] == 'label' and affix.subscript:
                     self.create_text((X1 + (len(text)-1) * 15 + self.application.settings.retrieve('image_parameter_grid') / 6, Y1 + Y_offset + self.application.settings.retrieve('image_parameter_tsize') / 4),

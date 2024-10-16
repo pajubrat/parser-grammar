@@ -335,7 +335,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             if gps.hasChain() and gps.sister():
                 target = gps.sister().find_node_with_identity(gps.hasChain())
                 if target:
-                    self.inventory['dependencies'].append(Dependency(gps, target, 'last', '', False))
+                    self.inventory['dependencies'].append(Dependency(gps, target, 'none', '', False))
                     gps.features = {f for f in gps.features if not f.startswith('CHAIN:')}
         if gps.complex() and not gps.compressed:
             self.implement_chains(gps.L())

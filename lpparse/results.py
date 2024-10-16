@@ -153,11 +153,11 @@ class Results:
         if key == 'Sensory Processing':
             log(f'\n\t\t{key} of /#{target}/')
         elif key == 'Merge':
-            log(u'\n\u0370' + f'\t{key}({X}, {Y}) = {target.top()}\n')
+            log(u'\n\u0370' + f'\t{key}({target}, {X})')
         elif key == 'Reconstruction':
             log(f'\n\t\t{comment} = {target}')
         elif key != 'Agree' and key != 'Lexical Retrieval' and 'Extraposition' not in key:
-            log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}')
+            log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}\n\n')
             if comment:
                 log(f'({comment})')
 
@@ -173,8 +173,8 @@ class Results:
         self.first_solution_found = True
 
     def report_failure(self, ps):
-        log('\n\t\tSolution was rejected. \n\n')
-        log('\t\tMemory dump:\n')
+        log(f'\n\nX\tREJECTED.\n\n')
+        log('\tMemory dump:\n\n')
         log(f'{self.show_primitive_constituents(ps)}')
 
     def show_primitive_constituents(self, ps):

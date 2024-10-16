@@ -6,23 +6,22 @@
 # Left periphery
 
 	FORCE	::	FORCE						!PROBE:Fin -SPEC:T/fin
-	C/fin 	:: 	Fin 						!PROBE:Fin +COMP:T,Fin,T/fin +SPEC:OP,ø
+	C/fin 	:: 	Fin EF						!PROBE:Fin +COMP:T,Fin,T/fin
 	C		:: 	 							-SPEC:MA/A
 	Cpol	::  C C/fin POL FOC				!PROBE:Fin +COMP:Neg/fin
-	T/fin 	:: 	T/fin Φ* T Fin 				+COMP:T/prt,ASP,COPULA
-	T/prt 	:: 	Fin T 						+COMP:ASP
-	T 		:: 								+COMP:ASP
-	Neg/fin :: 	Φ* Fin NEG !ΦPF 			+COMP:T
-	T Fin	:: 	SPEC:EXPL
+	T/fin 	:: 	Φ T/fin EF* T Fin 			+COMP:T/prt,ASP,COPULA
+	T/prt 	:: 	Φ Fin T 					+COMP:ASP
+	T 		:: 	Φ							+COMP:ASP
+	Neg/fin :: 	Φ EF* Fin NEG !ΦPF 			+COMP:T
 
 # Verbal domain
 
-	v   		:: 	Φ V θ ASP 					+COMP:V -COMP:V/INTR,v,IMPSS +SPEC:D,φ,ø
-	V   		:: 	θ Φ ASP 					-SPEC:Fin
-	BE-			::	V COPULA LF:be 				-COMP:Fins
-	v*			:: 	Φ* V						+COMP:V
-	Pr			::	θ ESS 						+COMP:N,A,a
-	Pr2			::	θ Pr TRA 					+COMP:N,A,a
+	v   		:: 	Φ Φ θ ASP 					+COMP:V -COMP:V/INTR,v,IMPSS +SPEC:D,φ,ø
+	V   		:: 	Φ θ ASP 					-SPEC:Fin
+	BE-			::	Φ V COPULA LF:be 			-COMP:Fins
+	v*			:: 	EF* V						+COMP:V
+	Pr			::	θ Φ ESS 					+COMP:N,A,a
+	Pr2			::	θ Φ Pr TRA 					+COMP:N,A,a
 	V/TR 		:: 								+COMP:Inf,P,D,φ,V
 	V/INTR 		:: 								+COMP:P,ø -COMP:D,φ
 	ε LANG:FI	:: θ	 						!wCOMP:θ -wCOMP:P
@@ -31,17 +30,17 @@
 
 	D   	:: 	REF					!PROBE:N +COMP:Q,Qn,Num,φ,N +SPEC:D,ø
 	D/rel	:: 	adjoinable			!PROBE:N +COMP:Q,Qn,Num,φ,N +SPEC:D,ø
-	N   	:: 	θ 					+COMP:P,ø,C/rel -COMP:V -SPEC:T
-	P   	:: 	θ Adv adjoinable 	+COMP:D,φ,ø +SPEC:D,φ,ø
+	N   	:: 	θ Φ					+COMP:P,ø,C/rel -COMP:V -SPEC:T
+	P   	:: 	θ Adv adjoinable 	+COMP:D,φ,ø
 	A 		:: 	θ 					-SPEC:A
-	n		:: 	?ΦLF Inf			-COMP:n
+	n		:: 	Φ ?ΦLF Inf			-COMP:n
 	√		:: 	SPEC:φ 2SPEC 		+COMP:P,ø,C/rel
 	Num		::  Num 				-COMP:D -COMP:QN
 	Qn		:: 	 					!PROBE:N +COMP:Num,φ,N
-	φ		:: 	REF φ ?ΦLF Inf 		!PROBE:N +COMP:P,N -SPEC:Fin,A/inf
+	φ		:: 	REF φ ?ΦLF Inf 		!PROBE:N +COMP:P,N +SPEC:D,φ,ø
 	a0		::	A					+COMP:A,√,0
 	Neg		:: 						-SPEC:N
-	Agr		::	Φ Fin
+	Agr		::	Fin
 
 # Others
 
@@ -51,8 +50,8 @@
 # Phi-strength
 	
 	OC		:: -ΦLF -ΦPF
-	Φ?		:: PHI:NUM:_ PHI:PER:_ PHI:DET:_
-	Φ*		:: Φ
+	EF?		:: Φ
+	EF*		:: Φ
 	Φ		:: PHI:NUM:_ PHI:PER:_ PHI:DET:_
 
 # Operators
@@ -102,17 +101,18 @@
 
 	# Finnish edge behavior
 		
-		T/fin LANG:FI	::  Φ*
-		Adv LANG:FI		::	Φ*
-		P LANG:FI		::  Φ*
-		A LANG:FI		::	Φ*
-		VA/inf LANG:FI	::	Φ*
-		v LANG:FI		::  Φ* -ΦPF
-		Fin LANG:FI		::  Φ* ?ΦLF
-		T/prt LANG:FI	::	Φ*
-		φ LANG:FI		::  Φ* ?ΦLF
-		Φ LANG:FI		::  PHI:HUM:_ PHI:PRON:_
-		Φ* LANG:FI		::  PHI:HUM:_ PHI:PRON:_
+		T/fin LANG:FI	::  EF*
+		Adv LANG:FI		::	EF
+		P LANG:FI		::  EF
+		V LANG:FI		::	EF -ΦPF
+		A LANG:FI		::	EF
+		VA/inf LANG:FI	::	EF*
+		v LANG:FI		::  EF -ΦPF
+		Fin LANG:FI		::  EF* ?ΦLF
+		T/prt LANG:FI	::	EF*
+		φ LANG:FI		::  EF ?ΦLF +SPEC:D,φ,ø
+		EF LANG:FI		::  PHI:HUM:_ PHI:PRON:_
+		EF* LANG:FI		::  PHI:HUM:_ PHI:PRON:_
 		
 	# Other rules
 	
@@ -133,15 +133,12 @@
 
 # ENGLISH
 
-	P LANG:EN		::	Φ nonfloat -SPEC:φ
-	Adv LANG:EN		::	Φ
-	n LANG:EN		::  Φ
-	Inf LANG:EN		::  Φ
-	T/fin LANG:EN	::	Φ* +SELF:ΦLF
+	P LANG:EN		::	nonfloat -SPEC:φ
+	T/fin LANG:EN	::	EF* +SELF:ΦLF
 	A LANG:EN		::	nonadjoinable
 	ACC LANG:EN		::	nonadjoinable nonfloat
 	NOM LANG:EN		::  nonadjoinable nonfloat
-	D LANG:EN		:: Φ*
+	D LANG:EN		:: EF
 	φ LANG:EN		:: -SPEC:φ
 	OP:REL LANG:EN	:: SCOPE
 	LANG:EN T prs	:: PF:T
@@ -149,13 +146,12 @@
 	T/prt LANG:EN	:: PF:-ed LF:prtc
 	LANG:EN N		:: -COMP:D
 	LANG:EN pst	 	:: ΦPF PER
-	# prs LANG:EN		:: PF:-0
 
 # ITALIAN
 
-	P LANG:IT		:: Φ
+	P LANG:IT		:: EF
 	NOM LANG:IT		:: nonadjoinable nonfloat
 	LANG:IT T prs	:: PF:-0
 	LANG:IT T pst	:: PF:-ava
-	LANG:TI T/fin	:: Φ*
+	LANG:TI T/fin	:: EF*
 	

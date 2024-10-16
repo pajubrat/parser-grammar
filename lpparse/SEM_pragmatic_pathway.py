@@ -19,12 +19,12 @@ class Discourse:
         self.index_counter += 1
         return self.index_counter
 
-    def forget_object(self, ps):
+    def forget_object(self, X):
         print('.', end='', flush=True)
-        if ps and self.get_inventory_index(ps):
-            idx = self.get_inventory_index(ps)
+        if X and self.get_inventory_index(X):
+            idx = self.get_inventory_index(X)
             feature = '*IDX:'+str(idx)
-            ps.features.discard(feature)
+            X.features.discard(feature)
             self.records_of_attentional_processing.pop(idx)
 
     def is_discourse_feature(self, feature):
@@ -79,51 +79,51 @@ class Discourse:
                     topic_lst.append(topic_gradient[key]['Name'])
         return {'Marked topics': marked_topic_lst, 'Neutral gradient': topic_lst, 'Marked focus': marked_focus_lst}
 
-    def collect_arguments(self, ps):
+    def collect_arguments(self, X):
         arguments = set()
-        if ps.complex():
-            if self.narrow_semantics.get_idx_tuple(ps.L().H(), 'QND'):
-                arguments.add(ps.L().H())
-            if self.narrow_semantics.get_idx_tuple(ps.R().H(), 'QND'):
-                arguments.add(ps.R().H())
-            if ps.R().adjunct:
-                arguments = arguments | self.collect_arguments(ps.R())
-                arguments = arguments | self.collect_arguments(ps.L())
+        if X.complex():
+            if X.L().H().get_idx_tuple('QND'):
+                arguments.add(X.L().H())
+            if X.R().H().get_idx_tuple('QND'):
+                arguments.add(X.R().H())
+            if X.R().adjunct:
+                arguments = arguments | self.collect_arguments(X.R())
+                arguments = arguments | self.collect_arguments(X.L())
             else:
-                arguments = arguments | self.collect_arguments(ps.R())
+                arguments = arguments | self.collect_arguments(X.R())
         return arguments
 
-    def out_of_proposition_scope(self, ps, scope):
-        if ps.L.zero_level():
-            if ps.L.finite():
-                if ps.L.finite_tense():
-                    if ps != scope:
+    def out_of_proposition_scope(self, X, scope):
+        if X.L.zero_level():
+            if X.L.finite():
+                if X.L.finite_tense():
+                    if X != scope:
                         return True
-        if ps.R.zero_level():
-            if ps.R.finite():
-                if ps != scope:
+        if X.R.zero_level():
+            if X.R.finite():
+                if X != scope:
                     return True
 
-    def locate_proposition(self, ps):
-        return next((node for node in ps if node.complex() and node.L.finite_tense()), None)
+    def locate_proposition(self, X):
+        return next((node for node in X if node.complex() and node.L.finite_tense()), None)
 
-    def get_force_features(self, ps):
-        return {f for f in ps.H().features if f[:5] == 'FORCE'}
+    def get_force_features(self, X):
+        return {f for f in X.H().features if f[:5] == 'FORCE'}
 
-    def compute_speaker_attitude(self, ps):
-        if self.get_force_features(ps.H()):
-            for count, force_feature in enumerate(self.get_force_features(ps.H())):
+    def compute_speaker_attitude(self, X):
+        if self.get_force_features(X.H()):
+            for count, force_feature in enumerate(self.get_force_features(X.H())):
                 if force_feature in self.attitudes:
                     return self.attitudes[force_feature]
         else:
             return 'Declarative'
 
-    def unexpected_order_occurred(self, ps, starting_point_head):
-        if self.narrow_semantics.speaker_model.results.first_solution_found or not self.get_inventory_index(ps.H()):
+    def unexpected_order_occurred(self, X, starting_point_head):
+        if self.narrow_semantics.speaker_model.results.first_solution_found or not self.get_inventory_index(X.H()):
             return
 
-        idx = self.get_inventory_index(ps.H())
-        if starting_point_head in {const for const in ps.H().path() if const.zero_level()}:
+        idx = self.get_inventory_index(X.H())
+        if starting_point_head in {const for const in X.H().path() if const.zero_level()}:
             direction = 'High'
         else:
             direction = 'Low'

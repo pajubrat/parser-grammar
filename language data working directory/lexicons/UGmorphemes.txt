@@ -14,11 +14,11 @@
 	FORCE	:: FORCE Fin
 	C/fin   :: C/fin PF:C LF:C
 	C		:: C LF:C
-	C/wh	:: C LF:C ΔOP PF:C/wh Φ +COMP:T/fin
+	C/wh	:: C LF:C ΔOP PF:C/wh EF +COMP:T/fin
 	Cpol	:: Cpol PF:C LF:C
 	T/fin   :: T/fin LF:T π
 	Neg/fin :: Neg/fin
-	Fin		:: Fin LF:Fin PF:Fin Φ*
+	Fin		:: Fin LF:Fin PF:Fin EF*
 
 # Verbal domain
 
@@ -103,7 +103,7 @@
 		
 		# verbal
 		
-		(t)A,A/inf			:: A/inf 		Inf 	?ΦLF -PER Φ?	PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event +COMP:ASP -COMP:EVE,EVE2 -COMP:IMPSS LANG:FI TAM
+		(t)A,A/inf			:: A/inf 		Inf 	?ΦLF -PER EF?	PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event +COMP:ASP -COMP:EVE,EVE2 -COMP:IMPSS LANG:FI TAM
 		vAn,VA/inf			:: VA/inf 		Inf T  	=SELF:ΦLF,ΦPF	PF:-vAn 	PC:#X LF:to +COMP:ASP TAM LANG:FI
 		essA,ESSA/inf		:: ESSA/inf		Inf Adv ?ΦLF			PF:-essA 	PC:#X LF:while +COMP:ASP -SPEC:T/fin TAIL:T TAM LANG:FI
 		tUA,TUA/inf 		:: TUA/inf		Inf Adv	=SELF:ΦLF,ΦPF	PF:-tUA 	PC:#X LF:after +COMP:ASP TAIL:T TAM LANG:FI
@@ -115,7 +115,7 @@
 		mAstA,MA.ela/inf	:: MA.ela/inf	Inf Adv OC 				PF:-mAstA 	PC:#X LF:without +COMP:ASP TAIL:V/TR,SEMCLASS_denied_event MA/inf TAM LANG:FI
 		mAAn,MA.ill/inf		:: MA.ill/inf	Inf		OC 				PF:-mAAn 	PC:#X LF:to +COMP:ASP SEM/desired_event adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf TAM LANG:FI
 		
-		impss		:: IMPSS	Pass V Φ 							PF:-TA		PC:#X# LF:Impss +COMP:ASP -COMP:v,IMPSS
+		impss		:: IMPSS	Pass V EF 							PF:-TA		PC:#X# LF:Impss +COMP:ASP -COMP:v,IMPSS
 		
 		# nominal
 		
@@ -141,14 +141,14 @@
 
 		# Participles
 		
-			mA		:: a MA/a	Inf	Φ*		PF:-mA	PC:#X LF:prtc	+COMP:ASP -COMP:V/INTR,IMPSS	LANG:FI
+			mA		:: a MA/a	Inf	EF*		PF:-mA	PC:#X LF:prtc	+COMP:ASP -COMP:V/INTR,IMPSS	LANG:FI
 			vA		:: a VA/a	Inf			PF:-vA 	PC:#X LF:prtc	+COMP:ASP LANG:FI 
 			
 		# Special purpose elements
 		
 			mista	:: n ABS	PF:-mista	PC:#X LF:abstr	NOM +COMP:V LANG:FI 
-			n0		:: n		PF:-0		PC:#X LF:n	 		LANG:FI Φ Φ*
-			TA*		:: V CAU 	PF:-TA		LF:cause  			V/TR LANG:FI -ΦPF Φ Φ*
+			n0		:: n		PF:-0		PC:#X LF:n	 		LANG:FI EF*
+			TA*		:: V CAU 	PF:-TA		LF:cause  			V/TR LANG:FI -ΦPF EF*
 			U*		:: V REFL	PF:-utu		LF:become			V/INTR LANG:FI +COMP:V
 
 	# Finnish prepositions (semantic cases)
@@ -160,7 +160,7 @@
 ARE/inf		:: ARE/inf 	Inf 	PF:are 	LF:ARE/inf -SPEC:T/fin nonadjoinable 
 
 # English
-to/inf		:: Inf Φ? ?ΦLF TO/inf PF:to LF:to COMP:ASP -SPEC:Fin adjoinable
+to/inf		:: Inf EF? ?ΦLF TO/inf PF:to LF:to COMP:ASP -SPEC:Fin adjoinable
 
 # Miscellanneus items
 # Possessive, as in John's, but status unclear

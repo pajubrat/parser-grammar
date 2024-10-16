@@ -30,10 +30,9 @@ class LF:
                 ('Feature Conflict test', PhraseStructure.feature_conflict),
                 ('Probe-Goal test', PhraseStructure.probe_goal_test),
                 ('Semantic Complement test', PhraseStructure.semantic_complement),
-                ('Double Specifier Filter', PhraseStructure.double_spec_filter),
                 ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
                 ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
-                ('Phi Level test', PhraseStructure.phi_level_violation),
+                ('EPP test', PhraseStructure.EPP_violation),
                 ('External head merge test', PhraseStructure.complex_head_integrity),
                 ('Projection Principle', PhraseStructure.projection_principle_failure)]
         return [test for test in all_legibility_tests if self.speaker_model.settings.retrieve(test[0], True)]
@@ -46,7 +45,7 @@ class LF:
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(X):
                         if logging:
-                            log(f'\n\t\t{X} ({X.max().illustrate()}) failed {test_name} ')
+                            log(f'\n\t{X} failed {test_name} ')
                             if self.failed_feature:
                                 log(f'for [{self.failed_feature}]')
                         self.error_report_for_external_callers = f'{X} failed {test_name}.'
@@ -63,7 +62,7 @@ class LF:
             if key in self.selection_violation_test.keys():
                 if not self.selection_violation_test[key](X, X.get_selection_features(key)):
                     if self.logging:
-                        log(f'\t\t{X} failed {key}: {X.get_selection_features(key)} ')
+                        log(f'\t{X} failed {key}: {X.get_selection_features(key)} ')
                     return True     # Failed test
 
     def final_tail_check(self, goal):

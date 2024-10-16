@@ -89,26 +89,26 @@ class NarrowSemantics:
         if not self.speaker_model.ongoing_conversation:
             self.global_cognition.reset()
 
-    def postsyntactic_semantic_interpretation(self, ps):
+    def postsyntactic_semantic_interpretation(self, X):
         log(f'\n----Semantic interpretation---------------------------------------------------------------------------\n')
-        self.speaker_model.results.store_output_field('LF', f'{ps}')
-        self.interpret_(ps)
+        self.speaker_model.results.store_output_field('LF', f'{X}')
+        self.interpret_(X)
 
         # Inventory projection and ontology
         if self.speaker_model.settings.retrieve('general_parameter_project_objects', True):  # and not self.speaker_model.results.first_solution_found:
-            self.inventory_projection(ps)
+            self.inventory_projection(X)
 
         # Assignments
         if self.speaker_model.settings.retrieve('general_parameter_calculate_assignments', True):
-            n, weighted_assignments = self.quantifiers_numerals_denotations_module.reconstruct_assignments(ps)
+            n, weighted_assignments = self.quantifiers_numerals_denotations_module.reconstruct_assignments(X)
             self.speaker_model.results.store_output_field('Assignments', weighted_assignments)
             self.speaker_model.results.store_output_field('Number of assignments', str(n))
 
         # Information structure
-        if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and ps.finite():
-            self.speaker_model.results.store_output_field('Information structure', self.pragmatic_pathway.calculate_information_structure(ps))
+        if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and X.finite():
+            self.speaker_model.results.store_output_field('Information structure', self.pragmatic_pathway.calculate_information_structure(X))
         # Speaker attitude
-        self.speaker_model.results.store_output_field('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(ps))
+        self.speaker_model.results.store_output_field('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(X))
         return not self.semantic_interpretation_failed
 
     def interpret_(self, X):
@@ -119,7 +119,7 @@ class NarrowSemantics:
                     self.speaker_model.results.store_output_field('Thematic roles', self.thematic_roles_module.reconstruct(X))
                 # Argument-predicate pairs
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and \
-                        X.check_some({'Φ', 'Φ*'}) and not X.referential():
+                        X.check_some({'EF', 'EF*'}) and not X.referential():
                     self.speaker_model.results.store_output_field('Predicates', self.predicates.reconstruct(X))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False
@@ -127,8 +127,10 @@ class NarrowSemantics:
                     self.speaker_model.results.store_output_field('Indexing by Agree', self.predicates.reconstruct_agreement(X))
                 self.quantifiers_numerals_denotations_module.detect_phi_conflicts(X)
                 self.interpret_tail_features(X)
-                self.speaker_model.results.store_output_field('Operator bindings', self.operator_variable_module.bind_operator(X))
-                self.speaker_model.results.store_output_field('DIS-features', self.pragmatic_pathway.interpret_discourse_features(X))
+                if self.speaker_model.settings.retrieve('calculate_operator_bindings', True):
+                    self.speaker_model.results.store_output_field('Operator bindings', self.operator_variable_module.bind_operator(X))
+                if self.speaker_model.settings.retrieve('calculate_DIS_features', True):
+                    self.speaker_model.results.store_output_field('DIS-features', self.pragmatic_pathway.interpret_discourse_features(X))
                 if self.failure():
                     return
             else:
