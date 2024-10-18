@@ -11,10 +11,10 @@ class PlausibilityMetrics:
         self.plausibility_conditions = \
             {'spec_selection':                  {'condition': self.spec_selection,
                                                  'weight': self.speaker_model.settings.retrieve('spec_selection', 100),
-                                                 'log': '+Spec selection'},
+                                                 'log': 'SPEC selection'},
              'comp_selection':                  {'condition': self.comp_selection,
                                                  'weight': self.speaker_model.settings.retrieve('comp_selection', 100),
-                                                 'log': '+Comp selection'},
+                                                 'log': 'COMP selection'},
              'negative_semantics_match':        {'condition': self.negative_semantic_match,
                                                  'weight': self.speaker_model.settings.retrieve('negative_semantics_match', 100),
                                                  'log': 'Semantic mismatch'},
@@ -45,9 +45,9 @@ class PlausibilityMetrics:
         for X, new_weight in self.create_baseline_weighting([(site, 0) for site in site_list]):
             for key in self.plausibility_conditions:
                 if self.plausibility_conditions[key]['condition'](X, W):
-                    new_weight = new_weight + self.plausibility_conditions[key]['weight']
+                    new_weight += self.plausibility_conditions[key]['weight']
                 else:
-                    new_weight = new_weight - self.plausibility_conditions[key]['weight']
+                    new_weight -= self.plausibility_conditions[key]['weight']
             weighted_list.append((X, new_weight))
 
         set_logging(True)
@@ -59,12 +59,12 @@ class PlausibilityMetrics:
         return [X[0] for X in merge_sites]
 
     @staticmethod
-    def spec_selection(X, Y):
-        return X.spec_selection(Y)
+    def spec_selection(X, W):
+        return X.spec_selection(W)
 
     @staticmethod
-    def comp_selection(X, Y):
-        return X.comp_selection(Y)
+    def comp_selection(X,W):
+        return X.comp_selection(W)
 
     def negative_semantic_match(self, site, word):
         if site.zero_level():
@@ -72,11 +72,9 @@ class PlausibilityMetrics:
             if not m.semantic_match(word):
                 return True
 
-    def lf_legibility_condition(self, site, word):
-        if not site.zero_level():
-            left_branch_copy = site.copy().transfer()
-            if not self.speaker_model.LF.pass_LF_legibility(left_branch_copy, False):
-                return True
+    def lf_legibility_condition(self, X, W):
+        if not X.zero_level():
+            return self.speaker_model.LF.pass_LF_legibility(X.copy().transfer())
 
     def create_baseline_weighting(self, weighted_site_list, method=''):
         if method == 'Z':
@@ -103,7 +101,7 @@ class PlausibilityMetrics:
     def left_branch_filter(self, N):
         left_branch = N.copy().transfer()
         self.speaker_model.LF.active_test_battery = self.left_branch_filter_test_battery
-        return self.speaker_model.LF.pass_LF_legibility(left_branch, False)
+        return self.speaker_model.LF.pass_LF_legibility(left_branch, logging=False)
 
     @staticmethod
     def word_breaking_filter(N, w):

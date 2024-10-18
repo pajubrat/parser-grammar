@@ -18,7 +18,7 @@ class PhraseStructure:
     phase_heads_exclude = set()
     resources = {"Merge-1": {"ms": 0, "n": 0}}
     chain_index = 0
-    node_identity = 0
+    identity = 0
     noncyclic_derivation = False
 
     def __init__(self, left=None, right=None):
@@ -151,7 +151,8 @@ class PhraseStructure:
             return X.sister()
 
     def proper_complement(X):
-        return X.complement() and X.complement().is_R()
+        if X.complement() and X.complement().is_R():
+            return X.complement()
 
     def selector(X):
         if X.max().sister() and X.max().sister().zero_level() and X.max().sister().is_L():
@@ -259,18 +260,19 @@ class PhraseStructure:
     def new_focus(X):
         return next((x for x in X.const[::-1] if X.complex() and x.zero_level()), X)
 
-    def _reconstruct(X):
+    def reconstruct(X):
         """
         Reconstruction cycle for element X (head or phrase).
         OP = contains all reconstruction operations and their properties
         T = element that will be targeted (head or phrase, can be X itself, can be a chain copy)
         """
         for type, calculate in PhraseStructure.speaker_model.OP.items():
-            if calculate['TRIGGER'](X):
+            if not X.copied and calculate['TRIGGER'](X):
                 T = calculate['TARGET'](X)
                 if T:
                     log(f'\n\t{type}({T.illustrate()})')
                     X = calculate['TRANSFORM'](X, T).new_focus()
+                    log(f'\n\t = {X.top()}')
         return X.top()
 
     # Virtual pronouns -----------------------------------------------------------------------
@@ -336,15 +338,15 @@ class PhraseStructure:
     def plus_COMP(X, fset):
         return not PhraseStructure.speaker_model.settings.retrieve('head_complement_selection', True) or \
                fset == 0 or\
-               (not X.complement() and 'ø' in fset) or \
-               (X.complement() and X.complement().H().check_some(fset))
+               (not X.proper_complement() and 'ø' in fset) or \
+               (X.proper_complement() and X.proper_complement().H().check_some(fset))
 
     # -COMP:L,K
     def minus_COMP(X, fset):
         return not PhraseStructure.speaker_model.settings.retrieve('head_complement_selection', True) or \
                len(fset) == 0 or \
-               not X.complement() or \
-               not X.complement().H().check_some(fset)
+               not X.proper_complement() or \
+               not X.proper_complement().H().check_some(fset)
 
     # -SELF
     def minus_SELF(X, fset):
@@ -401,9 +403,10 @@ class PhraseStructure:
                (X.max().container() and X.max().container().complement() == X.max())
 
     def projection_principle_failure(X):
-        return (X.max().projection_principle_applies() and
-                not X.max().container_assigns_theta_role(X.max().container())) or \
-               X.pro_projection_principle_violation()
+        if X.max() != X.top():
+            return (X.max().projection_principle_applies() and
+                    not X.max().container_assigns_theta_role(X.max().container())) or \
+                   X.pro_projection_principle_violation()
 
     def projection_principle_applies(X):
         return X.referential() and \
@@ -422,16 +425,15 @@ class PhraseStructure:
                             return True
 
     def container_assigns_theta_role(X, Y):
-        return Y and Y.thematic_head() and \
-               ((X == Y.geometrical_sister() and not X.check_some(Y.get_selection_features('-COMP')) or
-                 X == Y.local_edge()))
+        return Y and Y.thematic_head() and not (X == Y.local_edge() and Y.EPP()) and \
+               (X == Y.geometrical_sister() or X == Y.local_edge())
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
     def transfer(X):
         Y, m = X.detach()
         for Z in Y.bottom().self_path():
-            Z._reconstruct()
+            Z.reconstruct()
         return Y.reattach(m)
 
     def scan_feature(X, feature):
@@ -460,60 +462,56 @@ class PhraseStructure:
 
     # Scrambling ==========================================================================
 
-    def scrambling_reconstruct(X, Y):
-        for x in X.local_tense_edge().minimal_search(intervention=lambda x: 'φ' in x.features or x.M() == X):
-            if x.tail_test(tail_sets=X.get_tail_sets()):
-                X.max().adjunct = True  # Mark the original as adjunct
-                if x.is_R():
-                    return Y * x
-                return Y * x.M()
-        if X.is_L():
-            X.max().adjunct = True  # Mark the original as adjunct
-            return X.top().bottom() * Y
-        return X.top()
+    def tail_fit(X, Y, direction='left'):
+        return X.tail_test(tail_sets=Y.get_tail_sets(),
+                           weak_test=Y.referential() or Y.preposition(),
+                           direction=direction)
+
+    def scrambling_reconstruct(XP, YP):
+        """
+        Reconstructs scrambled phrases.
+        XP = the original phrase which was marked for scrambling.
+        YP = target copy (may contain additional material such as Specs)
+        """
+
+        # In situ scrambling: if the extrenalized XP is in correct position, leave it there
+        if XP.tail_test() and not (XP.container() and XP.container().EPP()):
+            XP.copied = False
+            XP.identity = 0
+            return XP.top()
+
+        # Search for a new position
+        for x in XP.local_tense_edge().minimal_search(intervention=lambda x: 'φ' in x.features or x == XP.H()):
+            # Specifier positions
+            if x.tail_fit(YP, 'left') and YP.spec_selection(x):
+                if x.is_L():
+                    return YP * x.M()    #   [a X(P)] = [YP [a X(P)]]
+                return YP * x            #   [X(P) a] = [X(P) [YP a]]
+            # Complement positions
+            if x.zero_level() and not x.proper_complement() and x.tail_fit(YP, 'right') and x.comp_selection(YP):
+                return x * YP            #   [X(P) a] = [X(P) [a YP]] or [a <XP>] = [[a YP] <XP>]
+
+        XP.copied = False
+        XP.identity = 0
+        return XP.top()     # If nothing is found, do nothing
 
     def local_tense_edge(X):
         return next((node.M() for node in X.path() if node.finite() or node.force()), X.top())
 
-    def externalize_structure(X):
-        if X and X.H().is_adjoinable() and X.M():
-            if X.complex():
-                X.externalize_and_transfer()
-            else:
-                X.externalize_head()
-
-    def externalize_head(X):
-        if X.isolated_preposition():
-            X.externalize_and_transfer()
-        elif X.externalize_with_specifier() and X.M() and X.M().M() and X.local_edge():
-            X.M().M().externalize_and_transfer()
-        else:
-            X.M().externalize_and_transfer()
-
-    def externalize_and_transfer(X):
-        if X.M():
-            X.adjunct = True
-            X.add_tail_features_if_missing()
-            X.transfer_adjunct()
+    def scrambling_target(X):
+        """
+        Returns the phrase to be scrambled. Heads H which must or may have
+        specifiers will return [SPEC + HP] if SPEC is present (Condition 1); otherwise HP (Condition 2)
+        """
+        if X.H().check_some({'EF', 'EF*'}) and X.H().local_edge():
+            return X.H().local_edge().M()   # Condition 1
+        return X.H().M()    # Condition 2
 
     def transfer_adjunct(X):
         detached_phrase, m = X.detach()
         detached_phrase.transfer()
         detached_phrase.mother_ = m
         return detached_phrase
-
-    def add_tail_features_if_missing(X):
-        if not X.H().get_tail_sets():
-            if X.referential():
-                X.H().features.add('TAIL:V')
-            else:
-                X.H().features.add('TAIL:T')
-                X.H().features.add('Adv')
-
-    def externalize_with_specifier(X):
-        return X.is_L() and X.predicate() and \
-               ((X.tail_test() and X.local_edge()) or
-                (not X.tail_test() and X.SPEC_selection()))
 
     # Agreement ---------------------------------------------------------------------------------------------
     def AgreeLF(X):
@@ -589,7 +587,7 @@ class PhraseStructure:
                 return not X.primary_rule()                                 #       If Agree(X, Y), YP = SpecXP
             # If Agree(X, Y) does not occur, then violation can be avoided if X is specifically marked to not require Agree
             # or there is phi-consistent overt agreement suffices at X
-            elif not X.check_some({'?ΦLF', '-ΦLF'}) and not (X.check({'ΦPF'}) and X.phi_consistent_head()) or X.local_edge():
+            elif not X.check_some({'?ΦLF', '-ΦLF'}) and not (X.check({'ΦPF'}) and X.phi_consistent_head()):
                 return True
 
     def primary_rule(X):
@@ -602,16 +600,6 @@ class PhraseStructure:
 
     def phi_index(X):
         return next((f.split(':')[2] for f in X.features if f.startswith('PHI:IDX:')), None)
-
-    def license_extraposition(X):
-        return X.top().contains_finiteness() or X.top().referential()
-
-    def extrapose(X):
-        if X.sister() and not X.COMP_selection():
-            X.sister().H().adjunct = True
-        if not X.SPEC_selection():
-            X.H().adjunct = True
-        return X
 
     def feature_inheritance(X):
         if X.highest_finite_head():
@@ -660,14 +648,14 @@ class PhraseStructure:
     def specifiers_licensed(X):
         return set().union(*{frozenset(f[6:].split(',')) for f in X.features if f.startswith('+SPEC:')})
 
+    def spec_selection(X, W):
+        return X.complex() and X.check_some(W.specifiers_licensed())
+
+    def comp_selection(X, W):
+        return X.zero_level() and W.check_some(X.complements_licensed())
+
     def complements_licensed(X):
         return set().union(*{frozenset(f[6:].split(',')) for f in X.features if f.startswith('+COMP:')})
-
-    def spec_selection(X, Y):
-        return X.complex() and X.check(Y.specifiers_licensed())
-
-    def comp_selection(X, Y):
-        return X.zero_level() and Y.check_some(X.complements_licensed())
 
     def semantic_match(X, b):
         a_head = X.H()
@@ -708,7 +696,7 @@ class PhraseStructure:
         tail_sets = kwargs.get('tail_sets', X.get_tail_sets())
         if not tail_sets:
             return True
-        weak_test = kwargs.get('weak_test', X.referential() or X.preposition())
+        weak_test = kwargs.get('weak_test', True)
         direction = kwargs.get('direction', 'left')
         positive_tsets = {frozenset(positive_features(tset)) for tset in tail_sets if positive_features(tset)}
         negative_tsets = {frozenset(negative_features(tset)) for tset in tail_sets if negative_features(tset)}
@@ -924,7 +912,7 @@ class PhraseStructure:
                 return cat + suffix
         return '?' + suffix
 
-    def chaincopy(X, babtize='1'):
+    def chaincopy(X, babtize='1', **kwargs):
         def silence_phonologically(h):
             if not h.features:
                 h.features = {'null'}
@@ -936,14 +924,18 @@ class PhraseStructure:
             if h.R():
                 silence_phonologically(h.R())
 
+        if kwargs.get('externalize', False):
+            X.transfer()
+            X.adjunct = True
         X.identity = X.baptize_chain()
         X_copy = X.copy()
-        X_copy.adjunct = False
-        X_copy.node_identity = X.create_node_identity()
+        X_copy.identity = X.identity
         X_copy.copied = False
         silence_phonologically(X_copy)
         X.copied = True
-        X.features.add('CHAIN:' + str(X_copy.node_identity))
+        X.features.add('CHAIN:' + str(X_copy.identity))
+        if X.referential():
+            X_copy.adjunct = False
         return X_copy
 
     def for_LF_interface(X, features):

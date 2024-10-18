@@ -19,13 +19,17 @@ class SpeakerModel:
           'A-chain':
               {'TRIGGER': lambda x: x.zero_level() and
                                     x.EPP() and
-                                    x.is_R() and x.sister() and x.sister().complex() and
+                                    x.is_R() and x.sister() and x.sister().complex() and x.sister().referential() and
                                     not x.sister().operator_features() and x.tail_test(tail_sets=x.sister().get_tail_sets(), direction='right', weak_test=True),
                'TARGET': lambda x: x.sister().chaincopy(),
                'TRANSFORM': lambda x, t: x * t},
-          'Scrambling': {'TRIGGER': lambda x: x.M() and x.max().sister() and not x.H().tail_test() and x.max().adjoinable() and not x.operator_in_scope_position() and PhraseStructure.noncyclic_derivation,
-                         'TARGET': lambda x: x.max().chaincopy(),
-                         'TRANSFORM': lambda x, t: x.scrambling_reconstruct(t)},
+          'Scrambling': {'TRIGGER': lambda x: x.max().adjoinable() and
+                                              (x.container() and x.container().EPP() or not x.H().tail_test()) and
+                                              x.scrambling_target() and x.scrambling_target() != x.top() and
+                                              not x.operator_in_scope_position() and PhraseStructure.speaker_model.LF.pass_LF_legibility(x.scrambling_target().copy().transfer(), logging=False) and
+                                              PhraseStructure.noncyclic_derivation,
+                         'TARGET': lambda x: x.scrambling_target().chaincopy(externalize=True),
+                         'TRANSFORM': lambda x, t: x.scrambling_target().scrambling_reconstruct(t)},
           'Agree':
               {'TRIGGER': lambda x: x.zero_level() and x.is_L() and x.is_unvalued() and not x.check({'ΦLF'}),
                'TARGET': lambda x: x,
@@ -34,12 +38,8 @@ class SpeakerModel:
               {'TRIGGER': lambda x: x.complex_head() and not x.EHM() and not x.check({'C'}) and not x.affix().copied,
                'TARGET': lambda x: x.affix().chaincopy(),
                'TRANSFORM': lambda x, t: x.sister() * t if x.is_L() and x.sister() else x * t},
-          'Extrapose':
-              {'TRIGGER': lambda x: False and x.zero_level() and x.is_L() and x.selection_violation(),
-               'TARGET': lambda x: x,
-               'TRANSFORM': lambda x, y: x.extrapose()},
           'Cyclic Ā-chain':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_R() and x.thematic_head() and x.sister().zero_level(),
+              {'TRIGGER': lambda x: x.zero_level() and x.is_R() and x.thematic_head() and x.sister() and x.sister().zero_level(),
                'TARGET': lambda Y: next((x.chaincopy() for x in Y.path() if x.operator_features() and x.H().check_some(Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
                'TRANSFORM': lambda x, t: t * x},
           'Noncyclic Ā-chain':
@@ -146,7 +146,7 @@ class SpeakerModel:
             self.results.record_derivational_step(X, 'Phrase structure in syntactic working memory')
             for N in self.plausibility_metrics.filter_and_rank(X, W):
                 Y = X.target_left_branch(N).transfer().attach(W.copy())
-                Y = Y.bottom()._reconstruct()
+                Y = Y.bottom().reconstruct()
                 log(f'\n\t= {Y}\n')
                 self.derivational_search_function(Y, lst, index + 1)
                 if self.exit:

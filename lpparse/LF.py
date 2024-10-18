@@ -37,7 +37,8 @@ class LF:
                 ('Projection Principle', PhraseStructure.projection_principle_failure)]
         return [test for test in all_legibility_tests if self.speaker_model.settings.retrieve(test[0], True)]
 
-    def pass_LF_legibility(self, X, logging=True):
+    def pass_LF_legibility(self, X, **kwargs):
+        logging = kwargs.get('logging', True)
         self.logging = logging
         self.failed_feature = ''
         if not X.copied:
@@ -51,9 +52,9 @@ class LF:
                         self.error_report_for_external_callers = f'{X} failed {test_name}.'
                         return False
             else:
-                if not self.pass_LF_legibility(X.L(), logging):
+                if not self.pass_LF_legibility(X.L(), logging=logging):
                     return False
-                if not self.pass_LF_legibility(X.R(), logging):
+                if not self.pass_LF_legibility(X.R(), logging=logging):
                     return False
         return True
 
@@ -65,14 +66,14 @@ class LF:
                         log(f'\t{X} failed {key}: {X.get_selection_features(key)} ')
                     return True     # Failed test
 
-    def final_tail_check(self, goal):
-        if goal.complex():
-            if not goal.L().copied and not self.final_tail_check(goal.L()):
+    def final_tail_check(self, X):
+        if X.complex():
+            if not X.L().copied and not self.final_tail_check(X.L()):
                 return False
-            if not goal.R().copied and not self.final_tail_check(goal.R()):
+            if not X.R().copied and not self.final_tail_check(X.R()):
                 return False
-        if goal.zero_level() and goal.get_tail_sets() and not goal.tail_test():
-            log(f'\n\t\tPost-syntactic tail test for \'{goal.illustrate()}\' failed. @@')
+        if X.zero_level() and X.max() != X.top() and X.get_tail_sets() and not X.tail_test(weak_test=X.referential() or X.preposition()):
+            log(f'\n\t\tPost-syntactic tail test for \'{X.illustrate()}\' failed. @@')
             return False
         return True
 
@@ -81,4 +82,4 @@ class LF:
             ps.mother_ = None
             return ps
         self.active_test_battery = self.LF_legibility_tests
-        return self.pass_LF_legibility(detached(ps.copy()), False)
+        return self.pass_LF_legibility(detached(ps.copy()), logging=False)

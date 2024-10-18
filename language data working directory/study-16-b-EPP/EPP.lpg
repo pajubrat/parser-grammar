@@ -67,18 +67,14 @@ calculate_predicates = True
 calculate_operator_bindings = False
 calculate_DIS_features = False
 
-# PARSING HEURISTICS
+# PARSING HEURISTICS AND WEIGHTS
 extra_ranking = True
 filter = True
 lexical_anticipation = True
 closure = Bottom-up
 working_memory = True
 spec_selection = 100
-break_head_comp_relations = -100
-negative_tail_test = -100
-positive_head_comp_selection = 100
-negative_head_comp_selection = -100
-negative_semantics_match = -100
-lf_legibility_condition = -100
-negative_adverbial_test = -100
-positive_adverbial_test = 100
+comp_selection = 100
+negative_semantics_match = 100
+lf_legibility_condition = 100
+
