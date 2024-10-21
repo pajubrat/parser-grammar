@@ -259,7 +259,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.inventory['dependencies'] = []
         self.root_gps = GPhraseStructure(X.top().copy())
         self.root_gps.initialize_logical_space()
-        self.find_head_chains(self.root_gps)
         self.root_gps.remove_overlap()
         spx, spy = self.determine_position_of_highest_node(self.root_gps)
         self.canvas.draw_to_canvas(self.root_gps, spx, spy)
@@ -315,31 +314,18 @@ class PhraseStructureGraphics(tk.Toplevel):
     def save_image_as_postscript(self, filename=''):
         self.canvas.postscript(file=filename + '.eps', colormode='color')
 
-    def find_head_chains(self, gps):
-        gps.head_chain_target = gps.find_head_chain()
-        if gps.find_nonstandard_head_chain():
-            gps.head_chain_target = gps.find_nonstandard_head_chain()
-        if gps.L():
-            self.find_head_chains(gps.L())
-        if gps.R():
-            self.find_head_chains(gps.R())
-
-    def implement_chains(self, gps):
-        if self.application.settings.retrieve('image_parameter_head_chains', True) and gps.head_chain_target:
-            if gps.sister() != gps.head_chain_target or self.application.settings.retrieve(
-                    'image_parameter_trivial_head_chains', False) or not gps.nonverbal():
-                self.inventory['dependencies'].append(Dependency(gps, gps.head_chain_target, 'none', '', True))
-                gps.head_chain_target = None
+    def implement_chains(self, gX):
+        # head chains
+        if self.application.settings.retrieve('image_parameter_head_chains', True):
+            if gX.zero_level() and gX.affix() and gX.affix().copied:
+                self.inventory['dependencies'].append(Dependency(source=gX, target=gX.top().find_node_with_identity(gX.affix().identity, gX), smooth=True))
         # phrasal chains
         if self.application.settings.retrieve('image_parameter_phrasal_chains', True):
-            if gps.hasChain() and gps.sister():
-                target = gps.sister().find_node_with_identity(gps.hasChain())
-                if target:
-                    self.inventory['dependencies'].append(Dependency(gps, target, 'none', '', False))
-                    gps.features = {f for f in gps.features if not f.startswith('CHAIN:')}
-        if gps.complex() and not gps.compressed:
-            self.implement_chains(gps.L())
-            self.implement_chains(gps.R())
+            if gX.complex() and gX.copied and gX != gX.top():
+                self.inventory['dependencies'].append(Dependency(source=gX, target=gX.top().find_node_with_identity(gX.identity, gX), smooth=False))
+        if gX.complex() and not gX.compressed:
+            self.implement_chains(gX.L())
+            self.implement_chains(gX.R())
 
     def zoomer(self, event):
         if event.delta > 0:
@@ -878,12 +864,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         if len(self.canvas.selected_objects) > 1:
             for i, gps in enumerate(self.canvas.selected_objects):
                 if i < len(self.canvas.selected_objects) - 1:
-                    dep = Dependency()
-                    dep.source_gps = gps
-                    dep.target_gps = self.canvas.selected_objects[i + 1]
-                    dep.arrow_type = kwargs['arrowtype']
-                    dep.smooth = kwargs['smooth']
-                    dep.label = kwargs['label']
+                    dep = Dependency(source=gps, target=self.canvas.selected_objects[i + 1], arrow_type=kwargs['arrowtype'], smooth=kwargs['smooth'], label=kwargs['label'])
                     self.inventory['dependencies'].append(dep)
                     self.canvas.selected_dependency = dep
             self.canvas.selected_objects = []
@@ -1396,13 +1377,13 @@ class GraphicsMenu(tk.Menu):
 # Definitions for linguistic objects that can appear on canvas
 
 
-class Dependency():
-    def __init__(self, source=None, target=None, arrow_type='none', label='', smooth=False):
-        self.source_gps = source
-        self.target_gps = target
-        self.arrow_type = arrow_type
-        self.label = label
-        self.smooth = smooth
+class Dependency:
+    def __init__(self, **kwargs):
+        self.source_gps = kwargs.get('source', None)
+        self.target_gps = kwargs.get('target', None)
+        self.arrow_type = kwargs.get('arrow_type', 'none')
+        self.label = kwargs.get('label', '')
+        self.smooth = kwargs.get('smooth', False)
         self.Y_offset = 0
         self.source_X_offset = 0
         self.target_X_offset = 0
@@ -1506,7 +1487,7 @@ class DependencyDialog(tk.Toplevel):
             smooth = 'raw'
         else:
             smooth = ''
-        dep = Dependency(source_gps, target_gps, self.arrow_map[self.selDirection.get()], self.selLabel.get(), smooth)
+        dep = Dependency(source=source_gps, target=target_gps, arrow_type=self.arrow_map[self.selDirection.get()], label=self.selLabel.get(), smooth=smooth)
         dep.spx = self.selSpx.get()
         dep.spy = self.selSpy.get()
         dep.epx = self.selEpx.get()

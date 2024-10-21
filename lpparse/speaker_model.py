@@ -23,8 +23,8 @@ class SpeakerModel:
                                     not x.sister().operator_features() and x.tail_test(tail_sets=x.sister().get_tail_sets(), direction='right', weak_test=True),
                'TARGET': lambda x: x.sister().chaincopy(),
                'TRANSFORM': lambda x, t: x * t},
-          'Scrambling': {'TRIGGER': lambda x: x.max().adjoinable() and
-                                              (x.container() and x.container().EPP() or not x.H().tail_test()) and
+          'Scrambling': {'TRIGGER': lambda x: x.max().license_scrambling() and
+                                              (x.container() and x.container().EF() or not x.H().tail_test()) and
                                               x.scrambling_target() and x.scrambling_target() != x.top() and
                                               not x.operator_in_scope_position() and PhraseStructure.speaker_model.LF.pass_LF_legibility(x.scrambling_target().copy().transfer(), logging=False) and
                                               PhraseStructure.noncyclic_derivation,
@@ -164,12 +164,11 @@ class SpeakerModel:
     # Evaluates a complete solution at the LF-interface and semantic interpretation
     def evaluate_complete_solution(self, X):
         self.results.record_derivational_step(X, 'PF-interface')
-        log(f'\n\t={X.top()}')
-        log('\n\n----Noncyclic derivation------------------------------------------------------------------------------\n')
         PhraseStructure.noncyclic_derivation = True
+        log('\n\n----Noncyclic derivation------------------------------------------------------------------------------\n')
         X.transfer()
         X = X.top()
-        X.tidy_names(1)
+        # X.tidy_names(1)
         log(f'\n\t= LF-interface {X}\n\n')
         self.results.record_derivational_step(X, 'LF-interface')
 

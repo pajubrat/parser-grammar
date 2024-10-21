@@ -41,7 +41,6 @@ class GPhraseStructure(PhraseStructure):
         self.head_chain_target = None
         self.Agree_target = None
         self.source = source
-        self.node_identity = source.node_identity
         self.compressed = False
         self.compressed_into_head = False
         self.label_stack = self.generate_label_stack()
@@ -296,9 +295,3 @@ class GPhraseStructure(PhraseStructure):
             label_size = self.L().find_max_label_size(label_size)
             label_size = self.R().find_max_label_size(label_size)
         return label_size
-
-    def hasChain(self):
-        for f in self.features:
-            if f and f.startswith('CHAIN:'):
-                return int(f.split(':')[1])
-

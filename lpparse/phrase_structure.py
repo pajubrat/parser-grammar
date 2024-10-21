@@ -29,10 +29,9 @@ class PhraseStructure:
         self.features = set()
         self.active_in_syntactic_working_memory = True
         self.adjunct = False
-        self.copied = False
+        self.copied = None
         self.phrasal_zero = False
         self.identity = 0
-        self.node_identity = self.create_node_identity()
         self.internal = False
         self.rebaptized = False
         self.stop = False
@@ -425,7 +424,7 @@ class PhraseStructure:
                             return True
 
     def container_assigns_theta_role(X, Y):
-        return Y and Y.thematic_head() and not (X == Y.local_edge() and Y.EPP()) and \
+        return Y and Y.thematic_head() and not (X == Y.local_edge() and Y.EF()) and \
                (X == Y.geometrical_sister() or X == Y.local_edge())
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
@@ -475,7 +474,7 @@ class PhraseStructure:
         """
 
         # In situ scrambling: if the extrenalized XP is in correct position, leave it there
-        if XP.tail_test() and not (XP.container() and XP.container().EPP()):
+        if XP.tail_test() and not (XP.container() and XP.container().EF()):
             XP.copied = False
             XP.identity = 0
             return XP.top()
@@ -804,18 +803,17 @@ class PhraseStructure:
         return X, m
 
     def copy(X):
-        ps_ = PhraseStructure()
-        ps_.active_in_syntactic_working_memory = X.active_in_syntactic_working_memory
-        ps_.adjunct = X.adjunct
-        ps_.internal = X.internal
-        ps_.copied = X.copied
-        ps_.phrasal_zero = X.phrasal_zero
-        ps_.identity = X.identity
-        ps_.node_identity = X.node_identity
-        ps_.create_constituents([x.copy() for x in X.const])
+        Y = PhraseStructure()
+        Y.active_in_syntactic_working_memory = X.active_in_syntactic_working_memory
+        Y.adjunct = X.adjunct
+        Y.internal = X.internal
+        Y.identity = X.identity
+        Y.copied = X.copied
+        Y.phrasal_zero = X.phrasal_zero
+        Y.create_constituents([x.copy() for x in X.const])
         if X.features:
-            ps_.features = X.features.copy()
-        return ps_
+            Y.features = X.features.copy()
+        return Y
 
     def reattach(X, m):
         X.mother_ = m
@@ -912,31 +910,25 @@ class PhraseStructure:
                 return cat + suffix
         return '?' + suffix
 
-    def chaincopy(X, babtize='1', **kwargs):
+    def chaincopy(X, **kwargs):
         def silence_phonologically(h):
-            if not h.features:
-                h.features = {'null'}
-            else:
-                h.features.add('null')      # Null is about what is printed out
-                h.features.discard('Δp')    # This is the grammatical feature that operates in narrow syntax
             if h.L():
                 silence_phonologically(h.L())
             if h.R():
                 silence_phonologically(h.R())
 
+        # Externalization may be added to copying
         if kwargs.get('externalize', False):
             X.transfer()
             X.adjunct = True
         X.identity = X.baptize_chain()
-        X_copy = X.copy()
-        X_copy.identity = X.identity
-        X_copy.copied = False
-        silence_phonologically(X_copy)
-        X.copied = True
-        X.features.add('CHAIN:' + str(X_copy.identity))
+        Xc = X.copy()
+        X.copied = Xc
+        Xc.identity = X.identity
+        silence_phonologically(Xc)
         if X.referential():
-            X_copy.adjunct = False
-        return X_copy
+            Xc.adjunct = False
+        return Xc
 
     def for_LF_interface(X, features):
         set_of_features = set()
@@ -1159,6 +1151,9 @@ class PhraseStructure:
     def adjoinable(X):
         return X.complex() and not X.copied and X.H().get_tail_sets() and X.H().check({'adjoinable'}) and not X.H().check({'nonadjoinable'})
 
+    def license_scrambling(X):
+        return X.adjoinable() and not X.check({'nonfloat'})
+
     def legitimate_criterial_feature(X):
         return X.referential() and not X.relative() and X.mother_ and X.mother_.contains_features({'REL'}) and not X.mother_.contains_features({'T/fin'})
 
@@ -1202,6 +1197,9 @@ class PhraseStructure:
     def EPP(X):
         return X.check({'EF*'})
 
+    def EF(X):
+        return X.check_some({'EF', 'EF*'})
+
     def AgreeLF_has_occurred(X):
         return X.check({'ΦLF'})
 
@@ -1211,18 +1209,17 @@ class PhraseStructure:
     def EHM(X):
         return 'ε' in X.features
 
-    def create_node_identity(X):
-        PhraseStructure.node_identity += 1
-        return PhraseStructure.node_identity
-
-    def find_node_with_identity(X, identity):
-        if X.node_identity == identity:
-            return X
-        if X.complex():
-            for x in X.const:
-                node = x.find_node_with_identity(identity)
-                if node:
-                    return node
+    def find_node_with_identity(X, identity, start):
+        Y = None
+        if X != start:
+            if X.identity == identity:
+                return X
+            if X.complex():
+                for x in X.const:
+                    Y = x.find_node_with_identity(identity, start)
+                    if Y:
+                        break
+        return Y
 
     def has_linked_argument(X):
         return {f for f in X.H().features if f.startswith('PHI:IDX:')}

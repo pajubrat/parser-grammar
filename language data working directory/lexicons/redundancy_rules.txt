@@ -31,7 +31,7 @@
 	D   	:: 	REF					!PROBE:N +COMP:Q,Qn,Num,φ,N +SPEC:D,ø
 	D/rel	:: 	adjoinable			!PROBE:N +COMP:Q,Qn,Num,φ,N +SPEC:D,ø
 	N   	:: 	θ Φ					+COMP:P,ø,C/rel
-	P   	:: 	θ Adv adjoinable 	+COMP:D,φ,ø
+	P   	:: 	θ Adv adjoinable 	+COMP:D,φ
 	A 		:: 	θ 					-SPEC:A
 	n		:: 	Φ ?ΦLF Inf			-COMP:n
 	√		:: 	SPEC:φ 2SPEC 		+COMP:P,ø,C/rel
@@ -104,10 +104,10 @@
 		T/fin LANG:FI	::  EF*
 		Adv LANG:FI		::	EF
 		P LANG:FI		::  EF
-		V LANG:FI		::	EF -ΦPF
+		V LANG:FI		::	-ΦPF
 		A LANG:FI		::	EF
 		VA/inf LANG:FI	::	EF*
-		v LANG:FI		::  EF -ΦPF
+		v LANG:FI		::  -ΦPF
 		Fin LANG:FI		::  EF* ?ΦLF
 		T/prt LANG:FI	::	EF*
 		φ LANG:FI		::  EF ?ΦLF +SPEC:D,φ,ø
@@ -121,6 +121,7 @@
 		A LANG:FI 		::  nonadjoinable
 		LANG:FI T/prt	:: 	-PER
 		TA*				:: V COMP:V
+		LANG:FI P		:: +COMP:D,φ,ø
 
 	# Finnish specific operator features
 
@@ -133,7 +134,7 @@
 
 # ENGLISH
 
-	P LANG:EN		::	nonfloat -SPEC:φ
+	P LANG:EN		::	nonfloat -SPEC:φ +COMP:D,φ
 	T/fin LANG:EN	::	EF* +SELF:ΦLF
 	A LANG:EN		::	nonadjoinable
 	ACC LANG:EN		::	nonadjoinable nonfloat

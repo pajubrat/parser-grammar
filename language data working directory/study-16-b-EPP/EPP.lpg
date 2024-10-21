@@ -15,6 +15,7 @@ console_output = Full
 stop_at_unknown_lexical_item = False
 logging = True
 use_numeration = False
+
 general_parameter_project_objects = True
 
 # FILES
@@ -29,7 +30,7 @@ image_parameter_words = True
 image_parameter_glosses = True
 image_parameter_adjuncts = False
 image_parameter_complex_heads = False
-image_parameter_head_chains = True
+image_parameter_head_chains = False
 image_parameter_phrasal_chains = True
 image_parameter_phrasal_complex_heads = False
 image_parameter_covert_complex_heads = False
@@ -45,7 +46,7 @@ image_parameter_visualization = ### > ###
 #	standard = standard theory (Chomsky 2000, 2001, 2008)
 #	revised = current best formulation
 UG_parameter_Agree = revised
-EPP test = True
+EPP_test = True
 
 # Phase theory
 UG_parameter_phase_heads = C;ASP;FORCE;IMPSS
@@ -77,4 +78,3 @@ spec_selection = 100
 comp_selection = 100
 negative_semantics_match = 100
 lf_legibility_condition = 100
-
