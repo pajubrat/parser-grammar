@@ -502,7 +502,7 @@ class PhraseStructure:
         Returns the phrase to be scrambled. Heads H which must or may have
         specifiers will return [SPEC + HP] if SPEC is present (Condition 1); otherwise HP (Condition 2)
         """
-        if X.H().check_some({'EF', 'EF*'}) and X.H().local_edge():
+        if X.H().check_some({'EF', 'EF*'}) and X.H().local_edge() and not X.H().local_edge().check_some({'T', 'V'}):
             return X.H().local_edge().M()   # Condition 1
         return X.H().M()    # Condition 2
 
@@ -751,7 +751,7 @@ class PhraseStructure:
         return antecedent
 
     def finite_control(X):
-        antecedent = X.next(X.path, lambda x: x.complex() and X.is_possible_antecedent(x) and not x.copied)
+        antecedent = X.next(X.path, lambda x: x.complex() and X.is_possible_antecedent(x))
         return antecedent
 
     # Structure building --------------------------------------------------------------------------

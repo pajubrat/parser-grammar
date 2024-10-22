@@ -119,7 +119,7 @@ class NarrowSemantics:
                     self.speaker_model.results.store_output_field('Thematic roles', self.thematic_roles_module.reconstruct(X))
                 # Argument-predicate pairs
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and \
-                        X.check_some({'EF', 'EF*'}) and not X.referential():
+                        X.check({'Φ'}) and not X.referential():
                     self.speaker_model.results.store_output_field('Predicates', self.predicates.reconstruct(X))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False

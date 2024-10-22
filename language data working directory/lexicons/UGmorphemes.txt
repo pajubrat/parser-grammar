@@ -109,12 +109,12 @@
 		tUA,TUA/inf 		:: TUA/inf		Φ EF* Inf Adv =SELF:ΦLF,ΦPF	PF:-tUA 	PC:#X LF:after +COMP:ASP TAIL:T TAM LANG:FI
 		kse,KSE/inf			:: KSE/inf		Φ EF* Inf Adv -ΦLF +SELF:ΦPF	PF:-kse 	PC:#X LF:for +COMP:ASP TAIL:T TAM LANG:FI
 		en,E/inf			:: E/inf 		Φ Inf Adv OC  			PF:-en 		PC:#X LF:by +COMP:ASP TAIL:T TAM LANG:FI
-		mAssA,MA.ine/inf	:: MA.ine/inf	Φ Inf Adv OC				PF:-mAssA 	PC:#X LF:in +COMP:ASP TAIL:V MA/inf TAM LANG:FI T
-		mAttA,MA.abe/inf	:: MA.abe/inf	Φ Inf Adv OC				PF:-mAttA 	PC:#X LF:without +COMP:ASP TAIL:T MA/inf TAM LANG:FI
-		mAllA,MA.ade/inf	:: MA.ade/inf	Φ Inf Adv OC				PF:-mAllA 	PC:#X LF:by +COMP:ASP TAIL:V MA/inf TAM LANG:FI
-		mAstA,MA.ela/inf	:: MA.ela/inf	Φ Inf Adv OC 				PF:-mAstA 	PC:#X LF:without +COMP:ASP TAIL:V/TR,SEMCLASS_denied_event MA/inf TAM LANG:FI
-		mAAn,MA.ill/inf		:: MA.ill/inf	Φ Inf		OC 				PF:-mAAn 	PC:#X LF:to +COMP:ASP SEM/desired_event adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf TAM LANG:FI
-		
+		mAssA,MA.ine/inf	:: MA.ine/inf	  EF Inf Adv OC				PF:-mAssA 	PC:#X LF:in +COMP:ASP TAIL:V MA/inf TAM LANG:FI
+		mAttA,MA.abe/inf	:: MA.abe/inf	  EF Inf Adv OC				PF:-mAttA 	PC:#X LF:without +COMP:ASP TAIL:T MA/inf TAM LANG:FI
+		mAllA,MA.ade/inf	:: MA.ade/inf	  EF Inf Adv OC				PF:-mAllA 	PC:#X LF:by +COMP:ASP TAIL:V MA/inf TAM LANG:FI
+		mAstA,MA.ela/inf	:: MA.ela/inf	  EF Inf Adv OC 				PF:-mAstA 	PC:#X LF:without +COMP:ASP TAIL:V/TR,SEMCLASS_denied_event MA/inf TAM LANG:FI
+		mAAn,MA.ill/inf		:: MA.ill/inf	  EF Inf	OC 				PF:-mAAn 	PC:#X LF:to +COMP:ASP SEM/desired_event adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf TAM LANG:FI
+	
 		impss		:: IMPSS	Pass V EF 							PF:-TA		PC:#X# LF:Impss +COMP:ASP -COMP:v,IMPSS
 		
 		# nominal
@@ -160,7 +160,7 @@
 ARE/inf		:: ARE/inf 	Inf 	PF:are 	LF:ARE/inf -SPEC:T/fin nonadjoinable 
 
 # English
-to/inf		:: Inf EF? ?ΦLF TO/inf PF:to LF:to COMP:ASP -SPEC:Fin adjoinable
+to/inf		:: Inf EF? ?ΦLF TO/inf PF:to LF:to +COMP:ASP adjoinable
 
 # Miscellanneus items
 # Possessive, as in John's, but status unclear

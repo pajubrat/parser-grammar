@@ -86,7 +86,7 @@ ihailevan	:: ihaile-#v#VA/inf LANG:FI
 ihailevansa :: ihaile-#v#VA/inf#nsA LANG:FI
 ihailemassa :: ihaile-#v#MA.ine/inf LANG:FI
 ihailtua	:: ihaile-#v#TUA/inf LANG:FI
-ihaile		:: ihaile-#v#T#prs LANG:FI
+ihaile		:: ihaile-#v#T/fin#prs LANG:FI
 ihaillut 	:: ihaile-#v#T/prt#sg LANG:FI
 ihailla		:: ihaile-#v#A/inf LANG:FI
 ihailemalla :: ihaile-#v#MA.ade/inf LANG:FI
@@ -197,8 +197,8 @@ laula-		:: V PF:laula- LF:sing V/INTR LANG:FI
 lika-		:: PF:lika LF:dirt N LANG:FI
 lyhyt-		:: PF:lyhyt LF:short A LANG:FI
 lähellä		:: P PF:lähellä LF:near TAIL:V Φ Inf EF* LANG:FI
-lähellä/1	:: P PF:lähellä LF:near TAIL:V Φ Inf EF* LANG:FI
-lähellä/2	:: P PF:lähellä LF:near TAIL:V Φ Inf EF ?ΦLF -ΦPF LANG:FI
+lähellä/2	:: P PF:lähellä LF:near TAIL:V Φ Inf EF* LANG:FI
+lähellä/1	:: P PF:lähellä LF:near TAIL:V Φ Inf EF ?ΦLF -ΦPF LANG:FI
 lähden		:: lähte-#T/fin#prs#n LANG:FI
 lähdin		:: lähte-#T/fin#prs#n LANG:FI
 lähdet		:: lähte-#T/fin#prs#t LANG:FI
@@ -227,7 +227,7 @@ lähtiessä	:: lähte-#ESSA/inf LANG:FI
 lähtiessään	:: lähte-#ESSA/inf#An LANG:FI
 lähdettyään	:: lähte-#TUA/inf#An LANG:FI
 lähdettyä	:: lähte-#TUA/inf LANG:FI
-lähde		:: lähte-#T#prs LANG:FI
+lähde		:: lähte-#T/fin#prs LANG:FI
 lähti		:: lähte-#T/fin#pst#[V] LANG:FI
 lähdettiin	:: lähte-#impss#T/fin#pst#Vn LANG:FI
 lähtisi		:: lähte-#T/fin#cond LANG:FI
@@ -249,6 +249,7 @@ v'			:: v PF:v LF:v ASP:BOUNDED
 maalatessa	:: maalaa-#v#ESSA/inf LANG:FI
 maalattua	:: maalaa-#v#TUA/inf LANG:FI
 maalaavan	:: maalaa-#v#VA/inf LANG:FI
+maalaamassa	:: maalaa-#v#MA.ine/inf LANG:FI
 maalata		:: maalaa-#v#A/inf LANG:FI
 maalasi		:: maalaa-#v#T/fin#pst#[V] LANG:FI
 maalasin	:: maalaa-#v#T/fin#pst#n LANG:FI
@@ -576,6 +577,7 @@ se-			:: PF:se LF:the/that D LANG:FI
 se			:: se_N-#φ#[nom]#sg#3p#def#nonhum#pron LANG:FI
 sitä		:: se_N-#φ#[par]#sg#3p#def#nonhum#pron LANG:FI
 sen			:: se_N-#φ#[gen]#sg#3p#def#nonhum#pron LANG:FI
+sen/2		:: se_N-#φ#[gen]#sg#3p#def#nonhum#pron LANG:FI
 se_N-		:: PF:se LF:the/that N LANG:FI
 itseä		:: itse-#φ#[par]#reflexive LANG:FI
 itseään		:: itse-#φ#3p#sg#def#[par]#reflexive LANG:FI
@@ -714,7 +716,7 @@ said    	:: say-#T/fin#pst LANG:EN
 say-    	:: PF:say LF:say V +COMP:FORCE LANG:EN
 seems		:: seem-#T/fin#prs#[-s] LANG:EN
 seem		:: seem-#T/fin#prs#[-0] LANG:EN
-seem-		:: PF:seem LF:seem V SPEC:φ EF +COMP:TO/inf SEM:internal nonphase
+seem-		:: PF:seem LF:seem V SPEC:φ EF* +COMP:TO/inf nonphase
 Seine		:: Seine-#D#sg#3p#def LANG:EN
 Seine-		:: PF:Seine LF:Seine N LANG:EN
 solution	:: PF:solution LF:solution N LANG:EN
@@ -868,32 +870,32 @@ volu-		:: V PF:volu -E SEM:internal LF:want !COMP:*
 
 
 # Pronouns
-io			:: io-#D/pro#sg#1p#def#hum
+io			:: io-#D#sg#1p#def#hum
 io-			:: PF:io LF:I N PHI_N LANG:IT 
-tu			:: tu-#D/pro#sg#2p#def#hum
+tu			:: tu-#D#sg#2p#def#hum
 tu- 		:: PF:tu LF:you N PHI_N LANG:IT
-lui 		:: lui-#D/pro#sg#3p#def#hum#m
+lui 		:: lui-#D#sg#3p#def#hum#m
 lui-  		:: PF:lui LF:he N PHI_N LANG:IT
-lei 		:: lei-#D/pro#sg#3p#def#hum#f
+lei 		:: lei-#D#sg#3p#def#hum#f
 lei-		:: PF:lei LF:she N PHI_N LANG:IT
-noi			:: noi-#D/pro#pl#1p#def#hum
+noi			:: noi-#D#pl#1p#def#hum
 noi-		:: PF:noi LF:we N PHI_N LANG:IT
-voi			:: voi-#D/pro#pl#2p#def#hum
+voi			:: voi-#D#pl#2p#def#hum
 voi-		:: PF:voi LF:you_pl N PHI_N LANG:IT
-loro		:: loro-#D/pro#pl#3p#def LANG:IT
+loro		:: loro-#D#pl#3p#def LANG:IT
 loro-		:: PF:loro LF:they N PHI_N LANG:IT
 
 # Clitics
-mi			:: mi-#D/pro#sg#1p#def#hum#m#cl#acc_it
+mi			:: mi-#D#sg#1p#def#hum#m#cl#acc_it
 mi-			:: PF:mi(cl) LF:me N PHI_N CL LANG:IT
-la			:: la-#D/pro#sg#3p#def#hum#f#cl#acc_it
+la			:: la-#D#sg#3p#def#hum#f#cl#acc_it
 la-			:: PF:la(cl) LF:her N PHI_N CL LANG:IT
-lo			:: lo-#D/pro#sg#3p#def#hum#m#cl#acc_it
+lo			:: lo-#D#sg#3p#def#hum#m#cl#acc_it
 lo-			:: PF:lo(cl) LF:him N PHI_N CL LANG:IT
-si§			:: si-#D/pro#3p#def#cl#nom
+si§			:: si-#D#3p#def#cl#nom
 si-			:: PF:si(cl) LF:3sg N PHI_N CAL:CL LANG:IT
-gli			:: lo-#D/pro#sg#3p#def#hum#m#a_IT#cl#dat
-ci			:: ci-#D/pro#sg#3p#def#hum#m#cl#dat
+gli			:: lo-#D#sg#3p#def#hum#m#a_IT#cl#dat
+ci			:: ci-#D#sg#3p#def#hum#m#cl#dat
 ci-			:: PF:ci LF:there N PHI_N LANG:IT
 
 # HUNGARIAN LEXICON ------------------------------------------------------------------------------------------------------------------------
