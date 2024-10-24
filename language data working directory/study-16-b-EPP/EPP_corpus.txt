@@ -353,21 +353,36 @@
 			'Seine.nom flow.prs.3sg Paris.par near Paris.gen'
 
 	& 2.3 Finnish adposition, type yli/ali 'over/under'
-
-		& 2.3.1 Word order variations, without -agreement
 			
-			Seine virtaa ali sillan
-			'Seine.nom flow.prs.3sg under bridge.gen'
-			
-			Seine virtaa sillan ali
-			'Seine.nom flow.prs.3sg [bridge.gen_1 under _1]'
-			
-			ali sillan Seine virtaa
-			'[under bridge]_1 Seine.nom flow.prs.3sg _1'
-			
-			sillan ali Seine virtaa
-			'[bridge_1 under _1]_2 Seine.nom flow.prs.3sg _2'
-					
+		Seine virtaa ali sillan
+		'Seine.nom flow.prs.3sg under bridge.gen'
+		
+		Seine virtaa sillan ali
+		'Seine.nom flow.prs.3sg [bridge.gen_1 under _1]'
+		
+		ali sillan Seine virtaa
+		'[under bridge]_1 Seine.nom flow.prs.3sg _1'
+		
+		sillan ali Seine virtaa
+		'[bridge_1 under _1]_2 Seine.nom flow.prs.3sg _2'
+	
+	& 2.3 E-infinitive (adjunct-adverbial, no subject, optional nonthematic specifier)
+		
+		Pekka työskenteli maalaten aitaa
+		'Pekka.nom work.pst.3sg paint.e/inf fence.par'
+		
+		Pekka työskenteli aitaa maalaten
+		'Pekka.nom work.pst.3sg fence.par paint.e/inf __'
+	
+		*Pekka työskenteli maalaten aidan_gen
+		'Pekka.nom work.pst.3sg paint.e/inf fence.gen'
+		
+		*Pekka työskenteli aidan_gen maalaten
+		'Pekka.nom work.pst.3sg fence.gen paint.e/inf __'
+	
+		*Pekka työskenteli Merjan_gen maalaten aitaa
+		'Pekka.nom work.pst.3sg Merja.gen paint.e/ing fence.par'
+	
 & 3. Strong edge feature EF* (EPP) with primary rule
 
 	& 3.1 Finnish adpositions, type II lähellä 'near'	
