@@ -317,15 +317,20 @@ class PhraseStructureGraphics(tk.Toplevel):
     def implement_chains(self, gX):
         # head chains
         if self.application.settings.retrieve('image_parameter_head_chains', True):
-            if gX.zero_level() and gX.affix() and gX.affix().copied:
+            if gX.zero_level() and gX.affix() and gX.affix().copied and not self.dependency_exists(gX):
                 self.inventory['dependencies'].append(Dependency(source=gX, target=gX.top().find_node_with_identity(gX.affix().identity, gX), smooth=True))
         # phrasal chains
         if self.application.settings.retrieve('image_parameter_phrasal_chains', True):
-            if gX.complex() and gX.copied and gX != gX.top():
+            if gX.complex() and gX.copied and gX != gX.top() and not self.dependency_exists(gX):
                 self.inventory['dependencies'].append(Dependency(source=gX, target=gX.top().find_node_with_identity(gX.identity, gX), smooth=False))
         if gX.complex() and not gX.compressed:
             self.implement_chains(gX.L())
             self.implement_chains(gX.R())
+
+    def dependency_exists(self, gX):
+        for dep in self.inventory['dependencies']:
+            if dep.source_gps == gX:
+                return True
 
     def zoomer(self, event):
         if event.delta > 0:
@@ -783,9 +788,10 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_into_DP(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            if {'D', 'φ'} & gps.H().features:
-                gps.compressed_into_head = True
-                gps.compressed = False
+            gps.H().features = {f for f in gps.H().features if f not in PhraseStructure.major_cats}
+            gps.H().features = gps.H().features | {'D', 'φ'}
+            gps.compressed_into_head = True
+            gps.compressed = False
             self.label_stack_update(gps)
         self.update_contents()
 

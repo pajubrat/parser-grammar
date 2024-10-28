@@ -502,7 +502,7 @@ class PhraseStructure:
         Returns the phrase to be scrambled. Heads H which must or may have
         specifiers will return [SPEC + HP] if SPEC is present (Condition 1); otherwise HP (Condition 2)
         """
-        if X.H().check_some({'EF', 'EF*'}) and X.H().local_edge() and not X.H().local_edge().check_some({'T', 'V'}):
+        if X.H().EF() and X.H().local_edge() and not X.H().local_edge().check_some({'T', 'V'}):
             return X.H().local_edge().M()   # Condition 1
         return X.H().M()    # Condition 2
 
@@ -576,8 +576,8 @@ class PhraseStructure:
         Current implementation of the Agree/EPP system, tested as LF-legibility
         """
         if not X.check_some({'ASP', 'strong_pro', 'C/fin'}):                #   Amnesty for strong pro, theta heads and C/fin
-            if not X.check_some({'EF*', 'EF'}):                             #   If X does not have EF, it cannot have local edge
-                return X.local_edge()
+            if not X.EF():                                                  #   If X does not have EF,
+                return X.local_edge() and not X.thematic_edge()             #   it cannot have nonthematic edge element
             if X.check({'-ΦPF'}) or not X.EPP():                            #   Amnesty for non-agreeing heads and heads without EPP
                 return False
             if X.check({'weak_pro'}):                                       #   Secondary rule:
@@ -1065,10 +1065,13 @@ class PhraseStructure:
         return X.check({'ASP'})
 
     def theta_predicate(X):
-        return X.check({'θ'}) and X.check_some({'EF', 'EF*'}) and not X.check({'-θ'})
+        return X.check({'θ'}) and not X.check({'-θ'})
 
     def nonthematic_verb(X):
         return X.verbal() and not X.theta_predicate()
+
+    def thematic_edge(X):
+        return X.get_selection_features('+SPEC') & {'D', 'φ'}
 
     def light_verb(X):
         return X.check_some({'v', 'v*', 'impass', 'cau'})
@@ -1119,7 +1122,7 @@ class PhraseStructure:
         return X.check_some({'CAT:?', '?'})
 
     def predicate(X):
-        return X.zero_level() and X.check_some({'EF', 'EF*'})
+        return X.zero_level() and X.check({'Φ'})
 
     def adverbial_adjunct(X):
         return X.adverbial() or X.preposition()
@@ -1180,7 +1183,8 @@ class PhraseStructure:
     def theta_marks(X, target):
         if X.sister() == target:
             return X.theta_predicate()
-        return X.check_some({'SPEC:φ', '!SPEC:φ'})
+        if X.local_edge() == target:
+            return X.plus_SPEC({'D', 'φ'})
 
     def independent_pro_from_overt_agreement(X):
         return X.check_some({'weak_pro', 'strong_pro'})

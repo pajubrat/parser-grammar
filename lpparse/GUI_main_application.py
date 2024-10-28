@@ -7,7 +7,6 @@ class DatasetView(tk.LabelFrame):
     def __init__(self, parent, input_data, **kwargs):
         super().__init__(parent, text='Dataset', font=('Calibri 16'), **kwargs)
         self.style = ttk.Style()
-
         self.style.configure('mystyle.Treeview', font=('Calibri', 20), rowheight=40)
         self.input_data = input_data
         self.sentences_to_parse_dict = {}
@@ -27,24 +26,43 @@ class DatasetView(tk.LabelFrame):
         # Bindings
         self.dataset_treeview.bind('<Double-1>', self._analyze)
 
+        # Fixes a bug in the treeview colors (https://core.tcl-lang.org/tk/info/509cafafae48cba4)
+        def fixed_map(option):
+            # Returns the style map for 'option' with any styles starting with
+            # ("!disabled", "!selected", ...) filtered out
+            # style.map() returns an empty list for missing options, so this should
+            # be future-safe'
+            return [elm for elm in self.style.map("Treeview", query_opt=option)
+                    if elm[:2] != ("!disabled", "!selected")]
+        self.style.map("Treeview",
+                  foreground=fixed_map("foreground"),
+                  background=fixed_map("background"))
+
     def selected_item(self):
         return self.dataset_treeview.selection()[0]
 
     def fill_with_data(self):
         sentence_nro = 1
-        prefix = ''
-        for data_item in self.input_data.get_all():
-            if not data_item['grammaticality']:
-                prefix = '*'
-            self.dataset_treeview.insert('', 'end', iid=data_item['index'], text=data_item['index'], values=[data_item['expression']])
-            self.sentences_to_parse_dict[sentence_nro] = {'word_list': data_item["word_list"], 'grammatical': data_item["grammaticality"]}
-            sentence_nro += 1
+        for i, data_item in enumerate(self.input_data.get_all()):
+            if data_item['expression'].startswith('&'):
+                tag = 'label'
+                self.dataset_treeview.insert('', 'end', iid=i, text='', values=[data_item['expression'].lstrip('&').strip()], tags=(tag,))
+            else:
+                tag = 'data'
+                if not data_item['grammaticality']:
+                    prefix = '*'
+                else:
+                    prefix = ''
+                self.dataset_treeview.insert('', 'end', iid=i, text=data_item['index'], values=[prefix + data_item['expression']], tags=(tag,))
+                self.sentences_to_parse_dict[sentence_nro] = {'word_list': data_item["word_list"], 'grammatical': data_item["grammaticality"]}
+                sentence_nro += 1
+        self.dataset_treeview.tag_configure('label', background='yellow', foreground='#000000', font=('Calibri', 20, 'bold'))
+        self.dataset_treeview.tag_configure('data', background='#FFFFFF', foreground='#000000')
 
     def _analyze(self, k):
-        if self.dataset_treeview.selection():
-            self.selected_data_item = int(self.dataset_treeview.selection()[0])
+        if self.dataset_treeview.selection() and self.dataset_treeview.item(self.dataset_treeview.focus())['text']:
+            self.selected_data_item = int(self.dataset_treeview.item(self.dataset_treeview.focus())['text'])
             self.event_generate('<<Analyze>>')
-
 
 class LogTextWindow(tk.Toplevel):
     color_scheme = {'Next head': {'color': 'black', 'mark whole line': True, 'mark until': None},

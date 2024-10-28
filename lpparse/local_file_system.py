@@ -102,7 +102,7 @@ class LocalFileSystem:
                 line = line.strip()
                 if line.startswith('STOP') or line.startswith('END'):
                     break
-                if not line or line.startswith('#') or line.startswith("\'") or line.startswith('&'):
+                if not line or line.startswith('#') or line.startswith("\'"):
                     continue
                 if line.startswith('BEGIN'):
                     input_data.reset()
@@ -127,10 +127,13 @@ class LocalFileSystem:
                     field, value = line.split(':')
                     input_data.update(index, {field.strip(): value.strip()})
                     continue
-                index += 1
                 if not cont and index > 1:
                     break
-                input_data.add(self.create_data_from_line(line, index, part_of_conversation))
+                if line.startswith('&'):
+                    input_data.add(self.create_data_from_line(line, -1, part_of_conversation))
+                else:
+                    index += 1
+                    input_data.add(self.create_data_from_line(line, index, part_of_conversation))
             return input_data
         except IOError:
             print(f'The corpus file "{input_file}" seems to be missing.\n'

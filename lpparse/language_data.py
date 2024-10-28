@@ -12,7 +12,7 @@ class LanguageData:
         self.index = 1
 
     def get_all(self):
-        return [dict for dict in self.data][1:]
+        return [dict for dict in self.data[1:]]
 
     def get(self, i):
         return self.data[i]
