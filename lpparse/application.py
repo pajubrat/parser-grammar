@@ -154,7 +154,7 @@ class Application(tk.Tk):
 
     def run_study(self, *_, **kwargs):
         self.local_file_system.initialize_output_files()
-        for data_item in [data for data in self.input_data.get_all() if data.get('index')]:
+        for data_item in [data for data in self.input_data.get_all() if data.get('index', 0) > 0]:
             language = self.language_guesser.guess_language(data_item)
             self.speaker_model[language].parse_sentence(data_item)
             self.local_file_system.save_output(self.speaker_model[language], data_item)
