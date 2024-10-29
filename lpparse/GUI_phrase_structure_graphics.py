@@ -26,6 +26,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.stored_filename = None
         self.inventory = {'dependencies': []}
         self.lst_dependencies = []
+        self.inspect_window = None  # Shows information (features etc) of a selected node
         self.line_style = {'phrasal_chain': {'fill': 'black', 'dash': None, 'width': 2},
                            'head_chain': {'fill': 'black', 'dash': None, 'width': 2},
                            'Agree': {'fill': 'blue', 'dash': None, 'width': 3},
@@ -58,9 +59,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.status_label = tk.Label(status_bar, text='')
         self.status_label.grid(row=0, column=0, sticky='E')
 
-        # Shows information about elements in the canvas
-        self.infoframe = tk.Label(self, borderwidth=20, bg='white')
-
         # Make host window and canvas visible
         self.grid()
 
@@ -83,6 +81,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<FirstImage>>', self.first_image)
         self.bind('<<NextLFImage>>', self.nextLFimage)
         self.bind('<<CaptureImage>>', self.save_image)
+        self.bind('<<Inspect>>', self.inspect)
         self.bind('<<CompressNode>>', self.compress_node)
         self.bind('<<CompressNodeIntoHead>>', self.compress_node_into_head)
         self.bind('<<DecompressNode>>', self.decompress_node)
@@ -178,6 +177,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<Key-l>', self.use_custom_label)
         self.bind('<Control-l>', self.change_original_label)
         self.bind('<Key-e>', self.expand_phrase_structure)
+        self.bind('<Key-i>', self.inspect)
         # Show phrase structure image
         self.initialize_and_show_image()
 
@@ -345,6 +345,16 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     # ---------------------------------------------------------------------------------
     # Menu actions
+
+    def inspect(self, *_):
+        """
+        Shows information about a selected constituent in a separate window.
+        The window will remain until the user closes it or clicks somewhere in the screen
+        """
+        if self.canvas.selected_objects:
+            obj = self.canvas.selected_objects[0]
+            self.inspect_window = InspectWindow(self, obj)
+            self.inspect_window.show()
 
     def recalculate_layout(self, *_):
         self.update_contents(True)
@@ -1197,6 +1207,8 @@ class GraphicsMenu(tk.Menu):
 
         # Node menu
         node = tk.Menu(self, tearoff=False, font=menu_font)
+        node.add_command(label='Inspect', command=self._event('<<Inspect>>'))
+        node.add_separator()
         node.add_command(label='Highlight', command=self._event('<<HighlightNode>>'))
         node.add_command(label='Compress (Triangle)', command=self._event('<<CompressNode>>'))
         node.add_command(label='Compress (Head)', command=self._event('<<CompressNodeIntoHead>>'))
@@ -1500,3 +1512,359 @@ class DependencyDialog(tk.Toplevel):
         dep.epy = self.selEpy.get()
         dep.Y_offset = self.selYoffset.get()
         return dep
+
+
+class DependencyDialog(tk.Toplevel):
+    """Creates a new dependency or modifies an existing one (provided as an input argument)"""
+    def __init__(self, dep=None):
+        super().__init__()
+        self.dep = dep
+        if self.dep:
+            self.title(f'Dependency {dep.source_gps.label()} => {dep.target_gps.label()}')
+        else:
+            self.title('New Dependency')
+        self.arrow_map = {'Forward': 'last', 'Backwards': 'first', 'Bidirectional': 'both', 'No direction': 'none'}
+        dfont = ('Calibri', 20)
+
+        # Frame: dependency type
+        frameDependencyType = tk.LabelFrame(self, text='Dependency type', font=dfont)
+        arrow_options = ['Forward', 'Backwards', 'Bidirectional', 'No direction']
+        self.selDirection = tk.StringVar()
+        if dep:
+            for key, value in self.arrow_map.items():
+                if value == dep.arrow_type:
+                    self.selDirection.set(key)
+        else:
+            self.selDirection.set('Forward')
+        for i, option in enumerate(arrow_options):
+            tk.Radiobutton(frameDependencyType, padx=20, pady=20, justify='left', text=option, variable=self.selDirection, value=option, font=dfont).grid(row=0, column=i, sticky='w')
+        frameLabel = tk.LabelFrame(frameDependencyType, text='Label', font=dfont)
+        self.selLabel = tk.StringVar()
+        if dep:
+            self.selLabel.set(dep.label)
+        tk.Entry(frameLabel, textvariable=self.selLabel, font=dfont).grid(row=0, column=0, sticky='nw', padx=20, pady=20)
+        frameLabel.grid(row=0, column=4, sticky='ns')
+        frameSmooth = tk.LabelFrame(frameDependencyType, text='Curved', font=dfont)
+        self.selSmooth = tk.BooleanVar()
+        if dep:
+            if dep.smooth:
+                self.selSmooth.set(True)
+            else:
+                self.selSmooth.set(False)
+        tk.Checkbutton(frameSmooth, padx=10, pady=10, variable=self.selSmooth, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameSmooth.grid(row=0, column=5, sticky='ns')
+        frameDependencyType.grid(row=1, column=0, sticky='we')
+        # -----------------------------------------------------------------------
+
+        # frame: position
+        framePosition = tk.LabelFrame(self, text='Position', font=dfont, padx=20, pady=20)
+        self.selSpx = tk.IntVar()
+        self.selSpy = tk.IntVar()
+        self.selEpx = tk.IntVar()
+        self.selEpy = tk.IntVar()
+        if dep:
+            self.selSpx.set(dep.spx)
+            self.selSpy.set(dep.spy)
+            self.selEpx.set(dep.epx)
+            self.selEpy.set(dep.spx)
+        frameSpx = tk.LabelFrame(framePosition, text='Spx', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpx, textvariable=self.selSpx, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameSpx.grid(row=0, column=0)
+        frameSpy = tk.LabelFrame(framePosition, text='Spy', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpy, textvariable=self.selSpy, font=dfont).grid(row=0, column=0, padx=10, pady=10 )
+        frameSpy.grid(row=0, column=1)
+        frameEpx = tk.LabelFrame(framePosition, text='Epx', font=dfont, padx=20, pady=20)
+        tk.Entry(frameEpx, textvariable=self.selEpx, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameEpx.grid(row=0, column=2)
+        frameEpy = tk.LabelFrame(framePosition, text='Epy', font=dfont, padx=20, pady=20)
+        tk.Entry(frameEpy, textvariable=self.selEpy, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameEpy.grid(row=0, column=3)
+
+        frameY_offset = tk.LabelFrame(framePosition, text='Y-axis offset', font=dfont)
+        self.selYoffset = tk.IntVar()
+        if dep:
+            self.selYoffset.set(dep.Y_offset)
+        tk.Entry(frameY_offset, textvariable=self.selYoffset, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameY_offset.grid(row=1, column=0, sticky='NW')
+        framePosition.grid(row=2, column=0, sticky='WE')
+
+        buttonOK = tk.Button(self, text='Done', font=dfont, padx=20, pady=20, command=self.ok, bg='#CCFFCC')
+        buttonOK.grid(row=3, column=0, sticky='e', ipadx=50)
+
+    def ok(self):
+        self.destroy()
+
+    def show(self):
+        self.wm_deiconify()
+        self.focus_force()
+        self.wait_window()
+        if self.dep:
+            source_gps = self.dep.source_gps
+            target_gps = self.dep.target_gps
+        else:
+            source_gps = None
+            target_gps = None
+        if self.selSmooth.get():
+            smooth = 'raw'
+        else:
+            smooth = ''
+        dep = Dependency(source=source_gps, target=target_gps, arrow_type=self.arrow_map[self.selDirection.get()], label=self.selLabel.get(), smooth=smooth)
+        dep.spx = self.selSpx.get()
+        dep.spy = self.selSpy.get()
+        dep.epx = self.selEpx.get()
+        dep.epy = self.selEpy.get()
+        dep.Y_offset = self.selYoffset.get()
+        return dep
+class DependencyDialog(tk.Toplevel):
+    """Creates a new dependency or modifies an existing one (provided as an input argument)"""
+    def __init__(self, dep=None):
+        super().__init__()
+        self.dep = dep
+        if self.dep:
+            self.title(f'Dependency {dep.source_gps.label()} => {dep.target_gps.label()}')
+        else:
+            self.title('New Dependency')
+        self.arrow_map = {'Forward': 'last', 'Backwards': 'first', 'Bidirectional': 'both', 'No direction': 'none'}
+        dfont = ('Calibri', 20)
+
+        # Frame: dependency type
+        frameDependencyType = tk.LabelFrame(self, text='Dependency type', font=dfont)
+        arrow_options = ['Forward', 'Backwards', 'Bidirectional', 'No direction']
+        self.selDirection = tk.StringVar()
+        if dep:
+            for key, value in self.arrow_map.items():
+                if value == dep.arrow_type:
+                    self.selDirection.set(key)
+        else:
+            self.selDirection.set('Forward')
+        for i, option in enumerate(arrow_options):
+            tk.Radiobutton(frameDependencyType, padx=20, pady=20, justify='left', text=option, variable=self.selDirection, value=option, font=dfont).grid(row=0, column=i, sticky='w')
+        frameLabel = tk.LabelFrame(frameDependencyType, text='Label', font=dfont)
+        self.selLabel = tk.StringVar()
+        if dep:
+            self.selLabel.set(dep.label)
+        tk.Entry(frameLabel, textvariable=self.selLabel, font=dfont).grid(row=0, column=0, sticky='nw', padx=20, pady=20)
+        frameLabel.grid(row=0, column=4, sticky='ns')
+        frameSmooth = tk.LabelFrame(frameDependencyType, text='Curved', font=dfont)
+        self.selSmooth = tk.BooleanVar()
+        if dep:
+            if dep.smooth:
+                self.selSmooth.set(True)
+            else:
+                self.selSmooth.set(False)
+        tk.Checkbutton(frameSmooth, padx=10, pady=10, variable=self.selSmooth, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameSmooth.grid(row=0, column=5, sticky='ns')
+        frameDependencyType.grid(row=1, column=0, sticky='we')
+        # -----------------------------------------------------------------------
+
+        # frame: position
+        framePosition = tk.LabelFrame(self, text='Position', font=dfont, padx=20, pady=20)
+        self.selSpx = tk.IntVar()
+        self.selSpy = tk.IntVar()
+        self.selEpx = tk.IntVar()
+        self.selEpy = tk.IntVar()
+        if dep:
+            self.selSpx.set(dep.spx)
+            self.selSpy.set(dep.spy)
+            self.selEpx.set(dep.epx)
+            self.selEpy.set(dep.spx)
+        frameSpx = tk.LabelFrame(framePosition, text='Spx', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpx, textvariable=self.selSpx, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameSpx.grid(row=0, column=0)
+        frameSpy = tk.LabelFrame(framePosition, text='Spy', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpy, textvariable=self.selSpy, font=dfont).grid(row=0, column=0, padx=10, pady=10 )
+        frameSpy.grid(row=0, column=1)
+        frameEpx = tk.LabelFrame(framePosition, text='Epx', font=dfont, padx=20, pady=20)
+        tk.Entry(frameEpx, textvariable=self.selEpx, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameEpx.grid(row=0, column=2)
+        frameEpy = tk.LabelFrame(framePosition, text='Epy', font=dfont, padx=20, pady=20)
+        tk.Entry(frameEpy, textvariable=self.selEpy, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameEpy.grid(row=0, column=3)
+
+        frameY_offset = tk.LabelFrame(framePosition, text='Y-axis offset', font=dfont)
+        self.selYoffset = tk.IntVar()
+        if dep:
+            self.selYoffset.set(dep.Y_offset)
+        tk.Entry(frameY_offset, textvariable=self.selYoffset, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameY_offset.grid(row=1, column=0, sticky='NW')
+        framePosition.grid(row=2, column=0, sticky='WE')
+
+        buttonOK = tk.Button(self, text='Done', font=dfont, padx=20, pady=20, command=self.ok, bg='#CCFFCC')
+        buttonOK.grid(row=3, column=0, sticky='e', ipadx=50)
+
+    def ok(self):
+        self.destroy()
+
+    def show(self):
+        self.wm_deiconify()
+        self.focus_force()
+        self.wait_window()
+        if self.dep:
+            source_gps = self.dep.source_gps
+            target_gps = self.dep.target_gps
+        else:
+            source_gps = None
+            target_gps = None
+        if self.selSmooth.get():
+            smooth = 'raw'
+        else:
+            smooth = ''
+        dep = Dependency(source=source_gps, target=target_gps, arrow_type=self.arrow_map[self.selDirection.get()], label=self.selLabel.get(), smooth=smooth)
+        dep.spx = self.selSpx.get()
+        dep.spy = self.selSpy.get()
+        dep.epx = self.selEpx.get()
+        dep.epy = self.selEpy.get()
+        dep.Y_offset = self.selYoffset.get()
+        return dep
+class DependencyDialog(tk.Toplevel):
+    """Creates a new dependency or modifies an existing one (provided as an input argument)"""
+    def __init__(self, dep=None):
+        super().__init__()
+        self.dep = dep
+        if self.dep:
+            self.title(f'Dependency {dep.source_gps.label()} => {dep.target_gps.label()}')
+        else:
+            self.title('New Dependency')
+        self.arrow_map = {'Forward': 'last', 'Backwards': 'first', 'Bidirectional': 'both', 'No direction': 'none'}
+        dfont = ('Calibri', 20)
+
+        # Frame: dependency type
+        frameDependencyType = tk.LabelFrame(self, text='Dependency type', font=dfont)
+        arrow_options = ['Forward', 'Backwards', 'Bidirectional', 'No direction']
+        self.selDirection = tk.StringVar()
+        if dep:
+            for key, value in self.arrow_map.items():
+                if value == dep.arrow_type:
+                    self.selDirection.set(key)
+        else:
+            self.selDirection.set('Forward')
+        for i, option in enumerate(arrow_options):
+            tk.Radiobutton(frameDependencyType, padx=20, pady=20, justify='left', text=option, variable=self.selDirection, value=option, font=dfont).grid(row=0, column=i, sticky='w')
+        frameLabel = tk.LabelFrame(frameDependencyType, text='Label', font=dfont)
+        self.selLabel = tk.StringVar()
+        if dep:
+            self.selLabel.set(dep.label)
+        tk.Entry(frameLabel, textvariable=self.selLabel, font=dfont).grid(row=0, column=0, sticky='nw', padx=20, pady=20)
+        frameLabel.grid(row=0, column=4, sticky='ns')
+        frameSmooth = tk.LabelFrame(frameDependencyType, text='Curved', font=dfont)
+        self.selSmooth = tk.BooleanVar()
+        if dep:
+            if dep.smooth:
+                self.selSmooth.set(True)
+            else:
+                self.selSmooth.set(False)
+        tk.Checkbutton(frameSmooth, padx=10, pady=10, variable=self.selSmooth, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameSmooth.grid(row=0, column=5, sticky='ns')
+        frameDependencyType.grid(row=1, column=0, sticky='we')
+        # -----------------------------------------------------------------------
+
+        # frame: position
+        framePosition = tk.LabelFrame(self, text='Position', font=dfont, padx=20, pady=20)
+        self.selSpx = tk.IntVar()
+        self.selSpy = tk.IntVar()
+        self.selEpx = tk.IntVar()
+        self.selEpy = tk.IntVar()
+        if dep:
+            self.selSpx.set(dep.spx)
+            self.selSpy.set(dep.spy)
+            self.selEpx.set(dep.epx)
+            self.selEpy.set(dep.spx)
+        frameSpx = tk.LabelFrame(framePosition, text='Spx', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpx, textvariable=self.selSpx, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameSpx.grid(row=0, column=0)
+        frameSpy = tk.LabelFrame(framePosition, text='Spy', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpy, textvariable=self.selSpy, font=dfont).grid(row=0, column=0, padx=10, pady=10 )
+        frameSpy.grid(row=0, column=1)
+        frameEpx = tk.LabelFrame(framePosition, text='Epx', font=dfont, padx=20, pady=20)
+        tk.Entry(frameEpx, textvariable=self.selEpx, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameEpx.grid(row=0, column=2)
+        frameEpy = tk.LabelFrame(framePosition, text='Epy', font=dfont, padx=20, pady=20)
+        tk.Entry(frameEpy, textvariable=self.selEpy, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameEpy.grid(row=0, column=3)
+
+        frameY_offset = tk.LabelFrame(framePosition, text='Y-axis offset', font=dfont)
+        self.selYoffset = tk.IntVar()
+        if dep:
+            self.selYoffset.set(dep.Y_offset)
+        tk.Entry(frameY_offset, textvariable=self.selYoffset, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameY_offset.grid(row=1, column=0, sticky='NW')
+        framePosition.grid(row=2, column=0, sticky='WE')
+
+        buttonOK = tk.Button(self, text='Done', font=dfont, padx=20, pady=20, command=self.ok, bg='#CCFFCC')
+        buttonOK.grid(row=3, column=0, sticky='e', ipadx=50)
+
+    def ok(self):
+        self.destroy()
+
+    def show(self):
+        self.wm_deiconify()
+        self.focus_force()
+        self.wait_window()
+        if self.dep:
+            source_gps = self.dep.source_gps
+            target_gps = self.dep.target_gps
+        else:
+            source_gps = None
+            target_gps = None
+        if self.selSmooth.get():
+            smooth = 'raw'
+        else:
+            smooth = ''
+        dep = Dependency(source=source_gps, target=target_gps, arrow_type=self.arrow_map[self.selDirection.get()], label=self.selLabel.get(), smooth=smooth)
+        dep.spx = self.selSpx.get()
+        dep.spy = self.selSpy.get()
+        dep.epx = self.selEpx.get()
+        dep.epy = self.selEpy.get()
+        dep.Y_offset = self.selYoffset.get()
+        return dep
+
+class InspectWindow(tk.Toplevel):
+    """Creates a new dependency or modifies an existing one (provided as an input argument)"""
+    def __init__(self, parent, gps):
+        super().__init__()
+        self.gps = gps
+        self.title(f'Inspector')
+        self.geometry(f'+{int(parent.winfo_x() + gps.X + 100)}+{int(parent.winfo_y() + gps.Y + 200)}')
+
+        constituent = tk.Label(self, text=f'{gps}({gps.label()})', font=('Calibri', 30, 'bold'))
+        constituent.grid(row=0, column=0, sticky='')
+        if gps.features:
+            feature_lst = ''
+            width = 0
+            for f in sorted(gps.features):
+                width += len(f) + 3
+                if width > 50:
+                    feature_lst += '\n'
+                    width = 0
+                feature_lst += f'[{f}] '
+            features_Frame = tk.LabelFrame(self, text='Features', font=('Calibri', 20))
+            features_Frame.grid(row=1, column=0, padx=20, pady=10)
+            features_lst = tk.Label(features_Frame, text=f'{feature_lst}', font=('Courier', 20))
+            features_lst.grid(row=0, column=0, padx=20, pady=0)
+        geometry_Frame = tk.LabelFrame(self, text='Geometry', font=('Calibri', 20))
+        geometry_Frame.grid(row=2, column=0, padx=20, pady=10, sticky='ew')
+        head_Label = tk.Label(geometry_Frame, text=f'Head: {gps.H()}', font=('Courier', 20))
+        head_Label.grid(row=0, column=0, sticky='w')
+        mother_Label = tk.Label(geometry_Frame, text=f'Mother: {gps.M()}', font=('Courier', 20))
+        mother_Label.grid(row=1, column=0, sticky='w')
+        sister_Label = tk.Label(geometry_Frame, text=f'Sister: {gps.sister()}', font=('Courier', 20))
+        sister_Label.grid(row=2, column=0, sticky='w')
+        local_edge_Label = tk.Label(geometry_Frame, text=f'Local edge: {gps.local_edge()}', font=('Courier', 20))
+        local_edge_Label.grid(row=3, column=0, sticky='w')
+        path_Label = tk.Label(geometry_Frame, text=f'Path: {", ".join([str(x) for x in gps.path()])}', font=('Courier', 20))
+        path_Label.grid(row=4, column=0, sticky='w')
+        search_Label = tk.Label(geometry_Frame, text=f'Search: {", ".join([str(x) for x in gps.minimal_search()])}', font=('Courier', 20))
+        search_Label.grid(row=5, column=0, sticky='w')
+        container_Label = tk.Label(geometry_Frame, text=f'Container: {gps.container()}', font=('Courier', 20))
+        container_Label.grid(row=6, column=0, sticky='w')
+        max_Label = tk.Label(geometry_Frame, text=f'Max: {gps.max()}', font=('Courier', 20))
+        max_Label.grid(row=7, column=0, sticky='w')
+        copied_Label = tk.Label(geometry_Frame, text=f'Copied: {gps.copied}', font=('Courier', 20))
+        copied_Label.grid(row=8, column=0, sticky='w')
+        self.grid_columnconfigure(0, weight=1)
+
+    def show(self):
+        self.wm_deiconify()
+        self.focus_force()
+        self.wait_window()
+        return self

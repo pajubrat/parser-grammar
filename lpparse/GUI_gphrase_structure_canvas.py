@@ -16,6 +16,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.ID_to_object = {}
         self.scaling_factor = 1
         self.info = None
+        self.cursor = None
         self.label_style = {'label': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize'))),
                             'PFtrace': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic", "overstrike"),
                             'PF': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic"),
@@ -25,6 +26,7 @@ class PhraseStructureCanvas(tk.Canvas):
                             'arrow_label': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') * 0.75)),
                             'info': ("Courier", int(self.application.settings.retrieve('image_parameter_tsize') * 0.25))}
         self.bind('<Button-1>', self._on_mouse_click)
+        self.bind('<Button-3>', self._on_right_click)
         self.bind('<Control-Button-1>', self._on_ctrl_mouse_click)
         self.bind('<KeyPress>', self._key_press)
         self.info_text = None
@@ -42,7 +44,18 @@ class PhraseStructureCanvas(tk.Canvas):
                     gps.move_y(-0.5)
             self.parent.update_contents(False)
 
+    def _on_right_click(self, *_):
+        if self.find_withtag('current'):
+            cur = self.find_withtag('current')[0]
+            tag = self.gettags('current')[0]
+            if tag == 'node':
+                self.selected_objects = [self.ID_to_object[str(cur)]]
+                if self.selected_objects:
+                    self.parent.inspect()
+
     def _on_mouse_click(self, *_):
+        if self.parent.inspect_window:              #   If there is a inspector window,
+            self.parent.inspect_window.destroy()    #   it will be destroyed
         if self.find_withtag('current'):
             cur = self.find_withtag('current')[0]
             tag = self.gettags('current')[0]
@@ -86,20 +99,18 @@ class PhraseStructureCanvas(tk.Canvas):
             self.selected_objects = []
         self.parent.update_contents(False)
 
-    def _show_info(self, *_):
+    def focus_item(self, *_):
         if self.find_withtag('current'):
             selected = self.find_withtag('current')[0]
-            tag = self.gettags('current')[0]
-            if tag == 'node':
-                gps = self.ID_to_object[str(selected)]
-                if gps.zero_level():
-                    self.parent.infoframe.config(text=gps.itext(), anchor='nw', justify='left', state='active', bg='yellow')
-                    self.info = self.create_window((2200, 700), height=1200, width=500, window=self.parent.infoframe)
-        else:
-            self.parent.infoframe.config(state='hidden')
+            x1, y1 = self.coords(selected)
+            self.coords(self.cursor, x1 - 50, y1 - 50, x1 + 50, y1 + 50)
 
-    def _hide_info(self, *_):
-        self.delete(self.info)
+    def unfocus_item(self, *_):
+        if not self.selected_objects:
+            self.coords(self.cursor, 0, 0, 0, 0)
+
+    def create_cursor(self):
+        self.cursor = self.create_rectangle(0, 0, 0, 0, outline='#DDDDDD')
 
     def update_status_bar(self, spx):
         self.parent.status_label.configure(text='Current image: (' + str(self.derivational_index) + ')  ' + self.title)
@@ -109,6 +120,7 @@ class PhraseStructureCanvas(tk.Canvas):
         if recalculate:
             gps.remove_overlap()
         spx, spy = self.parent.determine_position_of_highest_node(gps)
+        self.create_cursor()
         self.draw_to_canvas(gps, spx + x_offset, spy + y_offset)
 
     def draw_to_canvas(self, gps, spx, spy):
@@ -141,7 +153,7 @@ class PhraseStructureCanvas(tk.Canvas):
     def highlight(self, gps, X, Y):
         if gps.M():
             if gps.is_R():
-                self.create_line(X+80, Y-80, X+30, Y-30, arrowshape=(20, 20, 10), arrow='last', width=10)
+                self.create_line(X + 80, Y - 80, X + 30, Y - 30, arrowshape=(20, 20, 10), arrow='last', width=10)
             if gps.is_L():
                 self.create_line(X - 80, Y - 80, X - 30, Y - 30, arrowshape=(20, 20, 10), arrow='last', width=10)
         else:
@@ -156,14 +168,14 @@ class PhraseStructureCanvas(tk.Canvas):
         ID = self.create_text(M_const_coord,
                               text=gps.label_stack[0][0],
                               fill=color,
-                              activefill='red',
+                              activefill='grey',
                               tag='node',
                               font=("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') * self.scaling_factor)))
 
         self.ID_to_object[str(ID)] = gps
         gps.ID = ID
-        self.tag_bind(ID, '<Enter>', self._show_info)
-        self.tag_bind(ID, '<Leave>', self._hide_info)
+        self.tag_bind(ID, '<Enter>', self.focus_item)
+        self.tag_bind(ID, '<Leave>', self.unfocus_item)
         if gps in self.selected_objects:
             self.addtag_withtag('selected', ID)
         if gps.compressed:
@@ -258,9 +270,12 @@ class PhraseStructureCanvas(tk.Canvas):
                 scaled_font = tuple(scaled_font)
 
                 # Create text
+                if label_item[1] == 'label' and label_item[0].strip() == '':
+                    text = '??'
+                    color = 'white'
                 ID = self.create_text((X1, Y1 + Y_offset),
                                       fill=color,
-                                      activefill='red',
+                                      activefill='grey',
                                       tag='node',
                                       text=text,
                                       anchor='center',
@@ -288,8 +303,8 @@ class PhraseStructureCanvas(tk.Canvas):
 
                 # Add events to the first element (i == 0 when producing the label)
                 if i == 0:
-                    self.tag_bind(ID, '<Enter>', self._show_info)
-                    self.tag_bind(ID, '<Leave>', self._hide_info)
+                    self.tag_bind(ID, '<Enter>', self.focus_item)
+                    self.tag_bind(ID, '<Leave>', self.unfocus_item)
 
                 # Add the node to the mapping from nodes to affixes
                 self.ID_to_object[str(ID)] = affix

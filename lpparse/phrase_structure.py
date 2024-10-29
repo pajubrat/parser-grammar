@@ -10,7 +10,7 @@ class PhraseStructure:
     major_cats = ['@', '√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'C/fin', 'a', 'A', 'v', 'V', 'Pass',
                   'VA/inf', 'T', 'Fin', 'Agr',
                   'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf',
-                  'FORCE', 'EXPL', 'Adv', 'Pr',
+                  'FORCE', 'EXPL', 'Adv',
                   '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z']
     access_experimental_functions = None
     spellout_heads = False      # This parameter, if set true, spells out PF-content of heads in all printouts; otherwise only labels are shown
@@ -450,13 +450,13 @@ class PhraseStructure:
         return str(PhraseStructure.chain_index)
 
     # Ā-Chain creation =====================================================================
-    def reconstruct_operator(X):
+    def reconstruct_operator(X, T):
         for x in X.container().sister().minimal_search():
             if x.tail_test(tails_sets=X.get_tail_sets()):
                 if not x.local_edge() and X.check_some(x.get_selection_features('+SPEC')):
-                    return X.chaincopy() * x.M()
+                    return T * x.M()
                 if X.check_some(x.get_selection_features('+COMP')) and not x.complement():
-                    return x * X.chaincopy()
+                    return x * T
         return X
 
     # Scrambling ==========================================================================
