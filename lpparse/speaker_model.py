@@ -35,15 +35,15 @@ class SpeakerModel:
                'TARGET': lambda x: x,
                'TRANSFORM': lambda x, t: x.AgreeLF()},
           'IHM':
-              {'TRIGGER': lambda x: x.complex_head() and not x.EHM() and not x.check({'C'}) and not x.affix().copied,
+              {'TRIGGER': lambda x: x.complex_head() and not x.EHM() and not x.check({'OP'}) and not x.affix().copied,
                'TARGET': lambda x: x.affix().chaincopy(),
-               'TRANSFORM': lambda x, t: x.sister() * t if x.is_L() and x.sister() else x * t},
+               'TRANSFORM': lambda x, t: x.reconstruct_head(t)},
           'Cyclic Ā-chain':
               {'TRIGGER': lambda x: x.zero_level() and x.is_R() and x.thematic_head() and x.sister() and x.sister().zero_level(),
                'TARGET': lambda Y: next((x.chaincopy() for x in Y.path() if x.complex() and x.operator_features() and x.H().check_some(Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
                'TRANSFORM': lambda x, t: t * x},
-          'Noncyclic Ā-chain':
-              {'TRIGGER': lambda x: x.operator_in_scope_position() and PhraseStructure.noncyclic_derivation,
+        'Noncyclic Ā-chain':
+              {'TRIGGER': lambda x: x.operator_in_scope_position() and x.sister() and PhraseStructure.noncyclic_derivation,
                'TARGET': lambda x: x.chaincopy(),
                'TRANSFORM': lambda x, t: x.reconstruct_operator(t)}}
 

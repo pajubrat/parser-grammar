@@ -17,7 +17,7 @@ class DatasetView(tk.LabelFrame):
         self.dataset_treeview.heading('Expression', text='Expression')
         self.dataset_treeview.column('Expression', width=600)
         self.fill_with_data()
-        self.dataset_treeview.selection_set(1)
+        self.dataset_treeview.selection_set(0)
         sc = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.dataset_treeview.yview)
         sc.grid(row=0, column=1, sticky='NSW')
         self.dataset_treeview.configure(yscrollcommand=sc.set)

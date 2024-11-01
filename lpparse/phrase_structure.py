@@ -429,6 +429,12 @@ class PhraseStructure:
 
     # Transfer --------------------------------------------------------------------------------------------------------------------
 
+    def transfer_(X):
+        Y, m = X.detach()
+        for Z in [x for x in Y.top().minimal_search()]:
+            Z.reconstruct()
+        return Y.reattach(m)
+
     def transfer(X):
         Y, m = X.detach()
         for Z in Y.bottom().self_path():
@@ -437,7 +443,7 @@ class PhraseStructure:
 
     def scan_feature(X, feature):
         if X.zero_level():
-            if {f for f in X.features if f.startswith(feature) and f[-1] != '_'}:
+            if {f for f in X.features if f == feature}:
                 return True
         else:
             for x in [x for x in X.const if not x.copied]:
@@ -451,13 +457,21 @@ class PhraseStructure:
 
     # Ā-Chain creation =====================================================================
     def reconstruct_operator(X, T):
-        for x in X.container().sister().minimal_search():
-            if x.tail_test(tails_sets=X.get_tail_sets()):
-                if not x.local_edge() and X.check_some(x.get_selection_features('+SPEC')):
+        for x in X.sister().minimal_search():
+            if x.tail_test(tails_sets=T.get_tail_sets()):
+                if T.complex() and not x.local_edge() and T.check_some(x.get_selection_features('+SPEC')):
                     return T * x.M()
-                if X.check_some(x.get_selection_features('+COMP')) and not x.complement():
-                    return x * T
+                if T.check_some(x.get_selection_features('+COMP')):
+                    if not x.complement():
+                        return x * T
+                    elif T.zero_level():
+                        return T * x.sister()
         return X
+
+    def reconstruct_head(X, T):
+        if X.is_L() and X.sister():
+            return X.sister() * T
+        return X * T
 
     # Scrambling ==========================================================================
 
@@ -687,7 +701,7 @@ class PhraseStructure:
         return X
 
     def operator_in_scope_position(X):
-        return X.complex() and X.container() and not X.copied and X.container().H().finite() and 'ΔOP' in X
+        return 'OP' in X and not X.copied and (X.check({'Fin'}) or (X.container() and X.container().check({'Fin'})))
 
     # Tail-processing ---------------------------------------------------------------------------
 
@@ -1002,14 +1016,12 @@ class PhraseStructure:
                 return f'[{X.L()} {X.R()}]' + chain_index_str
 
     def get_phonological_string(X):
-        stri = ''
-        for i, affix in enumerate(X.affixes()):
-            if not affix.copied:
-                if i > 0:
-                    stri += '(' + ''.join(sorted([f[3:] for f in affix.features if f and f[:2] == 'PF'])) + ')'
-                else:
-                    stri += ''.join(sorted([f[3:] for f in affix.features if f and f[:2] == 'PF']))
-        return stri
+        if len(X.affixes()) == 1 or (X.affix() and X.affix().copied):
+            return X.exponent()
+        return f'{X.label()}({",".join([x.exponent() for x in X.affixes()[1:]])})'
+
+    def exponent(X):
+        return "".join(sorted([f[3:] for f in X.features if f and f.startswith("PF:")]))
 
     def tidy_names(X, counter):
         def rebaptize(X, old_identity, new_identity):

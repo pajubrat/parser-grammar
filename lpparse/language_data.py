@@ -4,7 +4,7 @@ class LanguageData:
     of dictionaries, the latter collecting various attributes of the data and the former which
     corresponds to the items in the dataset"""
     def __init__(self):
-        self.data = [{}]
+        self.data = []
         self.index = 1
 
     def reset(self):
