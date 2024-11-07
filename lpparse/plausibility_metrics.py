@@ -1,6 +1,7 @@
 from support import set_logging, log
 from operator import itemgetter
 from phrase_structure import PhraseStructure
+from phrase_structure_inner_core import PhraseStructureCore
 import random
 
 
@@ -69,7 +70,7 @@ class PlausibilityMetrics:
     def negative_semantic_match(self, site, word):
         if site.zero_level():
             m = site.bottom_affix()
-            if not m.semantic_match(word):
+            if not m.core.semantic_match(word):
                 return True
 
     def lf_legibility_condition(self, X, W):

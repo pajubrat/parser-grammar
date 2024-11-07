@@ -136,7 +136,6 @@ class LocalFileSystem:
                 else:
                     index += 1
                     input_data.add(self.create_data_from_line(line, index, part_of_conversation))
-            print(input_data.data)
             return input_data
         except IOError:
             print(f'The corpus file "{input_file}" seems to be missing.\n'

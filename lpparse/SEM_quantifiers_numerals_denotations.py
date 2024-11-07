@@ -2,9 +2,19 @@
 # It mediates between the syntax-semantics interface and the global discourse inventory
 # Responds to R-features ([R:...], [PHI:...])
 from support import log
-from phi import valued_phi_feature, phi_map
 from phrase_structure import PhraseStructure
 import itertools
+
+phi_map_dict = {'PER:1': ('Person', 'first'),
+                'PER:2': ('Person', 'second'),
+                'PER:3': ('Person', 'third'),
+                'NUM:PL': ('Number', 'plural'),
+                'NUM:SG': ('Number', 'singular'),
+                'HUM:HUM': ('Class', 'human'),
+                'HUM:NONHUM': ('Class', 'nonhuman'),
+                'GEN:M': ('Gender', 'm'),
+                'GEN:F': ('Gender', 'f')}
+
 
 class QuantifiersNumeralsDenotations:
     def __init__(self, narrow_semantics):
@@ -21,8 +31,11 @@ class QuantifiersNumeralsDenotations:
         self.inventory[idx] = self.extrapolate_semantic_attributes(X)
         return self.inventory[idx]
 
+    def phi_map(self, phi_feature):
+        return phi_map_dict.get(phi_feature, ())
+
     def accept(self, X):
-        return (X.complete_agreement_suffixes() and not X.AgreeLF_has_occurred()) or X.referential()
+        return (X.core.complete_agreement_suffixes() and not X.core.AgreeLF_has_occurred()) or X.core.referential()
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
@@ -31,10 +44,10 @@ class QuantifiersNumeralsDenotations:
         return self.inventory[idx]
 
     def update_discourse_inventory(self, idx, criteria):
-        self.inventory[idx].update_contents(criteria)
+        self.inventory[idx].update(criteria)
 
     def object_presentation(self, X):
-        if X.referential():
+        if X.core.referential():
             return f'{X.max().illustrate()}'
         return f'pro({X})'
 
@@ -84,8 +97,8 @@ class QuantifiersNumeralsDenotations:
                 denotations_lst += self.calculate_possible_denotations(X.L())
                 denotations_lst += self.calculate_possible_denotations(X.R())
             else:
-                if X.has_idx('QND'):
-                    idx, space = X.get_idx_tuple('QND')
+                if X.core.has_idx('QND'):
+                    idx, space = X.core.get_idx_tuple('QND')
                     self.inventory[idx]['Denotations'] = self.create_all_denotations(X)
                     log(f'\n\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
                     denotations_lst = [(idx, f'{X.illustrate()}', X, self.inventory[idx]['Denotations'])]
@@ -165,8 +178,8 @@ class QuantifiersNumeralsDenotations:
     def assignment_output_string(self, X):
         """Summarises binding dependencies in one string"""
         def relevant_content(Y):
-            if Y.check_some({'V', 'N', 'A', 'P', 'Adv', 'D'}):
-                return ''.join([f[3:] for f in Y.features if f.startswith('PF:') and f[3:] not in PhraseStructure.major_cats and f[3:] != "'s"])
+            if ['V', 'N', 'A', 'P', 'Adv', 'D'] in Y.core:
+                return ''.join([f[3:] for f in Y.core.features() if f.startswith('PF:') and f[3:] not in PhraseStructure.major_cats and f[3:] != "'s"])
 
         stri = ''
         if not X.copied:
@@ -177,12 +190,12 @@ class QuantifiersNumeralsDenotations:
                 stri += ' ' + relevant_content(X)
 
             # Create binding tags at the end of referential expressions
-            if X.zero_level() and not X.referential() and X.get_idx_tuple('QND'):
-                idx = X.get_idx_tuple('QND')[0]
+            if X.zero_level() and not X.core.referential() and X.core.get_idx_tuple('QND'):
+                idx = X.core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f' {X.label()}/pro[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
-            elif X.M() and X.check({'N'}) and X.is_R() and X.sister() and X.sister().get_idx_tuple('QND'):
-                idx = X.sister().get_idx_tuple('QND')[0]
+            elif X.M() and X.check({'N'}) and X.is_R() and X.sister() and X.sister().core.get_idx_tuple('QND'):
+                idx = X.sister().core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f'[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
         return stri
@@ -211,13 +224,13 @@ class QuantifiersNumeralsDenotations:
         return not self.coreference(idx1, idx2) and not self.disjoint_reference(idx1, idx2)
 
     def create_all_denotations(self, X):
-        return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[X.get_referential_index('QND')])
+        return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[X.H().core.get_referential_index('QND')])
 
     def R_feature(self, feature):
         return feature.split(':')[0] == 'R'
 
     def get_R_features(self, ps):
-        return [feature for feature in ps.H().features if self.R_feature(feature)]
+        return [f for f in ps.H().core.features() if self.R_feature(f)]
 
     def parse_R_feature(self, R_feature):
         components = R_feature.split(':')
@@ -232,22 +245,17 @@ class QuantifiersNumeralsDenotations:
         return semantic_attributes_dict
 
     def project_phi_features(self, X):
-        def remove_phi_prefix(feature):
-            if feature.startswith('iPHI:'):
-                return feature[5:]
-            return feature[4:]
-
         interpreted_phi_dict = {}
-        PHI = [remove_phi_prefix(f).split(',') for f in X.features if valued_phi_feature(f)]
+        PHI = X.core.formatted_phi()
         for phi_lst in PHI:
             for phi in phi_lst:
-                sem_phi = phi_map(phi)
+                sem_phi = self.phi_map(phi)
                 if sem_phi:
                     interpreted_phi_dict[sem_phi[0]] = sem_phi[1]
         return interpreted_phi_dict
 
-    def detect_phi_conflicts(self, ps):
-        for phi in ps.H().get_phi_set():
+    def detect_phi_conflicts(self, X):
+        for phi in X.H().core.get_phi_set():
             if phi[-1] == '*':
-                log(f'\n\t\t\t{ps.illustrate()} has a phi-feature conflict with {phi}.')
+                log(f'\n\t\t\t{X.illustrate()} has a phi-feature conflict with {phi}.')
                 self.narrow_semantics.phi_interpretation_failed = True

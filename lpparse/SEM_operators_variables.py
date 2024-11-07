@@ -10,86 +10,54 @@ class OperatorVariableModule:
         self.interpretation_failed = False
         self.speaker_model = speaker_model
         self.bindings = []
-        self.operator_interpretation = {'OP:WH': 'Interrogative',
-                                         'OP:TOP': 'Topic',
-                                         'OP:FAM': 'Familiarity topic',
-                                         'OP:FOC': 'Contrastive focus',
-                                         'OP:POL': 'Polarity topic',
-                                         'OP:Q': 'Yes/no interrogative',
-                                         'OP:REL': 'Relativization',
-                                         'OP:C/OP': 'Generic operator'}
-        self.inventory = {}
+        self.operator_interpretation = {'OP:WH': 'Wh-',
+                                         'OP:TOP': 'Topic ',
+                                         'OP:DE/EM': 'De-emphasis ',
+                                         'OP:FAM': 'Familiarity ',
+                                         'OP:FOC': 'Contrastive focus ',
+                                         'OP:POL': 'Polarity ',
+                                         'OP:Q': 'Yes/no interrogative ',
+                                         'OP:REL': 'Relativization ',
+                                         'OP:C/OP': 'Generic '}
 
-    def bind_operator(self, head):
+    def bind_operator(self, X):
         self.bindings = []
-        for operator_feature in (f for f in head.features if not self.scope_marker(head) and self.is_operator_feature(f)):
-            binding = self.interpret_covert_scope(self.find_overt_scope(head, operator_feature))
-            self.interpret_operator_variable_chain(binding, operator_feature)
+        if not X.core.scope_marker():
+            for Opf in (f for f in X.core.features() if self.is_operator_feature(f)):
+                binding = self.interpret_covert_scope(self.find_overt_scope(X, Opf), Opf)
+                self.interpret_results(binding, Opf)
         return self.bindings
 
     @staticmethod
-    def find_overt_scope(head, operator_feature):
-        return next(({'Head': head, 'Scope': scope, 'Overt': True} for scope in head.path() if
-                     {operator_feature, 'Fin'}.issubset(scope.features)), {'Head': head, 'Scope': None, 'Overt': False})
+    def find_overt_scope(X, Opf):
+        return next(({'Head': X, 'Scope': Y, 'Overt': True} for Y in X.path() if
+                     {'OP', 'Fin', Opf} in Y.core), {'Head': X, 'Scope': None, 'Overt': False})
 
     @staticmethod
-    def interpret_covert_scope(binding):
-        if not binding['Scope'] and '!SCOPE' not in binding['Head'].features:
-            return next(({'Head': binding['Head'], 'Scope': scope, 'Overt': False}
-                         for scope in binding['Head'].path() if
-                         scope.finite_left_periphery()),
-                        {'Head': binding['Head'], 'Scope': None, 'Overt': False})
-        return binding
+    def interpret_covert_scope(binding_dict, Opf):
+        if not binding_dict['Scope'] and '-insitu' not in binding_dict['Head'].core.bundle_features(Opf):
+            return next(({'Head': binding_dict['Head'], 'Scope': X, 'Overt': False}
+                         for X in binding_dict['Head'].self_path() if
+                         X.core.finite_left_periphery()),
+                        {'Head': binding_dict['Head'], 'Scope': None, 'Overt': False})
+        return binding_dict
 
-    def interpret_operator_variable_chain(self, binding, operator_feature):
+    def interpret_results(self, binding, Opf):
         if binding['Scope']:
             if binding['Overt']:
-                self.bindings.append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()}({operator_feature})')
+                self.bindings.append(f'{binding["Head"].label()}({Opf}, {self.operator_interpretation[Opf]}) bound by {binding["Scope"].illustrate()}')
+                log(f'\n\t{binding["Head"].label()}({Opf}, {self.operator_interpretation[Opf]}) bound by {binding["Scope"].illustrate()}')
+                if '-insitu' in binding["Head"].core.bundle_features(Opf):
+                    binding["Scope"].core.remove_features({Opf})    # Feature checking = remove Opf from the scope-marker so that it can only check on operator
             else:
-                self.bindings.append(f'Operator {binding["Head"].illustrate()}({operator_feature}) bound by {binding["Scope"].illustrate()} by default. ')
-            self.project_operator_objects_into_discourse_inventory(binding)
+                self.bindings.append(f'{binding["Head"].label()}({Opf}, {self.operator_interpretation[Opf]}) bound by {binding["Scope"].illustrate()} by default rule. ')
         else:
-            log(f'\n\t\t\t{binding["Head"].illustrate()} with {operator_feature} is not bound by an operator. ')
-            if 'SCOPE' in binding["Head"].features:
-                log(f'@@ Interpretation fails and the derivation crashes. ')
-                self.interpretation_failed = True
-            else:
-                self.bindings.append(f'Operator {binding["Head"].illustrate()}[{operator_feature}] bound by speaker.')
-
-    def project_operator_objects_into_discourse_inventory(self, binding):
-        pass
-        #idx, space = self.speaker_model.narrow_semantics.get_idx_tuple(binding["Head"].head(), 'OP')
-        #if idx:
-        #    self.speaker_model.narrow_semantics.semantic_action['OP']['Get'](idx)['Bound by'] = binding["Head"]
-
-    @staticmethod
-    def scope_marker(head):
-        return {'C', 'C/fin', 'OP:_'} & head.features
+            log(f'\n\t{binding["Head"].illustrate()} with {Opf} is not bound by an scope-marker. ')
+            self.interpretation_failed = True
 
     def is_operator(self, head):
-        return {f for f in head.features if self.is_operator_feature(f)}
+        return {f for f in head.core.features() if self.is_operator_feature(f)}
 
     @staticmethod
     def is_operator_feature(f):
-        return f[:3] == 'OP:' and f[-1] != '_'
-
-    def get_object(self, idx):
-        return self.inventory[idx]
-
-    @staticmethod
-    def accept(ps):
-        return False
-
-    def update(self, idx, criteria):
-        self.inventory[idx].update_contents(criteria)
-
-    def project(self, ps, idx):
-        self.inventory[idx] = self.speaker_model.narrow_semantics.default_attributes(ps, 'OP')
-        self.inventory[idx]['Semantic type'].add('§Operator')
-        log(f'{ps.max().illustrate()}: ({idx}, OP)')
-
-    def remove_object(self, idx):
-        self.inventory.pop(idx, None)
-
-    def present(self, head):
-        return f'{head.max().illustrate()}'
+        return f.startswith('OP:')

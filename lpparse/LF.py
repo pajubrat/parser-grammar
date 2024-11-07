@@ -1,5 +1,6 @@
 from support import log, set_logging
 from phrase_structure import PhraseStructure
+from phrase_structure_inner_core import PhraseStructureCore
 
 def for_lf_interface(features):
     return {f for f in features if f.startswith('!') or f.startswith('-') or f.startswith('+') or f == '&P'}
@@ -30,7 +31,6 @@ class LF:
                 ('Feature Conflict test', PhraseStructure.feature_conflict),
                 ('Probe-Goal test', PhraseStructure.probe_goal_test),
                 ('Semantic Complement test', PhraseStructure.semantic_complement),
-                ('Criterial Feature test', PhraseStructure.legitimate_criterial_feature),
                 ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
                 ('EPP test', PhraseStructure.EPP_violation),
                 ('External head merge test', PhraseStructure.complex_head_integrity),
@@ -59,11 +59,11 @@ class LF:
         return True
 
     def selection_test(self, X):
-        for key in [f.split(':')[0] for f in X.features if 'COMP' in f or 'SPEC' in f or 'SELF' in f]:
+        for key in X.core.selection_keys():
             if key in self.selection_violation_test.keys():
-                if not self.selection_violation_test[key](X, X.get_selection_features(key)):
+                if not self.selection_violation_test[key](X, X.core.get_selection_features(key)):
                     if self.logging:
-                        log(f'\t{X} failed {key}: {X.get_selection_features(key)} ')
+                        log(f'\t{X} failed {key}: {X.core.get_selection_features(key)} ')
                     return True     # Failed test
 
     def final_tail_check(self, X):
@@ -72,8 +72,8 @@ class LF:
                 return False
             if not X.R().copied and not self.final_tail_check(X.R()):
                 return False
-        if X.zero_level() and X.max() != X.top() and X.get_tail_sets() and not X.tail_test(weak_test=X.referential() or X.preposition()):
-            log(f'\n\t\tPost-syntactic tail test for \'{X.illustrate()}\' failed. @@')
+        if X.zero_level() and X.max() != X.top() and X.get_tail_sets() and not X.tail_test(weak_test=X.core.referential() or X.core.preposition()):
+            log(f'\n\t\tPost-syntactic tail test for \'{X.illustrate()}\' failed.')
             return False
         return True
 

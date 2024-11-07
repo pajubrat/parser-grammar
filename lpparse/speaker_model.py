@@ -12,40 +12,45 @@ from Experimental_functions import ExperimentalFunctions
 from results import Results
 
 class SpeakerModel:
-    OP = {'Feature inheritance':
+    OPs = {'Noncyclic Ā-chain':
+              {'TRIGGER': lambda x: x.operator_in_scope_position() and x.sister() and not PhraseStructure.cyclic,
+               'TARGET': lambda x: x,
+               'TRANSFORM': lambda x, t: x.reconstruct_operator(t)},
+           'Feature inheritance':
               {'TRIGGER': lambda x: x.check({'EF?'}) or (x.highest_finite_head() and not x.check({'!PER'})),
                'TARGET': lambda x: x,
                'TRANSFORM': lambda x, t: x.feature_inheritance()},
-          'A-chain':
+            'A-chain':
               {'TRIGGER': lambda x: x.zero_level() and
-                                    x.EPP() and
-                                    x.is_R() and x.sister() and x.sister().complex() and x.sister().referential() and
+                                    x.core.EPP() and
+                                    x.is_R() and x.sister() and x.sister().complex() and not x.sister().copied and x.sister().H().core.referential() and
                                     not x.sister().operator_features() and x.tail_test(tail_sets=x.sister().get_tail_sets(), direction='right', weak_test=True),
                'TARGET': lambda x: x.sister().chaincopy(),
                'TRANSFORM': lambda x, t: x * t},
-          'Scrambling': {'TRIGGER': lambda x: x.max().license_scrambling() and
-                                              (x.container() and x.container().EF() or not x.H().tail_test()) and
-                                              x.scrambling_target() and x.scrambling_target() != x.top() and
-                                              not x.operator_in_scope_position() and PhraseStructure.speaker_model.LF.pass_LF_legibility(x.scrambling_target().copy().transfer(), logging=False) and
-                                              PhraseStructure.noncyclic_derivation,
+           'IHM':
+               {'TRIGGER': lambda x: x.complex_head() and not x.core.EHM() and not x.affix().copied,
+                'TARGET': lambda x: x.affix(),
+                'TRANSFORM': lambda x, t: x.head_reconstruction(t)},
+           'Scrambling': {'TRIGGER': lambda x: x.max().license_scrambling() and
+                                               (x.container() and x.container().core.EF() or not x.H().tail_test()) and
+                                               x.scrambling_target() and x.scrambling_target() != x.top() and
+                                               not x.operator_in_scope_position() and PhraseStructure.speaker_model.LF.pass_LF_legibility(
+              x.scrambling_target().copy().transfer(), logging=False) and
+                                               not PhraseStructure.cyclic,
                          'TARGET': lambda x: x.scrambling_target().chaincopy(externalize=True),
                          'TRANSFORM': lambda x, t: x.scrambling_target().scrambling_reconstruct(t)},
-          'Agree':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_L() and x.is_unvalued() and not x.check({'ΦLF'}),
+           'Agree':
+              {'TRIGGER': lambda x: x.zero_level() and x.is_L() and x.core.is_unvalued() and 'ΦLF' not in x.core,
                'TARGET': lambda x: x,
                'TRANSFORM': lambda x, t: x.AgreeLF()},
-          'IHM':
-              {'TRIGGER': lambda x: x.complex_head() and not x.EHM() and not x.check({'OP'}) and not x.affix().copied,
-               'TARGET': lambda x: x.affix().chaincopy(),
-               'TRANSFORM': lambda x, t: x.reconstruct_head(t)},
-          'Cyclic Ā-chain':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_R() and x.thematic_head() and x.sister() and x.sister().zero_level(),
-               'TARGET': lambda Y: next((x.chaincopy() for x in Y.path() if x.complex() and x.operator_features() and x.H().check_some(Y.get_selection_features('+SPEC')) and Y.tail_test(tail_sets=x.get_tail_sets())), None),
-               'TRANSFORM': lambda x, t: t * x},
-        'Noncyclic Ā-chain':
-              {'TRIGGER': lambda x: x.operator_in_scope_position() and x.sister() and PhraseStructure.noncyclic_derivation,
-               'TARGET': lambda x: x.chaincopy(),
-               'TRANSFORM': lambda x, t: x.reconstruct_operator(t)}}
+           'Cyclic Ā-chain':
+              {'TRIGGER': lambda x: x.zero_level() and x.is_R() and x.core.thematic_head() and x.sister() and x.sister().zero_level() and PhraseStructure.cyclic,
+               'TARGET': lambda Y: next((x.chaincopy() for x in Y.path() if
+                                         x.complex() and x.operator_features() and x.H().check_some(
+                                             Y.core.get_selection_features('+SPEC')) and Y.tail_test(
+                                             tail_sets=x.get_tail_sets())), None),
+               'TRANSFORM': lambda x, t: t * x}
+           }
 
     def __init__(self, settings, language='XX'):
         self.settings = settings
@@ -101,10 +106,15 @@ class SpeakerModel:
             self.results.consume_resources('Sensory Processing', word)
 
         # Call the derivational search function
-        self.derivational_search_function(None, data_item["word_list"].copy(), 0)
+        self.derivational_search_function(word_list=data_item["word_list"].copy())
 
     # Recursive derivational search function (parser)
-    def derivational_search_function(self, X, lst, index, inflection_buffer=frozenset()):
+    def derivational_search_function(self, **kwargs):
+        X = kwargs.get('phrase_structure', None)
+        lst = kwargs.get('word_list', [])
+        index = kwargs.get('index', 0)
+        infl_buffer = kwargs.get('infl_buffer', [])
+
         Results.accumulate_global_steps()   #   Internal bookkeeping
         log_instance.indent_level = self.embedding
         # Stop processing if there are no more words to consume
@@ -120,35 +130,36 @@ class SpeakerModel:
                 # 1. Morphological parsing if applicable
                 if lex.morphological_chunk:
                     self.embedding += 1
-                    self.derivational_search_function(secure_copy(X),
-                                                      lex.morphological_parse(X, lst.copy(), index, inflection_buffer),
-                                                      index,
-                                                      inflection_buffer)
+                    self.derivational_search_function(phrase_structure=secure_copy(X),
+                                                      word_list=lex.morphological_parse(X, lst.copy(), index),
+                                                      index=index,
+                                                      infl_buffer=infl_buffer)
 
                 # 2. Process inflectional feature (withhold streaming to syntax)
                 if not lex.morphological_chunk and lex.inflectional:
-                    inflection_buffer = inflection_buffer | lex.features - {'inflectional'}
+                    infl_buffer.append(lex.features - {'inflectional'})
                     log(f'= {illu(lex.features)}')
-                    self.derivational_search_function(secure_copy(X), lst, index + 1, inflection_buffer)
+                    self.derivational_search_function(phrase_structure=secure_copy(X), word_list=lst, index=index + 1, infl_buffer=infl_buffer)
 
                 # 3. Extract features from primitive lex and wrap them into primitive constituent and stream into syntax
                 if not lex.morphological_chunk and not lex.inflectional:
-                    self.syntactic_branching(X, self.lexical_stream.wrap(lex, inflection_buffer), lst, index)
+                    self.syntactic_branching(X, self.lexical_stream.wrap(lex, infl_buffer), lst, index)
 
-                inflection_buffer = set()
+                infl_buffer = []
 
         log(f'\n\t\tBacktracking...')
 
     def syntactic_branching(self, X, W, lst, index):
         if not X:
-            self.derivational_search_function(W.copy(), lst, index + 1)
+            self.derivational_search_function(phrase_structure=W.copy(), word_list=lst, index=index + 1)
         else:
             self.results.record_derivational_step(X, 'Phrase structure in syntactic working memory')
             for N in self.plausibility_metrics.filter_and_rank(X, W):
                 Y = X.target_left_branch(N).transfer().attach(W.copy())
-                Y = Y.bottom().reconstruct()
-                log(f'\n\t= {Y}\n')
-                self.derivational_search_function(Y, lst, index + 1)
+                PhraseStructure.cyclic = True
+                Y = Y.bottom().reconstruct(self.OPs)
+                log(f'\n\t= {Y.top()}\n')
+                self.derivational_search_function(phrase_structure=Y, word_list=lst, index=index + 1)
                 if self.exit:
                     break
         self.narrow_semantics.pragmatic_pathway.forget_object(W)
@@ -164,7 +175,7 @@ class SpeakerModel:
     # Evaluates a complete solution at the LF-interface and semantic interpretation
     def evaluate_complete_solution(self, X):
         self.results.record_derivational_step(X, 'PF-interface')
-        PhraseStructure.noncyclic_derivation = True
+        PhraseStructure.cyclic = False
         log('\n\n----Noncyclic derivation------------------------------------------------------------------------------\n')
         X.transfer()
         X = X.top()
@@ -191,4 +202,4 @@ class SpeakerModel:
         if not self.results.first_solution_found:
             self.results.consume_resources("Garden Paths", X)
 
-        PhraseStructure.noncyclic_derivation = False
+        PhraseStructure.cyclic = True

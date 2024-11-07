@@ -55,17 +55,10 @@
 
 	# Universal operator feature inventory
 		
-		uC/op	:: inflectional uC/op
-		wh     	:: inflectional ΔOP:WH
-		WH		:: inflectional FORCE:WH
-		top    	:: inflectional OP:TOP DIS:TOP
-		foc    	:: inflectional OP:FOC DIS:FOC
-		fam		:: inflectional OP:FAM DIS:FAM
-		pol		:: inflectional OP:POL DIS:POL
-		C/op	:: inflectional OP:C/OP DIS:C/OP
-		d/rel   :: inflectional OP:REL
-		Q		:: inflectional OP OP:WH OP:Q FORCE:WH DIS:WH
-		strong_operator		:: inflectional OP*
+		wh     	:: inflectional OP:WH **OP **FORCE:WH **OP:WH
+		rel   	:: inflectional OP:REL **OP **OP:REL **-FORCE
+		[foc]	:: inflectional 'FOC -insitu **OP **OP:FOC
+		'FOC	:: inflectional 'FOC
 
 # FINNISH
 
@@ -121,13 +114,6 @@
 	# Aspect markers
 	
 		asp				:: inflectional ASP:BOUNDED
-
-	# Left peripheral particles
-	
-		[hAn]			:: inflectional OP OP:FAM ΔOP:FAM LANG:FI
-		[pA]			:: inflectional OP OP:POL ΔOP:POL LANG:FI
-		[kO]			:: inflectional OP PF:-kO OP:Q ΔOP:Q LANG:FI
-		[foc]			:: inflectional OP OP:FOC ΔOP:FOC LANG:FI
 
 	# Tense and mood
 	

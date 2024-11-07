@@ -56,7 +56,7 @@ class DatasetView(tk.LabelFrame):
                 self.dataset_treeview.insert('', 'end', iid=i, text=data_item['index'], values=[prefix + data_item['expression']], tags=(tag,))
                 self.sentences_to_parse_dict[sentence_nro] = {'word_list': data_item["word_list"], 'grammatical': data_item["grammaticality"]}
                 sentence_nro += 1
-        self.dataset_treeview.tag_configure('label', background='yellow', foreground='#000000', font=('Calibri', 20, 'bold'))
+        self.dataset_treeview.tag_configure('label', background='lightgrey', foreground='#000000', font=('Calibri', 20, 'bold'))
         self.dataset_treeview.tag_configure('data', background='#FFFFFF', foreground='#000000')
 
     def _analyze(self, k):

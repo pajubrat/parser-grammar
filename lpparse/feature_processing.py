@@ -4,12 +4,6 @@ def clean_string(str):
     str = str.replace(' ', '')
     return str
 
-def mandatory(f):
-    return f.startswith('!')
-
-def illicit(f):
-    return f.startswith('-')
-
 def negative_features(features_to_check):
     return {feature[1:] for feature in features_to_check if feature[0] == '*'}
 

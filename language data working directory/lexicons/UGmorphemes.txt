@@ -14,7 +14,7 @@
 	FORCE	:: FORCE Fin
 	C/fin   :: C/fin PF:C LF:C
 	C		:: C LF:C
-	C/wh	:: C LF:C ΔOP PF:C/wh EF +COMP:T/fin
+	C/wh	:: C C/fin LF:C OP EF +COMP:T/fin
 	Cpol	:: Cpol PF:C LF:C
 	T/fin   :: T/fin LF:T π
 	Neg/fin :: Neg/fin
@@ -151,6 +151,15 @@
 			TA*		:: V CAU 	PF:-TA		LF:cause  			V/TR LANG:FI -ΦPF EF*
 			U*		:: V REFL	PF:-utu		LF:become			V/INTR LANG:FI +COMP:V
 
+	# Left Periphery
+	
+		# Left peripheral clitics
+	
+			kO			:: inflectional PF:-kO OP:Q **OP **OP:Q **FORCE:WH -insitu PC:=X LANG:FI
+			hAn			:: inflectional PF:-hAn OP:FAM DIS:FAM **OP **OP:FAM -insitu PC:=X LANG:FI
+			pA			:: inflectional PF:-pA OP:POL DIS:POL **OP **OP:POL -insitu PC:=X LANG:FI
+			s			:: inflectional PF:-s OP:DE/EM DIS:DE/EM **OP **OP:DE/EM -insitu PC:=X LANG:FI
+			
 	# Finnish prepositions (semantic cases)
 	P(ine)		:: PF:-ssA LF:in P LANG:FI
 	P0			:: PF:-Ø LF:in P LANG:FI

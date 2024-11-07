@@ -2,7 +2,9 @@ from support import log_instance
 
 
 class LexicalItem:
-    def __init__(self, name='?', feature_set=set()):
+    def __init__(self, **kwargs):
+        name = kwargs.get('name', '?')
+        feature_set = kwargs.get('features', set())
         self.name = name
         self.morphological_chunk = ''
         self.features = set()
@@ -14,7 +16,7 @@ class LexicalItem:
         self.set_language()
 
     def copy(self):
-        lex_ = LexicalItem(self.name, self.features)
+        lex_ = LexicalItem(name=self.name, features=self.features)
         lex_.morphological_chunk = self.morphological_chunk
         lex_.language = self.language
         lex_.inflectional = self.inflectional
@@ -28,7 +30,7 @@ class LexicalItem:
         return self
 
     def create_lexical_item(self, feature_set):
-        self.features = feature_set
+        self.features = set(feature_set)
         for f in self.features:
             if '#' in f and not f.startswith('PC:'):
                 self.morphological_chunk = f
@@ -48,7 +50,7 @@ class LexicalItem:
     def __str__(self):
         return self.name
 
-    def morphological_parse(self, ps, input_word_list, index, inflection_buffer):
+    def morphological_parse(self, ps, input_word_list, index):
         word = self.morphological_chunk
         word = word.replace("#", "#$#")
         word = word.replace("=", '=$=')

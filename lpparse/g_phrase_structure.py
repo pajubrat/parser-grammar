@@ -10,7 +10,7 @@ class GPhraseStructure(PhraseStructure):
         super().__init__(left, right)
 
         # Properties of regular constituents
-        self.features = source.features
+        self.inner_core = source.core
         self.adjunct = source.adjunct
         self.identity = source.identity
         self.copied = source.copied
@@ -63,12 +63,10 @@ class GPhraseStructure(PhraseStructure):
                 C = PhraseStructure(C, x)
                 if not GPhraseStructure.application.settings.retrieve('image_parameter_covert_complex_heads'):
                     if C.R().copied:
-                        C.features.add(C.R().label())
-                        C.features.add(C.R().index())
-                        C.features.add('create_head_chain_here')
+                        C.core.add_features(C.R().label())
+                        C.core.add_features(C.R().index())
                         C.const = []
                     elif C.L().copied:
-                        C.L().features.add('create_head_chain_here')
                         C.L().copied = False
         if M:
             if X.L():
@@ -106,8 +104,8 @@ class GPhraseStructure(PhraseStructure):
             x = x.mother_
         return lst
 
-    def find_Agree(self):
-        if self.zero_level() and self.is_L() and 'ΦLF' in self.features:
+    def find_Agree(gps):
+        if gps.zero_level() and gps.is_L() and 'ΦLF' in gps.inner_core.features():
             pass
 
     def initialize_logical_space(self):
@@ -265,7 +263,7 @@ class GPhraseStructure(PhraseStructure):
                 for feature in self.custom_features:
                     label_stack.append((feature, 'feature'))
             elif not self.complex():
-                for feature in [x for x in self.features if x in GPhraseStructure.draw_features]:
+                for feature in [x for x in self.inner_core.features() if x in GPhraseStructure.draw_features]:
                     label_stack.append((f'{feature}', 'feature'))
 
         # Custom text
@@ -280,7 +278,7 @@ class GPhraseStructure(PhraseStructure):
         itext = self.label() + '\n'
         if self.zero_level():
             i = 0
-            for feature in sorted(self.features):
+            for feature in sorted(self.inner_core.features()):
                 itext += feature + '\n'
         return itext
 

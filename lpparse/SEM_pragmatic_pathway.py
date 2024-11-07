@@ -8,6 +8,9 @@ class Discourse:
         self.attention_gradient = []
         self.index_counter = 0
         self.records_of_attentional_processing = {}  # Traces of attentional allocation
+        self.discourse_interpretation = {'FAM': 'Familiarity assumption',
+                                         'POL': 'Affirmation bias',
+                                         'DE/EM': 'De-emphasis, politeness'}
 
     def initialize(self):
         self.attention_gradient = []
@@ -24,17 +27,20 @@ class Discourse:
         if X and self.get_inventory_index(X):
             idx = self.get_inventory_index(X)
             feature = '*IDX:'+str(idx)
-            X.features.discard(feature)
+            X.core.remove_features({feature})
             self.records_of_attentional_processing.pop(idx)
 
     def is_discourse_feature(self, feature):
         return feature[:4] == 'DIS:'
 
-    def get_discourse_features(self, features):
-        return {f for f in features if f[:4] == 'DIS:'}
+    def get_discourse_features(self, X):
+        fset = set()
+        for s in [f.split(':')[1].split(',') for f in X.core.features() if f.startswith('DIS:')]:
+            fset.update(s)
+        return fset
 
     def get_inventory_index(self, ps):
-        return next((f.split(':')[1] for f in ps.features if f[:4] == '*IDX'), None)
+        return next((f.split(':')[1] for f in ps.core.features() if f[:4] == '*IDX'), None)
 
     def refresh_inventory(self, ps):
         if not ps.copied:
@@ -43,18 +49,15 @@ class Discourse:
                 self.records_of_attentional_processing[idx]['Name'] = f'{ps.H().max().illustrate()}'
                 self.records_of_attentional_processing[idx]['Constituent'] = ps.H()
 
-    def interpret_discourse_features(self, ps):
-        self.refresh_inventory(ps)
-        result = ''
-        d_features = self.get_discourse_features(ps.features)
-        if d_features:
-            log('\n\t\t\tInterpreting ')
-            for f in sorted(d_features):
-                log(f'[{f}] at {ps.illustrate()}...')
-                result += self.interpret_discourse_feature(f, ps)
+    def interpret_discourse_features(self, X):
+        results = []
+        for f in self.get_discourse_features(X):
+            log(f'\n\tInterpreting {f} at {X.illustrate()}.')
+            results.append(self.interpret_discourse_feature(f, X))
+        return results
 
-    def interpret_discourse_feature(self, f, ps):
-        return f'{f}, {ps.illustrate()}'
+    def interpret_discourse_feature(self, f, X):
+        return f'{self.discourse_interpretation[f]}({f})'
 
     def calculate_information_structure(self, ps):
         log('\n\t\tCalculating information structure...')
@@ -105,10 +108,10 @@ class Discourse:
                     return True
 
     def locate_proposition(self, X):
-        return next((node for node in X if node.complex() and node.L.finite_tense()), None)
+        return next((node for node in X if node.complex() and node.L().core.finite_tense()), None)
 
     def get_force_features(self, X):
-        return {f for f in X.H().features if f[:5] == 'FORCE'}
+        return {f for f in X.H().core.features() if f[:5] == 'FORCE'}
 
     def compute_speaker_attitude(self, X):
         if self.get_force_features(X.H()):
@@ -130,7 +133,7 @@ class Discourse:
         self.records_of_attentional_processing[idx]['Marked gradient'] = direction
 
     def allocate_attention(self, head):
-        if head.referential() or head.preposition():
+        if head.core.referential() or head.core.preposition():
             idx = self.consume_index()
-            head.features.add('*IDX:'+str(idx))
+            head.core.add_features({'*IDX:' + str(idx)})
             self.records_of_attentional_processing[str(idx)] = {'Constituent': head.max(), 'Order': idx, 'Name': f'{head}'}

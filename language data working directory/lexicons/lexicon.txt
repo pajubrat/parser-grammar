@@ -3,7 +3,8 @@
 
 aitaa		:: aita-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 aitoja		:: aita-#φ#pl#3p#def#nonhum#r_expression#[par] LANG:FI
-aidan		:: aita-#φ#sg#3p#def#nonhum#r_expression#[acc(n)] LANG:FI
+aidan/DP	:: aita-#φ#sg#3p#def#nonhum#r_expression#[ACC] LANG:FI
+aidan		:: PF:aidan LF:fence N TAIL:V/TR LANG:FI
 aidan_gen	:: aita-#φ#sg#3p#def#nonhum#r_expression#[gen] LANG:FI
 aita-		:: PF:aita LF:fence N -COMP:A/inf LANG:FI
 ali			:: PF:ali LF:under EF* P -ΦPF TAIL:V Inf !COMP:* LANG:FI
@@ -256,7 +257,7 @@ maalaamassa	:: maalaa-#v#MA.ine/inf LANG:FI
 maalata		:: maalaa-#v#A/inf LANG:FI
 maalasi		:: maalaa-#v#T/fin#pst#[V] LANG:FI
 maalasin	:: maalaa-#v#T/fin#pst#n LANG:FI
-maalannut	:: maalaa-#asp#v#T/prt#sg_ LANG:FI
+maalannut	:: maalaa-#asp#v#T/prt#pst#sg_ LANG:FI
 maalataan	:: maalaa-#asp#impass#T/fin#prs#Vn LANG:FI
 maalattiin	:: maalaa-#asp#impass#T/fin#pst#Vn LANG:FI
 maalaa		:: maalaa-#v#T/fin#prs LANG:FI
@@ -500,7 +501,7 @@ työtä		:: työ-#φ#sg#3p#def#nonhum#r_expression#[par] LANG:FI
 työ-		:: PF:työ LF:work N -COMP:D -COMP:φ LANG:FI
 työskenteli	:: työskentele-#T/fin#pst#[V] LANG:FI
 työskentele- :: PF:työskentele LF:work V V/INTR LANG:FI
-tämän		:: φ#sg#3p#def#[ACC] LANG:FI
+tämän		:: D#sg#3p#def#acc LANG:FI
 tämä		:: tämä-#φ#sg#3p#def LANG:FI
 tätä		:: φ#sg#3p#def#[par] LANG:FI
 tämä-		:: PF:tämä LF:this N PHI LANG:FI

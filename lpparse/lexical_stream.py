@@ -7,17 +7,17 @@ class LexicalStream:
         self.lexicon = self.speaker_model.lexicon
         self.id = 0
 
-    def wrap(self, lex, inflectional_buffer):
+    def wrap(self, lex, infl_buffer):
         log(f'\n\n\tNext head {lex}°\n')
-        const = PhraseStructure()
-        const.features = lex.features.copy()
-        id = str(self.consume_id())
-        const.features.add('§' + id)
-        const.features = self.lexicon.apply_redundancy_rules(const.features | inflectional_buffer)
-        self.speaker_model.narrow_semantics.pragmatic_pathway.allocate_attention(const)
+        X = PhraseStructure(features=self.lexicon.apply_redundancy_rules([lex.features.copy()] + infl_buffer[::-1]))
+        X.core.add_features({f'§{str(self.consume_id())}'})
+        self.speaker_model.narrow_semantics.pragmatic_pathway.allocate_attention(X)
         if lex.onset == '#':
-            const.internal = True
-        return const
+            X.internal = True
+        if lex.onset == '=':
+            X.internal = True
+            X.clitic = True
+        return X
 
     def consume_id(self):
         self.id += 1

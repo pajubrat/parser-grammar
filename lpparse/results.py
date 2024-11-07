@@ -164,11 +164,11 @@ class Results:
     def log_success(self, ps):
         log(u'\n\n\u03F4''\tACCEPTED.\n')
         print('X', end='', flush=True)
+        log(f'\n\n\t\tLexical features:\n{self.show_primitive_constituents(ps)}')
         if not self.first_solution_found:
             log('\n\tComplete ontology:')
             log(f'\t\t{self.format_ontology_all(self.speaker_model)}\n')
             log('\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------\n')
-        log(f'\n\n\t\tLexical features:\n{self.show_primitive_constituents(ps)}')
         log('\n\tChecking if the sentence is ambiguous...\n')
         self.first_solution_found = True
 
@@ -177,46 +177,32 @@ class Results:
         log('\tMemory dump:\n\n')
         log(f'{self.show_primitive_constituents(ps)}')
 
-    def show_primitive_constituents(self, ps):
-        def sorted_by_relevance(set):
-            id = {feature for feature in set if feature[0] == '#'}
-            A = {feature for feature in set if feature in ['√', 'n', 'N', 'Neg', 'Neg/fin', 'P', 'D', 'Qn', 'Num', 'φ', 'Top', 'C', 'a', 'A', 'v', 'V', 'Pass', 'VA/inf', 'T', 'Fin', 'Agr',
-              'A/inf', 'MA/inf', 'ESSA/inf', 'E/inf', 'TUA/inf', 'KSE/inf', 'Inf', 'FORCE', 'EXPL', 'Adv', '0', 'a', 'b', 'c', 'd', 'x', 'y', 'z', 'X', 'Y', 'Z', 'adjoinable']}
-            B = {feature for feature in set if feature[:2] == 'PF' or feature[:2] == 'LF'}
-            C = {feature for feature in set if feature in {'θ', 'ARG', '-ARG'} or feature.startswith('Φ') or feature.startswith('-Φ') or
-                 feature.startswith('!EF:') or
-                 feature.startswith('-EF') or
-                 feature.startswith('EF')}
-            E = {feature for feature in set if feature.startswith('TAIL')}
-            F = {feature for feature in set if 'PHI:' in feature}
-            G = {feature for feature in set if feature[:3] == 'SEM'}
-            H = {feature for feature in set if 'COMP' in feature}
-            J = {feature for feature in set if 'SPEC' in feature}
-            residuum = set - A - B - C - E - F - G - H - J
-            feature_sets = [sorted(A),  sorted(B), sorted(C), sorted(E), sorted(F), sorted(G), sorted(H), sorted(J), sorted(id), sorted(residuum)]
-            feature_stri = ''
-            i = 0
-            for fset in feature_sets:
-                for f in fset:
-                    feature_stri += f'[{f}] '
-                    i += len(f) + 3
-                    if i > 100:
-                        feature_stri += '\n\t\t\t\t\t'
-                        i = 0
-                if (feature_stri and '\t' != feature_stri[-1]) and fset and i > 100:
-                    feature_stri += '\n\t\t\t\t\t'
-                    i = 0
-            return feature_stri
+    def show_primitive_constituents(self, X):
+        def print_feature_bundles(feature_lst):
+            stri = ''
+            for fset in feature_lst:
+                stri += '{'
+                line = ''
+                for i, f in enumerate(fset):
+                    if 0 < i < len(fset):
+                        line += ' '
+                    line += f'{f}'
+                    if len(line) > 70:
+                        stri += f'{line}\n\t\t{" ":<11}'
+                        line = ''
 
+                if line:
+                    stri += f'{line}}}\n\t\t{" ":<11}'
+            return stri
         reply = ''
-        if not ps.zero_level():
-            reply += self.show_primitive_constituents(ps.L())
-            reply += self.show_primitive_constituents(ps.R())
+        if not X.zero_level():
+            reply += self.show_primitive_constituents(X.L())
+            reply += self.show_primitive_constituents(X.R())
         else:
-            for head in ps.affixes():
+            for head in X.affixes():
                 if head.copied:
                     break
-                reply += f'\t\t{head.get_phonological_string():<11} {sorted_by_relevance(head.features)}\n'
+                reply += f'\t\t{head.get_phonological_string():<11}{print_feature_bundles(head.core.feature_bundles())}\n'
         return reply
 
     def format_ontology_all(self, speaker_model):
@@ -303,7 +289,13 @@ class Results:
             stri += '\t\tObject ' + semantic_object
             if 'Semantic space' in data_dict:
                 stri += ' in ' + data_dict['Semantic space'] + ': '
+            if data_dict.get('Number', None):
+                stri += 'Spatiotemporal '
             if 'Reference' in data_dict:
                 stri += data_dict['Reference']
+            if 'Concept' in data_dict:
+                stri += ' ' + data_dict['Concept']
+            if 'Composition' in data_dict:
+                stri += ' \'' + '.'.join(x.label() for x in data_dict['Composition']) + '\''
             stri += '\n'
         return stri
