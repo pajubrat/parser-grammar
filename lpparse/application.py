@@ -147,8 +147,7 @@ class Application(tk.Tk):
         self.run_study(image_window=image_window)
 
     def new_image(self, *_):
-        X = PhraseStructure()
-        X.features.add('X')
+        X = PhraseStructure(features={'X'})
         GX = GPhraseStructure(PhraseStructure(X))
         image_window = PhraseStructureGraphics(self, settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings, speaker_model=None, gps=GX, title='')
 

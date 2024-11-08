@@ -388,6 +388,9 @@ class PhraseStructure:
     def probe(X, G):
         return next((x for x in X.sister() if x.check({G})), None)
 
+    def core_integrity(X):
+        return X.core.integrity()
+
     # Projection principle ---------------------------------------------------------------------
 
     def in_thematic_position(X):
@@ -486,23 +489,25 @@ class PhraseStructure:
                     if not x.complement():
                         return x * T.chaincopy()
                 # LHM
-                if T.zero_level() and T.affix() and T.affix().check_some(x.core.get_selection_features('+COMP')):
-                    return T.affix().chaincopy() * x.sister()
+                if T.zero_level() and T.check_some(x.core.get_selection_features('+COMP')):
+                    return T.chaincopy() * x.sister()
         return X
 
     def head_reconstruction(X, T):
-        if not X.is_L():
-            if not ('OP:' in X and X.core.finite()):
-                return X * T.chaincopy()
-            return X
         if PhraseStructure.cyclic:
-            return X.sister() * T.chaincopy()
-        return T.chaincopy() * X.sister()
+            if not X.is_L():    # X is right or isolated = cyclic IHM
+                if not ('OP:' in X and '-insitu' in X and 'TAM' in X):   #   Block cyclic IHM for fronted verbs with operator, must be reconstructed later
+                    return X * T.chaincopy()
+                return X
+            else:   # X is left, special case of A-chain + IHM
+                return X.sister() * T.chaincopy()
+        else:
+            return T.chaincopy() * X.sister()
 
     # Scrambling ==========================================================================
     def tail_fit(X, Y, direction='left'):
-        return X.tail_test(tail_sets=Y.get_tail_sets(),
-                           weak_test=Y.core.referential() or Y.core.preposition(),
+        return X.tail_test(tail_sets=Y.H().get_tail_sets(),
+                           weak_test=Y.H().core.referential() or Y.H().core.preposition(),
                            direction=direction)
 
     def scrambling_reconstruct(XP, YP):
@@ -521,7 +526,7 @@ class PhraseStructure:
         # Search for a new position
         for x in XP.local_tense_edge().minimal_search(intervention=lambda x: 'φ' in x.core or x == XP.H()):
             # Specifier positions
-            if x.tail_fit(YP, 'left') and YP.spec_selection(x):
+            if x.tail_fit(YP): # and YP.spec_selection(x):
                 if x.is_L():
                     return YP * x.M()    #   [a X(P)] = [YP [a X(P)]]
                 return YP * x            #   [X(P) a] = [X(P) [YP a]]
@@ -615,7 +620,7 @@ class PhraseStructure:
         return fset & X.H().core.features()
 
     def get_tail_sets(X):
-        return {frozenset(f[5:].split(',')) for f in X.H().core.features() if f[:4] == 'TAIL'}
+        return {frozenset(f[5:].split(',')) for f in X.H().core.features() if f.startswith('TAIL:')}
 
     def spec_selection(X, W):
         return X.complex() and X.check_some(W.core.specifiers_licensed())
@@ -646,7 +651,8 @@ class PhraseStructure:
         (3) it must not be a scope-marker
         (4) either it is contained in SpecCP or it is a operator predicate
         """
-        return 'OP:' in X and not X.copied and 'OP' not in X.core.features() and ((X.container() and X.container().check({'Fin'})) or (X.check({'-insitu'}) and X.check_some({'T/fin', 'C/fin'})))
+        return 'OP:' in X and not X.copied and 'OP' not in X.core.features() and \
+               ((X.container() and X.container().check({'Fin'})) or (X.check({'-insitu'}) and X.check_some({'TAM', 'C/fin'})))
 
     # Tail-processing ---------------------------------------------------------------------------
 
@@ -769,6 +775,7 @@ class PhraseStructure:
 
     def copy(X):
         Y = PhraseStructure()
+        Y.core = X.core.copy()
         Y.active_in_syntactic_working_memory = X.active_in_syntactic_working_memory
         Y.adjunct = X.adjunct
         Y.internal = X.internal
@@ -777,7 +784,6 @@ class PhraseStructure:
         Y.copied = X.copied
         Y.phrasal_zero = X.phrasal_zero
         Y.create_constituents([x.copy() for x in X.const])
-        Y.core = X.core.copy()
         return Y
 
     def reattach(X, m):
@@ -795,7 +801,7 @@ class PhraseStructure:
             if target == node:
                 return i
 
-    def target_left_branch(X, N):
+    def target_left_branch_and_copy(X, N):
         return X.top().copy()[X.top().get_index(N)]
 
     # Support ----------------------------------------------------------------------
@@ -995,10 +1001,10 @@ class PhraseStructure:
         return X.complement() and not X.core.semantic_match(X.complement().H())
 
     def selected_by_SEM_internal_predicate(X):
-        return X.selector() and X.selector().SEM_internal_predicate()
+        return X.selector() and X.selector().core.SEM_internal_predicate()
 
     def selected_by_SEM_external_predicate(X):
-        return X.selector() and X.selector().SEM_external_predicate()
+        return X.selector() and X.selector().core.SEM_external_predicate()
 
     def isolated_preposition(X):
         return X.core.preposition() and X.sister() and X.sister().zero_level()
@@ -1010,7 +1016,7 @@ class PhraseStructure:
         return X.adjoinable() and 'nonfloat' not in X.core
 
     def interpretable_adjunct(X):
-        return X.core.referential() and X.max() and X.max().adjunct and X.max().is_R() and X.max().mother_ and X.max().mother_.referential()
+        return X.core.referential() and X.max() and X.max().adjunct and X.max().is_R() and X.max().mother_ and X.max().mother_.core.referential()
 
     def w_internal(X):
         return X.bottom().bottom_affix().internal

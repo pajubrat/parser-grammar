@@ -407,7 +407,7 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_all_DPs(self, *_):
         def shrink_all_DPs_(gps):
-            if {'D', 'φ'} & gps.H().features:
+            if {'D', 'φ'} & gps.H().core.features():
                 gps.compressed_into_head = True
                 gps.custom_phonology = gps.R().get_phonological_string()
             else:
@@ -420,7 +420,7 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def compress_all_DPs(self, *_):
         def compress_all_DPs_(gps):
-            if {'D', 'φ'} & gps.H().features:
+            if {'D', 'φ'} & gps.H().core.features():
                 gps.compressed = True
             else:
                 if gps.L():
@@ -449,16 +449,16 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def new_features(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            gps.features = set(simpledialog.askstring(title='Linguistic features', prompt='New linguistic features', parent=self).split(';'))
+            gps.core.add_features(set(simpledialog.askstring(title='Linguistic features', prompt='New linguistic features', parent=self).split(';')))
             self.label_stack_update(gps)
             self.update_contents()
 
     def change_original_label(self, *_):
         for gps in self.selected_objects_into_gps_list():
             old_label = gps.label()
-            gps.features = {f for f in gps.features if not f.startswith('PF:') and not f.startswith('LF:') and f != old_label}
+            gps.core.set_features({f for f in gps.core.features() if not f.startswith('PF:') and not f.startswith('LF:') and f != old_label})
             new_label = simpledialog.askstring(title='Change the original label', prompt='New label', parent=self)
-            gps.features.add(new_label)
+            gps.core.add_features({new_label})
             if new_label not in PhraseStructure.major_cats:
                 PhraseStructure.major_cats.insert(0, new_label)
             self.label_stack_update(gps)
@@ -468,8 +468,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             Y = gps.M()
             right = gps.is_R()
-            T = GPhraseStructure(PhraseStructure())
-            T.features = {'T'}
+            T = GPhraseStructure(PhraseStructure(features={'T'}))
             Host = GPhraseStructure(PhraseStructure(), T, gps)
             if Y:
                 if right:
@@ -485,8 +484,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             Y = gps.M()
             right = gps.is_R()
-            V = GPhraseStructure(PhraseStructure())
-            V.features = {'V'}
+            V = GPhraseStructure(PhraseStructure(features={'V'}))
             Host = GPhraseStructure(PhraseStructure(), V, gps)
             if Y:
                 if right:
@@ -502,8 +500,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         for gps in self.selected_objects_into_gps_list():
             Y = gps.M()
             right = gps.is_R()
-            C = GPhraseStructure(PhraseStructure())
-            C.features = {'C'}
+            C = GPhraseStructure(PhraseStructure(features={'C'}))
             Host = GPhraseStructure(PhraseStructure(), C, gps)
             if Y:
                 if right:
@@ -526,7 +523,7 @@ class PhraseStructureGraphics(tk.Toplevel):
                 last_affix = gps.affixes()[-1]
                 last_affix.const = [H]
                 H.mother_ = last_affix
-                H.features.add('PF:X')
+                H.core.add_features({'PF:X'})
                 self.update_contents()
 
     def reverse_presentation(self, *_):
@@ -538,44 +535,35 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.update_contents(False)
 
     def basic_template(self, *_):
-        X = GPhraseStructure(PhraseStructure())
-        X.features = {'X', 'PF:X'}
-        Y = GPhraseStructure(PhraseStructure())
-        Y.features = {'Y', 'PF:Y'}
-        Z = GPhraseStructure(PhraseStructure())
-        Z.features = {'Z', 'PF:Z'}
+        X = GPhraseStructure(PhraseStructure(features={'X', 'PF:X'}))
+        Y = GPhraseStructure(PhraseStructure(features={'Y', 'PF:Y'}))
+        Z = GPhraseStructure(PhraseStructure(features={'Z', 'PF:Z'}))
         YP = GPhraseStructure(PhraseStructure(), Y, Z)
         XP = GPhraseStructure(PhraseStructure(), X, YP)
         self.root_gps = XP
         self.update_contents()
 
     def DP(self):
-        D = GPhraseStructure(PhraseStructure())
-        D.features = {'D'}
-        N = GPhraseStructure(PhraseStructure())
-        N.features = {'N'}
+        D = GPhraseStructure(PhraseStructure(features={'D'}))
+        N = GPhraseStructure(PhraseStructure(features={'N'}))
         return GPhraseStructure(PhraseStructure(), D, N)
 
     def vP(self):
-        v = GPhraseStructure(PhraseStructure())
-        v.features = {'v'}
+        v = GPhraseStructure(PhraseStructure(features={'v'}))
         vP1 = GPhraseStructure(PhraseStructure(), v, self.VP())
         return GPhraseStructure(PhraseStructure(), self.DP(), vP1)
 
     def TP(self):
-        T = GPhraseStructure(PhraseStructure())
-        T.features = {'T'}
+        T = GPhraseStructure(PhraseStructure(features={'T'}))
         TP = GPhraseStructure(PhraseStructure(), T, self.vP())
         return GPhraseStructure(PhraseStructure(), self.DP(), TP)
 
     def VP(self):
-        V = GPhraseStructure(PhraseStructure())
-        V.features = {'V'}
+        V = GPhraseStructure(PhraseStructure(features={'V'}))
         return GPhraseStructure(PhraseStructure(), V, self.DP())
 
     def CP(self):
-        C = GPhraseStructure(PhraseStructure())
-        C.features = {'C'}
+        C = GPhraseStructure(PhraseStructure(features={'C'}))
         return GPhraseStructure(PhraseStructure(), C, self.TP())
 
     def template_VP(self, *_):
@@ -620,10 +608,8 @@ class PhraseStructureGraphics(tk.Toplevel):
             right = gps.is_R()
 
             # Create DP
-            X = GPhraseStructure(PhraseStructure())
-            X.features = {'PF:X'}
-            Y = GPhraseStructure(PhraseStructure())
-            Y.features = {'PF:Y'}
+            X = GPhraseStructure(PhraseStructure(features={'PF:X'}))
+            Y = GPhraseStructure(PhraseStructure(features={'PF:Y'}))
             XP = GPhraseStructure(PhraseStructure(), X, Y)
             Host = GPhraseStructure(PhraseStructure(), XP, gps)
             if Z:
@@ -642,10 +628,8 @@ class PhraseStructureGraphics(tk.Toplevel):
             right = gps.is_R()
 
             # Create DP
-            D = GPhraseStructure(PhraseStructure())
-            D.features = {'D'}
-            N = GPhraseStructure(PhraseStructure())
-            N.features = {'N'}
+            D = GPhraseStructure(PhraseStructure(features={'D'}))
+            N = GPhraseStructure(PhraseStructure(features={'N'}))
             DP = GPhraseStructure(PhraseStructure(), D, N)
 
             Host = GPhraseStructure(PhraseStructure(), DP, gps)
@@ -798,8 +782,7 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_into_DP(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            gps.H().features = {f for f in gps.H().features if f not in PhraseStructure.major_cats}
-            gps.H().features = gps.H().features | {'D', 'φ'}
+            gps.H().core.set_features({f for f in gps.H().core.features() if f not in PhraseStructure.major_cats}  | {'D', 'φ'})
             gps.compressed_into_head = True
             gps.compressed = False
             self.label_stack_update(gps)

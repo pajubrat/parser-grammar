@@ -6,11 +6,11 @@ class GPhraseStructure(PhraseStructure):
 
     application = None  # Application handle for settings
 
-    def __init__(self, source=None, left=None, right=None):
-        super().__init__(left, right)
+    def __init__(self, source=None, left=None, right=None, **kwargs):
+        super().__init__(left, right, **kwargs)
 
         # Properties of regular constituents
-        self.inner_core = source.core
+        self.core = source.core
         self.adjunct = source.adjunct
         self.identity = source.identity
         self.copied = source.copied
@@ -105,7 +105,7 @@ class GPhraseStructure(PhraseStructure):
         return lst
 
     def find_Agree(gps):
-        if gps.zero_level() and gps.is_L() and 'ΦLF' in gps.inner_core.features():
+        if gps.zero_level() and gps.is_L() and 'ΦLF' in gps.core.features():
             pass
 
     def initialize_logical_space(self):
@@ -263,7 +263,7 @@ class GPhraseStructure(PhraseStructure):
                 for feature in self.custom_features:
                     label_stack.append((feature, 'feature'))
             elif not self.complex():
-                for feature in [x for x in self.inner_core.features() if x in GPhraseStructure.draw_features]:
+                for feature in [x for x in self.core.features() if x in GPhraseStructure.draw_features]:
                     label_stack.append((f'{feature}', 'feature'))
 
         # Custom text
@@ -278,7 +278,7 @@ class GPhraseStructure(PhraseStructure):
         itext = self.label() + '\n'
         if self.zero_level():
             i = 0
-            for feature in sorted(self.inner_core.features()):
+            for feature in sorted(self.core.features()):
                 itext += feature + '\n'
         return itext
 

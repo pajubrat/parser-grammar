@@ -159,6 +159,79 @@ class PhraseStructureCanvas(tk.Canvas):
         else:
             self.create_line(X + 100, Y, X + 50, Y, arrowshape=(20, 20, 10), arrow='last', width=10)
 
+    def create_primitive_node(self, gps, X1, Y1, color='black'):
+        Y_offset = 0    # Y_offset determines the lower boundary of the node + its label(s) when adding elements
+
+        # Reproduce the head and all of its affixes
+        for j, affix in enumerate(gps.affixes(), start=1):
+            # Do not reproduce affixes if blocked by settings
+            if (affix.zero_level() and affix.copied and not self.application.settings.retrieve('image_parameter_covert_complex_heads', False)) or \
+                    (j > 1 and not self.application.settings.retrieve('image_parameter_complex_heads', True)):
+                break
+
+            # Generate the label text (label + phonological exponent + gloss)
+            for i, label_item in enumerate(affix.label_stack):
+                text = self.feature_conversion_for_images(label_item)
+
+                # Do not reproduce items if blocked by settings
+                if (label_item[1] == 'gloss' and not self.application.settings.retrieve('image_parameter_glosses', True)) or \
+                        (label_item[1] == 'PF' and not self.application.settings.retrieve('image_parameter_words', True)):
+                    continue
+
+                # Elliptic phonology
+                if label_item[1] == 'PF' and gps.ellipsis:
+                    style = 'PFtrace'
+                else:
+                    style = label_item[1]
+
+                # Modify label font size based on scaling factor
+                scaled_font = list(self.label_style[style])
+                scaled_font[1] = int(self.label_style[style][1] * self.scaling_factor)
+                scaled_font = tuple(scaled_font)
+
+                # Create text
+                if label_item[1] == 'label' and label_item[0].strip() == '':
+                    text = '??'
+                    color = 'white'
+                ID = self.create_text((X1, Y1 + Y_offset),
+                                      fill=color,
+                                      activefill='grey',
+                                      tag='node',
+                                      text=text,
+                                      anchor='center',
+                                      font=scaled_font)
+                # Subscript and superscript
+                if label_item[1] == 'label' and affix.subscript:
+                    self.create_text((X1 + (len(text)-1) * 15 + self.application.settings.retrieve('image_parameter_grid') / 6, Y1 + Y_offset + self.application.settings.retrieve('image_parameter_tsize') / 4),
+                                     fill=color,
+                                     activefill='red',
+                                     tag='subscript',
+                                     text=affix.subscript,
+                                     anchor='w',
+                                     font=self.label_style['subscript'])
+                if label_item[1] == 'label' and affix.superscript:
+                    self.create_text((X1 + (len(text)-1) * 15 + self.application.settings.retrieve('image_parameter_grid') / 6, Y1 - Y_offset - self.application.settings.retrieve('image_parameter_tsize') / 4),
+                                     fill=color,
+                                     activefill='red',
+                                     tag='superscript',
+                                     text=affix.superscript,
+                                     anchor='w',
+                                     font=self.label_style['subscript'])
+
+                # Update the offset
+                Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
+
+                # Add events to the first element (i == 0 when producing the label)
+                if i == 0:
+                    self.tag_bind(ID, '<Enter>', self.focus_item)
+                    self.tag_bind(ID, '<Leave>', self.unfocus_item)
+
+                # Add the node to the mapping from nodes to affixes
+                self.ID_to_object[str(ID)] = affix
+                affix.ID = str(ID)
+                if gps in self.selected_objects:
+                    self.addtag_withtag('selected', ID)
+
     def create_complex_node(self, gps, M_const_coord, spx, spy, color='black'):
 
         L_const_coord = (spx + gps.L().x * self.application.settings.retrieve('image_parameter_grid'), spy + gps.L().y * self.application.settings.retrieve('image_parameter_y_grid'))
@@ -238,79 +311,6 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def Y_frame(self, coord, direction):
         return coord[0], coord[1] + direction * int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_label_padding'))
-
-    def create_primitive_node(self, gps, X1, Y1, color='black'):
-        Y_offset = 0    # Y_offset determines the lower boundary of the node + its label(s) when adding elements
-
-        # Reproduce the head and all of its affixes
-        for j, affix in enumerate(gps.affixes(), start=1):
-            # Do not reproduce affixes if blocked by settings
-            if (affix.zero_level() and affix.copied and not self.application.settings.retrieve('image_parameter_covert_complex_heads', False)) or \
-                    (j > 1 and not self.application.settings.retrieve('image_parameter_complex_heads', True)):
-                break
-
-            # Generate the label text (label + phonological exponent + gloss)
-            for i, label_item in enumerate(affix.label_stack):
-                text = self.feature_conversion_for_images(label_item)
-
-                # Do not reproduce items if blocked by settings
-                if (label_item[1] == 'gloss' and not self.application.settings.retrieve('image_parameter_glosses', True)) or \
-                        (label_item[1] == 'PF' and not self.application.settings.retrieve('image_parameter_words', True)):
-                    continue
-
-                # Elliptic phonology
-                if label_item[1] == 'PF' and gps.ellipsis:
-                    style = 'PFtrace'
-                else:
-                    style = label_item[1]
-
-                # Modify label font size based on scaling factor
-                scaled_font = list(self.label_style[style])
-                scaled_font[1] = int(self.label_style[style][1] * self.scaling_factor)
-                scaled_font = tuple(scaled_font)
-
-                # Create text
-                if label_item[1] == 'label' and label_item[0].strip() == '':
-                    text = '??'
-                    color = 'white'
-                ID = self.create_text((X1, Y1 + Y_offset),
-                                      fill=color,
-                                      activefill='grey',
-                                      tag='node',
-                                      text=text,
-                                      anchor='center',
-                                      font=scaled_font)
-                # Subscript and superscript
-                if label_item[1] == 'label' and affix.subscript:
-                    self.create_text((X1 + (len(text)-1) * 15 + self.application.settings.retrieve('image_parameter_grid') / 6, Y1 + Y_offset + self.application.settings.retrieve('image_parameter_tsize') / 4),
-                                     fill=color,
-                                     activefill='red',
-                                     tag='subscript',
-                                     text=affix.subscript,
-                                     anchor='w',
-                                     font=self.label_style['subscript'])
-                if label_item[1] == 'label' and affix.superscript:
-                    self.create_text((X1 + (len(text)-1) * 15 + self.application.settings.retrieve('image_parameter_grid') / 6, Y1 - Y_offset - self.application.settings.retrieve('image_parameter_tsize') / 4),
-                                     fill=color,
-                                     activefill='red',
-                                     tag='superscript',
-                                     text=affix.superscript,
-                                     anchor='w',
-                                     font=self.label_style['subscript'])
-
-                # Update the offset
-                Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
-
-                # Add events to the first element (i == 0 when producing the label)
-                if i == 0:
-                    self.tag_bind(ID, '<Enter>', self.focus_item)
-                    self.tag_bind(ID, '<Leave>', self.unfocus_item)
-
-                # Add the node to the mapping from nodes to affixes
-                self.ID_to_object[str(ID)] = affix
-                affix.ID = str(ID)
-                if gps in self.selected_objects:
-                    self.addtag_withtag('selected', ID)
 
     def draw_dependencies(self):
         for dep in self.parent.inventory['dependencies']:

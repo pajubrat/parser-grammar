@@ -37,9 +37,9 @@ class PlausibilityMetrics:
             return [X.bottom()]
         return self.rank(self.filter(X.geometrical_minimal_search(), w), w)
 
-    def filter(self, right_edge, w):
+    def filter(self, X_right_edge, w):
         set_logging(False)
-        return [N for N in right_edge if not (N.complex() and not self.left_branch_filter(N))]
+        return [N for N in X_right_edge if not (N.complex() and not self.left_branch_filter(N))]
 
     def rank(self, site_list, W):
         weighted_list = []
@@ -99,12 +99,11 @@ class PlausibilityMetrics:
         else:
             return [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
 
-    def left_branch_filter(self, N):
-        left_branch = N.copy().transfer()
+    def left_branch_filter(self, X):
         self.speaker_model.LF.active_test_battery = self.left_branch_filter_test_battery
-        return self.speaker_model.LF.pass_LF_legibility(left_branch, logging=False)
+        return self.speaker_model.LF.pass_LF_legibility(X.copy().transfer(), logging=False)
 
     @staticmethod
-    def word_breaking_filter(N, w):
-        if N.complex() and N.M():
-            return N.M().L().internal and N.L().internal
+    def word_breaking_filter(X, w):
+        if X.complex() and X.M():
+            return X.M().L().internal and X.L().internal

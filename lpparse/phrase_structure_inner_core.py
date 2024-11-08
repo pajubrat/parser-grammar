@@ -93,7 +93,21 @@ class PhraseStructureCore:
             self._features = [fset]
 
     def copy(self):
-        return PhraseStructureCore(features=self._features)
+        c = PhraseStructureCore()
+        c._features = self.copy_features()
+        return c
+
+    def copy_features(self):
+        return [s.copy() for s in self._features]
+
+    def integrity(self):
+        flist = []
+        for fset in self._features:
+            if {f for f in fset if f in flist}:
+                return True
+            flist += [f for f in fset if (f.startswith('OP:') or f.startswith('TAIL:')) and f != 'OP:FOC']
+
+    # Phi-features ----------------------------------------------------------------------------
 
     def value(self, Y_goal):
         log(' values ')
@@ -117,9 +131,6 @@ class PhraseStructureCore:
 
     def strong_features(self):
         return {f for f in self.features() if f.startswith('**')}
-
-    # Phi-features
-
 
     def valued_phi_features(self):
         return {f for f in self.features() if 'PHI:' in f and f[-1] != '_'}

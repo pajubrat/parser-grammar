@@ -33,6 +33,7 @@ class LF:
                 ('Semantic Complement test', PhraseStructure.semantic_complement),
                 ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
                 ('EPP test', PhraseStructure.EPP_violation),
+                ('Core integrity', PhraseStructure.core_integrity),
                 ('External head merge test', PhraseStructure.complex_head_integrity),
                 ('Projection Principle', PhraseStructure.projection_principle_failure)]
         return [test for test in all_legibility_tests if self.speaker_model.settings.retrieve(test[0], True)]
