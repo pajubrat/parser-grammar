@@ -162,13 +162,13 @@ class LexicalInterface:
             lexical_entries = open(lexicon_file, encoding='utf8').readlines()
 
         for line in lexical_entries:
-            if not line or '::' not in line or line.startswith('#'):            #   Ignore comments and empty lines
+            if not line or '::' not in line or line.startswith('#'):
                 continue
-            line = line.strip()                                                 #   Remove extra spaces
-            phonological_entries, lexical_features = line.split('::')           #   Separate key and value, by symbol '::'
-            phonological_entries = phonological_entries.strip().split(',')      #   Remove extra spaces, create set of allomorphs
-            lexical_feature_set = {f.strip() for f in lexical_features.split()}    #   Create the feature set
-            if not {f for f in lexical_feature_set if f[:4] == 'LANG'}:            #   If no language is specified for the lexical entry, add it
+            line = line.strip()
+            phonological_entries, lexical_features = line.split('::')
+            phonological_entries = phonological_entries.strip().split(',')
+            lexical_feature_set = {f.strip() for f in lexical_features.split()}
+            if not {f for f in lexical_feature_set if f[:4] == 'LANG'}:
                 lexical_feature_set.add(self.language)
             for p in phonological_entries:
                 lex = LexicalItem(name=p, features=self.lexical_redundancy(lexical_feature_set))

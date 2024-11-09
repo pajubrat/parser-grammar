@@ -10,6 +10,7 @@ class LexicalItem:
         self.features = set()
         self.language = ''
         self.inflectional = False
+        self.prosodic = False
         self.onset = ''
         self.offset = ''
         self.create_lexical_item(feature_set)
@@ -20,6 +21,7 @@ class LexicalItem:
         lex_.morphological_chunk = self.morphological_chunk
         lex_.language = self.language
         lex_.inflectional = self.inflectional
+        lex_.prosodic = self.prosodic
         lex_.onset = self.onset
         lex_.offset = self.offset
         return lex_
@@ -36,6 +38,8 @@ class LexicalItem:
                 self.morphological_chunk = f
             if f == 'inflectional':
                 self.inflectional = True
+            if f == 'prosodic':
+                self.prosodic = True
 
     def set_language(self):
         for feature in self.features:

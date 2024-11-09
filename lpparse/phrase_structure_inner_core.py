@@ -101,11 +101,32 @@ class PhraseStructureCore:
         return [s.copy() for s in self._features]
 
     def integrity(self):
-        flist = []
-        for fset in self._features:
-            if {f for f in fset if f in flist}:
+        for i, fset in enumerate(self._features):
+            if i > 0 and self.m_selection_violation(i, fset):     # ith morpheme
                 return True
-            flist += [f for f in fset if (f.startswith('OP:') or f.startswith('TAIL:')) and f != 'OP:FOC']
+
+    def m_selection_violation(self, i, current_morph_fset):
+        fset_prev_morph = self._features[i-1]
+        fset_else = self.features()
+        if fset_prev_morph:
+            neg_mset = self.get_negative_m_selection_features(current_morph_fset)
+            pos_mset = self.get_positive_m_selection_features(current_morph_fset)
+            pos_else_set = self.get_positive_root_selection_features(current_morph_fset)
+            if neg_mset and (fset_prev_morph & neg_mset):
+                return True
+            if pos_mset and not (fset_prev_morph & pos_mset or fset_else & pos_else_set):
+                return True
+
+    def get_negative_m_selection_features(self, fset):
+        return set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('-mCOMP=')])
+
+    def get_positive_m_selection_features(self, fset):
+        s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
+        return {f for f in s if not f.endswith('/else')}
+
+    def get_positive_root_selection_features(self, fset):
+        s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
+        return {f.split('/')[0] for f in s if f.endswith('/else')}
 
     # Phi-features ----------------------------------------------------------------------------
 

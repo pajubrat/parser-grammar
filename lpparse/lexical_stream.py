@@ -7,9 +7,9 @@ class LexicalStream:
         self.lexicon = self.speaker_model.lexicon
         self.id = 0
 
-    def wrap(self, lex, infl_buffer):
+    def wrap(self, lex, infl_buffer, prosody):
         log(f'\n\n\tNext head {lex}°\n')
-        X = PhraseStructure(features=self.lexicon.apply_redundancy_rules([lex.features.copy()] + infl_buffer[::-1]))
+        X = PhraseStructure(features=self.lexicon.apply_redundancy_rules([lex.features.copy() | prosody] + infl_buffer[::-1]))
         X.core.add_features({f'§{str(self.consume_id())}'})
         self.speaker_model.narrow_semantics.pragmatic_pathway.allocate_attention(X)
         if lex.onset == '#':

@@ -34,8 +34,7 @@ class SpeakerModel:
            'Scrambling': {'TRIGGER': lambda x: x.max().license_scrambling() and
                                                (x.container() and x.container().core.EF() or not x.H().tail_test()) and
                                                x.scrambling_target() and x.scrambling_target() != x.top() and
-                                               not x.operator_in_scope_position() and PhraseStructure.speaker_model.LF.pass_LF_legibility(
-              x.scrambling_target().copy().transfer(), logging=False) and
+                                               not x.operator_in_scope_position() and PhraseStructure.speaker_model.LF.pass_LF_legibility(x.scrambling_target().copy().transfer(), logging=False) and
                                                not PhraseStructure.cyclic,
                          'TARGET': lambda x: x.scrambling_target().chaincopy(externalize=True),
                          'TRANSFORM': lambda x, t: x.scrambling_target().scrambling_reconstruct(t)},
@@ -114,6 +113,7 @@ class SpeakerModel:
         lst = kwargs.get('word_list', [])
         index = kwargs.get('index', 0)
         infl_buffer = kwargs.get('infl_buffer', [])
+        prosody = kwargs.get('prosody', set())
 
         Results.accumulate_global_steps()   #   Internal bookkeeping
         log_instance.indent_level = self.embedding
@@ -133,19 +133,35 @@ class SpeakerModel:
                     self.derivational_search_function(phrase_structure=secure_copy(X),
                                                       word_list=lex.morphological_parse(X, lst.copy(), index),
                                                       index=index,
-                                                      infl_buffer=infl_buffer)
+                                                      infl_buffer=infl_buffer,
+                                                      prosody=prosody)
 
                 # 2. Process inflectional feature (withhold streaming to syntax)
                 if not lex.morphological_chunk and lex.inflectional:
                     infl_buffer.append(lex.features - {'inflectional'})
                     log(f'= {illu(lex.features)}')
-                    self.derivational_search_function(phrase_structure=secure_copy(X), word_list=lst, index=index + 1, infl_buffer=infl_buffer)
+                    self.derivational_search_function(phrase_structure=secure_copy(X),
+                                                      word_list=lst,
+                                                      index=index + 1,
+                                                      infl_buffer=infl_buffer,
+                                                      prosody=prosody)
 
-                # 3. Extract features from primitive lex and wrap them into primitive constituent and stream into syntax
-                if not lex.morphological_chunk and not lex.inflectional:
-                    self.syntactic_branching(X, self.lexical_stream.wrap(lex, infl_buffer), lst, index)
+                # 3. Process prosodic features
+                if not lex.morphological_chunk and not lex.inflectional and lex.prosodic:
+                    prosody = lex.features
+                    log(f'= prosodic feature {illu(lex.features)}')
+                    self.derivational_search_function(phrase_structure=secure_copy(X),
+                                                      word_list=lst,
+                                                      index=index + 1,
+                                                      infl_buffer=infl_buffer,
+                                                      prosody=prosody)
+
+                # 4. Extract features from primitive lex and wrap them into primitive constituent and stream into syntax
+                if not lex.morphological_chunk and not lex.inflectional and not lex.prosodic:
+                    self.syntactic_branching(X, self.lexical_stream.wrap(lex, infl_buffer, prosody), lst, index)
 
                 infl_buffer = []
+                prosody = set()
 
         log(f'\n\t\tBacktracking...')
 
@@ -155,11 +171,11 @@ class SpeakerModel:
         else:
             self.results.record_derivational_step(X, 'Phrase structure in syntactic working memory')
             for N in self.plausibility_metrics.filter_and_rank(X, W):
-                Y = X.target_left_branch(N).transfer().attach(W.copy())
+                Y = X.target_left_branch_and_copy(N).transfer().attach(W.copy())
                 PhraseStructure.cyclic = True
                 Y = Y.bottom().reconstruct(self.OPs)
                 log(f'\n\t= {Y.top()}\n')
-                self.derivational_search_function(phrase_structure=Y, word_list=lst, index=index + 1)
+                self.derivational_search_function(phrase_structure=secure_copy(Y), word_list=lst, index=index + 1)
                 if self.exit:
                     break
         self.narrow_semantics.pragmatic_pathway.forget_object(W)

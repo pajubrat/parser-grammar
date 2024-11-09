@@ -99,6 +99,13 @@
 		EF LANG:FI		::  PHI:HUM:_ PHI:PRON:_
 		EF* LANG:FI		::  PHI:HUM:_ PHI:PRON:_
 	
+	# Inflectional morphemes
+	
+		LANG:FI OP:Q		::	-mCOMP=OP:Q,OP:POL,OP:FAM,OP:DE/EM
+		LANG:FI OP:DE/EM	::	+mCOMP=OP:POL,OP:Q,OP:WH/else
+		LANG:FI OP:FAM		::	-mCOMP=OP:FAM,OP:DE/EM
+		LANG:FI OP:POL		::	-mCOMP=OP:POL,OP:Q,OP:DE/EM,OP:FAM
+	
 	# Other rules
 	
 		N LANG:FI		:: -COMP:T/prt
