@@ -187,6 +187,9 @@ class PhraseStructureCore:
     def interpretable_phi_features(self):
         return {f[5:] for f in self.features() if f.startswith('iPHI:')}
 
+    def interpretable_phi_features_(self):
+        return {f for f in self.features() if f.startswith('iPHI:')}
+
     def features_to_value_from_goal(self, goal):
         P = set().union(*self.phi_bundles())
         return [f for f in goal.H().core.features() if interpretable_phi_feature(f) and unvalued_counterparty(f, self) and (not P or feature_gate(f, P))]
@@ -291,6 +294,9 @@ class PhraseStructureCore:
 
     def get_idx_tuple(self, requested_space):
         return next(((idx, space) for idx, space in [tuple(f[4:].split(',')) for f in self.features() if f.startswith('IDX:')] if space == requested_space or requested_space == ''), None)
+
+    def get_R_features(self):
+        return {f for f in self.features() if f.startswith('R:')}
 
     def get_referential_index(self, space):
         def index_(f):

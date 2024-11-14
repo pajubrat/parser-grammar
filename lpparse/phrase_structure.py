@@ -415,7 +415,7 @@ class PhraseStructure:
                 if x.zero_level():
                     if x.core.independent_pro_from_overt_agreement():
                         return True
-                    if x.nonthematic_verb():
+                    if x.core.nonthematic_verb():
                         if X.core.AgreeLF_has_occurred() or not X.core.nonreferential_pro():
                             return True
 
@@ -611,6 +611,9 @@ class PhraseStructure:
             X.core.add_features({'EF*'})
             if X.selected_by_SEM_internal_predicate():
                 X.core.add_features({'-ΦLF'})
+        if X.check({'φ'}):
+            X.core.add_features(X.complement().H().core.interpretable_phi_features_())
+            X.core.add_features(X.complement().H().core.get_R_features())
         return X
 
     def check(X, fset):
@@ -652,7 +655,7 @@ class PhraseStructure:
         (4) either it is contained in SpecCP or it is a operator predicate
         """
         return 'OP:' in X and not X.copied and 'OP' not in X.core.features() and \
-               ((X.container() and X.container().check({'Fin'})) or (X.check({'-insitu'}) and X.check_some({'TAM', 'C/fin'})))
+               ((X.container() and X.container().check({'Fin'})) or (X.check({'-insitu'}) and X.check_some({'TAM', 'C/fin', 'Neg/fin'})))
 
     # Tail-processing ---------------------------------------------------------------------------
 

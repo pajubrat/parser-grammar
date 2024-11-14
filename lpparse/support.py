@@ -171,6 +171,7 @@ def is_comment(sentence):
     return sentence[0] == '&' or sentence[0].startswith("'")
 
 def log_new_sentence(brain_model, count, lst):
+    print(f'#{count}. {" ".join(lst)}')
     set_logging(True)
     log('\n------------------------------------------------------------------------------------------------')
     log(f'\nSentence #{count}. {" ".join(lst)}')

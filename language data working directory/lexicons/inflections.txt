@@ -17,15 +17,12 @@
 		3p 				:: inflectional iPHI:PER:3
 		3sg				:: inflectional iPHI:PER:3 iPHI:NUM:SG iPHI:DET:DEF
 		def 			:: inflectional iPHI:DET:DEF
+		udef			:: inflectional iPHI:DET:UDEF
 		indef 			:: inflectional iPHI:DET:INDEF
 		hum 			:: inflectional iPHI:HUM:HUM
 		nonhum 			:: inflectional iPHI:HUM:NONHUM
 		m				:: inflectional iPHI:GEN:M
 		f				:: inflectional iPHI:GEN:F
-		proper_name		:: inflectional iPHI:PRON:NONPRON	R:NEW
-		r_expression	:: inflectional iPHI:PRON:NONPRON	R:NEW
-		pron			:: inflectional iPHI:PRON:PRON		R:NEW:REF
-		reflexive		:: inflectional iPHI:PRON:PRON		R:OLD:REF
 		sg_ 			:: inflectional ΦPF EF PHI:NUM:SG
 		pl_ 			:: inflectional ΦPF EF PHI:NUM:PL
 		1p_ 			:: inflectional ΦPF EF PHI:PER:1 PER
@@ -33,21 +30,16 @@
 		3p_ 			:: inflectional ΦPF EF PHI:PER:3 PER
 		def_ 			:: inflectional ΦPF EF PHI:DET:DEF
 		indef_ 			:: inflectional ΦPF EF PHI:DET:INDEF
-		0				:: inflectional ΦPF
 		hum_ 			:: inflectional ΦPF PHI:HUM:HUM
 		nonhum_ 		:: inflectional ΦPF PHI:HUM:NONHUM
 		m_				:: inflectional ΦPF PHI:GEN:M
 		f_				:: inflectional ΦPF PHI:GEN:F
 
-	# Generic deficient structural cases
+	# Generic structural cases
 	
-		nom   	:: inflectional NOM TAIL:Fin,!COMP:*,EF nonfloat nonadjoinable
-		[NOM]	:: inflectional NOM -ASP -TAM -Fin
-		gen		:: inflectional GEN
-		acc		:: inflectional ACC TAIL:v
-		acc_it	:: inflectional ACC TAIL:v adjoinable float
-		dat		:: inflectional DAT TAIL:T LANG:IT
-		acc_it	:: inflectional TAIL:v LANG:IT
+		[nom]   :: inflectional TAIL:Fin,EF nonfloat nonadjoinable
+		[gen]	:: inflectional TAIL:Inf
+		[acc]	:: inflectional TAIL:v
 
 	# Aspect markers
 	
@@ -57,8 +49,8 @@
 		
 		wh     	:: inflectional OP:WH **OP **FORCE:WH **OP:WH
 		rel   	:: inflectional OP:REL **OP **OP:REL **-FORCE
-		[foc]	:: prosodic 'FOC -insitu **OP **OP:FOC
-		'FOC	:: prosodic 'FOC
+		[foc]	:: prosodic FOC OP:FOC -insitu **OP **OP:FOC
+		FOC		:: prosodic FOC OP:FOC
 
 # FINNISH
 
@@ -66,7 +58,7 @@
 	
 		n		::	inflectional ΦPF weak_pro PHI:NUM:SG,PER:1 PER PHI:DET:DEF LANG:FI
 		t		::	inflectional ΦPF weak_pro PHI:NUM:SG,PER:2 PER PHI:DET:DEF LANG:FI
-		[V]		::	inflectional ΦPF weak_pro nonreferential_pro PHI:NUM:SG,PER:3 PER LANG:FI
+		[-V]	::	inflectional ΦPF weak_pro nonreferential_pro PHI:NUM:SG,PER:3 PER LANG:FI
 		mme		::	inflectional ΦPF -Inf weak_pro PHI:NUM:PL,PER:1 PER PHI:DET:DEF LANG:FI
 		tte		::	inflectional ΦPF weak_pro PHI:NUM:PL,PER:2 PER PHI:DET:DEF LANG:FI
 		vAt		::	inflectional ΦPF weak_pro PHI:NUM:PL,PER:3 PER LANG:FI
@@ -86,16 +78,13 @@
 	
 		# A. Structural
 		
-			[nom]		:: inflectional NOM TAIL:Fin,Φ,EF* adjoinable LANG:FI
-			[gen]		:: inflectional GEN TAIL:Inf,Φ,EF* adjoinable LANG:FI
-			[par]   	:: inflectional PAR TAIL:-ΦPF,Φ adjoinable LANG:FI
-			[acc(n)]	:: inflectional ACC ACC(n) TAIL:Φ,ASP:BOUNDED TAIL:ΦPF TAIL:*POL:NEG adjoinable LANG:FI
-			[acc(t)]	:: inflectional ACC ACC(t) TAIL:Φ,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
-			[acc(0)]	:: inflectional ACC ACC(0) TAIL:Φ,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
-			[acc]		:: inflectional ACC TAIL:EF*,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
-			[ACC(0)]	:: inflectional ACC ACC(0) TAIL:V adjoinable LANG:FI
-			[ACC(n)]	:: inflectional ACC ACC(n) TAIL:V adjoinable LANG:FI
-			[ACC]		:: inflectional ACC TAIL:V adjoinable LANG:FI
+			nom		:: inflectional NOM TAIL:Fin,Φ,EF* adjoinable LANG:FI
+			gen		:: inflectional GEN TAIL:Inf,Φ,EF* adjoinable LANG:FI
+			par   	:: inflectional PAR TAIL:-ΦPF,Φ adjoinable LANG:FI
+			acc(n)	:: inflectional ACC ACC(n) TAIL:Φ,ASP:BOUNDED TAIL:ΦPF TAIL:*POL:NEG adjoinable LANG:FI
+			acc(t)	:: inflectional ACC ACC(t) TAIL:Φ,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
+			acc(0)	:: inflectional ACC ACC(0) TAIL:Φ,ASP:BOUNDED TAIL:*POL:NEG TAIL:*PHI adjoinable LANG:FI
+			acc		:: inflectional ACC TAIL:EF*,ASP:BOUNDED TAIL:*POL:NEG adjoinable LANG:FI
 			
 		# B. Semantic cases
 		

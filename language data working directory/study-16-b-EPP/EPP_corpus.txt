@@ -4,8 +4,11 @@
 & Core grammatical examples (1)
 
 	& T-to-C (Predicate clefting) (1.1)
+
+		Pekka maalasi aitaa
+		'Pekka.nom paint.pst.3sg fence.par'
 	
-		maalasi#[foc] Pekka aitaa
+		maalasi|[foc] Pekka aitaa
 		'paint.pst.3sg#foc Pekka.nom fence'
 	
 		maalasi=kO Pekka aitaa
@@ -18,36 +21,36 @@
 		'paint.pst.3sg-pol Pekka.nom fence.par'
 		
 		maalasi=pA=s Pekka aitaa
-		'paint.pst.3sg-pol-de/em Pekka.nom fence.par'
+		'paint.pst.3sg-pol-de|em Pekka.nom fence.par'
 		
 		maalasi=kO=hAn Pekka aitaa
 		'paint.pst.3sg=q=fam Pekka.nom fence.par'
 
 		maalasi=kO=s Pekka aitaa
-		'paint.pst.3sg=q=de/em Pekka.nom fencec.par'
+		'paint.pst.3sg=q=de|em Pekka.nom fencec.par'
 		
 		maalasi=pA=hAn Pekka aitaa
 		'paint.pst.3sg=pol=fam Pekka.nom fence.par'
 		
-		maalasi#[foc]=kO Pekka aitaa
+		maalasi|[foc]=kO Pekka aitaa
 		'paint.pst.3sg#foc=q Pekka.nom fence.par'
 		
-		maalasi#[foc]=hAn Pekka aitaa
+		maalasi|[foc]=hAn Pekka aitaa
 		'paint.pst.3sg#foc=fam Pekka.nom fence.par'
 		
-		maalasi#[foc]=pA Pekka aitaa
+		maalasi|[foc]=pA Pekka aitaa
 		'paint.pst.3sg#foc-pol Pekka.nom fence.par'
 		
-		maalasi#[foc]=pA=s Pekka aitaa
+		maalasi|[foc]=pA=s Pekka aitaa
 		'paint.pst.3sg#foc-pol-s Pekka.nom fence.par'
 		
-		maalasi#[foc]=kO=hAn Pekka aitaa
+		maalasi|[foc]=kO=hAn Pekka aitaa
 		'paint.pst.3sg#foc=q=fam Pekka.nom fence.par'
 		
-		maalasi#[foc]=kO=s Pekka aitaa
-		'paint.pst.3sg#foc=q=de/em Pekka.fence.par'
+		maalasi|[foc]=kO=s Pekka aitaa
+		'paint.pst.3sg#foc=q=de|em Pekka.fence.par'
 		
-		maalasi#[foc]=pA=hAn Pekka aitaa
+		maalasi|[foc]=pA=hAn Pekka aitaa
 		'paint.pst.3sg#foc=pol=fam Pekka.nom fence.par'
 
 	& Aux-to-C (1.2) 
@@ -55,7 +58,7 @@
 		Pekka on maalannut aitaa
 		'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
 		
-		on#[foc] Pekka maalannut aitaa
+		on|[foc] Pekka maalannut aitaa
 		'be.prs.3sg#foc Pekka.nom paint.pst.prtc.sg fence.par'
 	
 		on=kO Pekka maalannut aitaa
@@ -74,26 +77,73 @@
 		'be.prs.3sg=pol=fam Pekka.nom paint.pst.prtc.sg fence.par'
 		
 		on=pA=s Pekka maalannut aitaa
-		'be.prs.3sg=pol=de/em Pekka.nom paint.pst.prtc.sg fence.par'
+		'be.prs.3sg=pol=de|em Pekka.nom paint.pst.prtc.sg fence.par'
 
-		on#[foc]=kO Pekka maalannut aitaa
+		on|[foc]=kO Pekka maalannut aitaa
 		'be.prs.3sg=q Pekka.nom paint.pst.prtc.sg fence.par'
 		
-		on#[foc]=hAn Pekka maalannut aitaa
+		on|[foc]=hAn Pekka maalannut aitaa
 		'be.prs.3sg=fam Pekka.nom paint.pst.prtc.sg fence.par'
 		
-		on#[foc]=pA Pekka maalannut aitaa
+		on|[foc]=pA Pekka maalannut aitaa
 		'be.prs.3sg.foc=pol Pekka.nom paint.pst.prtc.sg fence.par'
 		
-		on#[foc]=kO=hAn Pekka maalannut aitaa
+		on|[foc]=kO=hAn Pekka maalannut aitaa
 		'be.prs.3sg.foc=q=fam Pekka.nom paint.pst.prtc.sg fence.par'
 		
-		on#[foc]=pA=hAn Pekka maalannut aitaa
+		on|[foc]=pA=hAn Pekka maalannut aitaa
 		'be.prs.3sg.foc=pol=fam Pekka.nom paint.pst.prtc.sg fence.par'
 		
-		on#[foc]=pA=s Pekka maalannut aitaa
-		'be.prs.3sg.foc=pol=de/em Pekka.nom paint.pst.prtc.sg fence.par'
-		
+		on|[foc]=pA=s Pekka maalannut aitaa
+		'be.prs.3sg.foc=pol=de|em Pekka.nom paint.pst.prtc.sg fence.par'
+	
+	& Neg-to-C
+	
+		ei|[foc] Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei=kO Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei=kO=s Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei=kO=hAn Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei=hAn Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei=pA Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei=pA=s Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei=pA=hAn Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei|[foc]=kO Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei|[foc]=kO=s Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei|[foc]=kO=hAn Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei|[foc]=hAn Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei|[foc]=pA Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei|[foc]=pA=s Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
+		ei|[foc]=pA=hAn Pekka maalannut aitaa
+		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
+
 	& Subject Ā-operator to SpecCP (1.3)
 	
 		kuka maalasi aitaa
@@ -103,7 +153,7 @@
 		'who=q painted fence'
 	
 		kuka=s maalasi aitaa
-		'who=de/em painted fence'
+		'who=de|em painted fence'
 
 		kuka=pA maalasi aitaa
 		'who=pol painted fence'
@@ -111,7 +161,7 @@
 		kuka=hAn maalasi aitaa
 		'who=fam painted fence'
 	
-		Pekka#[foc] maalasi aitaa
+		Pekka|[foc] maalasi aitaa
 		'Pekka.nom#foc painted fence'
 
 		Pekka=kO maalasi aitaa
@@ -127,28 +177,28 @@
 		'Pekka.nom=q=fam painted fence'
 		
 		Pekka=kO=s maalasi aitaa
-		'Pekka.nom=q=de/em painted fence'
+		'Pekka.nom=q=de|em painted fence'
 		
 		Pekka=pA=hAn maalasi aitaa
 		'Pekka.nom=pol=fam painted fence'
 	
-		Pekka#[foc]=kO maalasi aitaa
-		'Pekka.nom#[foc]=q painted fence'
+		Pekka|[foc]=kO maalasi aitaa
+		'Pekka.nom|[foc]=q painted fence'
 		
-		Pekka#[foc]=hAn maalasi aitaa
-		'Pekka.nom#[foc]=fam painted fence'
+		Pekka|[foc]=hAn maalasi aitaa
+		'Pekka.nom|[foc]=fam painted fence'
 		
-		Pekka#[foc]=pA maalasi aitaa
-		'Pekka.nom#[foc]=pol painted fence'
+		Pekka|[foc]=pA maalasi aitaa
+		'Pekka.nom|[foc]=pol painted fence'
 		
-		Pekka#[foc]=kO=hAn maalasi aitaa
-		'Pekka.nom#[foc]=q=fam painted fence'
+		Pekka|[foc]=kO=hAn maalasi aitaa
+		'Pekka.nom|[foc]=q=fam painted fence'
 		
-		Pekka#[foc]=kO=s maalasi aitaa
-		'Pekka.nom#[foc]=q=de/em painted fence'
+		Pekka|[foc]=kO=s maalasi aitaa
+		'Pekka.nom|[foc]=q=de|em painted fence'
 		
-		Pekka#[foc]=pA=hAn maalasi aitaa
-		'Pekka.nom#[foc]=pol=fam painted fence'
+		Pekka|[foc]=pA=hAn maalasi aitaa
+		'Pekka.nom|[foc]=pol=fam painted fence'
 		
 	& Object Ā-operator to SpecCP (1.4)
 	
@@ -165,12 +215,12 @@
 		'what.par=pol Pekka painted'
 		
 		mitä=s Pekka maalasi
-		'what=de/em Pekka painted'
+		'what=de|em Pekka painted'
 	
-		mitä#[foc] Pekka maalasi
+		mitä|[foc] Pekka maalasi
 		'what-par.foc Pekka painted'
 	
-		aitaa#[foc] Pekka maalasi
+		aitaa|[foc] Pekka maalasi
 		'fence.par#foc pekka painted'
 		
 		aitaa=kO Pekka maalasi
@@ -189,31 +239,31 @@
 		'fence.par=pol=fam pekka painted'
 		
 		aitaa=kO=s Pekka maalasi
-		'fence.par=q=de/em pekka painted'
+		'fence.par=q=de|em pekka painted'
 		
 		aitaa=pA=s Pekka maalasi
-		'fence.par=pol=de/em pekka painted'
+		'fence.par=pol=de|em pekka painted'
 		
-		aitaa#[foc]=kO Pekka maalasi
-		'fence.par#[foc]=q pekka painted'
+		aitaa|[foc]=kO Pekka maalasi
+		'fence.par|[foc]=q pekka painted'
 		
-		aitaa#[foc]=hAn Pekka maalasi
-		'fence.par#[foc]=fam pekka painted'
+		aitaa|[foc]=hAn Pekka maalasi
+		'fence.par|[foc]=fam pekka painted'
 		
-		aitaa#[foc]=pA Pekka maalasi
-		'fence.par#[foc]=pol pekka painted'
+		aitaa|[foc]=pA Pekka maalasi
+		'fence.par|[foc]=pol pekka painted'
 		
-		aitaa#[foc]=kO=hAn Pekka maalasi
-		'fence.par#[foc]=q=fam pekka painted'
+		aitaa|[foc]=kO=hAn Pekka maalasi
+		'fence.par|[foc]=q=fam pekka painted'
 		
-		aitaa#[foc]=pA=hAn Pekka maalasi
-		'fence.par#[foc]=pol=fam pekka painted'
+		aitaa|[foc]=pA=hAn Pekka maalasi
+		'fence.par|[foc]=pol=fam pekka painted'
 		
-		aitaa#[foc]=kO=s Pekka maalasi
-		'fence.par#[foc]=q=de/em, pekka painted'
+		aitaa|[foc]=kO=s Pekka maalasi
+		'fence.par|[foc]=q=de|em, pekka painted'
 		
-		aitaa#[foc]=pA=s Pekka maalasi
-		'fence.par#[foc]=pol=de/em pekka painted'
+		aitaa|[foc]=pA=s Pekka maalasi
+		'fence.par|[foc]=pol=de|em pekka painted'
 
 & In situ constructions (2)
 
@@ -250,19 +300,19 @@
 		'Pekka.nom be.prs.3sg=q paint.pst.prtc fence.par'
 		
 		*Pekka on maalannut=kO=s aitaa
-		'Pekka.nom be.prs.3sg paint.pst.prtc=q=de/em fence.par'
+		'Pekka.nom be.prs.3sg paint.pst.prtc=q=de|em fence.par'
 		
 		*Pekka on maalannut aitaa=kO=s
-		'Pekka.nom be.prs.3sg paint.pst.prtc fence.par=q=de/em'
+		'Pekka.nom be.prs.3sg paint.pst.prtc fence.par=q=de|em'
 
 		*Pekka on=pA=s maalannut aitaa
 		'Pekka.nom be.prs.3sg=q paint.pst.prtc fence.par'
 		
 		*Pekka on maalannut=pA=s aitaa
-		'Pekka.nom be.prs.3sg paint.pst.prtc=pol=de/em fence.par'
+		'Pekka.nom be.prs.3sg paint.pst.prtc=pol=de|em fence.par'
 		
 		*Pekka on maalannut aitaa=pA=s
-		'Pekka.nom be.prs.3sg paint.pst.prtc fence.par=pol=de/em'
+		'Pekka.nom be.prs.3sg paint.pst.prtc fence.par=pol=de|em'
 
 		*Pekka on=pA=hAn maalannut aitaa
 		'Pekka.nom be.prs.3sg=pol=fam paint.pst.prtc fence.par'
@@ -284,79 +334,121 @@
 	
 	& In situ Ā-operators (2.2)
 	
-		& In situ contrastive focus 'FOC
+		& In situ contrastive focus FOC
 
-			Pekka#'FOC on maalannut aitaa
+			Pekka|FOC on maalannut aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
 		
-			Pekka on#'FOC maalannut aitaa
+			Pekka on|FOC maalannut aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
 			
-			Pekka on maalannut#'FOC aitaa
+			Pekka on maalannut|FOC aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka on maalannut aitaa#'FOC
+			Pekka on maalannut aitaa|FOC
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-		
-			Pekka#'FOC on#'FOC maalannut aitaa
+
+			Pekka on|FOC maalannut|FOC aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
 			
-			Pekka#'FOC on maalannut#'FOC aitaa
+			Pekka on|FOC maalannut aitaa|FOC
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka#'FOC on maalannut aitaa#'FOC
+			Pekka|FOC on|FOC maalannut aitaa
+			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
+			
+			Pekka|FOC on maalannut|FOC aitaa
+			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka|FOC on maalannut aitaa|FOC
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'		
-		
+
+			Pekka|FOC on|FOC maalannut|FOC aitaa
+			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
+			
+			Pekka|FOC on|FOC maalannut aitaa|FOC
+			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka|FOC on|FOC maalannut|FOC aitaa|FOC
+			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
+
 		& In situ contrastive focus with other Ā-operators
 
-			Pekka#[foc]#'FOC on maalannut aitaa
+			Pekka|[foc]|FOC on maalannut aitaa
 			'Pekka#foc be.prs.3sg paint.pst.prtc.sg fence.par'
 		
-			Pekka#[foc] on#'FOC maalannut aitaa
+			Pekka|[foc] on|FOC maalannut aitaa
 			'Pekka#foc be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka#[foc] on maalannut#'FOC aitaa
+			Pekka|[foc] on maalannut|FOC aitaa
 			'Pekka#foc be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka#[foc] on maalannut aitaa#'FOC
+			Pekka|[foc] on maalannut aitaa|FOC
 			'Pekka#foc be.prs.3sg paint.pst.prtc.sg fence.par'
 			
-			Pekka=kO#'FOC on maalannut aitaa
+			Pekka=kO|FOC on maalannut aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
 		
-			Pekka=kO on#'FOC maalannut aitaa
+			Pekka=kO on|FOC maalannut aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka=kO on maalannut#'FOC aitaa
+			Pekka=kO on maalannut|FOC aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka=kO on maalannut aitaa#'FOC
+			Pekka=kO on maalannut aitaa|FOC
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			
-			Pekka=hAn#'FOC on maalannut aitaa
+
+			Pekka=kO=s on|FOC maalannut aitaa
+			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka=kO=s on maalannut|FOC aitaa
+			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka=kO=s on maalannut aitaa|FOC
+			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka=kO=hAn on|FOC maalannut aitaa
+			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka=kO=hAn on maalannut|FOC aitaa
+			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka=kO=hAn on maalannut aitaa|FOC
+			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka=hAn|FOC on maalannut aitaa
 			'Pekka#fam be.prs.3sg paint.pst.prtc.sg fence.par'
 		
-			Pekka=hAn on#'FOC maalannut aitaa
+			Pekka=hAn on|FOC maalannut aitaa
 			'Pekka#fam be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka=hAn on maalannut#'FOC aitaa
+			Pekka=hAn on maalannut|FOC aitaa
 			'Pekka#fam be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka=hAn on maalannut aitaa#'FOC
+			Pekka=hAn on maalannut aitaa|FOC
 			'Pekka#fam be.prs.3sg paint.pst.prtc.sg fence.par'
 			
-			Pekka=pA#'FOC on maalannut aitaa
+			Pekka=pA|FOC on maalannut aitaa
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
 		
-			Pekka=pA on#'FOC maalannut aitaa
+			Pekka=pA on|FOC maalannut aitaa
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka=pA on maalannut#'FOC aitaa
+			Pekka=pA on maalannut|FOC aitaa
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
 
-			Pekka=pA on maalannut aitaa#'FOC
+			Pekka=pA on maalannut aitaa|FOC
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
-			
+
+			Pekka=pA=s on|FOC maalannut aitaa
+			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka=pA=s on maalannut|FOC aitaa
+			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
+
+			Pekka=pA=s on maalannut aitaa|FOC
+			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
+
 		& Wh-in situ
 		
 			Pekka maalasi mitä
@@ -365,35 +457,35 @@
 			kuka maalasi mitä
 			'who.nom paint.pst.3sg what.par'
 		
-			Pekka#'FOC maalasi mitä
+			Pekka|FOC maalasi mitä
 			'Pekka.nom paint.pst.3sg what.par'
 
-			Pekka maalasi#'FOC mitä
+			Pekka maalasi|FOC mitä
 			'Pekka.nom paint.pst.3sg what.par'
 
-			Pekka maalasi mitä#'FOC
+			Pekka maalasi mitä|FOC
 			'Pekka.nom paint.pst.3sg what.par'
 
 			kuka maalasi mitä
 			'who.nom paint.pst.3sg what.par'
 			
-			kuka#'FOC maalasi mitä
+			kuka|FOC maalasi mitä
 			'who.nom paint.pst.3sg what.par'
 			
-			kuka maalasi#'FOC mitä
+			kuka maalasi|FOC mitä
 			'who.nom paint.pst.3sg what.par'
 			
-			kuka maalasi mitä#'FOC
+			kuka maalasi mitä|FOC
 			'who.nom paint.pst.3sg what.par'
 
 & Ā-operators inside pied-piped phrases (3)
 
 	& Pied-piping to SpecCP (3.1)
 
-		tämän aidan#[foc] Pekka maalasi
+		tämän aidan|[foc] Pekka maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc] aidan Pekka maalasi
+		tämän|[foc] aidan Pekka maalasi
 		'this.acc#foc fence.acc Pekka.nom paint.pst.3sg'
 
 		tämän aidan=kO Pekka maalasi
@@ -409,10 +501,10 @@
 		'this.acc=q-fam fence.acc Pekka.nom paint.pst.3sg'
 
 		tämän aidan=kO=s Pekka maalasi
-		'this.acc fence.acc=q-de/em Pekka.nom paint.pst.3sg'
+		'this.acc fence.acc=q-de|em Pekka.nom paint.pst.3sg'
 		
 		tämän=kO=s aidan Pekka maalasi
-		'this.acc=q-de/em fence.acc Pekka.nom paint.pst.3sg'
+		'this.acc=q-de|em fence.acc Pekka.nom paint.pst.3sg'
 
 		tämän aidan=hAn Pekka maalasi
 		'this.acc fence.acc=fam Pekka.nom paint.pst.3sg'
@@ -427,10 +519,10 @@
 		'this.acc=pol fence.acc Pekka.nom paint.pst.3sg'
 
 		tämän aidan=pA=s Pekka maalasi
-		'this.acc fence.acc=pol-de/em Pekka.nom paint.pst.3sg'
+		'this.acc fence.acc=pol-de|em Pekka.nom paint.pst.3sg'
 		
 		tämän=pA=s aidan Pekka maalasi
-		'this.acc=pol=de/em fence.acc Pekka.nom paint.pst.3sg'
+		'this.acc=pol=de|em fence.acc Pekka.nom paint.pst.3sg'
 
 		tämän aidan=pA=hAn Pekka maalasi
 		'this.acc fence.acc=pol=fam Pekka.nom paint.pst.3sg'
@@ -438,154 +530,157 @@
 		tämän=pA=hAn aidan Pekka maalasi
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
 		
-		tämän aidan#[foc]=kO Pekka maalasi
+		tämän aidan|[foc]=kO Pekka maalasi
 		'this.acc fence.acc=q Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=kO aidan Pekka maalasi
+		tämän|[foc]=kO aidan Pekka maalasi
 		'this.acc=q fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan#[foc]=kO=hAn Pekka maalasi
+		tämän aidan|[foc]=kO=hAn Pekka maalasi
 		'this.acc fence.acc=q-fam Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=kO=hAn aidan Pekka maalasi
+		tämän|[foc]=kO=hAn aidan Pekka maalasi
 		'this.acc=q-fam fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan#[foc]=kO=s Pekka maalasi
-		'this.acc fence.acc=q-de/em Pekka.nom paint.pst.3sg'
+		tämän aidan|[foc]=kO=s Pekka maalasi
+		'this.acc fence.acc=q-de|em Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=kO=s aidan Pekka maalasi
-		'this.acc=q-de/em fence.acc Pekka.nom paint.pst.3sg'
+		tämän|[foc]=kO=s aidan Pekka maalasi
+		'this.acc=q-de|em fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan#[foc]=hAn Pekka maalasi
+		tämän aidan|[foc]=hAn Pekka maalasi
 		'this.acc fence.acc=fam Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=hAn aidan Pekka maalasi
+		tämän|[foc]=hAn aidan Pekka maalasi
 		'this.acc=fam fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan#[foc]=pA Pekka maalasi
+		tämän aidan|[foc]=pA Pekka maalasi
 		'this.acc fence.acc=pol Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=pA aidan Pekka maalasi
+		tämän|[foc]=pA aidan Pekka maalasi
 		'this.acc=pol fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan#[foc]=pA=s Pekka maalasi
-		'this.acc fence.acc=pol-de/em Pekka.nom paint.pst.3sg'
+		tämän aidan|[foc]=pA=s Pekka maalasi
+		'this.acc fence.acc=pol-de|em Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=pA=s aidan Pekka maalasi
-		'this.acc=pol=de/em fence.acc Pekka.nom paint.pst.3sg'
+		tämän|[foc]=pA=s aidan Pekka maalasi
+		'this.acc=pol=de|em fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan#[foc]=pA=hAn Pekka maalasi
+		tämän aidan|[foc]=pA=hAn Pekka maalasi
 		'this.acc fence.acc=pol=fam Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=pA=hAn aidan Pekka maalasi
+		tämän|[foc]=pA=hAn aidan Pekka maalasi
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
 
 	& Pied-piping to SpecCP with in situ focus (3.2)
 	
-		tämän#'FOC aidan#[foc] Pekka maalasi
+		tämän|FOC aidan|[foc] Pekka maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc] aidan#'FOC Pekka maalasi
+		tämän|[foc] aidan|FOC Pekka maalasi
 		'this.acc#foc fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan=kO Pekka#'FOC maalasi
+		tämän aidan=kO Pekka|FOC maalasi
 		'this.acc fence.acc=q Pekka.nom paint.pst.3sg'
 		
-		tämän=kO aidan Pekka maalasi#'FOC
+		tämän=kO aidan Pekka maalasi|FOC
 		'this.acc=q fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän#'FOC aidan=kO=hAn Pekka maalasi
+		tämän|FOC aidan=kO=hAn Pekka maalasi
 		'this.acc fence.acc=q-fam Pekka.nom paint.pst.3sg'
 		
-		tämän=kO=hAn aidan#'FOC Pekka maalasi
+		tämän=kO=hAn aidan|FOC Pekka maalasi
 		'this.acc=q-fam fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan=kO=s Pekka#'FOC maalasi
-		'this.acc fence.acc=q-de/em Pekka.nom paint.pst.3sg'
+		tämän aidan=kO=s Pekka|FOC maalasi
+		'this.acc fence.acc=q-de|em Pekka.nom paint.pst.3sg'
 		
-		tämän=kO=s aidan Pekka maalasi#'FOC
-		'this.acc=q-de/em fence.acc Pekka.nom paint.pst.3sg'
+		tämän=kO=s aidan Pekka maalasi|FOC
+		'this.acc=q-de|em fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän#'FOC aidan=hAn Pekka maalasi
+		tämän|FOC aidan=hAn Pekka maalasi
 		'this.acc fence.acc=fam Pekka.nom paint.pst.3sg'
 		
-		tämän=hAn aidan#'FOC Pekka maalasi
+		tämän=hAn aidan|FOC Pekka maalasi
 		'this.acc=fam fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan=pA Pekka#'FOC maalasi
+		tämän aidan=pA Pekka|FOC maalasi
 		'this.acc fence.acc=pol Pekka.nom paint.pst.3sg'
 		
-		tämän=pA aidan Pekka maalasi#'FOC
+		tämän=pA aidan Pekka maalasi|FOC
 		'this.acc=pol fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän#'FOC aidan=pA=s Pekka maalasi
-		'this.acc fence.acc=pol-de/em Pekka.nom paint.pst.3sg'
+		tämän|FOC aidan=pA=s Pekka maalasi
+		'this.acc fence.acc=pol-de|em Pekka.nom paint.pst.3sg'
 		
-		tämän=pA=s aidan#'FOC Pekka maalasi
-		'this.acc=pol=de/em fence.acc Pekka.nom paint.pst.3sg'
+		tämän=pA=s aidan|FOC Pekka maalasi
+		'this.acc=pol=de|em fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan=pA=hAn Pekka#'FOC maalasi
+		tämän aidan=pA=hAn Pekka|FOC maalasi
 		'this.acc fence.acc=pol=fam Pekka.nom paint.pst.3sg'
 		
-		tämän=pA=hAn aidan Pekka maalasi#'FOC
+		tämän=pA=hAn aidan Pekka maalasi|FOC
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
 		
-		tämän#'FOC aidan#[foc]=kO Pekka maalasi
+		tämän|FOC aidan|[foc]=kO Pekka maalasi
 		'this.acc fence.acc=q Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=kO#'FOC aidan Pekka maalasi
+		tämän|[foc]=kO|FOC aidan Pekka maalasi
 		'this.acc=q fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan#[foc]=kO=hAn Pekka#'FOC maalasi
+		tämän aidan|[foc]=kO=hAn Pekka|FOC maalasi
 		'this.acc fence.acc=q-fam Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=kO=hAn aidan Pekka maalasi#'FOC
+		tämän|[foc]=kO=hAn aidan Pekka maalasi|FOC
 		'this.acc=q-fam fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän#'FOC aidan#[foc]=kO=s Pekka maalasi
-		'this.acc fence.acc=q-de/em Pekka.nom paint.pst.3sg'
+		tämän|FOC aidan|[foc]=kO=s Pekka maalasi
+		'this.acc fence.acc=q-de|em Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=kO=s#'FOC aidan Pekka maalasi
-		'this.acc=q-de/em fence.acc Pekka.nom paint.pst.3sg'
+		tämän|[foc]=kO=s|FOC aidan Pekka maalasi
+		'this.acc=q-de|em fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan#[foc]=hAn Pekka#'FOC maalasi
+		tämän aidan|[foc]=hAn Pekka|FOC maalasi
 		'this.acc fence.acc=fam Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=hAn aidan Pekka maalasi#'FOC
+		tämän|[foc]=hAn aidan Pekka maalasi|FOC
 		'this.acc=fam fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän#'FOC aidan#[foc]=pA Pekka maalasi
+		tämän|FOC aidan|[foc]=pA Pekka maalasi
 		'this.acc fence.acc=pol Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=pA aidan#'FOC Pekka maalasi
+		tämän|[foc]=pA aidan|FOC Pekka maalasi
 		'this.acc=pol fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän aidan#[foc]=pA=s Pekka#'FOC maalasi
-		'this.acc fence.acc=pol-de/em Pekka.nom paint.pst.3sg'
+		tämän aidan|[foc]=pA=s Pekka|FOC maalasi
+		'this.acc fence.acc=pol-de|em Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=pA=s aidan Pekka maalasi#'FOC
-		'this.acc=pol=de/em fence.acc Pekka.nom paint.pst.3sg'
+		tämän|[foc]=pA=s aidan Pekka maalasi|FOC
+		'this.acc=pol=de|em fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän#'FOC aidan#[foc]=pA=hAn Pekka maalasi
+		tämän|FOC aidan|[foc]=pA=hAn Pekka maalasi
 		'this.acc fence.acc=pol=fam Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=pA=hAn aidan#'FOC Pekka maalasi
+		tämän|[foc]=pA=hAn aidan|FOC Pekka maalasi
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
 		
-		tämän#[foc]=pA=hAn aidan#'FOC Pekka#'FOC maalasi
+		tämän|[foc]=pA=hAn aidan|FOC Pekka|FOC maalasi
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän#[foc]=pA=hAn aidan#'FOC Pekka#'FOC maalasi#'FOC
+		tämän|[foc]=pA=hAn aidan|FOC Pekka|FOC maalasi|FOC
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
 
 & Double-filled CP (4)
 	
 	& SpecCP and C filled (4.1)
 
-		*aitaa#[foc] on#[foc] Pekka maalannut
+		*aitaa|[foc] on|[foc] Pekka maalannut
 		'fence.par#foc be.prs.3sg#foc Pekka.nom paint.pst.prtc.sg'
 
 		*aitaa=kO on=kO Pekka maalannut
+		'fence.par=q be.prs.3sg=q Pekka.nom paint.pst.prtc.sg'
+
+		*aitaa=kO=s on=kO=s Pekka maalannut
 		'fence.par=q be.prs.3sg=q Pekka.nom paint.pst.prtc.sg'
 
 		*aitaa=hAn on=hAn Pekka maalannut
@@ -594,7 +689,10 @@
 		*aitaa=pA on=pA Pekka maalannut
 		'fence.par=pol be.prs.3sg=pol Pekka.nom paint.pst.prtc.sg'
 
-		*aitaa#[foc] on=kO Pekka maalannut
+		*aitaa=pA=hAn on=pA=hAn Pekka maalannut
+		'fence.par=pol be.prs.3sg=pol Pekka.nom paint.pst.prtc.sg'
+
+		*aitaa|[foc] on=kO Pekka maalannut
 		'fence.par#foc be.prs.3sg=q Pekka.nom paint.pst.prtc.sg'
 
 		*aitaa=kO on=hAn Pekka maalannut
@@ -611,19 +709,31 @@
 	
 	& SpecCP + SpecCP (4.2)
 
-		*aitaa#[foc] Pekka#[foc] maalasi
+		*aitaa|[foc] Pekka|[foc] maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
-		*aitaa#[foc] Pekka=kO maalasi
-		'fence.par Pekka.nom paint.pst.3sg'
-		
-		*aitaa#[foc] Pekka=hAn maalasi
+		*aitaa|[foc] Pekka=kO maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
-		*aitaa#[foc] Pekka=pA maalasi
+		*aitaa|[foc] Pekka=kO=s maalasi
+		'fence.par Pekka.nom paint.pst.3sg'
+	
+		*aitaa|[foc] Pekka=hAn maalasi
+		'fence.par Pekka.nom paint.pst.3sg'
+
+		*aitaa|[foc] Pekka=pA maalasi
+		'fence.par Pekka.nom paint.pst.3sg'
+
+		*aitaa|[foc] Pekka=pA=hAn maalasi
+		'fence.par Pekka.nom paint.pst.3sg'
+
+		*aitaa|[foc] Pekka=pA=s maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
 		*aitaa=kO Pekka=kO maalasi
+		'fence.par Pekka.nom paint.pst.3sg'
+
+		*aitaa=kO=s Pekka=kO=s maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
 		*aitaa=kO Pekka=hAn maalasi
@@ -632,7 +742,7 @@
 		*aitaa=kO Pekka=pA maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
-		*aitaa=kO Pekka#[foc] maalasi
+		*aitaa=kO Pekka|[foc] maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
 		*aitaa=hAn Pekka=hAn maalasi
@@ -644,33 +754,36 @@
 		*aitaa=hAn Pekka=pA maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
-		*aitaa=hAn Pekka#[foc] maalasi
+		*aitaa=hAn Pekka|[foc] maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
 		*aitaa=pA Pekka=pA maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
+		*aitaa=pA=s Pekka=pA=s maalasi
+		'fence.par Pekka.nom paint.pst.3sg'
+		
 		*aitaa=pA Pekka=hAn maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
 		*aitaa=pA Pekka=kO maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 
-		*aitaa=pA Pekka#[foc] maalasi
+		*aitaa=pA Pekka|[foc] maalasi
 		'fence.par Pekka.nom paint.pst.3sg'
 		
 	& C0 + C0 (4.3)
 
-		*on#[foc] maalannut#[foc] Pekka aitaa
-		'be.prs.3sg#[foc] paint.pst.prtc.sg#[foc] Pekka.nom fence.par'
+		*on|[foc] maalannut|[foc] Pekka aitaa
+		'be.prs.3sg|[foc] paint.pst.prtc.sg|[foc] Pekka.nom fence.par'
 		
-		*on#[foc] maalannut=kO Pekka aitaa
+		*on|[foc] maalannut=kO Pekka aitaa
 		'be.prs.3sg paint.pst.prtc.sg Pekka.nom fence.par'
 
-		*on#[foc] maalannut=hAn Pekka aitaa
+		*on|[foc] maalannut=hAn Pekka aitaa
 		'be.prs.3sg paint.pst.prtc.sg Pekka.nom fence.par'
 
-		*on#[foc] maalannut=pA Pekka aitaa
+		*on|[foc] maalannut=pA Pekka aitaa
 		'be.prs.3sg paint.pst.prtc.sg Pekka.nom fence.par'
 
 		*on=kO maalannut=kO Pekka aitaa
@@ -682,7 +795,7 @@
 		*on=kO maalannut=pA Pekka aitaa
 		'be.prs.3sg paint.pst.prtc.sg Pekka.nom fence.par'
 
-		*on=kO maalannut#[foc] Pekka aitaa
+		*on=kO maalannut|[foc] Pekka aitaa
 		'be.prs.3sg paint.pst.prtc.sg Pekka.nom fence.par'
 
 		*on=hAn maalannut=hAn Pekka aitaa
@@ -694,7 +807,7 @@
 		*on=hAn maalannut=pA Pekka aitaa
 		'be.prs.3sg paint.pst.prtc.sg Pekka.nom fence.par'
 
-		*on=hAn maalannut#[foc] Pekka aitaa
+		*on=hAn maalannut|[foc] Pekka aitaa
 		'be.prs.3sg paint.pst.prtc.sg Pekka.nom fence.par'
 
 		*on=pA maalannut=pA Pekka aitaa
@@ -706,26 +819,32 @@
 		*on=pA maalannut=hAn Pekka aitaa
 		'be.prs.3sg paint.pst.prtc.sg Pekka.nom fence.par'
 
-		*on=pA maalannut#[foc] Pekka aitaa
+		*on=pA maalannut|[foc] Pekka aitaa
 		'be.prs.3sg paint.pst.prtc.sg Pekka.nom fence.par'
 	
 & Scattered operators (5)
 
 	& Non-in situ operators (5.1)
 	
-		*tämän#[foc] aidan#[foc] Pekka maalasi
+		*tämän|[foc] aidan|[foc] Pekka maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
 
-		*tämän#[foc] aidan=kO maalasi
+		*tämän|[foc] aidan=kO maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
 
-		*tämän#[foc] aidan=hAn Pekka maalasi
+		*tämän|[foc] aidan=kO=s maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
 
-		*tämän#[foc] aidan=pA Pekka maalasi
+		*tämän|[foc] aidan=hAn Pekka maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
 
-		*tämän=kO aidan#[foc] Pekka maalasi
+		*tämän|[foc] aidan=pA Pekka maalasi
+		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
+
+		*tämän|[foc] aidan=pA=s Pekka maalasi
+		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
+
+		*tämän=kO aidan|[foc] Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
 		*tämän=kO aidan=hAn Pekka maalasi
@@ -737,59 +856,107 @@
 		*tämän=kO aidan=pA Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
+		*tämän=kO aidan=pA=hAn Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
 		*tämän=hAn aidan=hAn Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
 		*tämän=hAn aidan=kO Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
+		*tämän=hAn aidan=kO=hAn Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
 		*tämän=hAn aidan=pA Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
-		*tämän=hAn aidan#[foc] Pekka maalasi
+		*tämän=hAn aidan=pA=s Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		*tämän=hAn aidan|[foc] Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
 		*tämän=pA aidan=pA Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
+		*tämän=pA=hAn aidan=pA Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
 		*tämän=pA aidan=kO Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		*tämän=pA=s aidan=kO Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		*tämän=pA=s aidan=kO=s Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		*tämän=pA=s aidan=kO=s Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
 		*tämän=pA aidan=hAn Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
-		*tämän=pA aidan#[foc] Pekka maalasi
+		*tämän=pA=s aidan=hAn Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		*tämän=pA aidan|[foc] Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		*tämän=pA=s aidan|[foc] Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		*tämän=pA=hAn aidan|[foc] Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		*tämän=pA=hAn aidan|[foc] Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
 	& In situ and non-in-situ operators mixed (5.2)
 	
-		tämän#[foc] aidan#'FOC Pekka maalasi
+		tämän|[foc] aidan|FOC Pekka maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
 
-		tämän=kO aidan#'FOC Pekka maalasi
+		tämän=kO aidan|FOC Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 
-		tämän=hAn aidan#'FOC Pekka maalasi
+		tämän=kO=s aidan|FOC Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		tämän=hAn aidan|FOC Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 		
-		tämän=pA aidan#'FOC Pekka maalasi
+		tämän=pA aidan|FOC Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+	
+		tämän=pA=hAn aidan|FOC Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+	
+		tämän|FOC aidan=kO Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		tämän|FOC aidan=kO=s Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		tämän|FOC aidan|[foc] Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		tämän|FOC aidan=hAn Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		tämän|FOC aidan=pA Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		tämän|FOC aidan=pA=hAn Pekka maalasi
+		'this.acc fence.acc Pekka.nom paint.pst.3sg'
+
+		tämän|FOC aidan=pA=s Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
 		
-		tämän#'FOC aidan=kO Pekka maalasi
-		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-
-		tämän#'FOC aidan#[foc] Pekka maalasi
-		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-
-		tämän#'FOC aidan=hAn Pekka maalasi
-		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-
-		tämän#'FOC aidan=pA Pekka maalasi
-		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-
 & Long head movement (6)
 
-	& A/inf-to-C movement
+	& A|inf-to-C movement
 
 		maalata=kO Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
@@ -806,51 +973,114 @@
 		maalata=pA=s Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc] Pekka aikoo aitaa
+		maalata|[foc] Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc]=kO Pekka aikoo aitaa
+		maalata|[foc]=kO Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc]=kO=s Pekka aikoo aitaa
+		maalata|[foc]=kO=s Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc]=kO=hAn Pekka aikoo aitaa
+		maalata|[foc]=kO=hAn Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc]=hAn Pekka aikoo aitaa
+		maalata|[foc]=hAn Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc]=pA Pekka aikoo aitaa
+		maalata|[foc]=pA Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc]=pA=s Pekka aikoo aitaa
+		maalata|[foc]=pA=s Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-	& A/inf-to-C movement with in situ focus
-
-		maalata=kO#'FOC Pekka aikoo aitaa
+		maalata|[foc]=pA=hAn Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata=kO Pekka#'FOC aikoo aitaa
+	& A|inf-to-C movement with in situ focus
+
+		maalata=kO|FOC Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata=kO Pekka aikoo#'FOC aitaa
+		maalata=kO Pekka|FOC aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata=kO Pekka aikoo aitaa#'FOC
+		maalata=kO Pekka aikoo|FOC aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc]#'FOC Pekka aikoo aitaa
+		maalata=kO Pekka aikoo aitaa|FOC
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc] Pekka#'FOC aikoo aitaa
+		maalata=kO=s|FOC Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc] Pekka aikoo#'FOC aitaa
+		maalata=kO=s Pekka|FOC aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
-		maalata#[foc] Pekka aikoo aitaa#'FOC
+		maalata=kO=s Pekka aikoo|FOC aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=kO=s Pekka aikoo aitaa|FOC
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=hAn|FOC Pekka aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=hAn Pekka|FOC aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=hAn Pekka aikoo|FOC aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=hAn Pekka aikoo aitaa|FOC
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA|FOC Pekka aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA Pekka|FOC aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA Pekka aikoo|FOC aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA Pekka aikoo aitaa|FOC
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA=s|FOC Pekka aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA=s Pekka|FOC aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA=s Pekka aikoo|FOC aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA=s Pekka aikoo aitaa|FOC
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA=hAn|FOC Pekka aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA=hAn Pekka|FOC aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA=hAn Pekka aikoo|FOC aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata=pA=hAn Pekka aikoo aitaa|FOC
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata|[foc]|FOC Pekka aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata|[foc] Pekka|FOC aikoo aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata|[foc] Pekka aikoo|FOC aitaa
+		'paint.prs.a/inf Pekka plans __ fence'
+
+		maalata|[foc] Pekka aikoo aitaa|FOC
 		'paint.prs.a/inf Pekka plans __ fence'
 
 & Clitic combinations (7)
@@ -859,24 +1089,24 @@
 	
 		& =kO...
 
-			& =kO#[foc]...
+			& =kO|[foc]...
 	
-				Pekka=kO#[foc] maalasi aitaa
+				Pekka=kO|[foc] maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka=kO#[foc]#[foc] maalasi aitaa
+					Pekka=kO|[foc]|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=kO#[foc]=kO maalasi aitaa
+					*Pekka=kO|[foc]=kO maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka=kO#[foc]=hAn maalasi aitaa
+					Pekka=kO|[foc]=hAn maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=kO#[foc]=pA maalasi aitaa
+					*Pekka=kO|[foc]=pA maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka=kO#[foc]=s maalasi aitaa
+					Pekka=kO|[foc]=s maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 			& =kO=hAn...
@@ -884,7 +1114,7 @@
 				Pekka=kO=hAn maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka=kO=hAn#[foc] maalasi aitaa
+					Pekka=kO=hAn|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=kO=hAn=kO maalasi aitaa
@@ -904,7 +1134,7 @@
 				*Pekka=kO=pA maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=kO=pA#[foc] maalasi aitaa
+					*Pekka=kO=pA|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=kO=pA=kO maalasi aitaa
@@ -924,7 +1154,7 @@
 				Pekka=kO=s maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 				
-					Pekka=kO=s#[foc] maalasi aitaa
+					Pekka=kO=s|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=kO=s=kO maalasi aitaa
@@ -941,24 +1171,24 @@
 
 		& =hAn...
 
-			& =hAn#[foc]...
+			& =hAn|[foc]...
 	
-				Pekka=hAn#[foc] maalasi aitaa
+				Pekka=hAn|[foc] maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka=hAn#[foc]#[foc] maalasi aitaa
+					Pekka=hAn|[foc]|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=hAn#[foc]=kO maalasi aitaa
+					*Pekka=hAn|[foc]=kO maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=hAn#[foc]=hAn maalasi aitaa
+					*Pekka=hAn|[foc]=hAn maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=hAn#[foc]=pA maalasi aitaa
+					*Pekka=hAn|[foc]=pA maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=hAn#[foc]=s maalasi aitaa
+					*Pekka=hAn|[foc]=s maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 			& =hAn=hAn...
@@ -966,7 +1196,7 @@
 				*Pekka=hAn=hAn maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=hAn=hAn#[foc] maalasi aitaa
+					*Pekka=hAn=hAn|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=hAn=hAn=kO maalasi aitaa
@@ -986,7 +1216,7 @@
 				*Pekka=hAn=pA maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=hAn=pA#[foc] maalasi aitaa
+					*Pekka=hAn=pA|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=hAn=pA=kO maalasi aitaa
@@ -1006,7 +1236,7 @@
 				*Pekka=hAn=s maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 				
-					*Pekka=hAn=s#[foc] maalasi aitaa
+					*Pekka=hAn=s|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=hAn=s=kO maalasi aitaa
@@ -1023,24 +1253,24 @@
 
 		& =pA...
 
-			& =pA#[foc]...
+			& =pA|[foc]...
 	
-				Pekka=pA#[foc] maalasi aitaa
+				Pekka=pA|[foc] maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka=pA#[foc]#[foc] maalasi aitaa
+					Pekka=pA|[foc]|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=pA#[foc]=kO maalasi aitaa
+					*Pekka=pA|[foc]=kO maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka=pA#[foc]=hAn maalasi aitaa
+					Pekka=pA|[foc]=hAn maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=pA#[foc]=pA maalasi aitaa
+					*Pekka=pA|[foc]=pA maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka=pA#[foc]=s maalasi aitaa
+					Pekka=pA|[foc]=s maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 			& =pA=hAn...
@@ -1048,7 +1278,7 @@
 				Pekka=pA=hAn maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka=pA=hAn#[foc] maalasi aitaa
+					Pekka=pA=hAn|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=pA=hAn=kO maalasi aitaa
@@ -1068,7 +1298,7 @@
 				*Pekka=pA=pA maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=pA=pA#[foc] maalasi aitaa
+					*Pekka=pA=pA|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=pA=pA=kO maalasi aitaa
@@ -1088,7 +1318,7 @@
 				Pekka=pA=s maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 				
-					Pekka=pA=s#[foc] maalasi aitaa
+					Pekka=pA=s|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=pA=s=kO maalasi aitaa
@@ -1105,24 +1335,24 @@
 
 		& =s...
 
-			& =s#[foc]...
+			& =s|[foc]...
 	
-				*Pekka=s#[foc] maalasi aitaa
+				*Pekka=s|[foc] maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=s#[foc]#[foc] maalasi aitaa
+					*Pekka=s|[foc]|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=s#[foc]=kO maalasi aitaa
+					*Pekka=s|[foc]=kO maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=s#[foc]=hAn maalasi aitaa
+					*Pekka=s|[foc]=hAn maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=s#[foc]=pA maalasi aitaa
+					*Pekka=s|[foc]=pA maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=s#[foc]=s maalasi aitaa
+					*Pekka=s|[foc]=s maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 			& =s=hAn...
@@ -1130,7 +1360,7 @@
 				*Pekka=s=hAn maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=s=hAn#[foc] maalasi aitaa
+					*Pekka=s=hAn|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=s=hAn=kO maalasi aitaa
@@ -1150,7 +1380,7 @@
 				*Pekka=s=pA maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka=s=pA#[foc] maalasi aitaa
+					*Pekka=s=pA|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=s=pA=kO maalasi aitaa
@@ -1170,7 +1400,7 @@
 				*Pekka=s=s maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 				
-					*Pekka=s=s#[foc] maalasi aitaa
+					*Pekka=s=s|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 					*Pekka=s=s=kO maalasi aitaa
@@ -1185,103 +1415,109 @@
 					*Pekka=s=s=s maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-		& #[foc]...
+		& |[foc]...
 
-			& #[foc]#[foc]...
+			& |[foc]|[foc]...
 	
-				Pekka#[foc]#[foc] maalasi aitaa
+				Pekka|[foc]|[foc] maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka#[foc]#[foc]#[foc] maalasi aitaa
+					Pekka|[foc]|[foc]|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka#[foc]#[foc]=kO maalasi aitaa
+					Pekka|[foc]|[foc]=kO maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka#[foc]#[foc]=hAn maalasi aitaa
+					Pekka|[foc]|[foc]=hAn maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka#[foc]#[foc]=pA maalasi aitaa
+					Pekka|[foc]|[foc]=pA maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]#[foc]=s maalasi aitaa
+					*Pekka|[foc]|[foc]=s maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-			& #[foc]=hAn...
+			& |[foc]=hAn...
 
-				Pekka#[foc]=hAn maalasi aitaa
+				Pekka|[foc]=hAn maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka#[foc]=hAn#[foc] maalasi aitaa
+					Pekka|[foc]=hAn|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=hAn=kO maalasi aitaa
+					*Pekka|[foc]=hAn=kO maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=hAn=hAn maalasi aitaa
+					*Pekka|[foc]=hAn=hAn maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=hAn=pA maalasi aitaa
+					*Pekka|[foc]=hAn=pA maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=hAn=s maalasi aitaa
+					*Pekka|[foc]=hAn=s maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 		
-			& #[foc]=pA...
+			& |[foc]=pA...
 
-				Pekka#[foc]=pA maalasi aitaa
+				Pekka|[foc]=pA maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka#[foc]=pA#[foc] maalasi aitaa
+					Pekka|[foc]=pA|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=pA=kO maalasi aitaa
+					*Pekka|[foc]=pA=kO maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka#[foc]=pA=hAn maalasi aitaa
+					Pekka|[foc]=pA=hAn maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					Pekka#[foc]=pA=s maalasi aitaa
+					Pekka|[foc]=pA=s maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=pA=pA maalasi aitaa
+					*Pekka|[foc]=pA=pA maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-			& #[foc]=s...
+			& |[foc]=s...
 
-				*Pekka#[foc]=s maalasi aitaa
+				*Pekka|[foc]=s maalasi aitaa
 				'Pekka.nom paint.prs.3sg fence.par'
 				
-					*Pekka#[foc]=s#[foc] maalasi aitaa
+					*Pekka|[foc]=s|[foc] maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=s=kO maalasi aitaa
+					*Pekka|[foc]=s=kO maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=s=hAn maalasi aitaa
+					*Pekka|[foc]=s=hAn maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=s=pA maalasi aitaa
+					*Pekka|[foc]=s=pA maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
-					*Pekka#[foc]=s=s maalasi aitaa
+					*Pekka|[foc]=s=s maalasi aitaa
 					'Pekka.nom paint.prs.3sg fence.par'
 
 	& Wh-interrogative plus clitic (7.2)
 	
-		kuka#[foc] maalasi aitaa
+		kuka|[foc] maalasi aitaa
 		'who.nom paint.prs.3sg fence.par'
 
-			kuka#[foc]=kO maalasi aitaa
+			kuka|[foc]=kO maalasi aitaa
 			'who.nom paint.prs.3sg fence.par'
 
-			kuka#[foc]=hAn maalasi aitaa
+			kuka|[foc]=kO=s maalasi aitaa
 			'who.nom paint.prs.3sg fence.par'
 
-			kuka#[foc]=pA maalasi aitaa
+			kuka|[foc]=hAn maalasi aitaa
 			'who.nom paint.prs.3sg fence.par'
 
-			kuka#[foc]=s maalasi aitaa
+			kuka|[foc]=pA maalasi aitaa
+			'who.nom paint.prs.3sg fence.par'
+
+			kuka|[foc]=pA=hAn maalasi aitaa
+			'who.nom paint.prs.3sg fence.par'
+
+			kuka|[foc]=s maalasi aitaa
 			'who.nom paint.prs.3sg fence.par'
 
 		kuka=kO maalasi aitaa
@@ -1344,7 +1580,6 @@
 			*kuka=s=s maalasi aitaa
 			'who.nom paint.prs.3sg fence.par'
 
-	
 END
 	
 & Feature checking at C
@@ -1388,7 +1623,7 @@ END
 	*Paris Seine flows towards
 
 	# In text example, p. 36
-	*John did/T the fence paint
+	*John did|T the fence paint
 
 	# Example (4a), p. 4
 	Seine virtaa kohti Pariisia
@@ -1415,12 +1650,12 @@ END
 	'what.par towards Seine.nom flow.prs.3sg'
 
 	# Example (5a)
-	Seine virtaa lähellä/1 minua
-	'Seine.nom flow.prs.3sg near I.par' (lähellä/2 = Type I adposition)
+	Seine virtaa lähellä|1 minua
+	'Seine.nom flow.prs.3sg near I.par' (lähellä|2 = Type I adposition)
 	
 	# Example (5b)
-	Seine virtaa minua lähellä/1
-	'Seine.nom flow.prs.3sg I.par near I.par' (lähellä/2 = Type I adposition)
+	Seine virtaa minua lähellä|1
+	'Seine.nom flow.prs.3sg I.par near I.par' (lähellä|2 = Type I adposition)
 	
 	# Example (6a-i)
 	*Seine virtaa lähellä#ni minun
@@ -1576,7 +1811,7 @@ END
 		
 			*flows Seine towards Paris
 
-			*did/T Seine flow towards Paris
+			*did|T Seine flow towards Paris
 			
 	& Finnish high complementizer (no EF)(1.2)
 		
@@ -1647,57 +1882,57 @@ END
 			'Seine.nom flow.prs.3sg towards he.gen'
 			
 			*Seine virtaa kohti#nsA hänen
-			'Seine.nom flow.prs.3sg towards.px/3p he.gen'
+			'Seine.nom flow.prs.3sg towards.px|3p he.gen'
 		
 			*Seine virtaa hänen kohti
 			'Seine.nom flow.prs.3sg [he.gen_1 towards _1]'
 			
 			*Seine virtaa hänen kohti#nsA
-			'Seine.nom flow.prs.3sg [he.gen_1 towards.px/3p _1]'
+			'Seine.nom flow.prs.3sg [he.gen_1 towards.px|3p _1]'
 
 			*kohti hänen Seine virtaa
 			'towards he.gen Seine.nom flow.prs.3sg'
 			
 			*kohti#nsA hänen Seine virtaa
-			'towards.px/3p he.gen Seine.nom flow.prs.3sg'
+			'towards.px|3p he.gen Seine.nom flow.prs.3sg'
 			
 			*hänen kohti Seine virtaa
 			'[he.gen_1 towards _1]_2 Seine.nom flow.prs.3sg _2'
 			
 			*hänen kohti#nsA Seine virtaa
-			'[he.gen_1 towards.px/3p _1]_2 Seine.nom flow.prs.3sg _2'
+			'[he.gen_1 towards.px|3p _1]_2 Seine.nom flow.prs.3sg _2'
 
 	& Finnish adpositions, type I lähellä 'near' with partitive argument (2.2)
 		
 		& Word order variations (2.2.1)
 				
-			Seine virtaa lähellä/1 Pariisia
+			Seine virtaa lähellä|1 Pariisia
 			'Seine.nom flow.prs.3sg near Paris.par'
 			
-			Seine virtaa Pariisia lähellä/1
+			Seine virtaa Pariisia lähellä|1
 			'Seine.nom flow.prs.3sg [Paris.par_1 near _1]'
 		
-			lähellä/1 Pariisia Seine virtaa
+			lähellä|1 Pariisia Seine virtaa
 			'near Paris-par Seine.nom flow.prs.3sg'
 			
-			Pariisia lähellä/1 Seine virtaa
+			Pariisia lähellä|1 Seine virtaa
 			'[Paris-par_1 near _1]_2 Seine.nom flow.prs.3sg _2'
 		
 		& Word order variations, with agreement (2.2.2)
 					
-			*Seine virtaa lähellä/1#An häntä
+			*Seine virtaa lähellä|1#An häntä
 			'Seine.nom flow.prs.3sg near.3p he.par'
 			
-			*Seine virtaa häntä lähellä/1#An 
+			*Seine virtaa häntä lähellä|1#An 
 			'Seine.nom flow.prs.3sg [he.par_1 near.3p _1]'
 		
-			*lähellä/1#An häntä Seine virtaa
+			*lähellä|1#An häntä Seine virtaa
 			'[near.3p he.par]_1 Seine.nom flow.prs.3sg _1'
 			
-			*häntä lähellä/1#An Seine virtaa
+			*häntä lähellä|1#An Seine virtaa
 			'[he.par_1 near.3p _1]_2 Seine.nom flow.prs.3sg _2]'
 			
-	& Finnish adposition, type yli/ali 'over/under' (2.3)
+	& Finnish adposition, type yli|ali 'over|under' (2.3)
 			
 		Seine virtaa ali sillan
 		'Seine.nom flow.prs.3sg under bridge.gen'
@@ -1714,19 +1949,19 @@ END
 	& E-infinitive (adjunct-adverbial, no subject, optional nonthematic specifier)(2.3)
 		
 		Pekka työskenteli maalaten aitaa
-		'Pekka.nom work.pst.3sg paint.e/inf fence.par'
+		'Pekka.nom work.pst.3sg paint.e|inf fence.par'
 		
 		Pekka työskenteli aitaa maalaten
-		'Pekka.nom work.pst.3sg fence.par paint.e/inf __'
+		'Pekka.nom work.pst.3sg fence.par paint.e|inf __'
 	
 		*Pekka työskenteli maalaten aidan_gen
-		'Pekka.nom work.pst.3sg paint.e/inf fence.gen'
+		'Pekka.nom work.pst.3sg paint.e|inf fence.gen'
 		
 		*Pekka työskenteli aidan_gen maalaten
-		'Pekka.nom work.pst.3sg fence.gen paint.e/inf __'
+		'Pekka.nom work.pst.3sg fence.gen paint.e|inf __'
 	
 		*Pekka työskenteli Merjan_gen maalaten aitaa
-		'Pekka.nom work.pst.3sg Merja.gen paint.e/ing fence.par'
+		'Pekka.nom work.pst.3sg Merja.gen paint.e|ing fence.par'
 	
 & Strong edge feature EF* (EPP) with primary rule (3)
 
@@ -1734,176 +1969,176 @@ END
 	
 		& Prelimiary test: agreement paradigms (3.1.0)
 			
-			Seine virtaa minun lähellä/2#ni
-			'Seine.nom flow.prs.3sg I.gen near.px/1sg'
+			Seine virtaa minun lähellä|2#ni
+			'Seine.nom flow.prs.3sg I.gen near.px|1sg'
 			
-			Seine virtaa sinun lähellä/2#si
-			'Seine.nom flow.prs.3sg you.gen near.px/2sg'
+			Seine virtaa sinun lähellä|2#si
+			'Seine.nom flow.prs.3sg you.gen near.px|2sg'
 			
-			Seine virtaa hänen lähellä/2#An
-			'Seine.nom flow.prs.3sg he.gen near.px/3p'
+			Seine virtaa hänen lähellä|2#An
+			'Seine.nom flow.prs.3sg he.gen near.px|3p'
 			
-			Seine virtaa meidän lähellä/2#mme
-			'Seine.nom flow.prs.3sg we.gen near.px/1pl'
+			Seine virtaa meidän lähellä|2#mme
+			'Seine.nom flow.prs.3sg we.gen near.px|1pl'
 			
-			Seine virtaa teidän lähellä/2#nne
-			'Seine.nom flow.prs.3sg you.gen near.px/2pl'
+			Seine virtaa teidän lähellä|2#nne
+			'Seine.nom flow.prs.3sg you.gen near.px|2pl'
 			
-			Seine virtaa heidän lähellä/2#An
-			'Seine.nom flow.prs.3sg they.gen near.px/3p'
+			Seine virtaa heidän lähellä|2#An
+			'Seine.nom flow.prs.3sg they.gen near.px|3p'
 					
-			*Seine virtaa Pariisin lähellä/2#An
-			'Seine.nom flow.prs.3sg [Paris.gen_1 near.px/3p _1]'
+			*Seine virtaa Pariisin lähellä|2#An
+			'Seine.nom flow.prs.3sg [Paris.gen_1 near.px|3p _1]'
 			
-			*Seine virtaa sen2 lähellä/2#An
-			'Seine.nom flow.prs.3sg [it.gen_1 near.px/3p _1]'
+			*Seine virtaa sen2 lähellä|2#An
+			'Seine.nom flow.prs.3sg [it.gen_1 near.px|3p _1]'
 			
-			*Seine virtaa miehen lähellä/2#An
-			'Seine.nom flow.prs.3sg [man.gen_1 near.px/3p _1]'
+			*Seine virtaa miehen lähellä|2#An
+			'Seine.nom flow.prs.3sg [man.gen_1 near.px|3p _1]'
 			
-			*Seine virtaa minun lähellä/2#An
-			'Seine.nom flow.prs.3sg I.gen near.px/3p'
+			*Seine virtaa minun lähellä|2#An
+			'Seine.nom flow.prs.3sg I.gen near.px|3p'
 	
-			*Seine virtaa sinun lähellä/2#An
-			'Seine.nom flow.prs.3sg you.gen near.px/3p'
+			*Seine virtaa sinun lähellä|2#An
+			'Seine.nom flow.prs.3sg you.gen near.px|3p'
 			
-			*Seine virtaa meidän lähellä/2#An
-			'Seine.nom flow.prs.3sg we.gen near.px/3p'
+			*Seine virtaa meidän lähellä|2#An
+			'Seine.nom flow.prs.3sg we.gen near.px|3p'
 			
-			*Seine virtaa teidän lähellä/2#An
-			'Seine.nom flow.prs.3sg you.gen near.px/3p'	
+			*Seine virtaa teidän lähellä|2#An
+			'Seine.nom flow.prs.3sg you.gen near.px|3p'	
 
-			*Seine virtaa minun lähellä/2#si
-			'Seine.nom flow.prs.3sg I.gen near.px/2sg'
+			*Seine virtaa minun lähellä|2#si
+			'Seine.nom flow.prs.3sg I.gen near.px|2sg'
 
-			*Seine virtaa minun lähellä/2#An
-			'Seine.nom flow.prs.3sg I.gen near.px/3p'
+			*Seine virtaa minun lähellä|2#An
+			'Seine.nom flow.prs.3sg I.gen near.px|3p'
 
-			*Seine virtaa minun lähellä/2#mme
-			'Seine.nom flow.prs.3sg I.gen near.px/1pl'
+			*Seine virtaa minun lähellä|2#mme
+			'Seine.nom flow.prs.3sg I.gen near.px|1pl'
 			
-			*Seine virtaa minun lähellä/2#nne
-			'Seine.nom flow.prs.3sg I.gen near.px/2pl'
+			*Seine virtaa minun lähellä|2#nne
+			'Seine.nom flow.prs.3sg I.gen near.px|2pl'
 			
-			*Seine virtaa minun lähellä/2#nsA
-			'Seine.nom flow.prs.3sg I.gen near.px/3p'
+			*Seine virtaa minun lähellä|2#nsA
+			'Seine.nom flow.prs.3sg I.gen near.px|3p'
 			
 		& Word order variations (3.1.1)
 					
-			Pariisin lähellä/2
+			Pariisin lähellä|2
 			'Paris.gen near'
 			
-			*lähellä/2 Pariisin
+			*lähellä|2 Pariisin
 			'near Paris.gen'
 					
-			*Seine virtaa lähellä/2 Pariisin
+			*Seine virtaa lähellä|2 Pariisin
 			'Seine.nom flow.prs.3sg near Paris.gen'
 						
-			Seine virtaa Pariisin lähellä/2
+			Seine virtaa Pariisin lähellä|2
 			'Seine.nom flow.prs.3sg [Paris.gen_1 near _1]'
 						
-			*lähellä/2 Pariisin Seine virtaa
+			*lähellä|2 Pariisin Seine virtaa
 			'[near Paris.gen]_1 Seine.nom flow.prs.3sg _1'
 						
-			Pariisin lähellä/2 Seine virtaa
+			Pariisin lähellä|2 Seine virtaa
 			'[Paris.gen_1 near _1]_2 Seine.nom flow.prs.3sg _2'
 		
 		& Word order variations with agreement (3.1.2)
 				
-			*Seine virtaa lähellä/2#An hänen
+			*Seine virtaa lähellä|2#An hänen
 			'Seine.nom flow.prs.3sg near.3p he.gen'
 								
-			Seine virtaa hänen lähellä/2#An
+			Seine virtaa hänen lähellä|2#An
 			'Seine.nom flow.prs.3sg [he.gen_1 near.3p _1]'
 								
-			*lähellä/2#An hänen Seine virtaa
+			*lähellä|2#An hänen Seine virtaa
 			'[near.3p he.gen]_1 Seine.nom flow.prs.3sg _1'
 							
-			hänen lähellä/2#An Seine virtaa
+			hänen lähellä|2#An Seine virtaa
 			'[he.gen_1 near.3p _1]_2 Seine.nom flow.prs.3sg _2'
 			
 		& Without argument, with and without agreement (3.1.3)
 					
-			*Seine virtaa lähellä/2
+			*Seine virtaa lähellä|2
 			'Seine.nom flow.prs.3sg near.'
 			
-			Seine virtaa lähellä/2#ni
+			Seine virtaa lähellä|2#ni
 			'Seine.nom flow.prs.3sg near.1sg'
 			
-			Seine virtaa lähellä/2#si
+			Seine virtaa lähellä|2#si
 			'Seine.nom flow.prs.3sg near.2sg'
 
-			Seine virtaa lähellä/2#mme
+			Seine virtaa lähellä|2#mme
 			'Seine.nom flow.prs.3sg near.1pl'
 
-			Seine virtaa lähellä/2#nne
+			Seine virtaa lähellä|2#nne
 			'Seine.nom flow.prs.3sg near.2pl'
 
 		& Wrong case (3.1.4)
 			
-			*häntä lähellä/2
+			*häntä lähellä|2
 			'he.par near'
 			
-			*lähellä/2 häntä
+			*lähellä|2 häntä
 			'near he.par'
 			
-			*Seine virtaa häntä lähellä/2#An
-			'Seine.nom flow.prs.3sg [he.par_1 near.px/3p _1]'
+			*Seine virtaa häntä lähellä|2#An
+			'Seine.nom flow.prs.3sg [he.par_1 near.px|3p _1]'
 	
-			*Seine virtaa lähellä/2#An häntä 
-			'Seine.nom flow.prs.3sg [near.px/3p he.par_1 ]'
+			*Seine virtaa lähellä|2#An häntä 
+			'Seine.nom flow.prs.3sg [near.px|3p he.par_1 ]'
 	
-			*Seine virtaa häntä lähellä/2
-			'Seine.nom flow.prs.3sg [he.par_1 near.px/3p _1]'
+			*Seine virtaa häntä lähellä|2
+			'Seine.nom flow.prs.3sg [he.par_1 near.px|3p _1]'
 	
-			*Seine virtaa lähellä/2 häntä 
-			'Seine.nom flow.prs.3sg [near.px/3p he.par_1 ]'
+			*Seine virtaa lähellä|2 häntä 
+			'Seine.nom flow.prs.3sg [near.px|3p he.par_1 ]'
 	
-			*Seine virtaa minua lähellä/2#ni
-			'Seine.nom flow.prs.3sg [I.par_1 near.px/1sg _1]'
+			*Seine virtaa minua lähellä|2#ni
+			'Seine.nom flow.prs.3sg [I.par_1 near.px|1sg _1]'
 	
-			*Seine virtaa lähellä/2#ni minua
-			'Seine.nom flow.prs.3sg [near.px/1sg I.par_1 ]'
+			*Seine virtaa lähellä|2#ni minua
+			'Seine.nom flow.prs.3sg [near.px|1sg I.par_1 ]'
 
-			*Seine virtaa minua lähellä/2
-			'Seine.nom flow.prs.3sg [I.par_1 near.px/1sg _1]'
+			*Seine virtaa minua lähellä|2
+			'Seine.nom flow.prs.3sg [I.par_1 near.px|1sg _1]'
 	
-			*Seine virtaa lähellä/2 minua
-			'Seine.nom flow.prs.3sg [near.px/1sg I.par_1 ]'
+			*Seine virtaa lähellä|2 minua
+			'Seine.nom flow.prs.3sg [near.px|1sg I.par_1 ]'
 
 	& VA-infinitive (3.2)
 	
 		& Prelimiary test: agreement paradigms (3.2.0)
 							
 			minä sano#n lähtevän#ni
-			'I.nom say.prs.1sg leave.va/inf.px/1sg'
+			'I.nom say.prs.1sg leave.va/inf.px|1sg'
 			
 			sinä sano#t lähtevän#si
-			'you.nom say.prs.2sg leave.va/inf.px/2sg'
+			'you.nom say.prs.2sg leave.va/inf.px|2sg'
 		
 			Pekka sanoi lähtevän#nsA
-			'Pekka.nom say.pst.3sg leave.va/inf.px/3p'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|3p'
 		
 			me sano#mme lähtevän#mme
-			'we.nom say.prs.1pl leave.va/inf.px/1pl'
+			'we.nom say.prs.1pl leave.va/inf.px|1pl'
 			
 			te sano#tte lähtevän#nne
-			'you.nom say.prs.2pl leave.va/inf.px/2pl'
+			'you.nom say.prs.2pl leave.va/inf.px|2pl'
 		
 			he sano#vAt lähtevän#nsA
-			'they.nom say.prs.3pl leave.va/inf.px/3p
+			'they.nom say.prs.3pl leave.va/inf.px|3p
 			
 			*minä sano#n lähtevän#nsA
-			'I.nom say.prs.1sg leave.va/inf.px/3p'
+			'I.nom say.prs.1sg leave.va/inf.px|3p'
 			
 			*sinä sano#t lähtevän#nsA
-			'I.nom say.prs.2sg leave.va/inf.px/3p'
+			'I.nom say.prs.2sg leave.va/inf.px|3p'
 			
 			*me sano#mme lähtevän#nsA
-			'I.nom say.prs.1pl leave.va/inf.px/3p'
+			'I.nom say.prs.1pl leave.va/inf.px|3p'
 			
 			*te sano#tte lähtevän#nsA
-			'I.nom say.prs.2pl leave.va/inf.px/3p'
+			'I.nom say.prs.2pl leave.va/inf.px|3p'
 				
 		& Canonical word order (3.2.1)
 			
@@ -1911,13 +2146,13 @@ END
 			'Pekka.nom say.pst.3sg leave.va/inf'
 				
 			Pekka sanoi lähtevän#ni
-			'Pekka.nom say.pst.3sg leave.va/inf.px/1sg'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|1sg'
 
 			Pekka sanoi minun lähtevän
 			'Pekka.nom say.pst.3sg I.gen leave.va/inf'
 
 			Pekka sanoi lähtevän#si
-			'Pekka.nom say.pst.3sg leave.va/inf.px/2sg'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|2sg'
 	
 			Pekka sanoi sinun lähtevän
 			'Pekka.nom say.pst.3sg you.gen leave.va/inf
@@ -1929,13 +2164,13 @@ END
 			'Pekka.nom say.pst.3sg he.gen leave.va/inf'
 			
 			Pekka sanoi lähtevän#mme
-			'Pekka.nom say.pst.3sg leave.va/inf.px/1pl'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|1pl'
 			
 			Pekka sanoi meidän lähtevän
 			'Pekka.nom say.pst.3sg we.gen leave.va/inf'
 			
 			Pekka sanoi lähtevän#nne
-			'Pekka.nom say.pst.3sg leave.va/inf.px/2pl'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|2pl'
 			
 			Pekka sanoi teidän lähtevän
 			'Pekka.nom say.pst.3sg you.gen leave.va/inf'
@@ -1944,22 +2179,22 @@ END
 			'Pekka.nom say.prs.3sg they.gen leave.va/inf'
 						
 			*Pekka sanoi minun lähtevän#ni
-			'Pekka.nom say.pst.3sg I.gen leave.va/inf.px/1sg'
+			'Pekka.nom say.pst.3sg I.gen leave.va/inf.px|1sg'
 			
 			*Pekka sanoi sinun lähtevän#si
-			'pekka.nom say.pst.3sg you.gen leave.va/inf.px/2sg'
+			'pekka.nom say.pst.3sg you.gen leave.va/inf.px|2sg'
 		
 			*Pekka sanoi hänen lähtevän#nsA
 			'Pekka.nom say.pst.3sg Merja.gen leave.va/inf.3p'
 
 			*Pekka sanoi meidän lähtevän#mme
-			'Pekka.nom say.pst.3sg we.gen leave.va/inf.px/1pl'
+			'Pekka.nom say.pst.3sg we.gen leave.va/inf.px|1pl'
 			
 			*Pekka sanoi teidän lähtevän#nne
-			'Pekka.nom say.pst.3sg you.gen leave.va/inf.px/2pl'
+			'Pekka.nom say.pst.3sg you.gen leave.va/inf.px|2pl'
 			
 			*Pekka sanoi heidän lähtevän#nsA
-			'Pekka.nom say.pst.3sg they.gen leave.va/inf.px/3p'
+			'Pekka.nom say.pst.3sg they.gen leave.va/inf.px|3p'
 
 		& Postverbal genitive argument (3.2.2)
 					
@@ -1967,13 +2202,13 @@ END
 			'Pekka.nom say.pst.3sg leave.va/inf I.gen'
 
 			*Pekka sanoi lähtevän#ni minun
-			'Pekka.nom say.pst.3sg leave.va/inf.px/1sg I.gen'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|1sg I.gen'
 
 			*Pekka sanoi lähtevän sinun
 			'Pekka.nom say.pst.3sg leave.va/inf you.gen'
 
 			*Pekka sanoi lähtevän#si sinun
-			'Pekka.nom say.pst.3sg leave.va/inf.px/2sg you.gen'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|2sg you.gen'
 
 			*Pekka sanoi lähtevän hänen
 			'Pekka said leave.va/inf he.gen'
@@ -1985,19 +2220,19 @@ END
 			'Pekka.nom say.pst.3sg leave.va/inf we.gen'
 
 			*Pekka sanoi lähtevän#mme meidän
-			'Pekka.nom say.pst.3sg leave.va/inf.px/1pl we.gen'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|1pl we.gen'
 
 			*Pekka sanoi lähtevän teidän
 			'Pekka.nom say.pst.3sg leave.va/inf you.gen'
 
 			*Pekka sanoi lähtevän#nne teidän
-			'Pekka.nom say.pst.3sg leave.va/inf.px/2pl you.gen'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|2pl you.gen'
 	
 			*Pekka sanoi lähtevän heidän
 			'Pekka.nom say.pst.3sg leave.va/inf they.gen'
 
 			*Pekka sanoi lähtevän#nsA heidän
-			'Pekka.nom say.pst.3sg leave.va/inf.px/3p they.gen'
+			'Pekka.nom say.pst.3sg leave.va/inf.px|3p they.gen'
 
 		& Object topicalization, without subject (3.2.3)
 			
@@ -2008,16 +2243,16 @@ END
 			'Pekka.nom say.prs.3sg [fence.par_1 paint.va/inf _1]'
 					
 			Pekka sanoi maalaavan#ni aitaa
-			'Pekka.nom say.pst.3sg paint.va/inf.px/1sg fence.par'
+			'Pekka.nom say.pst.3sg paint.va/inf.px|1sg fence.par'
 			
 			Pekka sanoi aitaa maalaavan#ni
-			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px/1sg _1'
+			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px|1sg _1'
 							
 			Pekka sanoi maalaavan#si aitaa
-			'Pekka.nom say.pst.3sg paint.va/inf.px/2sg fence.par'
+			'Pekka.nom say.pst.3sg paint.va/inf.px|2sg fence.par'
 
 			Pekka sanoi aitaa maalaavan#si
-			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px/2sg _1'
+			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px|2sg _1'
 		
 			Pekka sanoi maalaavan#nsA aitaa
 			'Pekka.nom say.prs.3sg paint.va/inf.3p fence.par'
@@ -2026,16 +2261,16 @@ END
 			'Pekka.nom say.prs.3sg fence.par_1 paint.va/inf.3p _1'
 							
 			Pekka sanoi maalaavan#mme aitaa
-			'Pekka.nom say.pst.3sg paint.va/inf.px/1pl fence.par'
+			'Pekka.nom say.pst.3sg paint.va/inf.px|1pl fence.par'
 
 			Pekka sanoi aitaa maalaavan#mme
-			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px/1pl _1'
+			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px|1pl _1'
 			
 			Pekka sanoi maalaavan#nne aitaa
-			'Pekka.nom say.pst.3sg paint.va/inf.px/2pl fence.par'
+			'Pekka.nom say.pst.3sg paint.va/inf.px|2pl fence.par'
 
 			Pekka sanoi aitaa maalaavan#nne
-			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px/2pl _1'
+			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px|2pl _1'
 		
 		& Object topicalization, with subject (3.2.4)
 										
@@ -2043,13 +2278,13 @@ END
 			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf I.gen _1'
 
 			*Pekka sanoi aitaa maalaavan#ni minun
-			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px/1sg I.gen _1'
+			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px|1sg I.gen _1'
 
 			*Pekka sanoi aitaa maalaavan sinun
 			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf you.gen _1'
 
 			*Pekka sanoi aitaa maalaavan#si sinun
-			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px/2sg you.gen _1'
+			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px|2sg you.gen _1'
 
 			*Pekka sanoi aitaa maalaavan hänen
 			'Pekka.nom say.prs.3sg fence.par_1 paint.va/inf he.gen _1'
@@ -2061,68 +2296,68 @@ END
 			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf we.gen _1'
 
 			*Pekka sanoi aitaa maalaavan#mme meidän
-			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px/1pl we.gen _1' 
+			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px|1pl we.gen _1' 
 
 			*Pekka sanoi aitaa maalaavan teidän
 			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf you.gen _1'
 
 			*Pekka sanoi aitaa maalaavan#nne teidän
-			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px/2pl you.gen _1'
+			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px|2pl you.gen _1'
 
 			*Pekka sanoi aitaa maalaavan heidän
 			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf they.gen _1'
 
 			*Pekka sanoi aitaa maalaavan#nsA heidän
-			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px/3p they.gen _1'
+			'Pekka.nom say.pst.3sg fence.par_1 paint.va/inf.px|3p they.gen _1'
 
 	& ESSA-infinitive (3.4)
 	
 		& Prelimiary test: agreement paradigms (3.4.0)
 					
 			Pekka laulaa minun lähtiessä#ni
-			'Pekka.nom sing.prs.3sg I.gen leave.essa/inf.px/1sg'
+			'Pekka.nom sing.prs.3sg I.gen leave.essa/inf.px|1sg'
 
 			Pekka laulaa sinun lähtiessä#si
-			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/2sg'
+			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px|2sg'
 
 			Pekka laulaa hänen lähtiessä#An
-			'Pekka.nom sing.prs.3sg he.gen leave.essa/inf.px/3p'
+			'Pekka.nom sing.prs.3sg he.gen leave.essa/inf.px|3p'
 
 			Pekka laulaa meidän lähtiessä#mme
-			'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px/1pl'
+			'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px|1pl'
 			
 			Pekka laulaa teidän lähtiessä#nne
-			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/2pl'
+			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px|2pl'
 			
 			Pekka laulaa heidän lähtiessä#An
-			'Pekka.nom sing.prs.3sg they.gen leave.essa/inf.px/3p'
+			'Pekka.nom sing.prs.3sg they.gen leave.essa/inf.px|3p'
 							
 			*Pekka laulaa minun lähtiessä#An
-			'Pekka.nom sing.prs.3sg I.gen leave.essa/inf.px/3p'
+			'Pekka.nom sing.prs.3sg I.gen leave.essa/inf.px|3p'
 
 			*Pekka laulaa sinun lähtiessä#An
-			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/3p'
+			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px|3p'
 			
 			*Pekka laulaa meidän lähtiessä#An
-			'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px/3p'
+			'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px|3p'
 
 			*Pekka laulaa teidän lähtiessä#An
-			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/3p'
+			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px|3p'
 
 			*Pekka laulaa sinun lähtiessä#ni
-			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/1sg'
+			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px|1sg'
 
 			*Pekka laulaa hänen lähtiessä#ni
-			'Pekka.nom sing.prs.3sg he.gen leave.essa/inf.px/1sg'
+			'Pekka.nom sing.prs.3sg he.gen leave.essa/inf.px|1sg'
 
 			*Pekka laulaa meidän lähtiessä#ni
-			'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px/1sg'
+			'Pekka.nom sing.prs.3sg we.gen leave.essa/inf.px|1sg'
 
 			*Pekka laulaa teidän lähtiessä#ni
-			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px/1sg'
+			'Pekka.nom sing.prs.3sg you.gen leave.essa/inf.px|1sg'
 
 			*Pekka laulaa heidän lähtiessä#ni
-			'Pekka.nom sing.prs.3sg them.gen leave.essa/inf.px/1sg'
+			'Pekka.nom sing.prs.3sg them.gen leave.essa/inf.px|1sg'
 				
 		& Canonical word order (3.4.1)
 				
@@ -2159,10 +2394,10 @@ END
 			'Pekka.nom sing.prs.3sg leave.essa/inf I.gen'
 			
 			*Pekka laulaa lähtiessä#ni minun
-			'Pekka.nom sing.prs.3sg leave.essa/inf.px/1sg I.gen'
+			'Pekka.nom sing.prs.3sg leave.essa/inf.px|1sg I.gen'
 			
 			*Pekka laulaa lähtiessä sinun
-			'Pekka.nom sing.prs.3sg leave.essa/inf.px/2sg you.gen'
+			'Pekka.nom sing.prs.3sg leave.essa/inf.px|2sg you.gen'
 
 			*Pekka laulaa lähtiessä#si sinun
 			'Pekka.nom sing.prs.3sg leave.essa/inf you.gen'
@@ -2177,19 +2412,19 @@ END
 			'Pekka.nom sing.prs.3sg leave.essa/inf we.gen'
 
 			*Pekka laulaa lähtiessä#mme meidän
-			'Pekka.nom sing.prs.3sg leave.essa/inf.px/1pl we.gen'
+			'Pekka.nom sing.prs.3sg leave.essa/inf.px|1pl we.gen'
 
 			*Pekka laulaa lähtiessä teidän
 			'Pekka.nom sing.prs.3sg leave.essa/inf you.gen'
 
 			*Pekka laulaa lähtessä#nne teidän
-			'Pekka.nom sing.prs.3sg leave.essa/inf.px/2pl you.gen'
+			'Pekka.nom sing.prs.3sg leave.essa/inf.px|2pl you.gen'
 
 			*Pekka laulaa lähtiessä heidän
 			'Pekka.nom sing.prs.3sg leave.essa/inf they.gen'
 			
 			*Pekka laulaa lähtiessä#An heidän
-			'Pekka.nom sing.prs.3sg leave.essa/inf.px/3p they.gen'
+			'Pekka.nom sing.prs.3sg leave.essa/inf.px|3p they.gen'
 
 		& Object topicalization, without subject (3.4.3)
 					
@@ -2200,16 +2435,16 @@ END
 			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf _1'
 			
 			Pekka laulaa maalatessa#ni aitaa
-			'Pekka.nom sing.prs.3sg paint.essa/inf.px/1sg fence.par'
+			'Pekka.nom sing.prs.3sg paint.essa/inf.px|1sg fence.par'
 			
 			Pekka laulaa aitaa maalatessa#ni
-			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf.px/1sg _1'
+			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf.px|1sg _1'
 			
 			Pekka laulaa maalatessa#si aitaa
-			'Pekka.nom sing.prs.3sg paint.essa/inf.px/2sg fence.par'
+			'Pekka.nom sing.prs.3sg paint.essa/inf.px|2sg fence.par'
 			
 			Pekka laulaa aitaa maalatessa#si
-			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf.px/2sg _1'
+			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf.px|2sg _1'
 			
 			Pekka laulaa maalatessa#An aitaa
 			'Pekka.nom sing.prs.3sg paint.essa/inf.3p fence.par'
@@ -2218,16 +2453,16 @@ END
 			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf.3p _1'
 			
 			Pekka laulaa maalatessa#mme aitaa
-			'Pekka.nom sing.prs.3sg paint.essa/inf.px/1pl fence.par'			
+			'Pekka.nom sing.prs.3sg paint.essa/inf.px|1pl fence.par'			
 			
 			Pekka laulaa aitaa maalatessa#mme
-			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf.px/1pl _1'
+			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf.px|1pl _1'
 			
 			Pekka laulaa maalatessa#nne aitaa
-			'Pekka.nom sing.prs.3sg paint.essa/inf.px/2pl fence.par'
+			'Pekka.nom sing.prs.3sg paint.essa/inf.px|2pl fence.par'
 			
 			Pekka laulaa aitaa maalatessa#nne
-			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf.px/2pl _1'
+			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf.px|2pl _1'
 		
 		& Object topicalization, with subject (3.4.4)
 					
@@ -2253,86 +2488,86 @@ END
 			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf they.gen _1'
 								
 			Pekka laulaa minun maalatessa#ni aitaa
-			'Pekka.nom sing.prs.3sg I.gen paint.essA/inf.px/1sg fence.par'
+			'Pekka.nom sing.prs.3sg I.gen paint.essA|inf.px|1sg fence.par'
 
 			Pekka laulaa sinun maalatessa#si aitaa
-			'Pekka.nom sing.prs.3sg you.gen paint.essA/inf.px/2sg fence.par'
+			'Pekka.nom sing.prs.3sg you.gen paint.essA|inf.px|2sg fence.par'
 						
 			Pekka laulaa hänen maalatessa#An aitaa
 			'Pekka.nom sing.prs.3sg fence.par paint.essa/inf he.gen'
 
 			Pekka laulaa meidän maalatessa#mme aitaa
-			'Pekka.nom sing.prs.3sg we.gen paint.essA/inf.px/1pl fence.par'
+			'Pekka.nom sing.prs.3sg we.gen paint.essA|inf.px|1pl fence.par'
 
 			Pekka laulaa teidän maalatessa#nne aitaa
-			'Pekka.nom sing.prs.3sg you.gen paint.essA/inf.px/2pl fence.par'
+			'Pekka.nom sing.prs.3sg you.gen paint.essA|inf.px|2pl fence.par'
 
 			Pekka laulaa heidän maalatessa#An aitaa
-			'Pekka.nom sing.prs.3sg they.gen paint.essA/inf.px/3p fence.par'
+			'Pekka.nom sing.prs.3sg they.gen paint.essA|inf.px|3p fence.par'
 				
 			*Pekka laulaa aitaa maalatessa#ni minun
-			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px/1sg I.gen _1'
+			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px|1sg I.gen _1'
 
 			*Pekka laulaa aitaa maalatessa#si sinun
-			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px/2sg you.gen _1'
+			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px|2sg you.gen _1'
 		
 			*Pekka laulaa aitaa maalatessa#An hänen
 			'Pekka.nom sing.prs.3sg fence.par_1 paint.essa/inf he.gen _1'
 
 			*Pekka laulaa aitaa maalatessa#mme meidän
-			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px/1pl we.gen _1'
+			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px|1pl we.gen _1'
 
 			*Pekka laulaa aitaa maalatessa#nne teidän
-			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px/2pl you.gen _1'
+			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px|2pl you.gen _1'
 
 			*Pekka laulaa aitaa maalatessa#An heidän
-			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px/3p they.gen _1'
+			'Pekka sing.prs.3sg fence.par_1 paint.essa/inf.px|3p they.gen _1'
 
 	& TUA-infinitive (3.5)
 	
 		& Agreement tests (3.5.1)
 					
 			minä lähde#n maalattua#ni aitaa
-			'I.nom leave.prs.1sg paint.tua/inf.px/1sg fence.par'
+			'I.nom leave.prs.1sg paint.tua/inf.px|1sg fence.par'
 			
 			sinä lähde#t maalattua#si aitaa
-			'you.nom leave.prs.2sg paint.tua/inf.px/2sg fence.par'
+			'you.nom leave.prs.2sg paint.tua/inf.px|2sg fence.par'
 			
 			hän lähde#[V] maalattua#An aitaa
-			'he.nom leave.prs.3sg paint.tua/inf.px/3p fence.par'
+			'he.nom leave.prs.3sg paint.tua/inf.px|3p fence.par'
 			
 			Pekka lähti maalattua#An aitaa
-			'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p fence.par'
+			'Pekka.nom leave.pst.3sg paint.tua/inf.px|3p fence.par'
 			
 			me lähde#mme maalattua#mme aitaa
-			'we.nom leave.prs.1pl paint.tua/inf.px/1pl fence.par'
+			'we.nom leave.prs.1pl paint.tua/inf.px|1pl fence.par'
 			
 			te lähde#tte maalattua#nne aitaa
-			'you.nom leave.prs.2pl paint.tua/inf.px/2pl fence.par'
+			'you.nom leave.prs.2pl paint.tua/inf.px|2pl fence.par'
 			
 			he lähde#vAt maalattua#An aitaa
-			'they.nom leave.prs.3sg paint.tua/inf.px/3p fence.par'
+			'they.nom leave.prs.3sg paint.tua/inf.px|3p fence.par'
 							
 			minä lähde#n maalattua#si aitaa
-			'I.nom leave.prs.1sg paint.tua/inf.px/2sg fence.par'
+			'I.nom leave.prs.1sg paint.tua/inf.px|2sg fence.par'
 
 			minä lähde#n maalattua#mme aitaa
-			'I.nom leave.prs.1sg paint.tua/inf.px/1pl fence.par'
+			'I.nom leave.prs.1sg paint.tua/inf.px|1pl fence.par'
 
 			minä lähde#n maalattua#nne aitaa
-			'I.nom leave.prs.1sg paint.tua/inf.px/2pl fence.par'
+			'I.nom leave.prs.1sg paint.tua/inf.px|2pl fence.par'
 											
 			*minä lähde#n maalattua#An aitaa
-			'I.nom leave.prs.1sg paint.tua/inf.px/3p fence.par'
+			'I.nom leave.prs.1sg paint.tua/inf.px|3p fence.par'
 			
 			*sinä lähde#t maalattua#An aitaa
-			'you.nom leave.prs.2sg paint.tua/inf.px/3p fence.par'
+			'you.nom leave.prs.2sg paint.tua/inf.px|3p fence.par'
 			
 			*me lähde#mme maalattua#An aitaa
-			'we.nom leave.prs.1pl paint.tua/inf.px/3p fence.par'
+			'we.nom leave.prs.1pl paint.tua/inf.px|3p fence.par'
 
 			*te lähde#tte maalattua#An aitaa
-			'you.nom leave.prs.2pl paint.tua/inf.px/3p fence.par'
+			'you.nom leave.prs.2pl paint.tua/inf.px|3p fence.par'
 				
 		& Canonical word order (3.5.2)
 				
@@ -2358,42 +2593,42 @@ END
 			'Pekka.nom leave.pst.3sg they.gen paint.tua/inf fence.par'
 
 			Pekka lähti maalattua#ni aitaa
-			'Pekka.nom leave.pst.3sg paint.tua/inf.px/1sg fence.par'
+			'Pekka.nom leave.pst.3sg paint.tua/inf.px|1sg fence.par'
 
 			Pekka lähti maalattua#si aitaa
-			'Pekka.nom leave.pst.3sg paint.tua/inf.px/2sg fence.par'
+			'Pekka.nom leave.pst.3sg paint.tua/inf.px|2sg fence.par'
 		
 			Pekka lähti maalattua#An aitaa
-			'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p fence.par'
+			'Pekka.nom leave.pst.3sg paint.tua/inf.px|3p fence.par'
 
 			Pekka lähti maalattua#mme aitaa
-			'Pekka.nom leave.pst.3sg paint.tua/inf.px/1pl fence.par'
+			'Pekka.nom leave.pst.3sg paint.tua/inf.px|1pl fence.par'
 
 			Pekka lähti maalattua#nne aitaa
-			'Pekka.nom leave.pst.3sg paint.tua/inf.px/2pl fence.par'
+			'Pekka.nom leave.pst.3sg paint.tua/inf.px|2pl fence.par'
 
 			Pekka lähti maalattua#An aitaa
-			'Pekka.nom leave.pst.3sg paint.tua/inf.px/3p fence.par'
+			'Pekka.nom leave.pst.3sg paint.tua/inf.px|3p fence.par'
 
 			*Pekka lähti isän maalattua#An aitaa
-			'Pekka.nom leave.pst.3sg father.gen paint.tua/inf.px/3p fence.par'
+			'Pekka.nom leave.pst.3sg father.gen paint.tua/inf.px|3p fence.par'
 
 		& Noncanonical word order, object fronting (3.5.3)
 					
 			Pekka lähti aitaa maalattua#ni
-			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px/1sg _1'
+			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px|1sg _1'
 
 			Pekka lähti aitaa maalattua#si
-			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px/2sg _1'
+			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px|2sg _1'
 		
 			Pekka lähti aitaa maalattua#An
-			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px/3p _1'
+			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px|3p _1'
 
 			Pekka lähti aitaa maalattua#mme
-			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px/1pl _1'
+			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px|1pl _1'
 
 			Pekka lähti aitaa maalattua#nne
-			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px/2pl _1'
+			'Pekka.nom leave.pst.3sg fence.par_1 paint.tua/inf.px|2pl _1'
 			
 			*Pekka lähti aitaa maalattua
 			'Pekka.nom leave.prs.3sg fence.par_1 paint.tua/inf _1'
@@ -2647,21 +2882,21 @@ END
 	
 		& English want-construction (subject, without agreement)(5.2.1)
 			
-			John wants to/inf leave
+			John wants to|inf leave
 			
-			John wants to/inf paint the fence
+			John wants to|inf paint the fence
 			
-			John wants Mary to/inf leave
+			John wants Mary to|inf leave
 			
-			John wants Mary to/inf paint the fence
+			John wants Mary to|inf paint the fence
 	
-			*John wants the fence Mary to/inf paint
+			*John wants the fence Mary to|inf paint
 	
-			*John wants to/inf Mary paint the fence
+			*John wants to|inf Mary paint the fence
 		
-			*John wants to/inf paint Mary the fence
+			*John wants to|inf paint Mary the fence
 				
-			*John wants Mary to/inf Mary leave
+			*John wants Mary to|inf Mary leave
 
 		& Finnish PRO-constructions (5.2.2)
 			
@@ -2677,21 +2912,21 @@ END
 				'Pekka.nom want.pst.3sg [Merja.gen leave.a/inf]'
 					
 				*Pekka halusi maalata#nsA aitaa
-				'Pekka.nom want.pst.3sg [paint.a/inf.px/3sg fence.par]'
+				'Pekka.nom want.pst.3sg [paint.a/inf.px|3sg fence.par]'
 				
 				*Pekka halusi hänen maalata aitaa
 				'Pekka want.pst.3sg [he.gen paint.a/inf fence.par]'
 				
 				*Pekka halusi hänen maalata#nsA aitaa
-				'Pekka.nom want.pst.3sg [he.gen paint.a/inf.px/3sg fence.par]
+				'Pekka.nom want.pst.3sg [he.gen paint.a/inf.px|3sg fence.par]
 			
 			& MA-infinitive
 			
 				Pekka näki hänet maalaamassa aitaa
-				'Pekka.nom see.pst.3sg he.acc paint.ma.ine/inf fence.par'
+				'Pekka.nom see.pst.3sg he.acc paint.ma.ine|inf fence.par'
 				
 				Pekka näki hänet aitaa maalaamassa
-				'Pekka.nom see.pst.3sg he.acc fence.par paint.ma.ine/inf __'
+				'Pekka.nom see.pst.3sg he.acc fence.par paint.ma.ine|inf __'
 				
 				*Pekka näki hänet Merjan_gen maalaamassa aitaa
 				'Pekka.nom see.pst.3sg he.acc Merja.gen paint.essa/inf fence.par'
@@ -2714,27 +2949,27 @@ END
 			'Pekka.nom want.pst.3sg [fence.par_1 paint.a/inf _1]'
 								
 			*Pekka halusi aitaa maalata#nsA
-			'Pekka.nom want.pst.3sg [fence.par_1 paint.par.px/3sg _1]'
+			'Pekka.nom want.pst.3sg [fence.par_1 paint.par.px|3sg _1]'
 		
 			*Pekka halusi aitaa maalata hänen
 			'Pekka want.pst.3sg [fence.par_1 paint.a/inf he.gen _1]'
 			
 			*Pekka halusi aitaa maalata#nsA hänen
-			'Pekka.nom want.pst.3sg [fence.par_1 paint.a/inf.px/3sg he.gen _1]'
+			'Pekka.nom want.pst.3sg [fence.par_1 paint.a/inf.px|3sg he.gen _1]'
 
 		& English try-construction (5.2.4)
 				
-			John tries to/inf paint the fence
+			John tries to|inf paint the fence
 				
-			*John tries Mary to/inf paint the fence
+			*John tries Mary to|inf paint the fence
 			
-			*John tries to/inf Mary paint the fence
+			*John tries to|inf Mary paint the fence
 			
-			*John tries Mary to/inf Mary paint the fence
+			*John tries Mary to|inf Mary paint the fence
 					
-			*John tries the fence to/inf paint
+			*John tries the fence to|inf paint
 			
-			*John tries the fence to/inf Mary paint
+			*John tries the fence to|inf Mary paint
 			
 & Noun phrases (6)
 
@@ -2875,7 +3110,7 @@ END
 		'φ-px2sg I.gen key.N0'
 
 		*φ hänen avain-
-		'φ s/he.gen key.N0'
+		'φ s|he.gen key.N0'
 		
 		*φ#nsA hänen avain-
 		'φ-px3 he.gen key.N0'
@@ -2903,134 +3138,134 @@ END
 	& Agent + participle without agreement (7.1)
 
 		minun tekemä
-		'I.gen make.ma/ptc-px1sg'
+		'I.gen make.ma|ptc-px1sg'
 		
 		sinun tekemä
-		'you.sg.gen make.ma/ptc-px2sg'
+		'you.sg.gen make.ma|ptc-px2sg'
 		
 		hänen tekemä
-		's/he.gen make.ma/ptc-px3'
+		's|he.gen make.ma|ptc-px3'
 		
 		meidän tekemä
-		'we.gen make.ma/ptc-px1pl'
+		'we.gen make.ma|ptc-px1pl'
 		
 		teidän tekemä
-		'you.pl.gen make.ma/ptc-px2pl'
+		'you.pl.gen make.ma|ptc-px2pl'
 		
 		heidän tekemä
-		'they.gen make.ma/ptc-px1'
+		'they.gen make.ma|ptc-px1'
 
 	& Agent + participle with agreement (7.2)
 	
 		& Grammatical
 	 	
 			minun tekemä#ni
-			'I.gen make.ma/ptc-px1sg'
+			'I.gen make.ma|ptc-px1sg'
 			
 			sinun tekemä#si
-			'you.sg.gen make.ma/ptc-px2sg'
+			'you.sg.gen make.ma|ptc-px2sg'
 			
 			hänen tekemä#nsA
-			's/he.gen make.ma/ptc-px3'
+			's|he.gen make.ma|ptc-px3'
 			
 			meidän tekemä#mme
-			'we.gen make.ma/ptc-px1pl'
+			'we.gen make.ma|ptc-px1pl'
 			
 			teidän tekemä#nne
-			'you.pl.gen make.ma/ptc-px2pl'
+			'you.pl.gen make.ma|ptc-px2pl'
 			
 			heidän tekemä#nsA
-			'they.gen make.ma/ptc-px1'
+			'they.gen make.ma|ptc-px1'
 	
 		& Agreement error
 		
 			*minun tekemä#si
-			'I.gen make.ma/ptc-px2sg'
+			'I.gen make.ma|ptc-px2sg'
 			
 			*sinun tekemä#ni
-			'you.sg.gen make.ma/ptc-px1sg'
+			'you.sg.gen make.ma|ptc-px1sg'
 			
 			*hänen tekemä#ni
-			's/he.gen make.ma/ptc-px1sg'
+			's|he.gen make.ma|ptc-px1sg'
 			
 			*meidän tekemä#ni
-			'we.gen make.ma/ptc-px1sg'
+			'we.gen make.ma|ptc-px1sg'
 			
 			*teidän tekemä#ni
-			'you.pl.gen make.ma/ptc-px1sg'
+			'you.pl.gen make.ma|ptc-px1sg'
 			
 			*heidän tekemä#ni
-			'they.gen make.ma/ptc-px1sg'
+			'they.gen make.ma|ptc-px1sg'
 	
 	& No agent argument, participle + agreement (7.3)
 	
 			tekemä#ni
-			'I.gen make.ma/ptc-px1sg'
+			'I.gen make.ma|ptc-px1sg'
 			
 			tekemä#si
-			'you.sg.gen make.ma/ptc-px2sg'
+			'you.sg.gen make.ma|ptc-px2sg'
 			
 			*tekemä#nsA
-			's/he.gen make.ma/ptc-px3'
+			's|he.gen make.ma|ptc-px3'
 			
 			tekemä#mme
-			'we.gen make.ma/ptc-px1pl'
+			'we.gen make.ma|ptc-px1pl'
 			
 			tekemä#nne
-			'you.pl.gen make.ma/ptc-px2pl'
+			'you.pl.gen make.ma|ptc-px2pl'
 			
 			*tekemä#nsA
-			'they.gen make.ma/ptc-px1'
+			'they.gen make.ma|ptc-px1'
 		
 	& Wrong word order (with and without agreement)(7.4)
 	
 		*tekemä minun
-		'make.ma/ptc I.gen'
+		'make.ma|ptc I.gen'
 		
 		*tekemä sinun
-		'make.ma/ptc you.sg.gen'
+		'make.ma|ptc you.sg.gen'
 		
 		*tekemä hänen
-		'make.ma/ptc s/he.gen'
+		'make.ma|ptc s|he.gen'
 		
 		*tekemä meidän
-		'make.ma/ptc we.gen'
+		'make.ma|ptc we.gen'
 		
 		*tekemä teidän
-		'make.ma/ptc you.pl.gen'
+		'make.ma|ptc you.pl.gen'
 		
 		*tekemä heidän
-		'make.ma/ptc they.gen'
+		'make.ma|ptc they.gen'
 		
 		*tekemä#ni minun
-		'make.ma/ptc-px1sg I.gen'
+		'make.ma|ptc-px1sg I.gen'
 		
 		*tekemä#si sinun
-		'make.ma/ptc-px2sg you.sg.gen'
+		'make.ma|ptc-px2sg you.sg.gen'
 		
 		*tekemä#nsA hänen
-		'make.ma/ptc-px3 s/he.gen'
+		'make.ma|ptc-px3 s|he.gen'
 		
 		*tekemä#mme meidän
-		'make.ma/ptc-px1pl we.gen'
+		'make.ma|ptc-px1pl we.gen'
 		
 		*tekemä#nne teidän
-		'make.ma/ptc-px2pl you.pl.gen'
+		'make.ma|ptc-px2pl you.pl.gen'
 		
 		*tekemä#nsA heidän
-		'make.ma/ptc-px3 they.gen'
+		'make.ma|ptc-px3 they.gen'
 	
 		*-mA minun tekemä
-		'MA I.gen make.ma/ptc'
+		'MA I.gen make.ma|ptc'
 	
 		*-mA#ni minun tekemä
-		'MA-px1sg I.gen made.ma/ptc'
+		'MA-px1sg I.gen made.ma|ptc'
 	
 & Successive-cyclic movement (8)
 	
-		John was admired/pss
+		John was admired|pss
 
-		John seems to/inf leave
+		John seems to|inf leave
 
 		
 

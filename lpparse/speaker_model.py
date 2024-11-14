@@ -17,14 +17,17 @@ class SpeakerModel:
                'TARGET': lambda x: x,
                'TRANSFORM': lambda x, t: x.reconstruct_operator(t)},
            'Feature inheritance':
-              {'TRIGGER': lambda x: x.check({'EF?'}) or (x.highest_finite_head() and not x.check({'!PER'})),
+              {'TRIGGER': lambda x: (x.check({'φ'}) and x.complement()) or x.check({'EF?'}) or (x.highest_finite_head() and not x.check({'!PER'})),
                'TARGET': lambda x: x,
                'TRANSFORM': lambda x, t: x.feature_inheritance()},
             'A-chain':
               {'TRIGGER': lambda x: x.zero_level() and
                                     x.core.EPP() and
-                                    x.is_R() and x.sister() and x.sister().complex() and not x.sister().copied and x.sister().H().core.referential() and
-                                    not x.sister().operator_features() and x.tail_test(tail_sets=x.sister().get_tail_sets(), direction='right', weak_test=True),
+                                    x.is_R() and x.sister() and
+                                    x.sister().complex() and not x.sister().copied and
+                                    x.sister().H().core.referential() and
+                                    not x.sister().operator_features() and
+                                    x.tail_test(tail_sets=x.sister().get_tail_sets(), direction='right', weak_test=True),
                'TARGET': lambda x: x.sister().chaincopy(),
                'TRANSFORM': lambda x, t: x * t},
            'IHM':
@@ -112,7 +115,7 @@ class SpeakerModel:
         X = kwargs.get('phrase_structure', None)
         lst = kwargs.get('word_list', [])
         index = kwargs.get('index', 0)
-        infl_buffer = kwargs.get('infl_buffer', [])
+        infl_buffer = kwargs.get('infl_buffer', [set()])
         prosody = kwargs.get('prosody', set())
 
         Results.accumulate_global_steps()   #   Internal bookkeeping
@@ -127,7 +130,7 @@ class SpeakerModel:
             # Examine all retrieved lexical items (ambiguity resolution)
             for lex in retrieved_lexical_items:
                 # Recursive branching: 1) morphological parsing, 2) inflection, 3) stream into syntax
-                # 1. Morphological parsing if applicable
+                # 1) Morphological parsing, if applicable
                 if lex.morphological_chunk:
                     self.embedding += 1
                     self.derivational_search_function(phrase_structure=secure_copy(X),
@@ -137,8 +140,15 @@ class SpeakerModel:
                                                       prosody=prosody)
 
                 # 2. Process inflectional feature (withhold streaming to syntax)
-                if not lex.morphological_chunk and lex.inflectional:
-                    infl_buffer.append(lex.features - {'inflectional'})
+                # NOTE: processing goes from right to left (reverse order)
+                if not lex.morphological_chunk and lex.inflectional and lex.type != 'prosodic':
+                    # Portmanteau morphemes are added to the last feature bundle
+                    if lex.type == 'portmanteau':
+                        infl_buffer[-1].update(lex.features - {'inflectional'})
+                    # Other morphemes boundaries create a new feature bundle
+                    else:
+                        infl_buffer[-1].update(lex.features - {'inflectional'})
+                        infl_buffer.append(set())
                     log(f'= {illu(lex.features)}')
                     self.derivational_search_function(phrase_structure=secure_copy(X),
                                                       word_list=lst,
@@ -147,7 +157,7 @@ class SpeakerModel:
                                                       prosody=prosody)
 
                 # 3. Process prosodic features
-                if not lex.morphological_chunk and not lex.inflectional and lex.prosodic:
+                if not lex.morphological_chunk and not lex.inflectional and lex.type == 'prosodic':
                     prosody = lex.features
                     log(f'= prosodic feature {illu(lex.features)}')
                     self.derivational_search_function(phrase_structure=secure_copy(X),
@@ -157,10 +167,10 @@ class SpeakerModel:
                                                       prosody=prosody)
 
                 # 4. Extract features from primitive lex and wrap them into primitive constituent and stream into syntax
-                if not lex.morphological_chunk and not lex.inflectional and not lex.prosodic:
-                    self.syntactic_branching(X, self.lexical_stream.wrap(lex, infl_buffer, prosody), lst, index)
+                if not lex.morphological_chunk and not lex.inflectional and not lex.type == 'prosodic':
+                    self.syntactic_branching(X, self.lexical_stream.wrap(lex, infl_buffer[::-1], prosody), lst, index)
 
-                infl_buffer = []
+                infl_buffer = [set()]
                 prosody = set()
 
         log(f'\n\t\tBacktracking...')
@@ -217,5 +227,4 @@ class SpeakerModel:
         # there has not been any accepted solutions
         if not self.results.first_solution_found:
             self.results.consume_resources("Garden Paths", X)
-
         PhraseStructure.cyclic = True

@@ -1,9 +1,7 @@
 import phrase_structure
 from collections import defaultdict
 from lexical_item import LexicalItem
-from support import log, log_instance
-
-MBOUNDARY = ('#', '_', '=')
+from support import log
 
 
 # Definition for lexical interface
@@ -31,13 +29,13 @@ class LexicalInterface:
         onset = ''
         offset = ''
         # Independent word
-        if not phon.startswith(MBOUNDARY) and not phon.endswith(MBOUNDARY):
+        if phon[0] not in set(LexicalItem.MBOUNDARY.keys()) and phon[-1] not in set(LexicalItem.MBOUNDARY.keys()):
             return phon, '_', '_'
         # Get onset
-        if phon.startswith(MBOUNDARY):
+        if phon[0] in set(LexicalItem.MBOUNDARY.keys()):
             onset = phon[0]
         # Get offset
-        if phon.endswith(MBOUNDARY):
+        if phon[-1] in set(LexicalItem.MBOUNDARY.keys()):
             offset = phon[-1]
         return phon[len(onset):len(phon)-len(offset)], onset, offset
 
@@ -51,21 +49,27 @@ class LexicalInterface:
                     log(f'({i+1}) {lex} ')
 
     def phonological_context_match(self, lex, onset, offset):
-        for phon_context in [f.split(':')[1] for f in lex.features if f.startswith('PC')]:
-            if (phon_context[0] != 'X' and phon_context[0] != onset) or (phon_context[-1] != 'X' and phon_context[-1] != offset):
-                return False
-        return True
+        contexts = [f.split(':')[1] for f in lex.features if f.startswith('PC:')]
+        if not contexts:
+            return True
+        if contexts:
+            for phon_context in contexts:
+                if (phon_context[0] != 'X' and phon_context[0] == onset) or (phon_context[-1] != 'X' and phon_context[-1] == offset):
+                    return True
 
     def unknown_word(self, w):
+        """
+        Morphological decompositions in the input are regarded as unknown words and are
+        subjected to morphological parsing
+        """
         lex = LexicalItem()
         lex.features = {f'PF:{w}', '?'}
         lex.name = '?'
-        if '#' in w:
-            lex.morphological_chunk = w
-            lex.internal = True
-        elif '=' in w:
-            lex.morphological_chunk = w
-            lex.internal = True
+        for b in LexicalItem.MBOUNDARY.keys():
+            if b in w:
+                lex.morphological_chunk = w
+                lex.internal = True
+                break
         else:
             log(f' = Unrecognized word')
             print(f'Word {w} was not recognized.')
@@ -75,7 +79,7 @@ class LexicalInterface:
     def language_match(self, lex):
         return (self.language in lex.language) or (lex.language == 'LANG:X')
 
-    def apply_redundancy_rules(self, current_feature_lst):
+    def apply_redundancy_rules(self, feature_bundle_lst):
         """Applies features by lexical redundancy rules (LRRs) until the set of lexical features stabilizes (no longer changes)
         This version allows execution of LRRs in a sequence
         Structure of the algorithm: WHILE (LRRs would add new features F) ADD F
@@ -84,7 +88,7 @@ class LexicalInterface:
         # Add features until there are no more new features. This allows iterative application, so that features
         # introduced by lexical redundancy rules can trigger further rules.
         new_feature_lst = []
-        for fset in current_feature_lst:
+        for fset in feature_bundle_lst:
             fset = self.lexical_redundancy(fset)
             new_feature_lst.append(fset)
         return new_feature_lst
@@ -162,11 +166,11 @@ class LexicalInterface:
             lexical_entries = open(lexicon_file, encoding='utf8').readlines()
 
         for line in lexical_entries:
-            if not line or '::' not in line or line.startswith('#'):
+            if not line or '::' not in line or line.startswith('#') or line.startswith('\''):
                 continue
             line = line.strip()
             phonological_entries, lexical_features = line.split('::')
-            phonological_entries = phonological_entries.strip().split(',')
+            phonological_entries = phonological_entries.strip().replace('#', '').split(',')
             lexical_feature_set = {f.strip() for f in lexical_features.split()}
             if not {f for f in lexical_feature_set if f[:4] == 'LANG'}:
                 lexical_feature_set.add(self.language)

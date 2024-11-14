@@ -22,16 +22,20 @@
 
 # Verbal domain
 
-	T		:: T LF:T
-	T/prt 	:: T/prt LF:Prtc
-	BE-		:: COPULA LF:be
-	v       :: v PF:v LF:v
-	v*		:: v* PF:-ed LF:pass
-	V   	:: V LF:V PF:V
-	cau		:: Cau PF:Cau LF:Cause
-	Pr		:: Pr PF:-0 LF:Pr
-	Pr2		:: Pr PF:-0 LF:Pr
-	T*		:: T LF:T
+	T			:: T LF:T
+	T.pst		:: T T/fin pst
+	T.prs		:: T T/fin prs
+	T/prt 		:: T/prt LF:Prtc
+	T/prt.pst	:: T/prt pst LF:Prtc
+	BE-			:: COPULA LF:be
+	ol-,ole-	:: COPULA LF:be LANG:FI
+	v       	:: v PF:v LF:v
+	v*			:: v* PF:-ed LF:pass
+	V   		:: V LF:V PF:V
+	cau			:: Cau PF:Cau LF:Cause
+	Pr			:: Pr PF:-0 LF:Pr
+	Pr2			:: Pr PF:-0 LF:Pr
+	T*			:: T LF:T
 
 # Nominal domain
 
@@ -141,8 +145,10 @@
 
 		# Participles
 		
-			mA		:: a MA/a	Inf	EF*		PF:-mA	PC:#X LF:prtc	+COMP:ASP -COMP:V/INTR,IMPSS	LANG:FI
-			vA		:: a VA/a	Inf			PF:-vA 	PC:#X LF:prtc	+COMP:ASP LANG:FI 
+			mA		:: a MA/a		Inf	EF*		PF:-mA	PC:#X LF:prtc	+COMP:ASP -COMP:V/INTR,IMPSS	LANG:FI
+			vA		:: a VA/a		Inf			PF:-vA 	PC:#X LF:prtc	+COMP:ASP LANG:FI 
+			nUt		:: T T/prt pst	Fin			PF:-nUt PC:#X LF:prtc	ΦPF EF PHI:NUM:SG	
+			nEEt	:: T T/prt prs	Fin			PF:-nEEt PC:#X LF:prtc	ΦPF EF PHI:NUM:PL	
 			
 		# Special purpose elements
 		
@@ -151,6 +157,13 @@
 			TA*		:: V CAU 	PF:-TA		LF:cause  			V/TR LANG:FI -ΦPF EF*
 			U*		:: V REFL	PF:-utu		LF:become			V/INTR LANG:FI +COMP:V
 
+		# Finite tense layer
+		
+			i		:: T T/fin pst	PF:-i		LF:Pst
+			i+0		:: T T/fin pst	PF:-i		LF:Pst	ΦPF weak_pro nonreferential_pro PHI:NUM:SG,PER:3 PER LANG:FI
+			0		:: T T/fin prs	PF:T		LF:Prs
+			isi		:: T T/fin cond PF:-isi		LF:COND
+			
 	# Left Periphery
 	
 		# Left peripheral clitics
@@ -161,8 +174,9 @@
 			s			:: inflectional PF:-s OP:DE/EM DIS:DE/EM **OP **OP:DE/EM -insitu PC:=X LANG:FI
 			
 	# Finnish prepositions (semantic cases)
-	P(ine)		:: PF:-ssA LF:in P LANG:FI
-	P0			:: PF:-Ø LF:in P LANG:FI
+	
+		P(ine)		:: PF:-ssA LF:in P LANG:FI
+		P0			:: PF:-Ø LF:in P LANG:FI
 
 
 # Italian

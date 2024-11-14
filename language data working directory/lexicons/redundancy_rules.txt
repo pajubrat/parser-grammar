@@ -40,6 +40,23 @@
 	Neg		:: 						-SPEC:N
 	Agr		::	Fin
 
+	R_exp	:: iPHI:PRON:NONPRON	R:NEW
+	R_pron	:: iPHI:PRON:PRON		R:NEW:REF
+	R_refl	:: iPHI:PRON:PRON		R:OLD:REF
+	sg 		:: iPHI:NUM:SG
+	pl 		:: iPHI:NUM:PL
+	1p 		:: iPHI:PER:1
+	2p 		:: iPHI:PER:2
+	3p 		:: iPHI:PER:3
+	3sg		:: iPHI:PER:3 iPHI:NUM:SG iPHI:DET:DEF
+	def 	:: iPHI:DET:DEF
+	udef	:: iPHI:DET:UDEF
+	indef 	:: iPHI:DET:INDEF
+	hum 	:: iPHI:HUM:HUM
+	nonhum 	:: iPHI:HUM:NONHUM
+	m		:: iPHI:GEN:M
+	f		:: iPHI:GEN:F
+
 # Operators
 
 	'FOC	::	OP:FOC
@@ -74,15 +91,17 @@
 	
 		LANG:FI COPULA			:: PF:ole-
 		LANG:FI prs				:: PF:-V
-		LANG:FI pst				:: PF:-i
+		LANG:FI pst	T/fin		:: PF:-i
+		LANG:FI prs T/fin		:: PF:-V
+		LANF:FI pst T/prt 		:: PF:-nUt
 		LANG:FI	pst IMPSS		:: PF:-Vn
 		LANG:FI cond			:: PF:-isi
 		LANG:FI pot				:: PF:-ne
 		LANG:FI Fin K			:: PF:-Vn
 		LANG:FI ε				:: PC:#X#
-		LANG:FI V				:: PC:X#
-		LANG:FI T				:: PC:#X
-		LANG:FI v				:: PC:#X#
+		LANG:FI V				:: PC:X. PC:X#
+		LANG:FI T				:: PC:#X PC:.X
+		LANG:FI v				:: PC:.X PC:#X
 
 	# Finnish edge behavior
 		
