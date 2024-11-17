@@ -37,7 +37,7 @@ class PredicatesRelationsEvents:
     def default_attributes(self, X):
         return {'Semantic space': 'PRE',
                 'Predicate': X,
-                'Semantic type': [self.narrow_semantics.semantic_type[X.label()]],
+                'Semantic type': [self.narrow_semantics.semantic_type.get(X.label(), '?')],
                 'Reference': self.present(X)}
 
     def participant_composition(self, Pred):

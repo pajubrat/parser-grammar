@@ -35,7 +35,7 @@ class QuantifiersNumeralsDenotations:
         return phi_map_dict.get(phi_feature, ())
 
     def accept(self, X):
-        return (X.core.complete_agreement_suffixes() and not X.core.AgreeLF_has_occurred()) or X.core.referential()
+        return (X.core.complete_agreement_suffixes() and not X.core.AgreeLF_has_occurred()) or X.core.property('referential')
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
@@ -47,7 +47,7 @@ class QuantifiersNumeralsDenotations:
         self.inventory[idx].update(criteria)
 
     def object_presentation(self, X):
-        if X.core.referential():
+        if X.core.property('referential'):
             return f'{X.max().illustrate()}'
         return f'pro({X})'
 
@@ -190,7 +190,7 @@ class QuantifiersNumeralsDenotations:
                 stri += ' ' + relevant_content(X)
 
             # Create binding tags at the end of referential expressions
-            if X.zero_level() and not X.core.referential() and X.core.get_idx_tuple('QND'):
+            if X.zero_level() and not X.core.property('referential') and X.core.get_idx_tuple('QND'):
                 idx = X.core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f' {X.label()}/pro[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
@@ -246,7 +246,7 @@ class QuantifiersNumeralsDenotations:
 
     def project_phi_features(self, X):
         interpreted_phi_dict = {}
-        PHI = X.core.formatted_phi()
+        PHI = [f.split(',') for f in X.core.features(type=['phi', 'valued'], format='reduced')]
         for phi_lst in PHI:
             for phi in phi_lst:
                 sem_phi = self.phi_map(phi)
@@ -255,7 +255,7 @@ class QuantifiersNumeralsDenotations:
         return interpreted_phi_dict
 
     def detect_phi_conflicts(self, X):
-        for phi in X.H().core.get_phi_set():
+        for phi in X.H().core.features(type=['phi']):
             if phi[-1] == '*':
                 log(f'\n\t\t\t{X.illustrate()} has a phi-feature conflict with {phi}.')
                 self.narrow_semantics.phi_interpretation_failed = True

@@ -12,7 +12,7 @@ class Focus:
                 x = X
                 while x:
                     # Focus sets for concepts (ignores purely functional items and auxiliaries)
-                    if x.core.expresses_concept():
+                    if x.core.property('expresses_concept'):
                         self.focus_interpretations.append(f'Narrow focus on {x.label()} ({focus_f})')
                         log(f'\n\tReconstructed narrow focus for {x.label()} ({focus_f})')
                         # Focus sets for spatiotemporal objects (subtype of "wide focus")

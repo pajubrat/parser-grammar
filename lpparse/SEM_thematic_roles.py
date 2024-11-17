@@ -11,16 +11,16 @@ class ThematicRoles:
 
         if ['COMP:φ', 'COMP:D', '!COMP:φ', '!COMP:D'] in X.core and X.complement():
             assignee = X.complement()
-            if assignee.core.preposition():
+            if assignee.core.property('preposition'):
                 theta_role = 'Goal'
             else:
                 theta_role = 'Patient'
-        elif not X.core.EPP() and ['SPEC:φ', 'SPEC:D', '!SPEC:φ', '!SPEC:D'] in X.core and X.pro_edge():
+        elif not X.core.property('EPP') and ['SPEC:φ', 'SPEC:D', '!SPEC:φ', '!SPEC:D'] in X.core and X.pro_edge():
             assignee = X.pro_edge()[0]
-            if assignee.core.referential():
-                if X.core.nominal():
+            if assignee.core.property('referential'):
+                if X.core.property('nominal'):
                     theta_role = 'Agent/Possessor'
-                elif X.core.light_verb():
+                elif X.core.property('light_verb'):
                     theta_role = 'Causer/Agent'
                 else:
                     theta_role = 'Agent'
@@ -34,7 +34,7 @@ class ThematicRoles:
                 log(f'\n\t\tExpletive cannot receive a thematic role from {X}.')
                 self.failure = True
                 return
-            if assignee.H().core.referential():
+            if assignee.H().core.property('referential'):
                 if assignee.H().mother_:
                     argument_str = f'{assignee.H().mother_.illustrate()}'
                 else:

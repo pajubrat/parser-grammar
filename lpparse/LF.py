@@ -47,9 +47,9 @@ class LF:
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(X):
                         if logging:
-                            log(f'\n\t{X} failed {test_name} ')
+                            log(f'\n\t{X} 𝗳𝗮𝗶𝗹𝗲𝗱 {test_name} ')
                             if self.failed_feature:
-                                log(f'for [{self.failed_feature}]')
+                                log(f'𝗳𝗼𝗿 [{self.failed_feature}]')
                         self.error_report_for_external_callers = f'{X} failed {test_name}.'
                         return False
             else:
@@ -64,7 +64,7 @@ class LF:
             if key in self.selection_violation_test.keys():
                 if not self.selection_violation_test[key](X, X.core.get_selection_features(key)):
                     if self.logging:
-                        log(f'\t{X} failed {key}: {X.core.get_selection_features(key)} ')
+                        log(f'\t{X} 𝗳𝗮𝗶𝗹𝗲𝗱 {key}: {X.core.get_selection_features(key)} ')
                     return True     # Failed test
 
     def final_tail_check(self, X):
@@ -73,8 +73,8 @@ class LF:
                 return False
             if not X.R().copied and not self.final_tail_check(X.R()):
                 return False
-        if X.zero_level() and X.max() != X.top() and X.get_tail_sets() and not X.tail_test(weak_test=X.core.referential() or X.core.preposition()):
-            log(f'\n\t\tPost-syntactic tail test for \'{X.illustrate()}\' failed.')
+        if X.zero_level() and X.max() != X.top() and X.get_tail_sets() and not X.tail_test(weak_test=X.core.property('referential')):
+            log(f'\n\t\t𝗣𝗼𝘀𝘁-𝘀𝘆𝗻𝘁𝗮𝗰𝘁𝗶𝗰 𝘁𝗮𝗶𝗹 𝘁𝗲𝘀𝘁 𝗳𝗼𝗿 \'{X.illustrate()}\' 𝗳𝗮𝗶𝗹𝗲𝗱.')
             return False
         return True
 

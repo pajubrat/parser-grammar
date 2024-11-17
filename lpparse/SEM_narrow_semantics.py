@@ -61,6 +61,8 @@ class NarrowSemantics:
                               'P': '§Relator',
                               'v': '§Valency',
                               'T': '§T-Event',
+                              'VA/inf': '§T-Event',
+                              'A/inf': '§T-Event',
                               'ASP': '§Eventive',
                               'ARG': '§Unsaturated',
                               'SEM:internal': '§Internal',
@@ -101,7 +103,7 @@ class NarrowSemantics:
             self.speaker_model.results.store_output_field('Number of assignments', str(n))
 
         # Information structure
-        if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and X.finite():
+        if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and X.property('finite'):
             self.speaker_model.results.store_output_field('Information structure', self.pragmatic_pathway.calculate_information_structure(X))
 
         # Speaker attitude
@@ -112,11 +114,11 @@ class NarrowSemantics:
         if not X.copied:
             if X.zero_level():
                 # Thematic roles
-                if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and X.core.theta_predicate():
+                if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and X.core.property('theta_predicate'):
                     self.speaker_model.results.store_output_field('Thematic roles', self.thematic_roles_module.reconstruct(X))
                 # Argument-predicate pairs
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and \
-                        'Φ' in X.core and not X.core.referential():
+                        'Φ' in X.core and not X.core.property('referential') and not X.check({'N'}):
                     self.speaker_model.results.store_output_field('Predicates', self.predicates.reconstruct(X))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False

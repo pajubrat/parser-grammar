@@ -109,14 +109,14 @@
 		
 		(t)A,A/inf			:: A/inf 		Φ Inf 	?ΦLF -PER EF?		PF:-tA	 	PC:#X LF:to -SPEC:Neg/fin SEM/desired_event +COMP:ASP -COMP:EVE,EVE2 -COMP:IMPSS LANG:FI TAM
 		vAn,VA/inf			:: VA/inf 		Φ EF* Inf T  =SELF:ΦLF,ΦPF	PF:-vAn 	PC:#X LF:to +COMP:ASP TAM LANG:FI
-		essA,ESSA/inf		:: ESSA/inf		Φ EF* Inf Adv ?ΦLF			PF:-essA 	PC:#X LF:while +COMP:ASP -SPEC:T/fin TAIL:T TAM LANG:FI
+		essA,ESSA/inf		:: ESSA/inf		Φ EF* Inf Adv ?ΦLF			PF:-essA 	PC:#X LF:while +COMP:ASP -SPEC:T/fin TAIL:V TAM LANG:FI
 		tUA,TUA/inf 		:: TUA/inf		Φ EF* Inf Adv =SELF:ΦLF,ΦPF	PF:-tUA 	PC:#X LF:after +COMP:ASP TAIL:T TAM LANG:FI
 		kse,KSE/inf			:: KSE/inf		Φ EF* Inf Adv -ΦLF +SELF:ΦPF	PF:-kse 	PC:#X LF:for +COMP:ASP TAIL:T TAM LANG:FI
 		en,E/inf			:: E/inf 		  EF Inf Adv OC  			PF:-en 		PC:#X LF:by +COMP:ASP TAIL:T TAM LANG:FI
-		mAssA,MA.ine/inf	:: MA.ine/inf	  EF Inf Adv OC				PF:-mAssA 	PC:#X LF:in +COMP:ASP TAIL:V MA/inf TAM LANG:FI
-		mAttA,MA.abe/inf	:: MA.abe/inf	  EF Inf Adv OC				PF:-mAttA 	PC:#X LF:without +COMP:ASP TAIL:T MA/inf TAM LANG:FI
-		mAllA,MA.ade/inf	:: MA.ade/inf	  EF Inf Adv OC				PF:-mAllA 	PC:#X LF:by +COMP:ASP TAIL:V MA/inf TAM LANG:FI
-		mAstA,MA.ela/inf	:: MA.ela/inf	  EF Inf Adv OC 				PF:-mAstA 	PC:#X LF:without +COMP:ASP TAIL:V/TR,SEMCLASS_denied_event MA/inf TAM LANG:FI
+		mAssA,MAine/inf	:: MAine/inf	  EF Inf Adv OC				PF:-mAssA 	PC:#X LF:in +COMP:ASP TAIL:V MA/inf TAM LANG:FI
+		mAttA,MAabe/inf	:: MAabe/inf	  EF Inf Adv OC				PF:-mAttA 	PC:#X LF:without +COMP:ASP TAIL:T MA/inf TAM LANG:FI
+		mAllA,MAade/inf	:: MAade/inf	  EF Inf Adv OC				PF:-mAllA 	PC:#X LF:by +COMP:ASP TAIL:V MA/inf TAM LANG:FI
+		mAstA,MAela/inf	:: MAela/inf	  EF Inf Adv OC 				PF:-mAstA 	PC:#X LF:without +COMP:ASP TAIL:V/TR,SEMCLASS_denied_event MA/inf TAM LANG:FI
 		mAAn,MA.ill/inf		:: MA.ill/inf	  EF Inf	OC 				PF:-mAAn 	PC:#X LF:to +COMP:ASP SEM/desired_event adjoinable TAIL:V/TR,SEMCLASS_desired_event MA/inf TAM LANG:FI
 	
 		impss		:: IMPSS	Pass V EF 							PF:-TA		PC:#X# LF:Impss +COMP:ASP -COMP:v,IMPSS
@@ -147,8 +147,8 @@
 		
 			mA		:: a MA/a		Inf	EF*		PF:-mA	PC:#X LF:prtc	+COMP:ASP -COMP:V/INTR,IMPSS	LANG:FI
 			vA		:: a VA/a		Inf			PF:-vA 	PC:#X LF:prtc	+COMP:ASP LANG:FI 
-			nUt		:: T T/prt pst	Fin			PF:-nUt PC:#X LF:prtc	ΦPF EF PHI:NUM:SG	
-			nEEt	:: T T/prt prs	Fin			PF:-nEEt PC:#X LF:prtc	ΦPF EF PHI:NUM:PL	
+			nUt		:: T T/prt pst	Fin			PF:-nUt PC:#X LF:prtc	ΦPF EF PHI:NUM:SG 
+			nEEt	:: T T/prt pst	Fin			PF:-nEEt PC:#X LF:prtc	ΦPF EF PHI:NUM:PL	
 			
 		# Special purpose elements
 		

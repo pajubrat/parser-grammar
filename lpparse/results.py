@@ -162,7 +162,7 @@ class Results:
                 log(f'({comment})')
 
     def log_success(self, ps):
-        log(u'\n\n\u03F4''\tACCEPTED.\n')
+        log(u'\n\n\u03F4''\t𝗔𝗰𝗰𝗲𝗽𝘁𝗲𝗱.\n')
         print('X', end='', flush=True)
         log(f'\n\n\t\tLexical features:\n{self.show_primitive_constituents(ps)}')
         if not self.first_solution_found:
@@ -178,22 +178,6 @@ class Results:
         log(f'{self.show_primitive_constituents(ps)}')
 
     def show_primitive_constituents(self, X):
-        def print_feature_bundles(feature_lst):
-            stri = ''
-            for fset in feature_lst:
-                stri += '{'
-                line = ''
-                for i, f in enumerate(fset):
-                    if 0 < i < len(fset):
-                        line += ' '
-                    line += f'{f}'
-                    if len(line) > 70:
-                        stri += f'{line}\n\t\t{" ":<11}'
-                        line = ''
-
-                if line:
-                    stri += f'{line}}}\n\t\t{" ":<11}'
-            return stri
         reply = ''
         if not X.zero_level():
             reply += self.show_primitive_constituents(X.L())
@@ -202,7 +186,7 @@ class Results:
             for head in X.affixes():
                 if head.copied:
                     break
-                reply += f'\t\t{head.get_phonological_string():<11}{print_feature_bundles(head.core.feature_bundles())}\n'
+                reply += f'\t\t{head.get_phonological_string():<11}{head.core}\n'
         return reply
 
     def format_ontology_all(self, speaker_model):

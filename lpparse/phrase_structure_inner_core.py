@@ -1,53 +1,43 @@
 import itertools
 from support import log
 
+abstraction_funct = {'EHM': lambda X: 'ε' in X,
+                     'EF': lambda X: ['EF', 'EF*'] in X,
+                     'EPP': lambda X: 'EF*' in X,
+                     'event': lambda X: 'π' in X,
+                     'finite': lambda X: ['Fin', 'T/fin', 'C/fin'] in X,
+                     'force': lambda X: 'FORCE' in X,
+                     'referential': lambda X: ['φ', 'D'] in X,
+                     'adverbial': lambda X: 'Adv' in X,
+                     'nominal': lambda X: 'N' in X,
+                     'verbal': lambda X: 'ASP' in X,
+                     'theta_predicate': lambda X: X.property('thetaSPEC') or X.property('thetaCOMP') and not '-θ' not in X,
+                     'thetaSPEC': lambda X: 'θSPEC' in X,
+                     'thetaCOMP': lambda X: 'θCOMP' in X,
+                     'nonthematic_verb': lambda X: X.property('verbal') and not X.property('theta_predicate'),
+                     'thematic_edge': lambda X: X.get_selection_features('+SPEC') & {'D', 'φ'},
+                     'light_verb': lambda X: ['v', 'v*', 'impass', 'cau'] in X,
+                     'finite_left_periphery': lambda X: X.property('finite') and ['T', 'C'] in X,
+                     'finite_tense': lambda X: 'T/fin' in X or (X.property('finite') and 'T' in X),
+                     'preposition': lambda X: 'P' in X,
+                     'expresses_concept': lambda X: ['N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'] in X and ['T/prt', 'COPULA'] not in X,
+                     'SEM_internal_predicate': lambda X: 'SEM:internal' in X,
+                     'SEM_external_predicate': lambda X: 'SEM:external' in X,
+                     'scope_marker': lambda X: ['C', 'C/fin', 'OP'] in X
+                     }
 
-def feature_gate(goal_feature, P):
-    """
-    Feature A can be valued for B at probe head X iff
-    (1) B is an unvalued feature of the same type as A
-    (2) probe X contains overtly valued phi-bundle with the same type as A (gate condition)
-    """
-    for p in P:
-        if goal_feature.split(":")[1] == p.split(':')[0]:  # Condition (2)
-            return True
+feature_abstraction = {'phi': lambda f: 'PHI:' in f,
+                       'R': lambda f: f.startswith('R:'),
+                       '+SPEC': lambda f: f.startswith('+SPEC:'),
+                       '+COMP': lambda f: f.startswith('+COMP:'),
+                       'index': lambda f: f.startswith('IDX:'),
+                       'phi_index': lambda f: f.startswith('PHI:IDX:'),
+                       'interpretable': lambda f: f.startswith('iPHI:'),
+                       'uninterpretable': lambda f: f.startswith('PHI:'),
+                       'unvalued': lambda f: f.endswith('_'),
+                       'valued': lambda f: not f.endswith('_')}
 
-def phi_feature(f):
-    return 'PHI:' in f
-
-def interpretable_phi_feature(f):
-    return f.startswith('iPHI')
-
-def unvalued_phi_feature(f):
-    return phi_feature(f) and f[-1] == '_'
-
-def unvalued_counterparty(goal_feature, X):
-    return f'PHI:{goal_feature.split(":")[1]}:_' in X.features()
-
-def valued_phi_feature(f):
-    return phi_feature(f) and f[-1] != '_'
-
-def interpretable_phi_features(probe):
-    return {phi for phi in probe.H().features if interpretable_phi_feature(phi)}
-
-def unlicensed_phi_features_at_goal(G, PP):
-    return G - set().union(*{frozenset(phi) for phi in PP if phi <= G})
-
-def mismatch(G, P):
-    return {(p, g) for p, g in itertools.product(G, P) if type_value_mismatch(p, g)}
-
-def i(phi):
-    if interpretable_phi_feature(phi):
-        return phi[1:]
-    return phi
-
-def mandatory(f):
-    return f.startswith('!')
-
-def illicit(f):
-    return f.startswith('-')
-
-def type_value_mismatch(p, g):
+def value_mismatch(p, g):
     return p.split(':')[0] == g.split(':')[0] and p.split(':')[1] != g.split(':')[1]
 
 
@@ -68,16 +58,50 @@ class PhraseStructureCore:
         if isinstance(f, list):
             return set(f) & self.features()
 
-    def features(self):
-        return set().union(*[fset for fset in self._features])
+    def features(self, **kwargs):
+        fset = set().union(*[fset for fset in self._features])
+
+        if kwargs.get('type'):
+            for feature_type in kwargs.get('type', []):
+                fset = {f for f in fset if feature_abstraction[feature_type](f)}
+            if kwargs.get('format') == 'reduced':
+                fset = {':'.join(f.split(':')[1:]) for f in fset}
+            if kwargs.get('format') == 'no_value':
+                fset = {':'.join(f.split(':')[0:-1]) for f in fset}
+            if kwargs.get('format') == 'only_value':
+                fset = {f.split(':')[-1] for f in fset}
+            if kwargs.get('format') == 'licensed':
+                fset = set().union(*{frozenset(f.split(':')[1].split(',')) for f in fset})
+
+        if kwargs.get('match'):
+            fset2 = set()
+            for f in fset:
+                for pattern in kwargs.get('match'):
+                    if pattern in f:
+                        fset2.add(f)
+            fset = fset2
+
+        if kwargs.get('startswith'):
+            fset2 = set()
+            for f in fset:
+                for pattern in kwargs.get('startswith'):
+                    if f.startswith(pattern):
+                        fset2.add(f)
+            fset = fset2
+
+        return fset
+
+    def feature_bundles(self):
+        return self._features
+
+    def property(self, P):
+        if abstraction_funct.get(P):
+            return abstraction_funct[P](self)
 
     def bundle_features(self, f):
         for fset in self._features:
             if f in fset:
                 return fset
-
-    def feature_bundles(self):
-        return self._features
 
     def set_features(self, fset):
         self._features = [fset]
@@ -106,45 +130,38 @@ class PhraseStructureCore:
                 return True
 
     def m_selection_violation(self, i, current_morph_fset):
+        def get_negative_m_selection_features(fset):
+            return set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('-mCOMP=')])
+        def get_positive_m_selection_features(fset):
+            s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
+            return {f for f in s if not f.endswith('/else')}
+        def get_positive_root_selection_features(fset):
+            s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
+            return {f.split('/')[0] for f in s if f.endswith('/else')}
+
         fset_prev_morph = self._features[i-1]
         fset_else = self.features()
         if fset_prev_morph:
-            neg_mset = self.get_negative_m_selection_features(current_morph_fset)
-            pos_mset = self.get_positive_m_selection_features(current_morph_fset)
-            pos_else_set = self.get_positive_root_selection_features(current_morph_fset)
+            neg_mset = get_negative_m_selection_features(current_morph_fset)
+            pos_mset = get_positive_m_selection_features(current_morph_fset)
+            pos_else_set = get_positive_root_selection_features(current_morph_fset)
             if neg_mset and (fset_prev_morph & neg_mset):
                 return True
             if pos_mset and not (fset_prev_morph & pos_mset or fset_else & pos_else_set):
                 return True
 
-    def get_negative_m_selection_features(self, fset):
-        return set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('-mCOMP=')])
-
-    def get_positive_m_selection_features(self, fset):
-        s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
-        return {f for f in s if not f.endswith('/else')}
-
-    def get_positive_root_selection_features(self, fset):
-        s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
-        return {f.split('/')[0] for f in s if f.endswith('/else')}
-
     # Phi-features ----------------------------------------------------------------------------
 
     def value(self, Y_goal):
         log(' values ')
-        for phi in self.features_to_value_from_goal(Y_goal):
+        fset = self.features_to_value_from_goal(Y_goal)
+        for phi in fset:
             self.value_phi_feature(phi)
             log(f'[{phi[5:]}]')
         log(f' from goal {Y_goal.max()}.')
-        self.add_features({'ΦLF'})
+        if len(fset) > 1:   # Partial agreement does not create ΦLF
+            self.add_features({'ΦLF'})
         self.add_features({f'PHI:IDX:{Y_goal.H().core.get_id()}'})
-
-    def formatted_phi(self):
-        def remove_phi_prefix(feature):
-            if feature.startswith('iPHI:'):
-                return feature[5:]
-            return feature[4:]
-        return [remove_phi_prefix(f).split(',') for f in self.features() if valued_phi_feature(f)]
 
     def value_phi_feature(self, f):
         self.remove_features({f'PHI:{f.split(":")[1]}:_'})
@@ -153,30 +170,24 @@ class PhraseStructureCore:
     def strong_features(self):
         return {f for f in self.features() if f.startswith('**')}
 
-    def valued_phi_features(self):
-        return {f for f in self.features() if 'PHI:' in f and f[-1] != '_'}
-
-    def phi_features(self):
-        return {f[4:] for f in self.features() if f.startswith('PHI:') and not f.endswith('_')}
-
     def complete_valued_phi_set(self):
-        phi_sets = [phi[4:].split(',') for phi in self.features() if phi.startswith('PHI:') and not phi.endswith('_')]
+        phi_sets = [phi[4:].split(',') for phi in self.features(type=['phi', 'valued'])]
         return {phi for phi_set in phi_sets for phi in phi_set}
 
     def phi_consistent_head(self):
         for fpair in itertools.permutations(self.complete_valued_phi_set(), 2):
-            if type_value_mismatch(*fpair):
+            if value_mismatch(*fpair):
                 return False
         return True
 
-    def complete_agreement_suffixes(self):
-        return self.phi_consistent_head() and self.has_minimal_phi_set_for_reference() and 'ΦPF' in self.features()
+    def complete_agreement_suffixes(X):
+        return X.phi_consistent_head() and X.has_minimal_phi_set_for_reference() and 'ΦPF' in X.features()
 
     def has_minimal_phi_set_for_reference(self):
         return {'NUM', 'PER', 'DET'} <= {phi[:3] for phi in self.complete_valued_phi_set()}
 
     def pro_features(X):
-        return X.valued_phi_features() | {'φ', 'PF:pro', 'pro'}
+        return X.features(type=['phi', 'valued']) | {'φ', 'PF:pro', 'pro'}
 
     def independent_pro_from_overt_agreement(self):
         return ['weak_pro', 'strong_pro'] in self
@@ -184,26 +195,30 @@ class PhraseStructureCore:
     def nonreferential_pro(self):
         return 'nonreferential_pro' in self
 
-    def interpretable_phi_features(self):
-        return {f[5:] for f in self.features() if f.startswith('iPHI:')}
-
-    def interpretable_phi_features_(self):
-        return {f for f in self.features() if f.startswith('iPHI:')}
-
     def features_to_value_from_goal(self, goal):
+        def unvalued_counterparty(goal_feature, X):
+            return f'PHI:{goal_feature.split(":")[1]}:_' in X.features()
+
+        def feature_gate(goal_feature, P):
+            """
+            Feature A can be valued for B at probe head X iff
+            (1) B is an unvalued feature of the same type as A
+            (2) probe X contains overtly valued phi-bundle with the same type as A (gate condition)
+            """
+            for p in P:
+                if goal_feature.split(":")[1] == p.split(':')[0]:  # Condition (2)
+                    return True
+
         P = set().union(*self.phi_bundles())
-        return [f for f in goal.H().core.features() if interpretable_phi_feature(f) and unvalued_counterparty(f, self) and (not P or feature_gate(f, P))]
+        return [f for f in goal.H().core.features(type=['phi', 'interpretable']) if unvalued_counterparty(f, self) and (not P or feature_gate(f, P))]
 
     def AgreeLF_has_occurred(self):
         return 'ΦLF' in self
 
     def phi_bundles(self):
-        return [set(phi[4:].split(',')) for phi in self.features() if valued_phi_feature(phi) and not phi.startswith('i') and 'IDX' not in phi]
+        return [set(phi[4:].split(',')) for phi in self.features(type=['phi', 'valued', 'uninterpretable'])]
 
-    def phi_index(self):
-        return next((f.split(':')[2] for f in self.features() if f.startswith('PHI:IDX:')), None)
-
-    def feature_mismatch_test(self, PP):
+    def feature_mismatch_test(X, PP):
         """
         X = goal
         PP = phi-bundles at the probe
@@ -212,169 +227,116 @@ class PhraseStructureCore:
         matched with phi-bundles at the probe.
         Note 1: The feature format is TYPE:VALUE with (i)PHI removed.
         """
-        return mismatch(unlicensed_phi_features_at_goal(self.interpretable_phi_features(), PP), set().union(*PP))
 
-    def is_unvalued(X):
-        for f in X.features():
-            if unvalued_phi_feature(f):
-                return True
+        def mismatch(G, P):
+            return {(p, g) for p, g in itertools.product(G, P) if value_mismatch(p, g)}
+
+        def unlicensed_phi_features_at_goal(G, PP):
+            return G - set().union(*{frozenset(phi) for phi in PP if phi <= G})
+
+        return mismatch(unlicensed_phi_features_at_goal(X.features(type=['phi', 'interpretable'], format='reduced'), PP), set().union(*PP))
 
     def needs_valuation(self):
         if not self.complete_agreement_suffixes() and self.get_unvalued_minimal_phi():
             return self.get_unvalued_minimal_phi()
 
     def get_unvalued_minimal_phi(self):
-        return {x for x in self.features() if x[-1] == '_' and x[:7] in {'PHI:NUM', 'PHI:PER', 'PHI:DET'}}
+        return self.features(type=['phi', 'unvalued'], match={'PHI:NUM', 'PHI:PER', 'PHI:DET'})
 
-    def phi_is_unvalued(self):
-        for f in self.features():
-            if f[-1] == '_':
-                return True
+    def is_unvalued(self):
+        return len(self.features(type=['phi', 'unvalued'])) > 0
 
     def valued_phi_at_probe(self):
-        return [phi.split(':') for phi in self.features() if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER') and not phi.endswith('_') and not ',' in phi]
+        return [phi.split(':') for phi in self.features(type=['phi', 'valued'], match={'PHI:NUM', 'PHI:PER'}) if ',' not in phi]
 
     def valued_phi_at_antecedent(self):
-        return [phi.split(':') for phi in self.features() if (phi[:7] == 'PHI:NUM' or phi[:7] == 'PHI:PER' or phi[:8] == 'iPHI:NUM' or phi[:8] == 'iPHI:PER') and not phi.endswith('_')]
-
-    def get_valued_phi_types(self):
-        return {f[:7] for f in self.features() if valued_phi_feature(f)}
+        return [phi.split(':') for phi in self.features(type=['phi', 'valued'], match={'PHI:PER', ' PHI:NEM', 'iPHI:NUM', 'iPHI:PER'})]
 
     # Selection, thematic roles
     def get_selection_features(self, key):
         feats = [set(f.split(':')[1].split(',')) for f in self.features() if f.startswith(key)]
         return set().union(*feats)
 
-    def specifiers_licensed(self):
-        return set().union(*{frozenset(f[6:].split(',')) for f in self.features() if f.startswith('+SPEC:')})
-
-    def complements_licensed(self):
-        return set().union(*{frozenset(f[6:].split(',')) for f in self.features() if f.startswith('+COMP:')})
-
     def selection_keys(self):
-        return [f.split(':')[0] for f in self.features() if 'COMP' in f or 'SPEC' in f or 'SELF' in f]
-
-    def thematic_head(self):
-        return 'θ' in self
+        return [f.split(':')[0] for f in self.features(match=['COMP', 'SPEC', 'SELF'])]
 
     def semantic_match(self, Y):
-        pos_sem_a = {f[5:] for f in self.features() if f.startswith('+SEM:')}
-        neg_sem_a = {f[5:] for f in self.features() if f.startswith('-SEM:')}
-        pos_sem_b = {f[5:] for f in Y.core.features() if f.startswith('+SEM:')}
-        neg_sem_b = {f[5:] for f in Y.core.features() if f.startswith('-SEM:')}
+        pos_sem_a = self.features(startswith=['+SEM'], format='reduced')
+        neg_sem_a = self.features(startswith=['-SEM'], format='reduced')
+        pos_sem_b = Y.core.features(startswith=['+SEM'], format='reduced')
+        neg_sem_b = Y.core.features(startswith=['-SEM'], format='reduced')
         return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
-
-    def probe_features(self):
-        return [f for f in self.features() if 'PROBE:' in f]
 
     # Get properties
     def get_id(self):
-        for f in self.features():
-            if f.startswith('§'):
-                return f
+        if len(self.features(startswith=['§'])) > 0:
+            return ''.join(list(self.features(startswith=['§'])))
         return '?'
 
-    def get_pf(X):
-        return {f[3:] for f in X.features() if f[:3] == 'PF:'}
-
-    def get_lf(X):
-        return {f[3:] for f in X.features() if f.startswith('LF:')}
-
-    def get_phi_set(X):
-        return {f for f in X.features() if f[:4] == 'PHI:' and len(f.split(':')) == 3}
+    def get_lf(self):
+        return [f[3:] for f in self.features(startswith=['LF:'])]
 
     def index(self):
-        return next((f for f in self.features() if f.startswith('§')), None)
+        return next(list(self.features(startswith=['§'])), None)
 
     def semantic_index(self, space):
-        return next((f.split(':')[1].split(',')[0] for f in self.features() if f.startswith('IDX') and space in f), None)
+        return next((f.split(':')[1].split(',')[0] for f in self.features(type=['index'], match=[space])), None)
 
     def has_idx(self, space=''):
-        return next((idx for idx, space_ in [tuple(f[4:].split(',')) for f in self.features() if f.startswith('IDX:')] if space_ == space or space == ''), None)
+        return next((idx for idx, space_ in [tuple(f[4:].split(',')) for f in self.features(type=['index'])] if space_ == space or space == ''), None)
 
     def get_idx_tuple(self, requested_space):
-        return next(((idx, space) for idx, space in [tuple(f[4:].split(',')) for f in self.features() if f.startswith('IDX:')] if space == requested_space or requested_space == ''), None)
+        return next(((idx, space) for idx, space in [tuple(f[4:].split(',')) for f in self.features(type=['index'])] if space == requested_space or requested_space == ''), None)
 
     def get_R_features(self):
-        return {f for f in self.features() if f.startswith('R:')}
+        return {f for f in self.features(type=['R'])}
 
     def get_referential_index(self, space):
         def index_(f):
             return f.split(':')[1].split(',')[0]
-
         def space_(f):
             return f.split(':')[1].split(',')[1]
 
-        return next((index_(f) for f in self.features() if f.startswith('IDX:') and space_(f) == space), None)
+        return next((index_(f) for f in self.features(type=['index']) if space_(f) == space), None)
 
+    def __str__(self):
+        sorting_order = {'D': 0, 'φ': 0, 'N': 0, 'V': 0, 'A': 0, 'P': 0, 'Adv': 0, 'T': 0, 'C': 0, 'Fin': 0, 'Inf': 0,
+                         'Φ': 1, 'EF': 1, 'EF*': 1, 'θ': 1, 'κ': 1, 'π': 1,
+                         '$LF:$': 2, '$PF:$': 2,
+                         '$PHI$': 3, '$ΦLF$': 3, '$ΦPF$': 3, '$pro$': 3, 'sg': 3, 'pl': 3, 'hum': 3, 'nonhum': 3, 'def': 3, 'indef': 3, 'udef': 3, '1p': 3, '2p': 3, '3p': 3,
+                         '$SPEC$': 4, '$COMP$': 4, '$SELF$': 4, '$PROBE$': 4,
+                         '$LANG:$': 5}
 
+        def feature_sort(fset):
+            sorted_lst = [[], [], [], [], [], []]
+            residuum = list(fset.copy())
+            for f in fset:
+                if f in sorting_order.keys():
+                    sorted_lst[sorting_order[f]].append(f)
+                    if f in residuum:
+                        residuum.remove(f)
+                else:
+                    for k in sorting_order.keys():
+                        if k.startswith('$') and k.endswith('$') and k[1:-1] in f:
+                            sorted_lst[sorting_order[k]].append(f)
+                            if f in residuum:
+                                residuum.remove(f)
+            result = []
+            for lst in sorted_lst:
+                result += lst
+            return result + sorted(residuum)
 
-    # Abstractions
-    def EHM(self):
-        return 'ε' in self
-
-    def EF(self):
-        return ['EF', 'EF*'] in self
-
-    def EPP(self):
-        return 'EF*' in self
-
-    def event(self):
-        return 'π' in self
-
-    def finite(self):
-        return ['Fin', 'T/fin', 'C/fin'] in self
-
-    def force(self):
-        return 'FORCE' in self
-
-    def referential(self):
-        return ['φ', 'D'] in self
-
-    def adverbial(self):
-        return 'Adv' in self
-
-    def nominal(self):
-        return 'N' in self
-
-    def verbal(self):
-        return 'ASP' in self
-
-    def theta_predicate(self):
-        return 'θ' in self and '-θ' not in self
-
-    def nonthematic_verb(self):
-        return self.verbal() and not self.theta_predicate()
-
-    def thematic_edge(self):
-        return self.get_selection_features('+SPEC') & {'D', 'φ'}
-
-    def light_verb(self):
-        return ['v', 'v*', 'impass', 'cau'] in self
-
-    def relative(self):
-        return 'REF' in self
-
-    def finite_left_periphery(self):
-        return self.finite() and ['T', 'C'] in self
-
-    def finite_tense(self):
-        return 'T/fin' in self or (self.finite() and 'T' in self)
-
-    def preposition(self):
-        return 'P' in self
-
-    def floatable(self):
-        return 'nonfloat' not in self
-
-    def expresses_concept(self):
-        return ['N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'] in self and ['T/prt', 'COPULA'] not in self
-
-    def SEM_internal_predicate(self):
-        return 'SEM:internal' in self
-
-    def SEM_external_predicate(self):
-        return 'SEM:external' in self
-
-    def scope_marker(self):
-        return ['C', 'C/fin', 'OP'] in self
+        stri = ''
+        for fset in self.feature_bundles():
+            stri += '{'
+            line = ''
+            for i, f in enumerate(feature_sort(fset)):
+                if 0 < i < len(fset):
+                    line += ' '
+                line += f'{f}'
+                if len(line) > 70:
+                    stri += f'{line}\n\t\t{" ":<11}'
+                    line = ''
+            if line:
+                stri += f'{line}}}\n\t\t{" ":<11}'
+        return stri

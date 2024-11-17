@@ -97,18 +97,18 @@ class Discourse:
         return arguments
 
     def out_of_proposition_scope(self, X, scope):
-        if X.L.zero_level():
-            if X.L.finite():
-                if X.L.finite_tense():
+        if X.L().zero_level():
+            if X.L().property('finite'):
+                if X.L().property('finite_tense'):
                     if X != scope:
                         return True
-        if X.R.zero_level():
-            if X.R.finite():
+        if X.R().zero_level():
+            if X.R().property('finite'):
                 if X != scope:
                     return True
 
     def locate_proposition(self, X):
-        return next((node for node in X if node.complex() and node.L().core.finite_tense()), None)
+        return next((node for node in X if node.complex() and node.L().core.property('finite_tense')), None)
 
     def get_force_features(self, X):
         return {f for f in X.H().core.features() if f[:5] == 'FORCE'}
@@ -133,7 +133,7 @@ class Discourse:
         self.records_of_attentional_processing[idx]['Marked gradient'] = direction
 
     def allocate_attention(self, head):
-        if head.core.referential() or head.core.preposition():
+        if head.core.property('referential') or head.core.property('preposition'):
             idx = self.consume_index()
             head.core.add_features({'*IDX:' + str(idx)})
             self.records_of_attentional_processing[str(idx)] = {'Constituent': head.max(), 'Order': idx, 'Name': f'{head}'}

@@ -11,7 +11,7 @@ class Predicates:
         if arg:
             log(f': {self.print_target(probe, arg)}')
             return f'{probe}: {self.print_target(probe, arg)}'
-        log(f' NOT FOUND.')
+        log(f' 𝗻𝗼𝘁 𝗳𝗼𝘂𝗻𝗱.')
         self.operation_failed = True
 
     def print_target(self, probe, argument):

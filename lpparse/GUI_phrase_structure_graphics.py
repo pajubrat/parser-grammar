@@ -645,10 +645,9 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def make_adjunct(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            if gps.complex():
-                self.application.settings.store('image_parameter_adjuncts', True)
-                gps.adjunct = True
-                self.update_contents()
+            self.application.settings.store('image_parameter_adjuncts', True)
+            gps.adjunct = True
+            self.update_contents()
 
     def make_regular(self, *_):
         for gps in self.selected_objects_into_gps_list():

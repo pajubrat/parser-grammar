@@ -17,13 +17,13 @@ class PhraseStructureCanvas(tk.Canvas):
         self.scaling_factor = 1
         self.info = None
         self.cursor = None
-        self.label_style = {'label': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize'))),
-                            'PFtrace': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic", "overstrike"),
-                            'PF': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic"),
-                            'gloss': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
-                            'feature': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')) * 0.8),
-                            'subscript': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') * 0.5)),
-                            'arrow_label': ("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') * 0.75)),
+        self.label_style = {'label': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize'))),
+                            'PFtrace': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic", "overstrike"),
+                            'PF': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic"),
+                            'gloss': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
+                            'feature': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')) * 0.8),
+                            'subscript': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') * 0.5)),
+                            'arrow_label': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') * 0.75)),
                             'info': ("Courier", int(self.application.settings.retrieve('image_parameter_tsize') * 0.25))}
         self.bind('<Button-1>', self._on_mouse_click)
         self.bind('<Button-3>', self._on_right_click)
@@ -243,7 +243,7 @@ class PhraseStructureCanvas(tk.Canvas):
                               fill=color,
                               activefill='grey',
                               tag='node',
-                              font=("Times New Roman", int(self.application.settings.retrieve('image_parameter_tsize') * self.scaling_factor)))
+                              font=(self.label_style['label'][0], self.label_style['label'][1] * self.scaling_factor))
 
         self.ID_to_object[str(ID)] = gps
         gps.ID = ID
