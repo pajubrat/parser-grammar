@@ -43,7 +43,7 @@ class SpeakerModel:
                          'TARGET': lambda x: x.scrambling_target(),
                          'TRANSFORM': lambda x, t: x.scrambling_reconstruct(t)},
            'Agree':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_L() and x.core.is_unvalued() and 'ΦLF' not in x.core,
+              {'TRIGGER': lambda x: x.zero_level() and x.is_L() and len(x.core.features(type=['phi', 'unvalued'])) > 0 and not x.core.property('AgreeLF_occurred'),
                'TARGET': lambda x: x,
                'TRANSFORM': lambda x, t: x.AgreeLF()},
            'Cyclic Ā-chain':

@@ -21,13 +21,13 @@
 		'paint.pst.3sg-pol Pekka.nom fence.par'
 		
 		maalasi=pA=s Pekka aitaa
-		'paint.pst.3sg-pol-de|em Pekka.nom fence.par'
+		'paint.pst.3sg-pol-de/em Pekka.nom fence.par'
 		
 		maalasi=kO=hAn Pekka aitaa
 		'paint.pst.3sg=q=fam Pekka.nom fence.par'
 
 		maalasi=kO=s Pekka aitaa
-		'paint.pst.3sg=q=de|em Pekka.nom fencec.par'
+		'paint.pst.3sg=q=de/em Pekka.nom fencec.par'
 		
 		maalasi=pA=hAn Pekka aitaa
 		'paint.pst.3sg=pol=fam Pekka.nom fence.par'
@@ -1579,19 +1579,7 @@
 
 			*kuka=s=s maalasi aitaa
 			'who.nom paint.prs.3sg fence.par'
-
-END
 	
-& Feature checking at C
-
-	maalasi=kO Pekka aitaa
-	kuka maalaa aitaa
-	mitä Pekka maalaa
-
-& In situ sentences
-
-
-END
 
 & Examples from the main article (0)
 
@@ -1608,7 +1596,7 @@ END
 	*Paris towards flows Seine
 
 	# Example (3e)
-	towards which city Seine flows
+	*towards which city Seine flows
 	
 	# Example (3f)
 	*which city towards does Seine flow
@@ -1623,7 +1611,7 @@ END
 	*Paris Seine flows towards
 
 	# In text example, p. 36
-	*John did|T the fence paint
+	*John did/T the fence paint
 
 	# Example (4a), p. 4
 	Seine virtaa kohti Pariisia
@@ -1650,11 +1638,11 @@ END
 	'what.par towards Seine.nom flow.prs.3sg'
 
 	# Example (5a)
-	Seine virtaa lähellä|1 minua
+	Seine virtaa lähellä/1 minua
 	'Seine.nom flow.prs.3sg near I.par' (lähellä|2 = Type I adposition)
 	
 	# Example (5b)
-	Seine virtaa minua lähellä|1
+	Seine virtaa minua lähellä/1
 	'Seine.nom flow.prs.3sg I.par near I.par' (lähellä|2 = Type I adposition)
 	
 	# Example (6a-i)
@@ -1811,7 +1799,7 @@ END
 		
 			*flows Seine towards Paris
 
-			*did|T Seine flow towards Paris
+			*did/T Seine flow towards Paris
 			
 	& Finnish high complementizer (no EF)(1.2)
 		
@@ -1861,21 +1849,7 @@ END
 		
 			*häntä kohti#nsA Seine virtaa
 			'[he.par_1 towards.3p _1]_2 Seine.nom flow.prs.3sg _2'
-		
-		& Word order variations, with two arguments (2.1.4)
 				
-			*Seine virtaa Pariisia kohti Pariisia
-			'Seine.nom flow.prs.3sg Paris.par towards Paris.par'
-			
-			*Pariisia kohti Pariisia Seine virtaa
-			'[Paris.par towards Paris.par]_1 Seine.nom flow.prs.3sg _1'
-			
-			*Seine virtaa Pariisia kohti#nsA Pariisia
-			'Seine.nom flow.prs.3sg Paris.par towards Paris.par'
-			
-			*Pariisia kohti#nsA Pariisia Seine virtaa
-			'[Paris.par towards Paris.par]_1 Seine.nom flow.prs.3sg _1'
-		
 		& Genitive-marked argument (2.1.5)
 					
 			*Seine virtaa kohti hänen
@@ -1906,30 +1880,30 @@ END
 		
 		& Word order variations (2.2.1)
 				
-			Seine virtaa lähellä|1 Pariisia
+			Seine virtaa lähellä/1 Pariisia
 			'Seine.nom flow.prs.3sg near Paris.par'
 			
-			Seine virtaa Pariisia lähellä|1
+			Seine virtaa Pariisia lähellä/1
 			'Seine.nom flow.prs.3sg [Paris.par_1 near _1]'
 		
-			lähellä|1 Pariisia Seine virtaa
+			lähellä/1 Pariisia Seine virtaa
 			'near Paris-par Seine.nom flow.prs.3sg'
 			
-			Pariisia lähellä|1 Seine virtaa
+			Pariisia lähellä/1 Seine virtaa
 			'[Paris-par_1 near _1]_2 Seine.nom flow.prs.3sg _2'
 		
 		& Word order variations, with agreement (2.2.2)
 					
-			*Seine virtaa lähellä|1#An häntä
+			*Seine virtaa lähellä/1#An häntä
 			'Seine.nom flow.prs.3sg near.3p he.par'
 			
-			*Seine virtaa häntä lähellä|1#An 
+			*Seine virtaa häntä lähellä/1#An 
 			'Seine.nom flow.prs.3sg [he.par_1 near.3p _1]'
 		
-			*lähellä|1#An häntä Seine virtaa
+			*lähellä/1#An häntä Seine virtaa
 			'[near.3p he.par]_1 Seine.nom flow.prs.3sg _1'
 			
-			*häntä lähellä|1#An Seine virtaa
+			*häntä lähellä/1#An Seine virtaa
 			'[he.par_1 near.3p _1]_2 Seine.nom flow.prs.3sg _2]'
 			
 	& Finnish adposition, type yli|ali 'over|under' (2.3)
@@ -1969,141 +1943,141 @@ END
 	
 		& Prelimiary test: agreement paradigms (3.1.0)
 			
-			Seine virtaa minun lähellä|2#ni
+			Seine virtaa minun lähellä/2#ni
 			'Seine.nom flow.prs.3sg I.gen near.px|1sg'
 			
-			Seine virtaa sinun lähellä|2#si
+			Seine virtaa sinun lähellä/2#si
 			'Seine.nom flow.prs.3sg you.gen near.px|2sg'
 			
-			Seine virtaa hänen lähellä|2#An
+			Seine virtaa hänen lähellä/2#An
 			'Seine.nom flow.prs.3sg he.gen near.px|3p'
 			
-			Seine virtaa meidän lähellä|2#mme
+			Seine virtaa meidän lähellä/2#mme
 			'Seine.nom flow.prs.3sg we.gen near.px|1pl'
 			
-			Seine virtaa teidän lähellä|2#nne
+			Seine virtaa teidän lähellä/2#nne
 			'Seine.nom flow.prs.3sg you.gen near.px|2pl'
 			
-			Seine virtaa heidän lähellä|2#An
+			Seine virtaa heidän lähellä/2#An
 			'Seine.nom flow.prs.3sg they.gen near.px|3p'
 					
-			*Seine virtaa Pariisin lähellä|2#An
+			*Seine virtaa Pariisin lähellä/2#An
 			'Seine.nom flow.prs.3sg [Paris.gen_1 near.px|3p _1]'
 			
-			*Seine virtaa sen2 lähellä|2#An
+			*Seine virtaa sen2 lähellä/2#An
 			'Seine.nom flow.prs.3sg [it.gen_1 near.px|3p _1]'
 			
-			*Seine virtaa miehen lähellä|2#An
+			*Seine virtaa miehen lähellä/2#An
 			'Seine.nom flow.prs.3sg [man.gen_1 near.px|3p _1]'
 			
-			*Seine virtaa minun lähellä|2#An
+			*Seine virtaa minun lähellä/2#An
 			'Seine.nom flow.prs.3sg I.gen near.px|3p'
 	
-			*Seine virtaa sinun lähellä|2#An
+			*Seine virtaa sinun lähellä/2#An
 			'Seine.nom flow.prs.3sg you.gen near.px|3p'
 			
-			*Seine virtaa meidän lähellä|2#An
+			*Seine virtaa meidän lähellä/2#An
 			'Seine.nom flow.prs.3sg we.gen near.px|3p'
 			
-			*Seine virtaa teidän lähellä|2#An
+			*Seine virtaa teidän lähellä/2#An
 			'Seine.nom flow.prs.3sg you.gen near.px|3p'	
 
-			*Seine virtaa minun lähellä|2#si
+			*Seine virtaa minun lähellä/2#si
 			'Seine.nom flow.prs.3sg I.gen near.px|2sg'
 
-			*Seine virtaa minun lähellä|2#An
+			*Seine virtaa minun lähellä/2#An
 			'Seine.nom flow.prs.3sg I.gen near.px|3p'
 
-			*Seine virtaa minun lähellä|2#mme
+			*Seine virtaa minun lähellä/2#mme
 			'Seine.nom flow.prs.3sg I.gen near.px|1pl'
 			
-			*Seine virtaa minun lähellä|2#nne
+			*Seine virtaa minun lähellä/2#nne
 			'Seine.nom flow.prs.3sg I.gen near.px|2pl'
 			
-			*Seine virtaa minun lähellä|2#nsA
+			*Seine virtaa minun lähellä/2#nsA
 			'Seine.nom flow.prs.3sg I.gen near.px|3p'
 			
 		& Word order variations (3.1.1)
 					
-			Pariisin lähellä|2
+			Pariisin lähellä/2
 			'Paris.gen near'
 			
-			*lähellä|2 Pariisin
+			*lähellä/2 Pariisin
 			'near Paris.gen'
 					
-			*Seine virtaa lähellä|2 Pariisin
+			*Seine virtaa lähellä/2 Pariisin
 			'Seine.nom flow.prs.3sg near Paris.gen'
 						
-			Seine virtaa Pariisin lähellä|2
+			Seine virtaa Pariisin lähellä/2
 			'Seine.nom flow.prs.3sg [Paris.gen_1 near _1]'
 						
-			*lähellä|2 Pariisin Seine virtaa
+			*lähellä/2 Pariisin Seine virtaa
 			'[near Paris.gen]_1 Seine.nom flow.prs.3sg _1'
 						
-			Pariisin lähellä|2 Seine virtaa
+			Pariisin lähellä/2 Seine virtaa
 			'[Paris.gen_1 near _1]_2 Seine.nom flow.prs.3sg _2'
 		
 		& Word order variations with agreement (3.1.2)
 				
-			*Seine virtaa lähellä|2#An hänen
+			*Seine virtaa lähellä/2#An hänen
 			'Seine.nom flow.prs.3sg near.3p he.gen'
 								
-			Seine virtaa hänen lähellä|2#An
+			Seine virtaa hänen lähellä/2#An
 			'Seine.nom flow.prs.3sg [he.gen_1 near.3p _1]'
 								
-			*lähellä|2#An hänen Seine virtaa
+			*lähellä/2#An hänen Seine virtaa
 			'[near.3p he.gen]_1 Seine.nom flow.prs.3sg _1'
 							
-			hänen lähellä|2#An Seine virtaa
+			hänen lähellä/2#An Seine virtaa
 			'[he.gen_1 near.3p _1]_2 Seine.nom flow.prs.3sg _2'
 			
 		& Without argument, with and without agreement (3.1.3)
 					
-			*Seine virtaa lähellä|2
+			*Seine virtaa lähellä/2
 			'Seine.nom flow.prs.3sg near.'
 			
-			Seine virtaa lähellä|2#ni
+			Seine virtaa lähellä/2#ni
 			'Seine.nom flow.prs.3sg near.1sg'
 			
-			Seine virtaa lähellä|2#si
+			Seine virtaa lähellä/2#si
 			'Seine.nom flow.prs.3sg near.2sg'
 
-			Seine virtaa lähellä|2#mme
+			Seine virtaa lähellä/2#mme
 			'Seine.nom flow.prs.3sg near.1pl'
 
-			Seine virtaa lähellä|2#nne
+			Seine virtaa lähellä/2#nne
 			'Seine.nom flow.prs.3sg near.2pl'
 
 		& Wrong case (3.1.4)
 			
-			*häntä lähellä|2
+			*häntä lähellä/2
 			'he.par near'
 			
-			*lähellä|2 häntä
+			*lähellä/2 häntä
 			'near he.par'
 			
-			*Seine virtaa häntä lähellä|2#An
+			*Seine virtaa häntä lähellä/2#An
 			'Seine.nom flow.prs.3sg [he.par_1 near.px|3p _1]'
 	
-			*Seine virtaa lähellä|2#An häntä 
+			*Seine virtaa lähellä/2#An häntä 
 			'Seine.nom flow.prs.3sg [near.px|3p he.par_1 ]'
 	
-			*Seine virtaa häntä lähellä|2
+			*Seine virtaa häntä lähellä/2
 			'Seine.nom flow.prs.3sg [he.par_1 near.px|3p _1]'
 	
-			*Seine virtaa lähellä|2 häntä 
+			*Seine virtaa lähellä/2 häntä 
 			'Seine.nom flow.prs.3sg [near.px|3p he.par_1 ]'
 	
-			*Seine virtaa minua lähellä|2#ni
+			*Seine virtaa minua lähellä/2#ni
 			'Seine.nom flow.prs.3sg [I.par_1 near.px|1sg _1]'
 	
-			*Seine virtaa lähellä|2#ni minua
+			*Seine virtaa lähellä/2#ni minua
 			'Seine.nom flow.prs.3sg [near.px|1sg I.par_1 ]'
 
-			*Seine virtaa minua lähellä|2
+			*Seine virtaa minua lähellä/2
 			'Seine.nom flow.prs.3sg [I.par_1 near.px|1sg _1]'
 	
-			*Seine virtaa lähellä|2 minua
+			*Seine virtaa lähellä/2 minua
 			'Seine.nom flow.prs.3sg [near.px|1sg I.par_1 ]'
 
 	& VA-infinitive (3.2)
@@ -2533,7 +2507,7 @@ END
 			sinä lähde#t maalattua#si aitaa
 			'you.nom leave.prs.2sg paint.tua/inf.px|2sg fence.par'
 			
-			hän lähde#[V] maalattua#An aitaa
+			hän lähde#[-V] maalattua#An aitaa
 			'he.nom leave.prs.3sg paint.tua/inf.px|3p fence.par'
 			
 			Pekka lähti maalattua#An aitaa
@@ -2651,10 +2625,10 @@ END
 		sinä lähde#t
 		'you.nom leave.prs.2sg'
 
-		hän lähde#[V]
+		hän lähde#[-V]
 		'he.nom leave.prs.3sg'
 		
-		Pekka lähde#[V]
+		Pekka lähde#[-V]
 		'Pekka.nom leave.prs.3sg'
 
 		me lähde#mme
@@ -2666,16 +2640,16 @@ END
 		he lähde#vAt
 		'they.nom leave.prs.3pl'
 				
-		*minä lähde#[V]
+		*minä lähde#[-V]
 		'I.nom leave.prs.3sg'
 		
-		*sinä lähde#[V]
+		*sinä lähde#[-V]
 		'you.nom leave.prs.3sg'
 		
-		*me lähde#[V]
+		*me lähde#[-V]
 		'we.nom leave.prs.3sg'
 		
-		*te lähd#[V]
+		*te lähd#[-V]
 		'you leave.prs.3sg'
 		
 		*minä lähde#mme
@@ -2707,10 +2681,10 @@ END
 		sinä maalaa#t aitaa
 		'you.nom paint.prs.2sg fence.par'
 		
-		hän lähde#[V]
+		hän lähde#[-V]
 		'he.nom leave.prs.3sg'
 		
-		hän maalaa#[V] aitaa
+		hän maalaa#[-V] aitaa
 		'he.nom paint.prs.3sg fence.par'
 		
 		me lähde#mme
@@ -2748,10 +2722,10 @@ END
 		*maalaa#t sinä aitaa
 		'paint.prs.2sg you.nom fence.par'
 
-		*lähde#[V] hän
+		*lähde#[-V] hän
 		'leave.prs.3sg he.nom'
 		
-		*maalaa#[V] hän aitaa
+		*maalaa#[-V] hän aitaa
 		'paint.prs.3sg he.nom fence.par'
 
 		*lähde#mme me
@@ -2780,7 +2754,7 @@ END
 		Merjaa ihaile#t sinä
 		'Merja.par_1 admire.prs.2sg I.nom _1'
 		
-		Merjaa ihaile#[V] hän
+		Merjaa ihaile#[-V] hän
 		'Merja.par_1 admire.prs.3sg I.nom _1'
 		
 		Merjaa ihaile#mme me
@@ -2825,7 +2799,7 @@ END
 			*lähtee
 			'leave.prs.3sg'
 
-			*maalaa#[V] aitaa
+			*maalaa#[-V] aitaa
 			'paint.prs.3sg fence.par'
 		
 			*lähde#vAt
@@ -2882,19 +2856,19 @@ END
 	
 		& English want-construction (subject, without agreement)(5.2.1)
 			
-			John wants to|inf leave
+			John wants to/inf leave
 			
-			John wants to|inf paint the fence
+			John wants to/inf paint the fence
 			
-			John wants Mary to|inf leave
+			John wants Mary to/inf leave
 			
-			John wants Mary to|inf paint the fence
+			John wants Mary to/inf paint the fence
 	
 			*John wants the fence Mary to|inf paint
 	
-			*John wants to|inf Mary paint the fence
+			*John wants to/inf Mary paint the fence
 		
-			*John wants to|inf paint Mary the fence
+			*John wants to/inf paint Mary the fence
 				
 			*John wants Mary to|inf Mary leave
 
@@ -2959,17 +2933,17 @@ END
 
 		& English try-construction (5.2.4)
 				
-			John tries to|inf paint the fence
+			John tries to/inf paint the fence
 				
-			*John tries Mary to|inf paint the fence
+			*John tries Mary to/inf paint the fence
 			
-			*John tries to|inf Mary paint the fence
+			*John tries to/inf Mary paint the fence
 			
-			*John tries Mary to|inf Mary paint the fence
+			*John tries Mary to/inf Mary paint the fence
 					
-			*John tries the fence to|inf paint
+			*John tries the fence to/inf paint
 			
-			*John tries the fence to|inf Mary paint
+			*John tries the fence to/inf Mary paint
 			
 & Noun phrases (6)
 
@@ -3138,122 +3112,122 @@ END
 	& Agent + participle without agreement (7.1)
 
 		minun tekemä
-		'I.gen make.ma|ptc-px1sg'
+		'I.gen make.ma'
 		
 		sinun tekemä
-		'you.sg.gen make.ma|ptc-px2sg'
+		'you.sg.gen make.ma'
 		
 		hänen tekemä
-		's|he.gen make.ma|ptc-px3'
+		's|he.gen make.ma'
 		
 		meidän tekemä
-		'we.gen make.ma|ptc-px1pl'
+		'we.gen make.ma'
 		
 		teidän tekemä
-		'you.pl.gen make.ma|ptc-px2pl'
+		'you.pl.gen make.ma'
 		
 		heidän tekemä
-		'they.gen make.ma|ptc-px1'
+		'they.gen make.ma'
 
 	& Agent + participle with agreement (7.2)
 	
 		& Grammatical
 	 	
 			minun tekemä#ni
-			'I.gen make.ma|ptc-px1sg'
+			'I.gen make.ma-ptc-px1sg'
 			
 			sinun tekemä#si
-			'you.sg.gen make.ma|ptc-px2sg'
+			'you.sg.gen make.ma-ptc-px2sg'
 			
 			hänen tekemä#nsA
-			's|he.gen make.ma|ptc-px3'
+			's/he.gen make.ma-ptc-px3'
 			
 			meidän tekemä#mme
-			'we.gen make.ma|ptc-px1pl'
+			'we.gen make.ma-ptc-px1pl'
 			
 			teidän tekemä#nne
-			'you.pl.gen make.ma|ptc-px2pl'
+			'you.pl.gen make.ma-ptc-px2pl'
 			
 			heidän tekemä#nsA
-			'they.gen make.ma|ptc-px1'
+			'they.gen make.ma-ptc-px1'
 	
 		& Agreement error
 		
 			*minun tekemä#si
-			'I.gen make.ma|ptc-px2sg'
+			'I.gen make.ma-ptc-px2sg'
 			
 			*sinun tekemä#ni
-			'you.sg.gen make.ma|ptc-px1sg'
+			'you.sg.gen make.ma-ptc-px1sg'
 			
 			*hänen tekemä#ni
-			's|he.gen make.ma|ptc-px1sg'
+			's|he.gen make.ma-ptc-px1sg'
 			
 			*meidän tekemä#ni
-			'we.gen make.ma|ptc-px1sg'
+			'we.gen make.ma-ptc-px1sg'
 			
 			*teidän tekemä#ni
-			'you.pl.gen make.ma|ptc-px1sg'
+			'you.pl.gen make.ma-ptc-px1sg'
 			
 			*heidän tekemä#ni
-			'they.gen make.ma|ptc-px1sg'
+			'they.gen make.ma-ptc-px1sg'
 	
 	& No agent argument, participle + agreement (7.3)
 	
 			tekemä#ni
-			'I.gen make.ma|ptc-px1sg'
+			'I.gen make.ma.prtc-px1sg'
 			
 			tekemä#si
-			'you.sg.gen make.ma|ptc-px2sg'
+			'you.sg.gen make.ma.prtc-px2sg'
 			
 			*tekemä#nsA
-			's|he.gen make.ma|ptc-px3'
+			's|he.gen make.ma.prtc-px3'
 			
 			tekemä#mme
-			'we.gen make.ma|ptc-px1pl'
+			'we.gen make.ma.prtc-px1pl'
 			
 			tekemä#nne
-			'you.pl.gen make.ma|ptc-px2pl'
+			'you.pl.gen make.ma.prtc-px2pl'
 			
 			*tekemä#nsA
-			'they.gen make.ma|ptc-px1'
+			'they.gen make.ma.prtc-px1'
 		
 	& Wrong word order (with and without agreement)(7.4)
 	
 		*tekemä minun
-		'make.ma|ptc I.gen'
+		'make.ma'
 		
 		*tekemä sinun
-		'make.ma|ptc you.sg.gen'
+		'make.ma you.sg.gen'
 		
 		*tekemä hänen
-		'make.ma|ptc s|he.gen'
+		'make.ma he.gen'
 		
 		*tekemä meidän
-		'make.ma|ptc we.gen'
+		'make.ma we.gen'
 		
 		*tekemä teidän
-		'make.ma|ptc you.pl.gen'
+		'make.ma you.pl.gen'
 		
 		*tekemä heidän
-		'make.ma|ptc they.gen'
+		'make.ma they.gen'
 		
 		*tekemä#ni minun
-		'make.ma|ptc-px1sg I.gen'
+		'make.ma-px1sg I.gen'
 		
 		*tekemä#si sinun
-		'make.ma|ptc-px2sg you.sg.gen'
+		'make.ma-px2sg you.sg.gen'
 		
 		*tekemä#nsA hänen
-		'make.ma|ptc-px3 s|he.gen'
+		'make.ma-px3 s|he.gen'
 		
 		*tekemä#mme meidän
-		'make.ma|ptc-px1pl we.gen'
+		'make.ma-px1pl we.gen'
 		
 		*tekemä#nne teidän
-		'make.ma|ptc-px2pl you.pl.gen'
+		'make.ma-px2pl you.pl.gen'
 		
 		*tekemä#nsA heidän
-		'make.ma|ptc-px3 they.gen'
+		'make.ma-px3 they.gen'
 	
 		*-mA minun tekemä
 		'MA I.gen make.ma|ptc'
@@ -3263,9 +3237,9 @@ END
 	
 & Successive-cyclic movement (8)
 	
-		John was admired|pss
+		John was admired/pss
 
-		John seems to|inf leave
+		John seems to/inf leave
 
 		
 

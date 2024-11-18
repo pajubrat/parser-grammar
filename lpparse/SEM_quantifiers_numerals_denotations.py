@@ -35,7 +35,7 @@ class QuantifiersNumeralsDenotations:
         return phi_map_dict.get(phi_feature, ())
 
     def accept(self, X):
-        return (X.core.complete_agreement_suffixes() and not X.core.AgreeLF_has_occurred()) or X.core.property('referential')
+        return (X.core.overt_phi_sustains_reference() and not X.core.property('AgreeLF_occurred')) or X.core.property('referential')
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)

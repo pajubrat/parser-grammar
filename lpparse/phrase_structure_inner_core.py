@@ -1,17 +1,19 @@
 import itertools
 from support import log
+import re
 
 abstraction_funct = {'EHM': lambda X: 'ε' in X,
                      'EF': lambda X: ['EF', 'EF*'] in X,
                      'EPP': lambda X: 'EF*' in X,
                      'event': lambda X: 'π' in X,
+                     'predicate': lambda X: 'Φ' in X,
                      'finite': lambda X: ['Fin', 'T/fin', 'C/fin'] in X,
                      'force': lambda X: 'FORCE' in X,
                      'referential': lambda X: ['φ', 'D'] in X,
                      'adverbial': lambda X: 'Adv' in X,
                      'nominal': lambda X: 'N' in X,
                      'verbal': lambda X: 'ASP' in X,
-                     'theta_predicate': lambda X: X.property('thetaSPEC') or X.property('thetaCOMP') and not '-θ' not in X,
+                     'theta_predicate': lambda X: X.property('thetaSPEC') or X.property('thetaCOMP'),
                      'thetaSPEC': lambda X: 'θSPEC' in X,
                      'thetaCOMP': lambda X: 'θCOMP' in X,
                      'nonthematic_verb': lambda X: X.property('verbal') and not X.property('theta_predicate'),
@@ -23,7 +25,9 @@ abstraction_funct = {'EHM': lambda X: 'ε' in X,
                      'expresses_concept': lambda X: ['N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'] in X and ['T/prt', 'COPULA'] not in X,
                      'SEM_internal_predicate': lambda X: 'SEM:internal' in X,
                      'SEM_external_predicate': lambda X: 'SEM:external' in X,
-                     'scope_marker': lambda X: ['C', 'C/fin', 'OP'] in X
+                     'scope_marker': lambda X: ['C', 'C/fin', 'OP'] in X,
+                     'overt_phi': lambda X: 'ΦPF' in X,
+                     'AgreeLF_occurred': lambda X: 'ΦLF' in X
                      }
 
 feature_abstraction = {'phi': lambda f: 'PHI:' in f,
@@ -35,11 +39,16 @@ feature_abstraction = {'phi': lambda f: 'PHI:' in f,
                        'interpretable': lambda f: f.startswith('iPHI:'),
                        'uninterpretable': lambda f: f.startswith('PHI:'),
                        'unvalued': lambda f: f.endswith('_'),
+                       'strong': lambda f: f.startswith('**'),
                        'valued': lambda f: not f.endswith('_')}
 
 def value_mismatch(p, g):
     return p.split(':')[0] == g.split(':')[0] and p.split(':')[1] != g.split(':')[1]
 
+def mismatch(G, P):
+    for p, g in itertools.product(G, P):
+        if value_mismatch(p, g):
+            return p, g
 
 class PhraseStructureCore:
     def __init__(self, **kwargs):
@@ -61,6 +70,17 @@ class PhraseStructureCore:
     def features(self, **kwargs):
         fset = set().union(*[fset for fset in self._features])
 
+        if kwargs.get('match'):
+            fset2 = set()
+            for f in fset:
+                for pattern in kwargs.get('match'):
+                    if pattern.startswith('$'):
+                        if f.startswith(pattern[1:]):
+                            fset2.add(f)
+                    elif pattern in f and not (pattern.startswith('^') and pattern[1:] in f):
+                        fset2.add(f)
+            fset = fset2
+
         if kwargs.get('type'):
             for feature_type in kwargs.get('type', []):
                 fset = {f for f in fset if feature_abstraction[feature_type](f)}
@@ -72,22 +92,6 @@ class PhraseStructureCore:
                 fset = {f.split(':')[-1] for f in fset}
             if kwargs.get('format') == 'licensed':
                 fset = set().union(*{frozenset(f.split(':')[1].split(',')) for f in fset})
-
-        if kwargs.get('match'):
-            fset2 = set()
-            for f in fset:
-                for pattern in kwargs.get('match'):
-                    if pattern in f:
-                        fset2.add(f)
-            fset = fset2
-
-        if kwargs.get('startswith'):
-            fset2 = set()
-            for f in fset:
-                for pattern in kwargs.get('startswith'):
-                    if f.startswith(pattern):
-                        fset2.add(f)
-            fset = fset2
 
         return fset
 
@@ -167,34 +171,6 @@ class PhraseStructureCore:
         self.remove_features({f'PHI:{f.split(":")[1]}:_'})
         self.add_features({f'{f[1:]}'})
 
-    def strong_features(self):
-        return {f for f in self.features() if f.startswith('**')}
-
-    def complete_valued_phi_set(self):
-        phi_sets = [phi[4:].split(',') for phi in self.features(type=['phi', 'valued'])]
-        return {phi for phi_set in phi_sets for phi in phi_set}
-
-    def phi_consistent_head(self):
-        for fpair in itertools.permutations(self.complete_valued_phi_set(), 2):
-            if value_mismatch(*fpair):
-                return False
-        return True
-
-    def complete_agreement_suffixes(X):
-        return X.phi_consistent_head() and X.has_minimal_phi_set_for_reference() and 'ΦPF' in X.features()
-
-    def has_minimal_phi_set_for_reference(self):
-        return {'NUM', 'PER', 'DET'} <= {phi[:3] for phi in self.complete_valued_phi_set()}
-
-    def pro_features(X):
-        return X.features(type=['phi', 'valued']) | {'φ', 'PF:pro', 'pro'}
-
-    def independent_pro_from_overt_agreement(self):
-        return ['weak_pro', 'strong_pro'] in self
-
-    def nonreferential_pro(self):
-        return 'nonreferential_pro' in self
-
     def features_to_value_from_goal(self, goal):
         def unvalued_counterparty(goal_feature, X):
             return f'PHI:{goal_feature.split(":")[1]}:_' in X.features()
@@ -212,9 +188,6 @@ class PhraseStructureCore:
         P = set().union(*self.phi_bundles())
         return [f for f in goal.H().core.features(type=['phi', 'interpretable']) if unvalued_counterparty(f, self) and (not P or feature_gate(f, P))]
 
-    def AgreeLF_has_occurred(self):
-        return 'ΦLF' in self
-
     def phi_bundles(self):
         return [set(phi[4:].split(',')) for phi in self.features(type=['phi', 'valued', 'uninterpretable'])]
 
@@ -228,29 +201,24 @@ class PhraseStructureCore:
         Note 1: The feature format is TYPE:VALUE with (i)PHI removed.
         """
 
-        def mismatch(G, P):
-            return {(p, g) for p, g in itertools.product(G, P) if value_mismatch(p, g)}
-
         def unlicensed_phi_features_at_goal(G, PP):
             return G - set().union(*{frozenset(phi) for phi in PP if phi <= G})
 
         return mismatch(unlicensed_phi_features_at_goal(X.features(type=['phi', 'interpretable'], format='reduced'), PP), set().union(*PP))
 
-    def needs_valuation(self):
-        if not self.complete_agreement_suffixes() and self.get_unvalued_minimal_phi():
-            return self.get_unvalued_minimal_phi()
+    # pro-calculations
 
-    def get_unvalued_minimal_phi(self):
-        return self.features(type=['phi', 'unvalued'], match={'PHI:NUM', 'PHI:PER', 'PHI:DET'})
+    def overt_phi_sustains_reference(X):
+        return X.property('overt_phi') and X.phi_consistent() and X.minimal_phi_for_reference()
 
-    def is_unvalued(self):
-        return len(self.features(type=['phi', 'unvalued'])) > 0
+    def phi_consistent(self):
+        return next((False for fpair in itertools.permutations(self.complete_valued_phi_set(), 2) if value_mismatch(*fpair)), True)
 
-    def valued_phi_at_probe(self):
-        return [phi.split(':') for phi in self.features(type=['phi', 'valued'], match={'PHI:NUM', 'PHI:PER'}) if ',' not in phi]
+    def minimal_phi_for_reference(self):
+        return {'NUM', 'PER', 'DET'} <= {phi[:3] for phi in self.complete_valued_phi_set()}
 
-    def valued_phi_at_antecedent(self):
-        return [phi.split(':') for phi in self.features(type=['phi', 'valued'], match={'PHI:PER', ' PHI:NEM', 'iPHI:NUM', 'iPHI:PER'})]
+    def complete_valued_phi_set(self):
+        return set().union(*[frozenset(phi[4:].split(',')) for phi in self.features(type=['phi', 'valued'])])
 
     # Selection, thematic roles
     def get_selection_features(self, key):
@@ -261,23 +229,23 @@ class PhraseStructureCore:
         return [f.split(':')[0] for f in self.features(match=['COMP', 'SPEC', 'SELF'])]
 
     def semantic_match(self, Y):
-        pos_sem_a = self.features(startswith=['+SEM'], format='reduced')
-        neg_sem_a = self.features(startswith=['-SEM'], format='reduced')
-        pos_sem_b = Y.core.features(startswith=['+SEM'], format='reduced')
-        neg_sem_b = Y.core.features(startswith=['-SEM'], format='reduced')
+        pos_sem_a = self.features(match=['$+SEM'], format='reduced')
+        neg_sem_a = self.features(match=['$-SEM'], format='reduced')
+        pos_sem_b = Y.core.features(match=['$+SEM'], format='reduced')
+        neg_sem_b = Y.core.features(match=['$-SEM'], format='reduced')
         return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
 
     # Get properties
     def get_id(self):
-        if len(self.features(startswith=['§'])) > 0:
-            return ''.join(list(self.features(startswith=['§'])))
+        if len(self.features(match=['$§'])) > 0:
+            return ''.join(list(self.features(match=['$§'])))
         return '?'
 
     def get_lf(self):
-        return [f[3:] for f in self.features(startswith=['LF:'])]
+        return [f[3:] for f in self.features(match=['$LF:'])]
 
     def index(self):
-        return next(list(self.features(startswith=['§'])), None)
+        return next(list(self.features(match=['$§'])), None)
 
     def semantic_index(self, space):
         return next((f.split(':')[1].split(',')[0] for f in self.features(type=['index'], match=[space])), None)

@@ -1,8 +1,9 @@
 
-from itertools import takewhile
+import itertools
 from feature_processing import *
 from support import log
-from phrase_structure_inner_core import PhraseStructureCore
+from phrase_structure_inner_core import PhraseStructureCore, mismatch
+
 
 class PhraseStructure:
     speaker_model = None
@@ -194,7 +195,7 @@ class PhraseStructure:
         return current.L()
 
     def minimal_search(X, **kwargs):
-        return takewhile(lambda x: not kwargs.get('intervention', lambda x: False)(x), (x for x in X))
+        return itertools.takewhile(lambda x: not kwargs.get('intervention', lambda x: False)(x), (x for x in X))
 
     def path(X):
         path = []
@@ -212,18 +213,18 @@ class PhraseStructure:
         return next((x for x in memory_span() if condition(x)), None)
 
     def edge(X):
-        return list(takewhile(lambda x: x.M() and x.M().inside(X), X.path()))
+        return list(itertools.takewhile(lambda x: x.M() and x.M().inside(X), X.path()))
 
     def local_edge(X):
         return next(iter(X.edge()), None)
 
     def pro_edge(X):
-        if X.NS():
-            return X.edge() + [X.NS()]
+        if X.generate_pro():
+            return X.edge() + [X.generate_pro()]
         return X.edge()
 
     def identify_argument(X):
-        arguments = [acquire(X) for acquire in [lambda x: x.pro_argument(),
+        arguments = [acquire(X) for acquire in [lambda x: x.generate_pro(),
                                                 lambda x: x.complement_argument(),
                                                 lambda x: x.indexed_argument(),
                                                 lambda x: x.local_edge(),
@@ -293,13 +294,11 @@ class PhraseStructure:
 
     # Virtual pronouns -----------------------------------------------------------------------
 
-    def pro_argument(X):
-        if X.core.independent_pro_from_overt_agreement() or X.core.complete_agreement_suffixes():
-            return X.NS()
+    def generate_pro(X):
+        if X.predicate() and X.core.overt_phi_sustains_reference():
+            return PhraseStructure(features=X.core.features(type=['phi', 'valued']) | {'φ', 'PF:pro'})
 
-    def NS(X):
-        if X.predicate() and X.core.complete_agreement_suffixes():
-            return PhraseStructure(features=X.core.pro_features())
+    # Selection
 
     def selection_violation(X):
         return not X.COMP_selection() or not X.SPEC_selection()
@@ -410,13 +409,13 @@ class PhraseStructure:
                not X.max().contains_features({'SEM:nonreferential'})
 
     def pro_projection_principle_violation(X):
-        if X.zero_level() and X.core.independent_pro_from_overt_agreement() and X.right_sister():
+        if X.zero_level() and X.core.overt_phi_sustains_reference() and X.right_sister():
             for x in X.right_sister().minimal_search(intervention=lambda y: y.core.property('theta_predicate') and y.core.property('verbal')):
                 if x.zero_level():
-                    if x.core.independent_pro_from_overt_agreement():
+                    if x.core.overt_phi_sustains_reference():
                         return True
                     if x.core.property('nonthematic_verb'):
-                        if X.core.AgreeLF_has_occurred() or not X.core.nonreferential_pro():
+                        if X.core.property('AgreeLF_occurred') or 'nonreferential_pro' not in X.core:
                             return True
 
     def container_assigns_theta_role(Xmax, C):
@@ -469,7 +468,7 @@ class PhraseStructure:
             return (PhraseStructure(features={'C', 'C/fin', 'PF:C', 'LF:C', 'Fin', 'EF'}) * X.sister()).L()
 
     def scan_strong_features(X):
-        fset = X.core.strong_features()
+        fset = X.core.features(type=['strong'])
         if fset:
             return {f[2:] for f in fset}    # Remove strength diacritic
         if X.complex():
@@ -617,7 +616,7 @@ class PhraseStructure:
                 return not X.primary_rule()                                 #       If Agree(X, Y), YP = SpecXP
             # If Agree(X, Y) does not occur, then violation can be avoided if X is specifically marked to not require Agree
             # or there is phi-consistent overt agreement suffices at X
-            elif not X.check_some({'?ΦLF', '-ΦLF'}) and not (X.check({'ΦPF'}) and X.core.phi_consistent_head()):
+            elif not X.check_some({'?ΦLF', '-ΦLF'}) and not (X.check({'ΦPF'}) and X.core.phi_consistent()):
                 return True
 
     def primary_rule(X):
@@ -715,34 +714,16 @@ class PhraseStructure:
                X.max().M().sister() and \
                X.max().M().sister().check(tset)
 
-    # Recovery ---------------------------------------------------------------------------------------------------
-
-    def is_possible_antecedent(X, antecedent):
-        if antecedent:
-            if antecedent.H().core.property('referential'):
-                for P in X.core.valued_phi_at_probe():
-                    for A in antecedent.H().core.valued_phi_at_antecedent():
-                        if P[1] == A[1] and P[2] != A[2]:
-                            return False
-                return True
+    # Control ---------------------------------------------------------------------------------------------------
 
     def control(X):
-        unvalued_phi = X.core.get_unvalued_minimal_phi()
-        if unvalued_phi & {'PHI:NUM:_', 'PHI:PER:_'} and not {f[:7] for f in X.core.features(type=['phi', 'valued'], format='no_value')} & {'PHI:NUM', 'PHI:PER'} and not X.check({'PHI:NUM:SG,PER:3'}):
-            return X.standard_control()
-        elif unvalued_phi & {'PHI:DET:_'}:
-            return X.finite_control()
+        last_resort = None
+        if not X.core.property('overt_phi'):
+            last_resort = PhraseStructure(features={"PF:one", 'LF:generic', 'φ', 'D'})
+        return next((y for y in X.path() if y.H().core.property('referential') and not mismatch(X.phi_set(), y.H().phi_set())), last_resort)
 
-    def standard_control(X):
-        search_path = [x for x in takewhile(lambda x: not x.check({'SEM:external'}), X.path())]
-        antecedent = next((x for x in search_path if X.is_possible_antecedent(x)), None)
-        if not antecedent:
-            return PhraseStructure(features={"PF:generic 'one'", 'LF:generic', 'φ', 'D'})
-        return antecedent
-
-    def finite_control(X):
-        antecedent = X.next(X.path, lambda x: x.complex() and X.is_possible_antecedent(x))
-        return antecedent
+    def phi_set(X):
+        return X.core.features(type=['phi', 'valued'], format='reduced', match={'NUM:', 'PER:', '^,'})
 
     # Structure building --------------------------------------------------------------------------
 
@@ -1019,7 +1000,7 @@ class PhraseStructure:
         return X.contains_features({'Fin'})
 
     def predicate(X):
-        return X.zero_level() and 'Φ' in X.core
+        return X.zero_level() and X.core.property('predicate')
 
     def semantic_complement(X):
         return X.complement() and not X.core.semantic_match(X.complement().H())
