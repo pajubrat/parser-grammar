@@ -21,7 +21,7 @@ class PhraseStructureCanvas(tk.Canvas):
                             'PFtrace': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic", "overstrike"),
                             'PF': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic"),
                             'gloss': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
-                            'feature': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')) * 0.8),
+                            'feature': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
                             'subscript': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') * 0.5)),
                             'arrow_label': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') * 0.75)),
                             'info': ("Courier", int(self.application.settings.retrieve('image_parameter_tsize') * 0.25))}
@@ -163,33 +163,41 @@ class PhraseStructureCanvas(tk.Canvas):
         Y_offset = 0    # Y_offset determines the lower boundary of the node + its label(s) when adding elements
 
         # Reproduce the head and all of its affixes
+
         for j, affix in enumerate(gps.affixes(), start=1):
+
             # Do not reproduce affixes if blocked by settings
+
             if (affix.zero_level() and affix.copied and not self.application.settings.retrieve('image_parameter_covert_complex_heads', False)) or \
                     (j > 1 and not self.application.settings.retrieve('image_parameter_complex_heads', True)):
                 break
 
             # Generate the label text (label + phonological exponent + gloss)
+
             for i, label_item in enumerate(affix.label_stack):
                 text = self.feature_conversion_for_images(label_item)
 
                 # Do not reproduce items if blocked by settings
+
                 if (label_item[1] == 'gloss' and not self.application.settings.retrieve('image_parameter_glosses', True)) or \
                         (label_item[1] == 'PF' and not self.application.settings.retrieve('image_parameter_words', True)):
                     continue
 
                 # Elliptic phonology
+
                 if label_item[1] == 'PF' and gps.ellipsis:
                     style = 'PFtrace'
                 else:
                     style = label_item[1]
 
                 # Modify label font size based on scaling factor
+
                 scaled_font = list(self.label_style[style])
                 scaled_font[1] = int(self.label_style[style][1] * self.scaling_factor)
                 scaled_font = tuple(scaled_font)
 
                 # Create text
+
                 if label_item[1] == 'label' and label_item[0].strip() == '':
                     text = '??'
                     color = 'white'
@@ -200,7 +208,9 @@ class PhraseStructureCanvas(tk.Canvas):
                                       text=text,
                                       anchor='center',
                                       font=scaled_font)
+
                 # Subscript and superscript
+
                 if label_item[1] == 'label' and affix.subscript:
                     self.create_text((X1 + (len(text)-1) * 15 + self.application.settings.retrieve('image_parameter_grid') / 6, Y1 + Y_offset + self.application.settings.retrieve('image_parameter_tsize') / 4),
                                      fill=color,
@@ -219,14 +229,17 @@ class PhraseStructureCanvas(tk.Canvas):
                                      font=self.label_style['subscript'])
 
                 # Update the offset
+
                 Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
 
                 # Add events to the first element (i == 0 when producing the label)
+
                 if i == 0:
                     self.tag_bind(ID, '<Enter>', self.focus_item)
                     self.tag_bind(ID, '<Leave>', self.unfocus_item)
 
                 # Add the node to the mapping from nodes to affixes
+
                 self.ID_to_object[str(ID)] = affix
                 affix.ID = str(ID)
                 if gps in self.selected_objects:
@@ -238,12 +251,13 @@ class PhraseStructureCanvas(tk.Canvas):
         R_const_coord = (spx + gps.R().x * self.application.settings.retrieve('image_parameter_grid'), spy + gps.R().y * self.application.settings.retrieve('image_parameter_y_grid'))
 
         # Create text holding the complex label (e.g., XP)
+
         ID = self.create_text(M_const_coord,
                               text=gps.label_stack[0][0],
                               fill=color,
                               activefill='grey',
                               tag='node',
-                              font=(self.label_style['label'][0], self.label_style['label'][1] * self.scaling_factor))
+                              font=(self.label_style['label'][0], int(self.label_style['label'][1] * self.scaling_factor)))
 
         self.ID_to_object[str(ID)] = gps
         gps.ID = ID
@@ -251,12 +265,23 @@ class PhraseStructureCanvas(tk.Canvas):
         self.tag_bind(ID, '<Leave>', self.unfocus_item)
         if gps in self.selected_objects:
             self.addtag_withtag('selected', ID)
+
         if gps.compressed:
             self.create_line(self.Y_frame(M_const_coord, 1), self.Y_frame(L_const_coord, 0.5), width=2, fill='black')
             self.create_line(self.Y_frame(M_const_coord, 1), self.Y_frame(R_const_coord, 0.5), width=2, fill='black')
             self.create_line(self.Y_frame(L_const_coord, 0.5), self.Y_frame(R_const_coord, 0.5), width=2, fill='black')
             Y_offset = self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
+
+            # Create text items from label stack
+
             for i, label_item in enumerate(gps.label_stack):
+
+                # Font scaling
+
+                scaled_font = list(self.label_style[label_item[1]])
+                scaled_font[1] = int(self.label_style[label_item[1]][1] * self.scaling_factor)
+                scaled_font = tuple(scaled_font)
+
                 if label_item[1] != 'label':
                     text = self.feature_conversion_for_images(label_item)
                     self.create_text((M_const_coord[0], L_const_coord[1] + Y_offset),
@@ -265,7 +290,7 @@ class PhraseStructureCanvas(tk.Canvas):
                                      tag='node',
                                      text=text,
                                      anchor='center',
-                                     font=(self.label_style[label_item[1]][0], int(self.label_style[label_item[1]][1] * self.scaling_factor)))
+                                     font=scaled_font)
                     Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
         else:
             self.draw_constituent_line(gps.L(), L_const_coord, M_const_coord)
@@ -281,10 +306,14 @@ class PhraseStructureCanvas(tk.Canvas):
         self.add_special_constituent_marking(gps, self.Y_frame(M_coord, 1), self.Y_frame(D_coord, -1))
 
     def add_special_constituent_marking(self, gps, M_coord, D_coord):
+
         # Find middle point
+
         mx = M_coord[0] + (D_coord[0] - M_coord[0])/2
         my = M_coord[1] + (D_coord[1] - M_coord[1])/2
+
         # Add special markings at the middle point
+
         if gps.is_L():
             if 'cut' in gps.M().special_left_constituent_marking:
                 self.create_line((mx - 15, my - 25, mx + 15, my + 25), fill='black', width=4)

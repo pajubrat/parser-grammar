@@ -133,7 +133,7 @@ class Discourse:
         self.records_of_attentional_processing[idx]['Marked gradient'] = direction
 
     def allocate_attention(self, head):
-        if head.core.property('referential') or head.core.property('preposition'):
+        if head.core('referential') or head.core('preposition'):
             idx = self.consume_index()
             head.core.add_features({'*IDX:' + str(idx)})
             self.records_of_attentional_processing[str(idx)] = {'Constituent': head.max(), 'Order': idx, 'Name': f'{head}'}

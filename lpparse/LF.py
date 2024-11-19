@@ -73,7 +73,7 @@ class LF:
                 return False
             if not X.R().copied and not self.final_tail_check(X.R()):
                 return False
-        if X.zero_level() and X.max() != X.top() and X.get_tail_sets() and not X.tail_test(weak_test=X.core.property('referential')):
+        if X.zero_level() and X.max() != X.top() and X.get_tail_sets() and not X.tail_test(weak_test=X.core('referential')):
             log(f'\n\t\t𝗣𝗼𝘀𝘁-𝘀𝘆𝗻𝘁𝗮𝗰𝘁𝗶𝗰 𝘁𝗮𝗶𝗹 𝘁𝗲𝘀𝘁 𝗳𝗼𝗿 \'{X.illustrate()}\' 𝗳𝗮𝗶𝗹𝗲𝗱.')
             return False
         return True

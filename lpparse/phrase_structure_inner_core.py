@@ -9,18 +9,19 @@ abstraction_funct = {'EHM': lambda X: 'ε' in X,
                      'predicate': lambda X: 'Φ' in X,
                      'finite': lambda X: ['Fin', 'T/fin', 'C/fin'] in X,
                      'force': lambda X: 'FORCE' in X,
+                     'finite_C': lambda X: 'C' in X,
                      'referential': lambda X: ['φ', 'D'] in X,
                      'adverbial': lambda X: 'Adv' in X,
                      'nominal': lambda X: 'N' in X,
                      'verbal': lambda X: 'ASP' in X,
-                     'theta_predicate': lambda X: X.property('thetaSPEC') or X.property('thetaCOMP'),
+                     'theta_predicate': lambda X: X('thetaSPEC') or X('thetaCOMP'),
                      'thetaSPEC': lambda X: 'θSPEC' in X,
                      'thetaCOMP': lambda X: 'θCOMP' in X,
-                     'nonthematic_verb': lambda X: X.property('verbal') and not X.property('theta_predicate'),
+                     'nonthematic_verb': lambda X: X('verbal') and not X('theta_predicate'),
                      'thematic_edge': lambda X: X.get_selection_features('+SPEC') & {'D', 'φ'},
                      'light_verb': lambda X: ['v', 'v*', 'impass', 'cau'] in X,
-                     'finite_left_periphery': lambda X: X.property('finite') and ['T', 'C'] in X,
-                     'finite_tense': lambda X: 'T/fin' in X or (X.property('finite') and 'T' in X),
+                     'finite_left_periphery': lambda X: X('finite') and ['T', 'C'] in X,
+                     'finite_tense': lambda X: 'T/fin' in X or (X('finite') and 'T' in X),
                      'preposition': lambda X: 'P' in X,
                      'expresses_concept': lambda X: ['N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'] in X and ['T/prt', 'COPULA'] not in X,
                      'SEM_internal_predicate': lambda X: 'SEM:internal' in X,
@@ -67,6 +68,10 @@ class PhraseStructureCore:
         if isinstance(f, list):
             return set(f) & self.features()
 
+    def __call__(self, P):
+        if abstraction_funct.get(P):
+            return abstraction_funct[P](self)
+
     def features(self, **kwargs):
         fset = set().union(*[fset for fset in self._features])
 
@@ -97,10 +102,6 @@ class PhraseStructureCore:
 
     def feature_bundles(self):
         return self._features
-
-    def property(self, P):
-        if abstraction_funct.get(P):
-            return abstraction_funct[P](self)
 
     def bundle_features(self, f):
         for fset in self._features:
@@ -209,7 +210,7 @@ class PhraseStructureCore:
     # pro-calculations
 
     def overt_phi_sustains_reference(X):
-        return X.property('overt_phi') and X.phi_consistent() and X.minimal_phi_for_reference()
+        return X('overt_phi') and X.phi_consistent() and X.minimal_phi_for_reference()
 
     def phi_consistent(self):
         return next((False for fpair in itertools.permutations(self.complete_valued_phi_set(), 2) if value_mismatch(*fpair)), True)

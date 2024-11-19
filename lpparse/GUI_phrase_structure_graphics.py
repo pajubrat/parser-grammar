@@ -34,11 +34,14 @@ class PhraseStructureGraphics(tk.Toplevel):
                            'custom': {'fill': 'black', 'dash': None, 'width': 2}}
 
         # Canvas
+
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=4, column=0)
         self.canvas.focus_set()
         self.canvas.configure(closeenough=10, width=self.application.settings.retrieve('image_parameter_canvas_width'), height=self.application.settings.retrieve('image_parameter_canvas_height'), background='white')
+
         # Scrollbars for the canvas
+
         xscroll = tk.Scrollbar(self, command=self.canvas.xview, orient=tk.HORIZONTAL)
         xscroll.grid(row=3, column=0, sticky='new')
         yscroll = tk.Scrollbar(self, command=self.canvas.yview, orient=tk.VERTICAL)
@@ -48,6 +51,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas.scrollregion=(0, 0, 5000, 5000)
 
         # Menu
+
         self.graphics_menu = GraphicsMenu(self)
         self.config(menu=self.graphics_menu)
         # Buttons and status info
@@ -60,12 +64,16 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.status_label.grid(row=0, column=0, sticky='E')
 
         # Make host window and canvas visible
+
         self.grid()
 
         # Features shown in figures on the basis of settings
+
         GPhraseStructure.draw_features = {feature.strip() for feature in self.application.settings.retrieve('image_parameter_features', None).split(';')}
         mapping_str = self.application.settings.retrieve('image_parameter_visualization', '')
+
         # Generate lexical feature visualizations
+
         if mapping_str:
             self.parse_feature_visualizations(mapping_str)
 
@@ -178,11 +186,14 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<Control-l>', self.change_original_label)
         self.bind('<Key-e>', self.expand_phrase_structure)
         self.bind('<Key-i>', self.inspect)
+
         # Show phrase structure image
+
         self.initialize_and_show_image()
 
     # ----------------------------------------------------------------------------------------------
     # Image drawing functions
+
     def create_ribbon_buttons(self):
         pad = 2
         column = 0
@@ -241,12 +252,16 @@ class PhraseStructureGraphics(tk.Toplevel):
         """
         self.canvas.delete('all')
         if self.speaker_model:
+
             # Derivation (sequence of phrase structures, whole output from the model)
+
             self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
             if self.application.settings.retrieve('image_parameter_shrink_all_DPs', False):
                 self.shrink_all_DPs()
         elif self.root_gps:
+
             # Single GPS (usually loaded from separate file)
+
             self.canvas.title = self.image_title
             self.canvas.derivational_index = 0
         else:
@@ -517,7 +532,9 @@ class PhraseStructureGraphics(tk.Toplevel):
             if not gps.complex():
                 H = GPhraseStructure(PhraseStructure())
                 affix_lst = gps.affixes()
+
                 # If covert complex heads are set to be disabled, we enable them first
+
                 if [a for a in affix_lst if a.copied]:
                     self.application.settings.store('image_parameter_covert_complex_heads', True)
                 last_affix = gps.affixes()[-1]
@@ -608,6 +625,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             right = gps.is_R()
 
             # Create DP
+
             X = GPhraseStructure(PhraseStructure(features={'PF:X'}))
             Y = GPhraseStructure(PhraseStructure(features={'PF:Y'}))
             XP = GPhraseStructure(PhraseStructure(), X, Y)
@@ -628,6 +646,7 @@ class PhraseStructureGraphics(tk.Toplevel):
             right = gps.is_R()
 
             # Create DP
+
             D = GPhraseStructure(PhraseStructure(features={'D'}))
             N = GPhraseStructure(PhraseStructure(features={'N'}))
             DP = GPhraseStructure(PhraseStructure(), D, N)
@@ -794,7 +813,9 @@ class PhraseStructureGraphics(tk.Toplevel):
                     preserved_sister = gps.M().R()
                 else:
                     preserved_sister = gps.M().L()
+
                 # Delete X and its mother, move the sister upwards
+
                 if gps.M().M():
                     grandmother = gps.M().M()
                     if gps.M().is_R():
@@ -802,7 +823,9 @@ class PhraseStructureGraphics(tk.Toplevel):
                     else:
                         grandmother.const = [preserved_sister, grandmother.R()]
                     preserved_sister.mother_ = grandmother
+
                 # We preserve only the sister
+
                 else:
                     preserved_sister.mother_ = None
                     self.root_gps = preserved_sister

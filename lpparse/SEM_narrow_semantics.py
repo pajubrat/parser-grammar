@@ -90,35 +90,44 @@ class NarrowSemantics:
     def postsyntactic_semantic_interpretation(self, X):
         log(f'\n----Semantic interpretation---------------------------------------------------------------------------\n')
         self.speaker_model.results.store_output_field('LF', f'{X}')
+
         # Inventory projection and ontology
+
         if self.speaker_model.settings.retrieve('general_parameter_project_objects', True):  # and not self.speaker_model.results.first_solution_found:
             self.inventory_projection(X)
 
         self.interpret_(X)
 
         # Assignments
+
         if self.speaker_model.settings.retrieve('general_parameter_calculate_assignments', True):
             n, weighted_assignments = self.quantifiers_numerals_denotations.reconstruct_assignments(X)
             self.speaker_model.results.store_output_field('Assignments', weighted_assignments)
             self.speaker_model.results.store_output_field('Number of assignments', str(n))
 
         # Information structure
+
         if self.speaker_model.settings.retrieve('general_parameter_calculate_pragmatics', False) and X.property('finite'):
             self.speaker_model.results.store_output_field('Information structure', self.pragmatic_pathway.calculate_information_structure(X))
 
         # Speaker attitude
+
         self.speaker_model.results.store_output_field('Speaker attitude', self.pragmatic_pathway.calculate_speaker_attitude(X))
         return not self.semantic_interpretation_failed
 
     def interpret_(self, X):
         if not X.copied:
             if X.zero_level():
+
                 # Thematic roles
-                if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and X.core.property('theta_predicate'):
+
+                if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and X.core('theta_predicate'):
                     self.speaker_model.results.store_output_field('Thematic roles', self.thematic_roles_module.reconstruct(X))
+
                 # Argument-predicate pairs
+
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and \
-                        'Φ' in X.core and not X.core.property('referential') and not X.check({'N'}):
+                        'Φ' in X.core and not X.core('referential') and not X.check({'N'}):
                     self.speaker_model.results.store_output_field('Predicates', self.predicates.reconstruct(X))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False
@@ -126,13 +135,19 @@ class NarrowSemantics:
                     self.speaker_model.results.store_output_field('Indexing by Agree', self.predicates.reconstruct_agreement(X))
                 self.quantifiers_numerals_denotations.detect_phi_conflicts(X)
                 self.interpret_tail_features(X)
+
                 # Operator-variable constructions (scope reconstruction)
+
                 if self.speaker_model.settings.retrieve('calculate_operator_bindings', True):
                     self.speaker_model.results.store_output_field('Operator bindings', self.operator_variable_module.bind_operator(X))
+
                 # Discourse features (pragmatic module)
+
                 if self.speaker_model.settings.retrieve('calculate_DIS_features', True):
                     self.speaker_model.results.store_output_field('Pragmatics', self.pragmatic_pathway.interpret_discourse_features(X))
+
                 # Focus features (features with focus interpretation)
+
                 if self.speaker_model.settings.retrieve('calculate_focus', True):
                     self.speaker_model.results.store_output_field('Focus', self.focus.reconstruct(X))
                 if self.failure():

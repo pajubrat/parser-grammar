@@ -22,7 +22,7 @@ class OperatorVariableModule:
 
     def bind_operator(self, X):
         self.bindings = []
-        if not X.core.property('scope_marker'):
+        if not X.core('scope_marker'):
             for Opf in (f for f in X.core.features() if self.is_operator_feature(f)):
                 binding = self.interpret_covert_scope(self.find_overt_scope(X, Opf), Opf)
                 self.interpret_results(binding, Opf)
@@ -38,7 +38,7 @@ class OperatorVariableModule:
         if not binding_dict['Scope'] and '-insitu' not in binding_dict['Head'].core.bundle_features(Opf):
             return next(({'Head': binding_dict['Head'], 'Scope': X, 'Overt': False}
                          for X in binding_dict['Head'].self_path() if
-                         X.core.property('finite_left_periphery')),
+                         X.core('finite_left_periphery')),
                         {'Head': binding_dict['Head'], 'Scope': None, 'Overt': False})
         return binding_dict
 

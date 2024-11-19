@@ -12,49 +12,6 @@ from Experimental_functions import ExperimentalFunctions
 from results import Results
 
 class SpeakerModel:
-    OPs = {'Noncyclic Ā-chain':
-              {'TRIGGER': lambda x: x.operator_in_scope_position() and x.sister() and not PhraseStructure.cyclic,
-               'TARGET': lambda x: x,
-               'TRANSFORM': lambda x, t: x.reconstruct_operator(t)},
-           'Feature inheritance':
-              {'TRIGGER': lambda x: (x.check({'φ'}) and x.complement()) or x.check({'EF?'}) or (x.highest_finite_head() and not x.check({'!PER'})),
-               'TARGET': lambda x: x,
-               'TRANSFORM': lambda x, t: x.feature_inheritance()},
-            'A-chain':
-              {'TRIGGER': lambda x: x.zero_level() and
-                                    x.core.property('EPP') and
-                                    x.is_R() and x.sister() and
-                                    x.sister().complex() and not x.sister().copied and
-                                    x.sister().H().core.property('referential') and
-                                    not x.sister().operator_features() and
-                                    x.tail_test(tail_sets=x.sister().get_tail_sets(), direction='right', weak_test=True),
-               'TARGET': lambda x: x.sister().chaincopy(),
-               'TRANSFORM': lambda x, t: x * t},
-           'IHM':
-               {'TRIGGER': lambda x: x.complex_head() and not x.core.property('EHM') and not x.affix().copied,
-                'TARGET': lambda x: x.affix(),
-                'TRANSFORM': lambda x, t: x.head_reconstruction(t)},
-           'Scrambling': {'TRIGGER': lambda x: x.max().license_scrambling() and
-                                               (x.container() and x.container().core.property('EF') and (not x.container().core.property('theta_predicate') or x.container().core.property('preposition')) or
-                                                not x.H().tail_test()) and
-                                               x.scrambling_target() and x.scrambling_target() != x.top() and
-                                               not x.operator_in_scope_position() and PhraseStructure.speaker_model.LF.pass_LF_legibility(x.scrambling_target().copy().transfer(), logging=False) and
-                                               not PhraseStructure.cyclic,
-                         'TARGET': lambda x: x.scrambling_target(),
-                         'TRANSFORM': lambda x, t: x.scrambling_reconstruct(t)},
-           'Agree':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_L() and len(x.core.features(type=['phi', 'unvalued'])) > 0 and not x.core.property('AgreeLF_occurred'),
-               'TARGET': lambda x: x,
-               'TRANSFORM': lambda x, t: x.AgreeLF()},
-           'Cyclic Ā-chain':
-              {'TRIGGER': lambda x: x.zero_level() and x.is_R() and x.core.property('theta_predicate') and x.sister() and x.sister().zero_level() and PhraseStructure.cyclic,
-               'TARGET': lambda Y: next((x.chaincopy() for x in Y.path() if
-                                         x.complex() and x.operator_features() and x.H().check_some(
-                                             Y.core.get_selection_features('+SPEC')) and Y.tail_test(
-                                             tail_sets=x.get_tail_sets())), None),
-               'TRANSFORM': lambda x, t: t * x}
-           }
-
     def __init__(self, settings, language='XX'):
         self.settings = settings
         self.sentence = []
@@ -142,11 +99,16 @@ class SpeakerModel:
 
                 # 2. Process inflectional feature (withhold streaming to syntax)
                 # NOTE: processing goes from right to left (reverse order)
+
                 if not lex.morphological_chunk and lex.inflectional and lex.type != 'prosodic':
+
                     # Portmanteau morphemes are added to the last feature bundle
+
                     if lex.type == 'portmanteau':
                         infl_buffer[-1].update(lex.features - {'inflectional'})
+
                     # Other morphemes boundaries create a new feature bundle
+
                     else:
                         infl_buffer[-1].update(lex.features - {'inflectional'})
                         infl_buffer.append(set())
@@ -158,6 +120,7 @@ class SpeakerModel:
                                                       prosody=prosody)
 
                 # 3. Process prosodic features
+
                 if not lex.morphological_chunk and not lex.inflectional and lex.type == 'prosodic':
                     prosody = lex.features
                     log(f'= prosodic feature {illu(lex.features)}')
@@ -168,6 +131,7 @@ class SpeakerModel:
                                                       prosody=prosody)
 
                 # 4. Extract features from primitive lex and wrap them into primitive constituent and stream into syntax
+
                 if not lex.morphological_chunk and not lex.inflectional and not lex.type == 'prosodic':
                     self.syntactic_branching(X, self.lexical_stream.wrap(lex, infl_buffer[::-1], prosody), lst, index)
 
@@ -184,7 +148,7 @@ class SpeakerModel:
             for N in self.plausibility_metrics.filter_and_rank(X, W):
                 Y = X.target_left_branch_and_copy(N).transfer().attach(W.copy())
                 PhraseStructure.cyclic = True
-                Y = Y.bottom().reconstruct(self.OPs)
+                Y = Y.bottom().reconstruct()
                 log(f'\n\t= {Y.top()}\n')
                 self.derivational_search_function(phrase_structure=secure_copy(Y), word_list=lst, index=index + 1)
                 if self.exit:
@@ -200,6 +164,7 @@ class SpeakerModel:
             return True
 
     # Evaluates a complete solution at the LF-interface and semantic interpretation
+
     def evaluate_complete_solution(self, X):
         self.results.record_derivational_step(X, 'PF-interface')
         PhraseStructure.cyclic = False
@@ -213,6 +178,7 @@ class SpeakerModel:
         self.results.record_derivational_step(X, 'LF-interface')
 
         # Postsyntactic tests (LF-interface legibility and semantic interpretation)
+
         self.LF.active_test_battery = self.LF.LF_legibility_tests
         if self.LF.pass_LF_legibility(X) and self.LF.final_tail_check(X) and self.narrow_semantics.postsyntactic_semantic_interpretation(X):
             self.results.update_resources(PhraseStructure.resources, self.sentence)

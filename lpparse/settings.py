@@ -28,7 +28,7 @@ class Settings:
                   'image_parameter_canvas_height': 1500,
                   'image_parameter_label_padding': 1,
                   'image_parameter_text_spacing': 1.5,
-                  'image_parameter_tshrink': 1.1,
+                  'image_parameter_tshrink': 1.0,
                   'image_parameter_arc_curvature': 2,
                   'image_parameter_Y_offset_for_arrow': 50,
                   'image_parameter_tsize': 42}

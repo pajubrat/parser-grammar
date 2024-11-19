@@ -35,7 +35,7 @@ class QuantifiersNumeralsDenotations:
         return phi_map_dict.get(phi_feature, ())
 
     def accept(self, X):
-        return (X.core.overt_phi_sustains_reference() and not X.core.property('AgreeLF_occurred')) or X.core.property('referential')
+        return (X.core.overt_phi_sustains_reference() and not X.core('AgreeLF_occurred')) or X.core('referential')
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)
@@ -47,7 +47,7 @@ class QuantifiersNumeralsDenotations:
         self.inventory[idx].update(criteria)
 
     def object_presentation(self, X):
-        if X.core.property('referential'):
+        if X.core('referential'):
             return f'{X.max().illustrate()}'
         return f'pro({X})'
 
@@ -86,7 +86,9 @@ class QuantifiersNumeralsDenotations:
         self.create_assignments_from_denotations(self.calculate_possible_denotations(X))
         self.narrow_semantics.speaker_model.results.store_output_field('Binding', self.assignment_output_string(X)[1:])
         log(f'\n\t\tSummary: {self.assignment_output_string(X)}')
+
         # Currently we return only assignments for printout which have nonzero weight
+
         weighted_assignments = [assignment for assignment in self.all_assignments if assignment.get('weight', 0) > 0]
         return len(weighted_assignments), self.print_assignments(weighted_assignments)
 
@@ -190,7 +192,7 @@ class QuantifiersNumeralsDenotations:
                 stri += ' ' + relevant_content(X)
 
             # Create binding tags at the end of referential expressions
-            if X.zero_level() and not X.core.property('referential') and X.core.get_idx_tuple('QND'):
+            if X.zero_level() and not X.core('referential') and X.core.get_idx_tuple('QND'):
                 idx = X.core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f' {X.label()}/pro[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
