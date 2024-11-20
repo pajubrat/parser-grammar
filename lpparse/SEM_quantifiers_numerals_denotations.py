@@ -196,7 +196,7 @@ class QuantifiersNumeralsDenotations:
                 idx = X.core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f' {X.label()}/pro[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
-            elif X.M() and X.check({'N'}) and X.is_R() and X.sister() and X.sister().core.get_idx_tuple('QND'):
+            elif X.M() and X({'N'}) and X.is_R() and X.sister() and X.sister().core.get_idx_tuple('QND'):
                 idx = X.sister().core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f'[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
@@ -226,13 +226,13 @@ class QuantifiersNumeralsDenotations:
         return not self.coreference(idx1, idx2) and not self.disjoint_reference(idx1, idx2)
 
     def create_all_denotations(self, X):
-        return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[X.H().core.get_referential_index('QND')])
+        return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[X.head().core.get_referential_index('QND')])
 
     def R_feature(self, feature):
         return feature.split(':')[0] == 'R'
 
     def get_R_features(self, ps):
-        return [f for f in ps.H().core.features() if self.R_feature(f)]
+        return [f for f in ps.head().core.features() if self.R_feature(f)]
 
     def parse_R_feature(self, R_feature):
         components = R_feature.split(':')
@@ -257,7 +257,7 @@ class QuantifiersNumeralsDenotations:
         return interpreted_phi_dict
 
     def detect_phi_conflicts(self, X):
-        for phi in X.H().core.features(type=['phi']):
+        for phi in X.head().core.features(type=['phi']):
             if phi[-1] == '*':
                 log(f'\n\t\t\t{X.illustrate()} has a phi-feature conflict with {phi}.')
                 self.narrow_semantics.phi_interpretation_failed = True

@@ -12,6 +12,8 @@ abstraction_funct = {'EHM': lambda X: 'ε' in X,
                      'finite_C': lambda X: 'C' in X,
                      'referential': lambda X: ['φ', 'D'] in X,
                      'adverbial': lambda X: 'Adv' in X,
+                     'adjoinable': lambda X: 'adjoinable' in X,
+                     'nonfloat': lambda X: 'nonfloat' in X,
                      'nominal': lambda X: 'N' in X,
                      'verbal': lambda X: 'ASP' in X,
                      'theta_predicate': lambda X: X('thetaSPEC') or X('thetaCOMP'),
@@ -28,6 +30,7 @@ abstraction_funct = {'EHM': lambda X: 'ε' in X,
                      'SEM_external_predicate': lambda X: 'SEM:external' in X,
                      'scope_marker': lambda X: ['C', 'C/fin', 'OP'] in X,
                      'overt_phi': lambda X: 'ΦPF' in X,
+                     'unrecognized_label': lambda X: ['CAT:?', '?'] in X,
                      'AgreeLF_occurred': lambda X: 'ΦLF' in X
                      }
 
@@ -166,7 +169,7 @@ class PhraseStructureCore:
         log(f' from goal {Y_goal.max()}.')
         if len(fset) > 1:   # Partial agreement does not create ΦLF
             self.add_features({'ΦLF'})
-        self.add_features({f'PHI:IDX:{Y_goal.H().core.get_id()}'})
+        self.add_features({f'PHI:IDX:{Y_goal.head().core.get_id()}'})
 
     def value_phi_feature(self, f):
         self.remove_features({f'PHI:{f.split(":")[1]}:_'})
@@ -187,7 +190,7 @@ class PhraseStructureCore:
                     return True
 
         P = set().union(*self.phi_bundles())
-        return [f for f in goal.H().core.features(type=['phi', 'interpretable']) if unvalued_counterparty(f, self) and (not P or feature_gate(f, P))]
+        return [f for f in goal.head().core.features(type=['phi', 'interpretable']) if unvalued_counterparty(f, self) and (not P or feature_gate(f, P))]
 
     def phi_bundles(self):
         return [set(phi[4:].split(',')) for phi in self.features(type=['phi', 'valued', 'uninterpretable'])]
@@ -222,6 +225,7 @@ class PhraseStructureCore:
         return set().union(*[frozenset(phi[4:].split(',')) for phi in self.features(type=['phi', 'valued'])])
 
     # Selection, thematic roles
+
     def get_selection_features(self, key):
         feats = [set(f.split(':')[1].split(',')) for f in self.features() if f.startswith(key)]
         return set().union(*feats)
@@ -237,6 +241,7 @@ class PhraseStructureCore:
         return not ((pos_sem_a & neg_sem_b) or (pos_sem_b & neg_sem_a))
 
     # Get properties
+
     def get_id(self):
         if len(self.features(match=['$§'])) > 0:
             return ''.join(list(self.features(match=['$§'])))
@@ -246,7 +251,7 @@ class PhraseStructureCore:
         return [f[3:] for f in self.features(match=['$LF:'])]
 
     def index(self):
-        return next(list(self.features(match=['$§'])), None)
+        return next(iter(f[1:] for f in self.features(match=['$§'])), None)
 
     def semantic_index(self, space):
         return next((f.split(':')[1].split(',')[0] for f in self.features(type=['index'], match=[space])), None)

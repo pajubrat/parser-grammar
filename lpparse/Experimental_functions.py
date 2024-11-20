@@ -25,24 +25,24 @@ class ExperimentalFunctions:
         revised model.
         """
         def goal_selection(X):
-            return not X.copied and (X.H().referential() or self.standard_Chomskian_phase_head(X))
+            return not X.copied and (X.head().referential() or self.standard_Chomskian_phase_head(X))
 
         def value_from_goal(X, goal):
             if goal:
-                goal.H().features = {i(f) for f in goal.H().features}
-                log(f'\n\t\tAgree({X}°, {goal.H()}) ')
-                if feature_licensing(goal.H().phi_features(), X.phi_bundles()) and X.Condition_on_agreement_and_EPP(goal):
+                goal.head().features = {i(f) for f in goal.head().features}
+                log(f'\n\t\tAgree({X}°, {goal.head()}) ')
+                if feature_licensing(goal.head().phi_features(), X.phi_bundles()) and X.Condition_on_agreement_and_EPP(goal):
                     value(X, goal)
                 else:
                     X.features.add('*')
 
         def value(X, goal):
             log(f'valued features ')
-            for phi in (x for x in goal.H().features if x.startswith('PHI') and f'PHI:{x.split(":")[1]}:_' in X.features):
+            for phi in (x for x in goal.head().features if x.startswith('PHI') and f'PHI:{x.split(":")[1]}:_' in X.features):
                 log(f'[{phi[4:]}] ')
                 X.features.discard(f'PHI:{phi.split(":")[1]}:_')
                 X.features.add(f'{phi}')
-            X.features.add(f'PHI:IDX:{goal.H().get_id()}')
+            X.features.add(f'PHI:IDX:{goal.head().get_id()}')
             X.features.add('ΦLF')
 
         def Agree(X):

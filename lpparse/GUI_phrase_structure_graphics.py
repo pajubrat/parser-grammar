@@ -330,11 +330,15 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas.postscript(file=filename + '.eps', colormode='color')
 
     def implement_chains(self, gX):
+
         # head chains
+
         if self.application.settings.retrieve('image_parameter_head_chains', True):
             if gX.zero_level() and gX.affix() and gX.affix().copied and not self.dependency_exists(gX):
                 self.inventory['dependencies'].append(Dependency(source=gX, target=gX.top().find_node_with_identity(gX.affix().identity, gX), smooth=True))
+
         # phrasal chains
+
         if self.application.settings.retrieve('image_parameter_phrasal_chains', True):
             if gX.complex() and gX.copied and gX != gX.top() and not self.dependency_exists(gX):
                 self.inventory['dependencies'].append(Dependency(source=gX, target=gX.top().find_node_with_identity(gX.identity, gX), smooth=False))
@@ -422,7 +426,7 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_all_DPs(self, *_):
         def shrink_all_DPs_(gps):
-            if {'D', 'φ'} & gps.H().core.features():
+            if {'D', 'φ'} & gps.head().core.features():
                 gps.compressed_into_head = True
                 gps.custom_phonology = gps.R().get_phonological_string()
             else:
@@ -435,7 +439,7 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def compress_all_DPs(self, *_):
         def compress_all_DPs_(gps):
-            if {'D', 'φ'} & gps.H().core.features():
+            if {'D', 'φ'} & gps.head().core.features():
                 gps.compressed = True
             else:
                 if gps.L():
@@ -800,7 +804,7 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_into_DP(self, *_):
         for gps in self.selected_objects_into_gps_list():
-            gps.H().core.set_features({f for f in gps.H().core.features() if f not in PhraseStructure.major_cats}  | {'D', 'φ'})
+            gps.head().core.set_features({f for f in gps.head().core.features() if f not in PhraseStructure.major_cats} | {'D', 'φ'})
             gps.compressed_into_head = True
             gps.compressed = False
             self.label_stack_update(gps)
@@ -1848,7 +1852,7 @@ class InspectWindow(tk.Toplevel):
             features_lst.grid(row=0, column=0, padx=20, pady=0)
         geometry_Frame = tk.LabelFrame(self, text='Geometry', font=('Calibri', 20))
         geometry_Frame.grid(row=2, column=0, padx=20, pady=10, sticky='ew')
-        head_Label = tk.Label(geometry_Frame, text=f'Head: {gps.H()}', font=('Courier', 20))
+        head_Label = tk.Label(geometry_Frame, text=f'Head: {gps.head()}', font=('Courier', 20))
         head_Label.grid(row=0, column=0, sticky='w')
         mother_Label = tk.Label(geometry_Frame, text=f'Mother: {gps.M()}', font=('Courier', 20))
         mother_Label.grid(row=1, column=0, sticky='w')

@@ -32,7 +32,7 @@ class Focus:
 
                     # Focus sets for whole events (a subtype of "wide focus")
 
-                    if x.denotes_event():
+                    if X('event'):
                         self.focus_interpretations.append(f'Wide focus on {x.label()}P ({focus_f})')
                         log(f'\n\tReconstructed wide focus for {x.label()}P ({focus_f})')
                         if x.core.get_idx_tuple('PRE'):

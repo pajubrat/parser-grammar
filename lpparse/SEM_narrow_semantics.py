@@ -6,6 +6,7 @@ from SEM_predicates_relations_events import PredicatesRelationsEvents
 from SEM_thematic_roles import ThematicRoles
 from SEM_predicates import Predicates
 from SEM_focus import Focus
+from phrase_structure import some
 from global_cognition import GlobalCognition
 
 class NarrowSemantics:
@@ -127,7 +128,7 @@ class NarrowSemantics:
                 # Argument-predicate pairs
 
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and \
-                        'Φ' in X.core and not X.core('referential') and not X.check({'N'}):
+                        'Φ' in X.core and not X.core('referential') and not X({'N'}):
                     self.speaker_model.results.store_output_field('Predicates', self.predicates.reconstruct(X))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False
@@ -175,7 +176,7 @@ class NarrowSemantics:
 
                     # For heuristic purposes so that referential arguments are recognized by BT
                     if space == 'QND':
-                        X.H().core.add_features({'REF'})
+                        X.head().core.add_features({'REF'})
 
     def failure(self):
         if self.phi_interpretation_failed or \
@@ -191,7 +192,7 @@ class NarrowSemantics:
             return next((x for x in X.path() if feature_set.issubset(x.core.features())), None)
 
         def get_tailed_head(X, tail_set):
-            return next((x for x in X.path() if x.zero_level() and x.check_some(tail_set) and x.check(tail_set)), None)
+            return next((x for x in X.path() if x.zero_level() and x(some(tail_set)) and x(tail_set)), None)
 
         def interpret_argument_tailing(ps, tailed_head):
             if tailed_head:

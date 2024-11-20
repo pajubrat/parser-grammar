@@ -42,12 +42,15 @@ class LF:
         logging = kwargs.get('logging', True)
         self.logging = logging
         self.failed_feature = ''
-        if not X.copied:
+        if X.copied:
+            if not self.pass_LF_legibility(X.copied):
+                return False
+        else:
             if X.zero_level():
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(X):
                         if logging:
-                            log(f'\n\t{X} 𝗳𝗮𝗶𝗹𝗲𝗱 {test_name} ')
+                            log(f'\n\t{X} ({X.top()}) FAILED {test_name} ')
                             if self.failed_feature:
                                 log(f'𝗳𝗼𝗿 [{self.failed_feature}]')
                         self.error_report_for_external_callers = f'{X} failed {test_name}.'
@@ -62,10 +65,11 @@ class LF:
     def selection_test(self, X):
         for key in X.core.selection_keys():
             if key in self.selection_violation_test.keys():
-                if not self.selection_violation_test[key](X, X.core.get_selection_features(key)):
-                    if self.logging:
-                        log(f'\t{X} 𝗳𝗮𝗶𝗹𝗲𝗱 {key}: {X.core.get_selection_features(key)} ')
-                    return True     # Failed test
+                if X.core.get_selection_features(key):
+                    if not self.selection_violation_test[key](X, X.core.get_selection_features(key)):
+                        if self.logging:
+                            log(f'\t{X} 𝗳𝗮𝗶𝗹𝗲𝗱 {key}: {X.core.get_selection_features(key)} ')
+                        return True     # Failed test
 
     def final_tail_check(self, X):
         if X.complex():

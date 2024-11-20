@@ -12,10 +12,10 @@ class PredicatesRelationsEvents:
         return f'{self.narrow_semantics.semantic_type[X.label()][1:]}'
 
     def accept(self, X):
-        return ['π', 'κ'] in X.H().core
+        return ['π', 'κ'] in X.head().core
 
     def has_PE_index(self, X):
-        return self.narrow_semantics.get_idx_tuple(X.H(), 'PRE')
+        return self.narrow_semantics.get_idx_tuple(X.head(), 'PRE')
 
     def get_object(self, idx):
         return self.inventory[idx]
@@ -41,7 +41,7 @@ class PredicatesRelationsEvents:
                 'Reference': self.present(X)}
 
     def participant_composition(self, Pred):
-        return list({x.identify_argument().H().core.semantic_index('QND') for x in Pred if x.identify_argument()})
+        return list({x.identify_argument().head().core.semantic_index('QND') for x in Pred if x.identify_argument()})
 
     def remove_object(self, idx):
         self.inventory.pop(idx, None)

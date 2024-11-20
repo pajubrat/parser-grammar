@@ -46,8 +46,8 @@ class Discourse:
         if not ps.copied:
             idx = self.get_inventory_index(ps)
             if idx:
-                self.records_of_attentional_processing[idx]['Name'] = f'{ps.H().max().illustrate()}'
-                self.records_of_attentional_processing[idx]['Constituent'] = ps.H()
+                self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
+                self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
 
     def interpret_discourse_features(self, X):
         results = []
@@ -85,10 +85,10 @@ class Discourse:
     def collect_arguments(self, X):
         arguments = set()
         if X.complex():
-            if X.L().H().get_idx_tuple('QND'):
-                arguments.add(X.L().H())
-            if X.R().H().get_idx_tuple('QND'):
-                arguments.add(X.R().H())
+            if X.L().head().get_idx_tuple('QND'):
+                arguments.add(X.L().head())
+            if X.R().head().get_idx_tuple('QND'):
+                arguments.add(X.R().head())
             if X.R().adjunct:
                 arguments = arguments | self.collect_arguments(X.R())
                 arguments = arguments | self.collect_arguments(X.L())
@@ -111,22 +111,22 @@ class Discourse:
         return next((node for node in X if node.complex() and node.L().core.property('finite_tense')), None)
 
     def get_force_features(self, X):
-        return {f for f in X.H().core.features() if f[:5] == 'FORCE'}
+        return {f for f in X.head().core.features() if f[:5] == 'FORCE'}
 
     def compute_speaker_attitude(self, X):
-        if self.get_force_features(X.H()):
-            for count, force_feature in enumerate(self.get_force_features(X.H())):
+        if self.get_force_features(X.head()):
+            for count, force_feature in enumerate(self.get_force_features(X.head())):
                 if force_feature in self.attitudes:
                     return self.attitudes[force_feature]
         else:
             return 'Declarative'
 
     def unexpected_order_occurred(self, X, starting_point_head):
-        if self.narrow_semantics.speaker_model.results.first_solution_found or not self.get_inventory_index(X.H()):
+        if self.narrow_semantics.speaker_model.results.first_solution_found or not self.get_inventory_index(X.head()):
             return
 
-        idx = self.get_inventory_index(X.H())
-        if starting_point_head in {const for const in X.H().path() if const.zero_level()}:
+        idx = self.get_inventory_index(X.head())
+        if starting_point_head in {const for const in X.head().path() if const.zero_level()}:
             direction = 'High'
         else:
             direction = 'Low'

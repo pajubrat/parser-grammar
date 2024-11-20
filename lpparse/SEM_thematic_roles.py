@@ -26,17 +26,17 @@ class ThematicRoles:
                     theta_role = 'Agent'
             else:
                 theta_role = '?'
-        elif X.check({'V'}) and X.check({'CLASS/TR'}) and X.pro_edge():
+        elif X({'V'}) and X({'CLASS/TR'}) and X.pro_edge():
             assignee = X.pro_edge()[0]
             theta_role = 'Patient'
         if assignee:
-            if assignee.check({'EXPL'}):
+            if assignee({'EXPL'}):
                 log(f'\n\t\tExpletive cannot receive a thematic role from {X}.')
                 self.failure = True
                 return
-            if assignee.H().core('referential'):
-                if assignee.H().mother_:
-                    argument_str = f'{assignee.H().mother_.illustrate()}'
+            if assignee('referential'):
+                if assignee.head().mother_:
+                    argument_str = f'{assignee.head().mother_.illustrate()}'
                 else:
                     argument_str = f'{assignee.H()}'
             else:
