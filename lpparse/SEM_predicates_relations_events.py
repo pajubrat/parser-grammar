@@ -28,7 +28,8 @@ class PredicatesRelationsEvents:
         if 'π' in X.core.features():
             log(f'\n\t\tProject {X.label()}-event ({idx}, PRE)')
             Pred = X.predicate_composition()
-            self.inventory[idx].update({'Composition': Pred, 'Participants': self.participant_composition(Pred)})
+            if Pred:
+                self.inventory[idx].update({'Composition': Pred, 'Participants': self.participant_composition(Pred)})
         if 'κ' in X.core.features():
             log(f'\n\t\tProject {X.label()}-concept ({idx}, PRE)')
             self.inventory[idx].update({'Concept': f'\'{".".join(X.core.get_lf())}\''})

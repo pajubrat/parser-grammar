@@ -147,9 +147,10 @@ class SpeakerModel:
             self.results.record_derivational_step(X, 'Phrase structure in syntactic working memory')
             for N in self.plausibility_metrics.filter_and_rank(X, W):
                 Y = X.target_left_branch_and_copy(N).transfer().attach(W.copy())
-                PhraseStructure.cyclic = True
-                Y = Y.bottom().reconstruct()
                 log(f'\n\t= {Y.top()}\n')
+                PhraseStructure.cyclic = True
+                log(f'\n\tCyclic reconstruction:\n')
+                Y = Y.bottom().reconstruct()
                 self.derivational_search_function(phrase_structure=secure_copy(Y), word_list=lst, index=index + 1)
                 if self.exit:
                     break
@@ -169,7 +170,7 @@ class SpeakerModel:
         self.results.record_derivational_step(X, 'PF-interface')
         PhraseStructure.cyclic = False
         log('\n\n----Noncyclic derivation------------------------------------------------------------------------------\n')
-        log(f'\n{X}\n')
+        log(f'\n\t{X.top()}\n')
         X.transfer()
         X = X.top()
         log('\n\n------------------------------------------------------------------------------------------------------\n')

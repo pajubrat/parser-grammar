@@ -1837,10 +1837,10 @@ class InspectWindow(tk.Toplevel):
 
         constituent = tk.Label(self, text=f'{gps}({gps.label()})', font=('Calibri', 30, 'bold'))
         constituent.grid(row=0, column=0, sticky='')
-        if gps.features:
+        if gps.core.features():
             feature_lst = ''
             width = 0
-            for f in sorted(gps.features):
+            for f in sorted(gps.core.features()):
                 width += len(f) + 3
                 if width > 50:
                     feature_lst += '\n'
@@ -1862,14 +1862,14 @@ class InspectWindow(tk.Toplevel):
         local_edge_Label.grid(row=3, column=0, sticky='w')
         path_Label = tk.Label(geometry_Frame, text=f'Path: {", ".join([str(x) for x in gps.path()])}', font=('Courier', 20))
         path_Label.grid(row=4, column=0, sticky='w')
-        search_Label = tk.Label(geometry_Frame, text=f'Search: {", ".join([str(x) for x in gps.minimal_search()])}', font=('Courier', 20))
-        search_Label.grid(row=5, column=0, sticky='w')
         container_Label = tk.Label(geometry_Frame, text=f'Container: {gps.container()}', font=('Courier', 20))
         container_Label.grid(row=6, column=0, sticky='w')
         max_Label = tk.Label(geometry_Frame, text=f'Max: {gps.max()}', font=('Courier', 20))
         max_Label.grid(row=7, column=0, sticky='w')
         copied_Label = tk.Label(geometry_Frame, text=f'Copied: {gps.copied}', font=('Courier', 20))
         copied_Label.grid(row=8, column=0, sticky='w')
+        search_Label = tk.Label(geometry_Frame, text=f'MSearch: {gps.__call__()}', font=('Courier', 20))
+        search_Label.grid(row=9, column=0, sticky='w')
         self.grid_columnconfigure(0, weight=1)
 
     def show(self):

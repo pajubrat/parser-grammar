@@ -1,7 +1,6 @@
 from support import set_logging, log
 from operator import itemgetter
 from phrase_structure import PhraseStructure
-from phrase_structure_inner_core import PhraseStructureCore
 import random
 
 
@@ -35,13 +34,15 @@ class PlausibilityMetrics:
     def filter_and_rank(self, X, w):
         if X.bottom().w_internal():
             return [X.bottom()]
-        return self.rank(self.filter(X.geometrical_minimal_search(), w), w)
+        return self.rank(self.filter(X.collect(geometrical=True, self=True)), w)
 
-    def filter(self, X_right_edge, w):
-        set_logging(False)
-        return [N for N in X_right_edge if not (N.complex() and not self.left_branch_filter(N))]
+    def filter(self, X_right_edge):
+        return [N for N in X_right_edge if N.zero_level() or self.left_branch_filter(N)]
 
     def rank(self, site_list, W):
+        if self.speaker_model.settings.retrieve('dev_logging', False):
+            self.speaker_model.settings.application.dev_logging(f'\nRanking {site_list[0].top()} + {W}')
+
         weighted_list = []
         for X, new_weight in self.create_baseline_weighting([(site, 0) for site in site_list]):
             for key in self.plausibility_conditions:
@@ -64,7 +65,7 @@ class PlausibilityMetrics:
         return X.spec_selection(W)
 
     @staticmethod
-    def comp_selection(X,W):
+    def comp_selection(X, W):
         return X.comp_selection(W)
 
     def negative_semantic_match(self, site, word):
@@ -100,6 +101,7 @@ class PlausibilityMetrics:
             return [(site, j) for j, (site, w) in enumerate(weighted_site_list, start=1)]
 
     def left_branch_filter(self, X):
+        set_logging(False)
         self.speaker_model.LF.active_test_battery = self.left_branch_filter_test_battery
         return self.speaker_model.LF.pass_LF_legibility(X.copy().transfer(), logging=False)
 

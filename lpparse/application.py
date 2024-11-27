@@ -175,3 +175,7 @@ class Application(tk.Tk):
             image_window.draw_and_save_phrase_structure_tree_as_postscript(lf[0],
                                                                            f'{image_window.settings.retrieve("file_study_folder", "")}/'
                                                                            f'{data_item["index"]}')
+
+    def dev_logging(self, stri):
+        self.local_file_system.write_dev_log(stri)
+

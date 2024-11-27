@@ -13,7 +13,7 @@ class LocalFileSystem:
         self.external_sources = {}
         self.encoding = 'utf-8'
         self.file_handle = {}
-        self.output_files = ['simple log', 'results', 'resources', 'errors', 'descriptive', 'numeration output']
+        self.output_files = ['simple log', 'results', 'resources', 'errors', 'descriptive', 'numeration output', 'dev']
 
     def initialize_output_files(self):
         self.configure_logging()
@@ -198,6 +198,9 @@ class LocalFileSystem:
             for key in speaker_model.results.resources:
                 self.file_handle['resources'].write(f'{speaker_model.results.resources[key]["n"]},')
         self.file_handle['resources'].write('\n')
+
+    def write_dev_log(self, stri):
+        self.file_handle['dev'].write(stri)
 
     def write_comment_line(self, sentence_lst):
         if sentence_lst[0].startswith("'"):

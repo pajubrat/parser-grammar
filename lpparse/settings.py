@@ -69,6 +69,7 @@ class Settings:
                                  "redundancy_rules": self.folders['lexicon'] / self.data['file_redundancy_rules'],
                                  "errors": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_observational_adequacy_errors.txt'),
                                  "descriptive": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_descriptive_adequacy_errors.txt'),
+                                 "dev": self.folders['study'] / 'dev_log.txt',
                                  "simple log": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_simple_log.txt')
                                  }
 
@@ -84,10 +85,7 @@ class Settings:
         self.data[key] = value
 
     def retrieve(self, key, value=None):
-        if key in self.data:
-            return self.data[key]
-        else:
-            return value
+        return self.data.get(key, value)
 
     def set(self, key, value):
         self.data[key] = value

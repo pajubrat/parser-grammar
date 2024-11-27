@@ -1,6 +1,5 @@
 from support import log, set_logging
 from phrase_structure import PhraseStructure
-from phrase_structure_inner_core import PhraseStructureCore
 
 def for_lf_interface(features):
     return {f for f in features if f.startswith('!') or f.startswith('-') or f.startswith('+') or f == '&P'}
@@ -42,15 +41,14 @@ class LF:
         logging = kwargs.get('logging', True)
         self.logging = logging
         self.failed_feature = ''
-        if X.copied:
-            if not self.pass_LF_legibility(X.copied):
-                return False
-        else:
+        if not X.copied:
             if X.zero_level():
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(X):
+                        if self.speaker_model.settings.retrieve('dev_logging', False):
+                            self.speaker_model.settings.application.dev_logging(f'\n\tFailed {test_name}, {X.top().illustrate()})')
                         if logging:
-                            log(f'\n\t{X} ({X.top()}) FAILED {test_name} ')
+                            log(f'\n\t{X} ({X.max().illustrate()}) FAILED {test_name} ')
                             if self.failed_feature:
                                 log(f'𝗳𝗼𝗿 [{self.failed_feature}]')
                         self.error_report_for_external_callers = f'{X} failed {test_name}.'
@@ -67,6 +65,8 @@ class LF:
             if key in self.selection_violation_test.keys():
                 if X.core.get_selection_features(key):
                     if not self.selection_violation_test[key](X, X.core.get_selection_features(key)):
+                        if self.speaker_model.settings.retrieve('dev_logging', False):
+                            self.speaker_model.settings.application.dev_logging(f'\n\t{X} failed {key} {X.core.get_selection_features(key)}. ')
                         if self.logging:
                             log(f'\t{X} 𝗳𝗮𝗶𝗹𝗲𝗱 {key}: {X.core.get_selection_features(key)} ')
                         return True     # Failed test
