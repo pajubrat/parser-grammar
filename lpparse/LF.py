@@ -29,7 +29,7 @@ class LF:
                 ('Head Integrity test', PhraseStructure.unrecognized_label),
                 ('Feature Conflict test', PhraseStructure.feature_conflict),
                 ('Probe-Goal test', PhraseStructure.probe_goal_test),
-                ('Semantic Complement test', PhraseStructure.semantic_complement),
+                ('Semantic Complement test', PhraseStructure.semantic_selection),
                 ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
                 ('EPP test', PhraseStructure.EPP_violation),
                 ('Core integrity', PhraseStructure.core_integrity),

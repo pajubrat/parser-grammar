@@ -2,6 +2,9 @@ import itertools
 from support import log
 import re
 
+# These abbreviations define notions that are typically used in several places,
+# so that all changes made here will generalize everywhere
+
 abstraction_funct = {'EHM': lambda X: 'ε' in X,
                      'EF': lambda X: ['EF', 'EF*'] in X,
                      'EPP': lambda X: 'EF*' in X,
@@ -61,6 +64,9 @@ def mismatch(G, P):
 
 class PhraseStructureCore:
     def __init__(self, **kwargs):
+
+        # The core contains a list of feature sets (feature bundles)
+
         if isinstance(kwargs.get('features'), set):
             self._features = [kwargs.get('features', set())]
         elif isinstance(kwargs.get('features'), list):
@@ -69,10 +75,19 @@ class PhraseStructureCore:
             self._features = [set()]
 
     def __contains__(self, f=None):
+
+        # Strings are matches with features
+
         if isinstance(f, str):
             return f in self.features()
+
+        # Sets match conjunctively
+
         if isinstance(f, set):
             return f <= self.features()
+
+        # Lists match disjunctively
+
         if isinstance(f, list):
             return set(f) & self.features()
 
@@ -84,6 +99,9 @@ class PhraseStructureCore:
 
     def features(self, **kwargs):
         fset = set().union(*[fset for fset in self._features])
+
+        # We can probe features which match with strings and substrings
+        # todo This will be implemented by regex pattern matching
 
         if kwargs.get('match'):
             fset2 = set()
@@ -98,6 +116,8 @@ class PhraseStructureCore:
                     elif pattern in f:
                         fset2.add(f)
             fset = fset2
+
+        # We can also probe with features by referring to their type
 
         if kwargs.get('type'):
             for feature_type in kwargs.get('type', []):
@@ -150,9 +170,11 @@ class PhraseStructureCore:
     def m_selection_violation(self, i, current_morph_fset):
         def get_negative_m_selection_features(fset):
             return set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('-mCOMP=')])
+
         def get_positive_m_selection_features(fset):
             s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
             return {f for f in s if not f.endswith('/else')}
+
         def get_positive_root_selection_features(fset):
             s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
             return {f.split('/')[0] for f in s if f.endswith('/else')}
@@ -282,6 +304,7 @@ class PhraseStructureCore:
     def get_referential_index(self, space):
         def index_(f):
             return f.split(':')[1].split(',')[0]
+
         def space_(f):
             return f.split(':')[1].split(',')[1]
 

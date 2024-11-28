@@ -1,0 +1,83 @@
+
+# METADATA
+meta_author= Anon
+meta_year= 2024
+meta_date= April
+meta_study_id= 16
+meta_study_folder=			language data working directory/study-20-clitics
+meta_test_corpus=			clitics_corpus.txt
+numeration=					none
+
+# GENERAL SIMULATION PARAMETERS
+general_parameter_only_first_solution = True
+ignore_ungrammatical_sentences = False
+console_output = Full
+stop_at_unknown_lexical_item = False
+logging = True
+use_numeration = False
+dev_logging = True
+
+general_parameter_project_objects = True
+
+# FILES
+file_study_folder=language data working directory/study-20-clitics
+file_test_corpus=clitics_corpus.txt
+file_lexicon_folder=language data working directory/lexicons
+file_lexicons=lexicon.txt;UGmorphemes.txt;inflections.txt
+file_redundancy_rules=redundancy_rules.txt
+
+# IMAGE PARAMETERS
+image_parameter_words = True
+image_parameter_glosses = True
+image_parameter_adjuncts = False
+image_parameter_complex_heads = False
+image_parameter_head_chains = False
+image_parameter_phrasal_chains = True
+image_parameter_phrasal_complex_heads = False
+image_parameter_covert_complex_heads = False
+image_parameter_trivial_head_chains = False
+image_parameter_DP_hypothesis = True
+image_parameter_shrink_all_DPs = True
+image_parameter_chain_curvature = 1.5
+image_parameter_font = Times New Roman
+image_parameter_features = ###
+image_parameter_visualization = ### > ###
+
+# UG COMPONENTS
+#	Agree
+#	standard = standard theory (Chomsky 2000, 2001, 2008)
+#	revised = current best formulation
+UG_parameter_Agree = revised
+EPP_test = True
+
+# Phase theory
+UG_parameter_phase_heads = C;ASP;FORCE;IMPSS
+UG_parameter_phase_heads_exclude = φ;v-;TO/inf
+
+# Four conditions regulating word formation										
+head_complement_selection = True
+epsilon = True
+w_selection = True
+UG_parameter_middle_field_HM = True
+
+#	Semantics
+calculate_assignments = True
+calculate_pragmatics = False
+calculate_thematic_roles = False
+project_objects = True
+generate_argument_links = True
+calculate_predicates = True
+calculate_operator_bindings = True
+calculate_DIS_features = True
+calculate_focus = True
+
+# PARSING HEURISTICS AND WEIGHTS
+extra_ranking = True
+filter = True
+lexical_anticipation = True
+closure = Bottom-up
+working_memory = True
+spec_selection = 100
+comp_selection = 100
+negative_semantics_match = 100
+lf_legibility_condition = 100

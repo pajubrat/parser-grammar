@@ -44,7 +44,7 @@ class NarrowSemantics:
 
         self.semantic_spaces = ['QND', 'PRE', 'GLOBAL']
 
-        self.semantic_type = {'T/fin':'§Event',
+        self.semantic_type = {'T/fin': '§Event',
                               'D': '§Thing',
                               'φ': '§Thing',
                               'Q': '§Quantifier',

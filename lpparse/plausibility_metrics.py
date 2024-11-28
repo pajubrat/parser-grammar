@@ -24,7 +24,7 @@ class PlausibilityMetrics:
              }
 
         self.left_branch_filter_test_battery = [('Selection test', self.speaker_model.LF.selection_test),
-                                                ('Semantic Complement test', PhraseStructure.semantic_complement),
+                                                ('Semantic Complement test', PhraseStructure.semantic_selection),
                                                 ('Probe_Goal test', PhraseStructure.probe_goal_test),
                                                 ('Head Integrity test', PhraseStructure.unrecognized_label)]
 
@@ -34,7 +34,7 @@ class PlausibilityMetrics:
     def filter_and_rank(self, X, w):
         if X.bottom().w_internal():
             return [X.bottom()]
-        return self.rank(self.filter(X.collect(geometrical=True, self=True)), w)
+        return self.rank(self.filter(X.collect_into_sWM(geometrical=True, self=True)), w)
 
     def filter(self, X_right_edge):
         return [N for N in X_right_edge if N.zero_level() or self.left_branch_filter(N)]

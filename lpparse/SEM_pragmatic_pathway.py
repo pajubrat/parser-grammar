@@ -1,5 +1,7 @@
 from support import log
 
+# This version is under construction (was functional in earlier iterations)
+
 class Discourse:
     def __init__(self, narrow_semantics):
         self.narrow_semantics = narrow_semantics
