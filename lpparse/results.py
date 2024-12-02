@@ -157,7 +157,7 @@ class Results:
         elif key == 'Reconstruction':
             log(f'\n\t\t{comment} = {target}')
         elif key != 'Agree' and key != 'Lexical Retrieval' and 'Extraposition' not in key:
-            log(f'\n\t\t{key}({target.illustrate()}) => {target.top()}\n\n')
+            log(f'\n\t\t{key}({target.illustrate()}) => {target.path()}\n\n')
             if comment:
                 log(f'({comment})')
 

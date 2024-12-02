@@ -8,6 +8,7 @@ class ThematicRoles:
         assignee = None
         self.failre = False
         theta_role = ''
+        pro_edge = X.path(collect=True) + [X.generate_pro()]
 
         if ['COMP:φ', 'COMP:D', '!COMP:φ', '!COMP:D'] in X.core and X.complement():
             assignee = X.complement()
@@ -15,8 +16,8 @@ class ThematicRoles:
                 theta_role = 'Goal'
             else:
                 theta_role = 'Patient'
-        elif not X.core('EPP') and ['SPEC:φ', 'SPEC:D', '!SPEC:φ', '!SPEC:D'] in X.core and X.pro_edge():
-            assignee = X.pro_edge()[0]
+        elif not X.core('EPP') and ['SPEC:φ', 'SPEC:D', '!SPEC:φ', '!SPEC:D'] in X.core and pro_edge:
+            assignee = pro_edge[0]
             if assignee.core('referential'):
                 if X.core('nominal'):
                     theta_role = 'Agent/Possessor'
@@ -26,8 +27,8 @@ class ThematicRoles:
                     theta_role = 'Agent'
             else:
                 theta_role = '?'
-        elif X({'V'}) and X({'CLASS/TR'}) and X.pro_edge():
-            assignee = X.pro_edge()[0]
+        elif X({'V'}) and X({'CLASS/TR'}) and pro_edge:
+            assignee = pro_edge[0]
             theta_role = 'Patient'
         if assignee:
             if assignee({'EXPL'}):

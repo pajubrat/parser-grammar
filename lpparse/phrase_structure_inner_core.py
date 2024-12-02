@@ -201,7 +201,7 @@ class PhraseStructureCore:
                 log(f'[{phi[5:]}]')
         else:
             log(f'nothing')
-        log(f' from goal {Y_goal.max()}.')
+        log(f' from goal {Y_goal.path(domain="max")}.')
         if len(fset) > 1:   # Partial agreement does not create ΦLF
             self.add_features({'ΦLF'})
             self.remove_features({'?ΦLF'})

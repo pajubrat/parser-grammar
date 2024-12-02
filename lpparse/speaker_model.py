@@ -74,6 +74,7 @@ class SpeakerModel:
         self.derivational_search_function(word_list=data_item["word_list"].copy())
 
     # Recursive derivational search function (parser)
+
     def derivational_search_function(self, **kwargs):
         X = kwargs.get('phrase_structure', None)
         lst = kwargs.get('word_list', [])
@@ -163,7 +164,7 @@ class SpeakerModel:
                 # Create candidate solution [[X...] W]
 
                 Y = X.target_left_branch_and_copy(N).transfer().attach(W.copy())
-                log(f'\n\t= {Y.top()}\n')
+                log(f'\n\t= {Y.path()}\n')
                 PhraseStructure.cyclic = True
                 log(f'\n\tCyclic reconstruction:\n')
 
@@ -199,12 +200,12 @@ class SpeakerModel:
         self.results.record_derivational_step(X, 'PF-interface')
         PhraseStructure.cyclic = False
         log('\n\n----Noncyclic derivation------------------------------------------------------------------------------\n')
-        log(f'\n\t{X.top()}\n')
+        log(f'\n\t{X.path()}\n')
 
         # Noncyclic transfer
 
         X.transfer()
-        X = X.top()
+        X = X.path()
         log('\n\n------------------------------------------------------------------------------------------------------\n')
         log(f'\n\t= LF-interface {X}\n\n')
         self.results.record_derivational_step(X, 'LF-interface')

@@ -27,7 +27,7 @@ class QuantifiersNumeralsDenotations:
         self.all_assignments = []
 
     def project(self, X, idx):
-        log(f'\n\t\tProject object ({idx}, QND) for {X.max().illustrate()}')
+        log(f'\n\t\tProject object ({idx}, QND) for {X.path(domain="max").illustrate()}')
         self.inventory[idx] = self.extrapolate_semantic_attributes(X)
         return self.inventory[idx]
 
@@ -48,7 +48,7 @@ class QuantifiersNumeralsDenotations:
 
     def object_presentation(self, X):
         if X.core('referential'):
-            return f'{X.max().illustrate()}'
+            return f'{X.path(domain="max").illustrate()}'
         return f'pro({X})'
 
     def compatible(self, idx1, idx2):

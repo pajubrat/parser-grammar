@@ -189,10 +189,10 @@ class NarrowSemantics:
 
     def interpret_tail_features(self, X):
         def in_scope_of(X, feature_set):
-            return next((x for x in X.path() if feature_set.issubset(x.core.features())), None)
+            return next((x for x in X.path(collect=True) if feature_set.issubset(x.core.features())), None)
 
         def get_tailed_head(X, tail_set):
-            return next((x for x in X.path() if x.zero_level() and x(some(tail_set)) and x(tail_set)), None)
+            return next((x for x in X.path(collect=True) if x.zero_level() and x(some(tail_set)) and x(tail_set)), None)
 
         def interpret_argument_tailing(ps, tailed_head):
             if tailed_head:

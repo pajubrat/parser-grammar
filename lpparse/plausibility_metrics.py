@@ -41,7 +41,7 @@ class PlausibilityMetrics:
 
     def rank(self, site_list, W):
         if self.speaker_model.settings.retrieve('dev_logging', False):
-            self.speaker_model.settings.application.dev_logging(f'\nRanking {site_list[0].top()} + {W}')
+            self.speaker_model.settings.application.dev_logging(f'\nRanking {site_list[0].path()} + {W}')
 
         weighted_list = []
         for X, new_weight in self.create_baseline_weighting([(site, 0) for site in site_list]):

@@ -30,14 +30,14 @@ class OperatorVariableModule:
 
     @staticmethod
     def find_overt_scope(X, Opf):
-        return next(({'Head': X, 'Scope': Y, 'Overt': True} for Y in X.path() if
+        return next(({'Head': X, 'Scope': Y, 'Overt': True} for Y in X.path(collect=True) if
                      {'OP', 'Fin', Opf} in Y.core), {'Head': X, 'Scope': None, 'Overt': False})
 
     @staticmethod
     def interpret_covert_scope(binding_dict, Opf):
         if not binding_dict['Scope'] and '-insitu' not in binding_dict['Head'].core.bundle_features(Opf):
             return next(({'Head': binding_dict['Head'], 'Scope': X, 'Overt': False}
-                         for X in binding_dict['Head'].self_path() if
+                         for X in binding_dict['Head'].path(collect=True, self=True) if
                          X.core('finite_left_periphery')),
                         {'Head': binding_dict['Head'], 'Scope': None, 'Overt': False})
         return binding_dict

@@ -38,25 +38,24 @@ class LF:
         return [test for test in all_legibility_tests if self.speaker_model.settings.retrieve(test[0], True)]
 
     def pass_LF_legibility(self, X, **kwargs):
-        logging = kwargs.get('logging', True)
-        self.logging = logging
+        self.logging = kwargs.get('logging', True)
         self.failed_feature = ''
         if not X.copied:
             if X.zero_level():
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(X):
                         if self.speaker_model.settings.retrieve('dev_logging', False):
-                            self.speaker_model.settings.application.dev_logging(f'\n\tFailed {test_name}, {X.top().illustrate()})')
-                        if logging:
-                            log(f'\n\t{X} ({X.max().illustrate()}) FAILED {test_name} ')
+                            self.speaker_model.settings.application.dev_logging(f'\n\tFailed {test_name}, {X.path().illustrate()})')
+                        if self.logging:
+                            log(f'\n\t{X} ({X.path(domain="max").illustrate()}) FAILED {test_name} ')
                             if self.failed_feature:
-                                log(f'𝗳𝗼𝗿 [{self.failed_feature}]')
+                                log(f'for [{self.failed_feature}]')
                         self.error_report_for_external_callers = f'{X} failed {test_name}.'
                         return False
             else:
-                if not self.pass_LF_legibility(X.L(), logging=logging):
+                if not self.pass_LF_legibility(X.L(), logging=self.logging):
                     return False
-                if not self.pass_LF_legibility(X.R(), logging=logging):
+                if not self.pass_LF_legibility(X.R(), logging=self.logging):
                     return False
         return True
 
@@ -72,19 +71,23 @@ class LF:
                         return True     # Failed test
 
     def final_tail_check(self, X):
+
+        # Recursion
+
         if X.complex():
             if not X.L().copied and not self.final_tail_check(X.L()):
                 return False
             if not X.R().copied and not self.final_tail_check(X.R()):
                 return False
-        if X.zero_level() and X.max() != X.top() and X.get_tail_sets() and not X.tail_test(weak_test=X.core('referential')):
-            log(f'\n\t\t𝗣𝗼𝘀𝘁-𝘀𝘆𝗻𝘁𝗮𝗰𝘁𝗶𝗰 𝘁𝗮𝗶𝗹 𝘁𝗲𝘀𝘁 𝗳𝗼𝗿 \'{X.illustrate()}\' 𝗳𝗮𝗶𝗹𝗲𝗱.')
+
+        # Zero-level categories are tested if they are not heads of highest projections
+        # Prepositions and adverbials use the strong test
+
+        if X.zero_level() and \
+                X.path(domain='max') != X.path() and \
+                X.get_tail_sets() and \
+                not X.tail_test(weak_test=not (X.core('preposition') or X.core('adverbial'))):
+            log(f'\n\t\tPostsyntactic tail test for \'{X.illustrate()}\' failed.')
             return False
         return True
 
-    def LF_legibility_test_detached(self, ps):
-        def detached(ps):
-            ps.mother_ = None
-            return ps
-        self.active_test_battery = self.LF_legibility_tests
-        return self.pass_LF_legibility(detached(ps.copy()), logging=False)

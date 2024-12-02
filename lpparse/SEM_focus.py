@@ -22,7 +22,8 @@ class Focus:
 
                         if x.core.get_idx_tuple('QND'):
                             idx = x.core.get_idx_tuple('QND')[0]
-                            self.narrow_semantics.quantifiers_numerals_denotations.update_discourse_inventory(idx, {'Focus set': f'{{{x.max().illustrate},...}}'})
+
+                            self.narrow_semantics.quantifiers_numerals_denotations.update_discourse_inventory(idx, {'Focus set': f'{{{x.path(max=True).illustrate},...}}'})
 
                         # Focus sets for concepts
 
