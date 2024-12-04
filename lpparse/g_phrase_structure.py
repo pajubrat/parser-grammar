@@ -10,11 +10,11 @@ class GPhraseStructure(PhraseStructure):
         super().__init__(left, right, **kwargs)
 
         # Properties of regular constituents
+
         self.core = source.core
         self.adjunct = source.adjunct
         self.identity = source.identity
         self.copied = source.copied
-        self.phrasal_zero = source.phrasal_zero
         self.flip = False
 
         self.custom_label = None
@@ -42,7 +42,6 @@ class GPhraseStructure(PhraseStructure):
         self.Agree_target = None
         self.source = source
         self.compressed = False
-        self.compressed_into_head = False
         self.label_stack = self.generate_label_stack()
         self.custom_arcs = []
         self.ellipsis = None
@@ -125,7 +124,7 @@ class GPhraseStructure(PhraseStructure):
     def remove_overlap_(self):
         """Stretches child nodes apart if their offspring create overlap"""
         # Horizontal overlap
-        if self.complex() and not self.compressed_into_head:
+        if self.complex():
             if not self.L().compressed:
                 self.L().remove_overlap_()
             if not self.R().compressed:
@@ -146,19 +145,17 @@ class GPhraseStructure(PhraseStructure):
 
             # Remove vertical overlap from each column (i.e. high label stack overlaps with constituent below)
             # This brute force algorithm is inefficient (todo)
-            if not self.L().compressed and not self.compressed_into_head:
+            if not self.L().compressed:
                 lst = self.L().rich_labels()     # Find high labels from LEFT that can in principle overlap
                 for node in lst:
-                    if not self.R().compressed and not self.compressed_into_head:
+                    if not self.R().compressed:
                         if self.R().vertical_overlap(node): # find overlaps from RIGHT
                             self.L().move_x(-0.5)            # and if found, stretch
                             self.R().move_x(0.5)
 
     def boundary_points(self):
         boundary = set()
-        if self.compressed_into_head:
-            boundary.add((self.x, self.y))
-        elif self.compressed:
+        if self.compressed:
             boundary.add((self.L().x, self.L().y))
             boundary.add((self.R().x, self.R().y))
         else:
@@ -175,17 +172,13 @@ class GPhraseStructure(PhraseStructure):
             right_x = self.x
         if self.y > depth:
             depth = self.y
-        if self.complex() and not self.compressed and not self.compressed_into_head:
+        if self.complex() and not self.compressed:
             left_x, right_x, depth = self.L().find_boundaries(left_x, right_x, depth)
             left_x, right_x, depth = self.R().find_boundaries(left_x, right_x, depth)
         return left_x, right_x, depth
 
     def rich_labels(self):
         lst = []
-        if self.L() and not self.L().compressed_into_head:
-            lst += self.L().rich_labels()
-        if self.R() and not self.R().compressed_into_head:
-            lst += self.R().rich_labels()
         if self.label_size() > 2:
             lst.append(self)
         return lst
@@ -193,14 +186,6 @@ class GPhraseStructure(PhraseStructure):
     def vertical_overlap(self, node):
         if self.x == node.x and self.y == node.y + 1:
             return True
-        if self.L() and not self.compressed_into_head:
-            Z = self.L().vertical_overlap(node)
-            if Z:
-                return True
-        if self.R() and not self.compressed_into_head:
-            Z = self.R().vertical_overlap(node)
-            if Z:
-                return Z
 
     def move_x(self, amount):
         """Moves a node and its offspring"""
@@ -218,7 +203,7 @@ class GPhraseStructure(PhraseStructure):
             self.R().move_y(amount)
 
     def label_size(self):
-        if self.compressed or self.compressed_into_head:     # Compressed triangles only have custom labels
+        if self.compressed:     # Compressed triangles only have custom labels
             offset = 1
             if self.custom_phonology and self.custom_phonology != '$n/a$':
                 offset += 1

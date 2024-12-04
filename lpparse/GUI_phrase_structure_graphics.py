@@ -91,7 +91,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<CaptureImage>>', self.save_image)
         self.bind('<<Inspect>>', self.inspect)
         self.bind('<<CompressNode>>', self.compress_node)
-        self.bind('<<CompressNodeIntoHead>>', self.compress_node_into_head)
         self.bind('<<DecompressNode>>', self.decompress_node)
         self.bind('<<SqueezeNode>>', self.squeeze_node)
         self.bind('<<WidenNode>>', self.widen_node)
@@ -145,12 +144,9 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<ExpandPhraseStructure>>', self.expand_phrase_structure)
         self.bind('<<ExpandComplexHead>>', self.expand_complex_head)
         self.bind('<<ShrinkPhraseStructure>>', self.shrink_phrase_structure)
-        self.bind('<<ShrinkDP>>', self.shrink_into_DP)
-        self.bind('<<ShrinkAllDPs>>', self.shrink_all_DPs)
         self.bind('<<DeletePhraseStructure>>', self.delete_phrase_structure)
         self.bind('<<MakeAdjunct>>', self.make_adjunct)
         self.bind('<<MakeRegular>>', self.make_regular)
-        self.bind('<<CompressAllDPs>>', self.compress_all_DPs)
         self.bind('<<DeleteAllCustomFields>>', self.delete_all_custom_fields)
         self.bind('<<MoveUp>>', self.move_up)
         self.bind('<<MoveDown>>', self.move_down)
@@ -224,9 +220,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.button_img8 = tk.PhotoImage(file='./lpparse/image resources/expand.png').subsample(2, 2)
         self.create_button(self.button_img8, self.expand_phrase_structure, self.ribbon, pad, column)
         column += 1
-        self.button_img13 = tk.PhotoImage(file='./lpparse/image resources/DP.png').subsample(2, 2)
-        self.create_button(self.button_img13, self.shrink_into_DP, self.ribbon, pad, column)
-        column += 1
         self.button_img9 = tk.PhotoImage(file='./lpparse/image resources/custom_label.png').subsample(2, 2)
         self.create_button(self.button_img9, self.use_custom_label, self.ribbon, pad, column)
         column += 1
@@ -256,8 +249,6 @@ class PhraseStructureGraphics(tk.Toplevel):
             # Derivation (sequence of phrase structures, whole output from the model)
 
             self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
-            if self.application.settings.retrieve('image_parameter_shrink_all_DPs', False):
-                self.shrink_all_DPs()
         elif self.root_gps:
 
             # Single GPS (usually loaded from separate file)
@@ -423,31 +414,6 @@ class PhraseStructureGraphics(tk.Toplevel):
             gps.superscript = simpledialog.askstring(title='Add superscript', prompt='Superscript', parent=self)
             self.label_stack_update(gps)
             self.update_contents()
-
-    def shrink_all_DPs(self, *_):
-        def shrink_all_DPs_(gps):
-            if {'D', 'φ'} & gps.head().core.features():
-                gps.compressed_into_head = True
-                gps.custom_phonology = gps.R().get_phonological_string()
-            else:
-                if gps.L():
-                    shrink_all_DPs_(gps.L())
-                if gps.R():
-                    shrink_all_DPs_(gps.R())
-        shrink_all_DPs_(self.root_gps)
-        self.update_contents(True)
-
-    def compress_all_DPs(self, *_):
-        def compress_all_DPs_(gps):
-            if {'D', 'φ'} & gps.head().core.features():
-                gps.compressed = True
-            else:
-                if gps.L():
-                    compress_all_DPs_(gps.L())
-                if gps.R():
-                    compress_all_DPs_(gps.R())
-        compress_all_DPs_(self.root_gps)
-        self.update_contents(False)
 
     def delete_all_custom_fields(self, *_):
         def delete_all_custom_fields_(gps):
@@ -798,16 +764,10 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def shrink_phrase_structure(self, *_):
         for gps in self.selected_objects_into_gps_list():
+            gps.core.set_features(gps.head().core.features())
             gps.const = []
             gps.compressed = False
-        self.update_contents()
-
-    def shrink_into_DP(self, *_):
-        for gps in self.selected_objects_into_gps_list():
-            gps.head().core.set_features({f for f in gps.head().core.features() if f not in PhraseStructure.major_cats} | {'D', 'φ'})
-            gps.compressed_into_head = True
-            gps.compressed = False
-            self.label_stack_update(gps)
+            gps.copied = None
         self.update_contents()
 
     def delete_phrase_structure(self, *_):
@@ -1061,17 +1021,9 @@ class PhraseStructureGraphics(tk.Toplevel):
                 gps.compressed = True
         self.update_contents(True)
 
-    def compress_node_into_head(self, *_):
-        for gps in self.canvas.selected_objects:
-            # Compress the object
-            if gps.complex():
-                gps.compressed_into_head = True
-        self.update_contents(True)
-
     def decompress_node(self, *_):
         for gps in self.selected_objects_into_gps_list():
             gps.compressed = False
-            gps.compressed_into_head = False
         self.update_contents(True)
 
     def parse_feature_visualizations(self, stri):
@@ -1220,7 +1172,6 @@ class GraphicsMenu(tk.Menu):
         node.add_separator()
         node.add_command(label='Highlight', command=self._event('<<HighlightNode>>'))
         node.add_command(label='Compress (Triangle)', command=self._event('<<CompressNode>>'))
-        node.add_command(label='Compress (Head)', command=self._event('<<CompressNodeIntoHead>>'))
         node.add_command(label='Decompress', command=self._event('<<DecompressNode>>'))
         node.add_separator()
         if True:
@@ -1334,7 +1285,6 @@ class GraphicsMenu(tk.Menu):
         ps.add_cascade(label='Expand...', menu=submenu_expand_ps)
 
         ps.add_command(label='Shrink', command=self._event('<<ShrinkPhraseStructure>>'))
-        ps.add_command(label='Shrink Into DP', command=self._event('<<ShrinkDP>>'))
         ps.add_command(label='Delete', command=self._event('<<DeletePhraseStructure>>'))
         ps.add_command(label='Recover Original', command=self._event('<<Recalibrate>>'))
         submenu_mark_special = tk.Menu(ps, tearoff=False, font=menu_font)
@@ -1346,10 +1296,6 @@ class GraphicsMenu(tk.Menu):
         ps.add_separator()
         ps.add_command(label='Make Adjunct', command=self._event('<<MakeAdjunct>>'))
         ps.add_command(label='Make Regular', command=self._event('<<MakeRegular>>'))
-        ps.add_separator()
-        ps.add_command(label='Compress all DPs', command=self._event('<<CompressAllDPs>>'))
-        ps.add_command(label='Bare bones', command=self._event('<<DeleteAllCustomFields>>'))
-        ps.add_command(label='Shrink all DPs', command=self._event('<<ShrinkAllDPs>>'))
         ps.add_separator()
         ps.add_command(label='Move Up', command=self._event('<<MoveUp>>'))
         ps.add_command(label='Move Down', command=self._event('<<MoveDown>>'))
@@ -1865,8 +1811,6 @@ class InspectWindow(tk.Toplevel):
         max_Label.grid(row=7, column=0, sticky='w')
         copied_Label = tk.Label(geometry_Frame, text=f'Copied: {gps.copied}', font=('Courier', 20))
         copied_Label.grid(row=8, column=0, sticky='w')
-        search_Label = tk.Label(geometry_Frame, text=f'MSearch: {gps.__call__()}', font=('Courier', 20))
-        search_Label.grid(row=9, column=0, sticky='w')
         self.grid_columnconfigure(0, weight=1)
 
     def show(self):

@@ -142,7 +142,7 @@ class PhraseStructureCanvas(tk.Canvas):
         if gps in self.selected_objects:
             color = 'red'
 
-        if gps.complex() and not gps.compressed_into_head:
+        if gps.complex():
             self.create_complex_node(gps, (X1, Y1), spx, spy, color)
         else:
             self.create_primitive_node(gps, X1, Y1, color)
@@ -201,6 +201,7 @@ class PhraseStructureCanvas(tk.Canvas):
                 if label_item[1] == 'label' and label_item[0].strip() == '':
                     text = '??'
                     color = 'white'
+
                 ID = self.create_text((X1, Y1 + Y_offset),
                                       fill=color,
                                       activefill='grey',
@@ -343,8 +344,8 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def draw_dependencies(self):
         for dep in self.parent.inventory['dependencies']:
-            if not {x for x in dep.source_gps.dominating_nodes() if x.compressed_into_head or x.compressed}:
-                if not {x for x in dep.target_gps.dominating_nodes() if x.compressed_into_head or x.compressed}:
+            if not {x for x in dep.source_gps.dominating_nodes() if x.compressed}:
+                if not {x for x in dep.target_gps.dominating_nodes() if x.compressed}:
                     self.draw_dependency(dep)
 
     def feature_conversion_for_images(self, label_item):
@@ -396,7 +397,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.ID_to_object[str(ID)] = dep
 
     def label_offset(self, gps):
-        if gps.compressed or gps.compressed_into_head:
+        if gps.compressed:
             return gps.label_size() * self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
         return self.application.settings.retrieve('image_parameter_text_spacing') * self.application.settings.retrieve('image_parameter_tsize') * gps.label_size()
 
@@ -409,8 +410,6 @@ class PhraseStructureCanvas(tk.Canvas):
         return self.Y_coord_zero_level(gps)
 
     def Y_coord_complex_node(self, gps):
-        if gps.compressed_into_head:
-            return gps.Y + self.label_offset(gps)
         return gps.L().Y + self.label_offset(gps)
 
     def Y_coord_zero_level(self, gps):

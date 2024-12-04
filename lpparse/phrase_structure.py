@@ -77,10 +77,6 @@ class PhraseStructure:
             self.adjunct = True
             left.adjunct = False
 
-        # Auxiliary properties (not part of the theory)
-
-        self.phrasal_zero = False   # Used only in the image generation
-
     # Phrase structure geometry --------------------------------
 
     def L(X):
@@ -109,7 +105,7 @@ class PhraseStructure:
         return len(X.const) > 1
 
     def zero_level(X):
-        return len(X.const) < 2 or X.phrasal_zero
+        return len(X.const) < 2
 
     def is_L(X):
         return X.M() and X.M().L() == X
@@ -864,7 +860,6 @@ class PhraseStructure:
         Y.identity = X.identity
         Y.copied = X.copied
         Y.elliptic = X.elliptic
-        Y.phrasal_zero = X.phrasal_zero
         Y.create_constituents([x.copy_() for x in X.const])
         return Y
 
