@@ -23,7 +23,7 @@ class Focus:
                         if x.core.get_idx_tuple('QND'):
                             idx = x.core.get_idx_tuple('QND')[0]
 
-                            self.narrow_semantics.quantifiers_numerals_denotations.update_discourse_inventory(idx, {'Focus set': f'{{{x.path(max=True).illustrate},...}}'})
+                            self.narrow_semantics.quantifiers_numerals_denotations.update_discourse_inventory(idx, {'Focus set': f'{{{x.EXT(max=True, collect=False).illustrate},...}}'})
 
                         # Focus sets for concepts
 
@@ -33,7 +33,7 @@ class Focus:
 
                     # Focus sets for whole events (a subtype of "wide focus")
 
-                    if X('event'):
+                    if X.INT('event'):
                         self.focus_interpretations.append(f'Wide focus on {x.label()}P ({focus_f})')
                         log(f'\n\tReconstructed wide focus for {x.label()}P ({focus_f})')
                         if x.core.get_idx_tuple('PRE'):

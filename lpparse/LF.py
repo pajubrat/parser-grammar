@@ -30,7 +30,6 @@ class LF:
                 ('Feature Conflict test', PhraseStructure.feature_conflict),
                 ('Probe-Goal test', PhraseStructure.probe_goal_test),
                 ('Semantic Complement test', PhraseStructure.semantic_selection),
-                ('Adjunct Interpretation test', PhraseStructure.interpretable_adjunct),
                 ('EPP test', PhraseStructure.EPP_violation),
                 ('Core integrity', PhraseStructure.core_integrity),
                 ('External head merge test', PhraseStructure.complex_head_integrity),
@@ -45,9 +44,9 @@ class LF:
                 for (test_name, test_failure) in self.active_test_battery:
                     if test_failure(X):
                         if self.speaker_model.settings.retrieve('dev_logging', False):
-                            self.speaker_model.settings.application.dev_logging(f'\n\tFailed {test_name}, {X.path().illustrate()})')
+                            self.speaker_model.settings.application.dev_logging(f'\n\tFailed {test_name}, {X.top().illustrate()})')
                         if self.logging:
-                            log(f'\n\t{X} ({X.path(domain="max").illustrate()}) FAILED {test_name} ')
+                            log(f'\n\t{X} ({X.max().illustrate()}) FAILED {test_name} ')
                             if self.failed_feature:
                                 log(f'for [{self.failed_feature}]')
                         self.error_report_for_external_callers = f'{X} failed {test_name}.'
@@ -84,7 +83,7 @@ class LF:
         # Prepositions and adverbials use the strong test
 
         if X.zero_level() and \
-                X.path(domain='max') != X.path() and \
+                X.max() != X.top() and \
                 X.get_tail_sets() and \
                 not X.tail_test(weak_test=not (X.core('preposition') or X.core('adverbial'))):
             log(f'\n\t\tPostsyntactic tail test for \'{X.illustrate()}\' failed.')

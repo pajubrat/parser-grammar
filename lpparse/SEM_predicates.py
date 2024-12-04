@@ -18,11 +18,11 @@ class Predicates:
         indexing = ''
         if {phi for phi in probe.core.features() if phi.startswith('PHI:IDX:')}:
             if probe.indexed_argument():
-                indexing = f', indexed to {probe.indexed_argument().path(domain="max").illustrate()}'
+                indexing = f', indexed to {probe.indexed_argument().max().illustrate()}'
         if 'pro' in argument.core.features():
             return f'pro' + indexing
         else:
-            return f'{argument.path(max=True).illustrate()}' + indexing
+            return f'{argument.max().illustrate()}' + indexing
 
     def reconstruct_agreement(self, ps):
         goal = ps.indexed_argument()

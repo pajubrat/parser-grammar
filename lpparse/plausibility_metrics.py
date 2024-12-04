@@ -34,14 +34,14 @@ class PlausibilityMetrics:
     def filter_and_rank(self, X, w):
         if X.bottom().w_internal():
             return [X.bottom()]
-        return self.rank(self.filter(X.collect_into_sWM(geometrical=True, self=True)), w)
+        return self.rank(self.filter(X.collect_sWM(geometrical=True, self=True)), w)
 
     def filter(self, X_right_edge):
         return [N for N in X_right_edge if N.zero_level() or self.left_branch_filter(N)]
 
     def rank(self, site_list, W):
         if self.speaker_model.settings.retrieve('dev_logging', False):
-            self.speaker_model.settings.application.dev_logging(f'\nRanking {site_list[0].path()} + {W}')
+            self.speaker_model.settings.application.dev_logging(f'\nRanking {site_list[0].EXT(acquire="all")} + {W}')
 
         weighted_list = []
         for X, new_weight in self.create_baseline_weighting([(site, 0) for site in site_list]):

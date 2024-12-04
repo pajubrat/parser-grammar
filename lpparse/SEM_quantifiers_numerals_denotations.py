@@ -27,7 +27,7 @@ class QuantifiersNumeralsDenotations:
         self.all_assignments = []
 
     def project(self, X, idx):
-        log(f'\n\t\tProject object ({idx}, QND) for {X.path(domain="max").illustrate()}')
+        log(f'\n\t\tProject object ({idx}, QND) for {X.max().illustrate()}')
         self.inventory[idx] = self.extrapolate_semantic_attributes(X)
         return self.inventory[idx]
 
@@ -48,7 +48,7 @@ class QuantifiersNumeralsDenotations:
 
     def object_presentation(self, X):
         if X.core('referential'):
-            return f'{X.path(domain="max").illustrate()}'
+            return f'{X.max().illustrate()}'
         return f'pro({X})'
 
     def compatible(self, idx1, idx2):
@@ -196,7 +196,7 @@ class QuantifiersNumeralsDenotations:
                 idx = X.core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f' {X.label()}/pro[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
-            elif X.M() and X({'N'}) and X.is_R() and X.sister() and X.sister().core.get_idx_tuple('QND'):
+            elif X.M() and X.INT({'N'}) and X.is_R() and X.sister() and X.sister().core.get_idx_tuple('QND'):
                 idx = X.sister().core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f'[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'

@@ -11,8 +11,8 @@ class GlobalCognition:
         self.inventory = {}
         self.index_counter = {'QND': 1, 'GLOBAL': 1, 'PRE': 1}
 
-    def present(self, head):
-        return f'{head.path(domain="max").illustrate()}'
+    def present(self, X):
+        return f'{X.max().illustrate()}'
 
     def consume_index(self, space='GLOBAL'):
         idx = self.index_counter[space]

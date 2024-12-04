@@ -272,7 +272,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         """Deletes content from the canvas and draws X on it"""
         self.canvas.delete('all')
         self.inventory['dependencies'] = []
-        self.root_gps = GPhraseStructure(X.path().copy())
+        self.root_gps = GPhraseStructure(X.top().copy())
         self.root_gps.initialize_logical_space()
         self.root_gps.remove_overlap()
         spx, spy = self.determine_position_of_highest_node(self.root_gps)
@@ -335,13 +335,13 @@ class PhraseStructureGraphics(tk.Toplevel):
 
         if self.application.settings.retrieve('image_parameter_head_chains', True):
             if gX.zero_level() and gX.affix() and gX.affix().copied and not self.dependency_exists(gX):
-                self.inventory['dependencies'].append(Dependency(source=gX, target=gX.path().find_node_with_identity(gX.affix().identity, gX), smooth=True))
+                self.inventory['dependencies'].append(Dependency(source=gX, target=gX.top().find_node_with_identity(gX.affix().identity, gX), smooth=True))
 
         # phrasal chains
 
         if self.application.settings.retrieve('image_parameter_phrasal_chains', True):
-            if gX.complex() and gX.copied and gX != gX.path() and not self.dependency_exists(gX):
-                self.inventory['dependencies'].append(Dependency(source=gX, target=gX.path().find_node_with_identity(gX.identity, gX), smooth=False))
+            if gX.complex() and gX.copied and gX != gX.top() and not self.dependency_exists(gX):
+                self.inventory['dependencies'].append(Dependency(source=gX, target=gX.top().find_node_with_identity(gX.identity, gX), smooth=False))
         if gX.complex() and not gX.compressed:
             self.implement_chains(gX.L())
             self.implement_chains(gX.R())
@@ -1725,6 +1725,7 @@ class DependencyDialog(tk.Toplevel):
         dep.epy = self.selEpy.get()
         dep.Y_offset = self.selYoffset.get()
         return dep
+
 class DependencyDialog(tk.Toplevel):
     """Creates a new dependency or modifies an existing one (provided as an input argument)"""
     def __init__(self, dep=None):
@@ -1777,7 +1778,7 @@ class DependencyDialog(tk.Toplevel):
             self.selSpx.set(dep.spx)
             self.selSpy.set(dep.spy)
             self.selEpx.set(dep.epx)
-            self.selEpy.set(dep.spx)
+            self.selEpy.set(dep.epy)
         frameSpx = tk.LabelFrame(framePosition, text='Spx', font=dfont, padx=20, pady=20)
         tk.Entry(frameSpx, textvariable=self.selSpx, font=dfont).grid(row=0, column=0, padx=10, pady=10)
         frameSpx.grid(row=0, column=0)
@@ -1858,13 +1859,9 @@ class InspectWindow(tk.Toplevel):
         mother_Label.grid(row=1, column=0, sticky='w')
         sister_Label = tk.Label(geometry_Frame, text=f'Sister: {gps.sister()}', font=('Courier', 20))
         sister_Label.grid(row=2, column=0, sticky='w')
-        local_edge_Label = tk.Label(geometry_Frame, text=f'Local edge: {gps.path(domain="edge", minimal=True)}', font=('Courier', 20))
-        local_edge_Label.grid(row=3, column=0, sticky='w')
-        path_Label = tk.Label(geometry_Frame, text=f'Path: {", ".join([str(x) for x in gps.path(collect=True)])}', font=('Courier', 20))
-        path_Label.grid(row=4, column=0, sticky='w')
         container_Label = tk.Label(geometry_Frame, text=f'Container: {gps.container()}', font=('Courier', 20))
         container_Label.grid(row=6, column=0, sticky='w')
-        max_Label = tk.Label(geometry_Frame, text=f'Max: {gps.path(domain="max")}', font=('Courier', 20))
+        max_Label = tk.Label(geometry_Frame, text=f'Max: {gps.max()}', font=('Courier', 20))
         max_Label.grid(row=7, column=0, sticky='w')
         copied_Label = tk.Label(geometry_Frame, text=f'Copied: {gps.copied}', font=('Courier', 20))
         copied_Label.grid(row=8, column=0, sticky='w')

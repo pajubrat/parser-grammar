@@ -164,7 +164,7 @@ class SpeakerModel:
                 # Create candidate solution [[X...] W]
 
                 Y = X.target_left_branch_and_copy(N).transfer().attach(W.copy())
-                log(f'\n\t= {Y.path()}\n')
+                log(f'\n\t= {Y.top()}\n')
                 PhraseStructure.cyclic = True
                 log(f'\n\tCyclic reconstruction:\n')
 
@@ -200,12 +200,12 @@ class SpeakerModel:
         self.results.record_derivational_step(X, 'PF-interface')
         PhraseStructure.cyclic = False
         log('\n\n----Noncyclic derivation------------------------------------------------------------------------------\n')
-        log(f'\n\t{X.path()}\n')
+        log(f'\n\t{X.top()}\n')
 
         # Noncyclic transfer
 
         X.transfer()
-        X = X.path()
+        X = X.top()
         log('\n\n------------------------------------------------------------------------------------------------------\n')
         log(f'\n\t= LF-interface {X}\n\n')
         self.results.record_derivational_step(X, 'LF-interface')

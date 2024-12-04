@@ -48,7 +48,7 @@ class Discourse:
         if not ps.copied:
             idx = self.get_inventory_index(ps)
             if idx:
-                self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().path(domain="max").illustrate()}'
+                self.records_of_attentional_processing[idx]['Name'] = f'{ps.head().max().illustrate()}'
                 self.records_of_attentional_processing[idx]['Constituent'] = ps.head()
 
     def interpret_discourse_features(self, X):
@@ -128,7 +128,7 @@ class Discourse:
             return
 
         idx = self.get_inventory_index(X.head())
-        if starting_point_head in {const for const in X.head().path(collect=True) if const.zero_level()}:
+        if starting_point_head in {x for x in X.head().EXT(acquire='all') if x.zero_level()}:
             direction = 'High'
         else:
             direction = 'Low'
@@ -138,4 +138,4 @@ class Discourse:
         if head.core('referential') or head.core('preposition'):
             idx = self.consume_index()
             head.core.add_features({'*IDX:' + str(idx)})
-            self.records_of_attentional_processing[str(idx)] = {'Constituent': head.path(domain='max'), 'Order': idx, 'Name': f'{head}'}
+            self.records_of_attentional_processing[str(idx)] = {'Constituent': head.max(), 'Order': idx, 'Name': f'{head}'}
