@@ -248,7 +248,7 @@ KUVA		:: PF:kuva LF:picture N R_exp 3p udef nonhum LANG:FI
 'picture'
 
 kysy#i		:: "KYSY.v#i+0" LANG:EN
-KYSY		:: PF:kysy- LF:ask V !PROBE:FORCE:WH LANG:FI
+KYSY		:: PF:kysy- LF:ask V +PROBE:FORCE:WH LANG:FI
 'ask'
 
 laps#i#a	:: "LAPSI.φ#pl#par" LANG:FI
@@ -652,7 +652,7 @@ tta			:: PF:tta LF:without P Adv LANG:FI
 
 usko#i		:: "USKO.v#i+0" LANG:FI
 usko#van	:: "USKO#VA/inf" LANG:FI
-USKO	  	:: PF:usko- LF:believe V -COMP:A/inf !PROBE:T -PROBE:FORCE:WH LANG:FI
+USKO	  	:: PF:usko- LF:believe V -COMP:A/inf +PROBE:T -PROBE:FORCE:WH LANG:FI
 'believe'
 
 venet#tä	:: "VENE.φ#sg.par" LANG:FI
@@ -1027,7 +1027,7 @@ Giuseppe-	:: PF:Giuseppe N -SEM:directional LF:Giuseppe R:REF:PROPER_NAME LANG:I
 hanno		:: "ha-#T/fin#[-no]" LANG:IT
 ho			:: "ha-#T/fin#[-o]" LANG:IT
 ha			:: PF:T LF:T/fin T/fin -SPEC:P LANG:IT
-ha-			:: V PF:ha LF:have !COMP:* !PROBE:V EF* -ASP SEM:internal LANG:IT
+ha-			:: V PF:ha LF:have !COMP:* +PROBE:V EF* -ASP SEM:internal LANG:IT
 il			:: PF:il LF:the D LANG:IT
 i			:: PF:il LF:the D LANG:IT
 ing			:: PF:ing LF:ing n LANG:EN

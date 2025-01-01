@@ -11,7 +11,7 @@ from Experimental_functions import ExperimentalFunctions
 from results import Results
 
 class SpeakerModel:
-    syntactic_working_memory = []  # Syntactic working memory, allows the engine to focus to several items
+    syntactic_working_memory = []                               # Syntactic working memory, allows the engine to focus to several items
 
     def __init__(self, settings, language='XX'):
         self.settings = settings
@@ -23,7 +23,7 @@ class SpeakerModel:
         self.name_provider_index = 0                            # Index for name provider, for chain identification
         self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
-        self.lexicon.load_lexicons(settings)                     # Load the language/dialect specific lexicon
+        self.lexicon.load_lexicons(settings)                    # Load the language/dialect specific lexicon
         self.LF = LF(self)                                      # Access to LF
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
         self.plausibility_metrics = PlausibilityMetrics(self)
