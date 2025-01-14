@@ -16,13 +16,20 @@ class GPhraseStructure(PhraseStructure):
         self.identity = source.identity
         self.copied = source.copied
         self.flip = False
-
+        self.phrasal_zero = False
         self.custom_label = None
+
         if not source.terminal():
+
+            # Create phrasal representations for complex words if so defined in the settings
+
             if GPhraseStructure.application.settings.retrieve('image_parameter_phrasal_complex_heads') and source.zero_level() and len(source.const) > 0:
-                self.create_constituents([GPhraseStructure(const) for const in self.complex_head_transform(source).const])
-                self.relabel()
-                self.phrasal_zero = True
+
+                # Do not create them for DP is DP were set to be shrink
+
+                if not (self.application.settings.retrieve('image_parameter_shrink_all_DPs', False) and source.head().core('referential')):
+                    self.create_constituents([GPhraseStructure(x) for x in self.complex_head_transform(source).const])
+                    self.relabel()  # Create new custom labels (e.g., not phrases XP)
             else:
                 self.create_constituents([GPhraseStructure(const) for const in source.const])
 
@@ -42,6 +49,7 @@ class GPhraseStructure(PhraseStructure):
         self.Agree_target = None
         self.source = source
         self.compressed = False
+        self.shrink = False
         self.label_stack = self.generate_label_stack()
         self.custom_arcs = []
         self.ellipsis = None
@@ -75,14 +83,15 @@ class GPhraseStructure(PhraseStructure):
             C.mother_ = M
         return C
 
-    def relabel(gps):
-        if gps.L():
-            gps.L().relabel()
-        if gps.R():
-            gps.R().relabel()
-            gps.custom_label = gps.R().label() + '°'
+    def relabel(self):
+        if self.L():
+            self.L().relabel()
+        if self.R():
+            self.R().relabel()
+            self.custom_label = self.R().label() + '°'
 
     # Allows left-right flipping during image creation
+
     def L(self):
         if self.flip:
             return super().R()
@@ -107,6 +116,27 @@ class GPhraseStructure(PhraseStructure):
         if gps.zero_level() and gps.is_L() and 'ΦLF' in gps.core.features():
             pass
 
+    def initialize_image_parameters(self):
+        if self.complex():
+
+            # Create compressed DPs
+
+            if self.head().core('referential') and self.application.settings.retrieve('image_parameter_DP_compression', False):
+                pass
+
+            # Create shrink DPs
+
+            if self.head().core('referential') and self.application.settings.retrieve('image_parameter_shrink_all_DPs', False):
+                self.shrink = True
+
+                # Copy phonological features from N into DP, if possible
+
+                if 'N' in self.R().core.features():
+                    self.custom_phonology = self.R().PF()
+
+            self.L().initialize_image_parameters()
+            self.R().initialize_image_parameters()
+
     def initialize_logical_space(self):
         """Projects the phrase structure object into a logical space"""
         if self.complex():
@@ -123,15 +153,19 @@ class GPhraseStructure(PhraseStructure):
 
     def remove_overlap_(self):
         """Stretches child nodes apart if their offspring create overlap"""
+
         # Horizontal overlap
-        if self.complex():
+
+        if self.complex() and not self.L().shrink:
             if not self.L().compressed:
                 self.L().remove_overlap_()
             if not self.R().compressed:
                 self.R().remove_overlap_()
 
             # Remove horizontal overlap from each row
+
             overlap = 0
+
             LC_right_boundary = self.L().boundary_points()
             RC_left_boundary = self.R().boundary_points()
             for L_bp in LC_right_boundary:
@@ -145,12 +179,13 @@ class GPhraseStructure(PhraseStructure):
 
             # Remove vertical overlap from each column (i.e. high label stack overlaps with constituent below)
             # This brute force algorithm is inefficient (todo)
+
             if not self.L().compressed:
                 lst = self.L().rich_labels()     # Find high labels from LEFT that can in principle overlap
                 for node in lst:
                     if not self.R().compressed:
-                        if self.R().vertical_overlap(node): # find overlaps from RIGHT
-                            self.L().move_x(-0.5)            # and if found, stretch
+                        if self.R().vertical_overlap(node):     # find overlaps from RIGHT
+                            self.L().move_x(-0.5)               # and if found, stretch
                             self.R().move_x(0.5)
 
     def boundary_points(self):

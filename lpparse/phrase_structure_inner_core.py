@@ -42,7 +42,7 @@ abstraction_funct = {'EHM': lambda X: 'ε' in X,
                      'AgreeLF_occurred': lambda X: 'ΦLF' in X
                      }
 
-feature_abstraction = {'phi': lambda f: 'PHI:' in f,
+feature_abstraction = {'phi': lambda f: 'PHI:' in f and 'IDX' not in f,
                        'R': lambda f: f.startswith('R:'),
                        '+SPEC': lambda f: f.startswith('+SPEC:'),
                        '+COMP': lambda f: f.startswith('+COMP:'),
@@ -215,17 +215,22 @@ class PhraseStructureCore:
         def unvalued_counterparty(goal_feature, X):
             return f'PHI:{goal_feature.split(":")[1]}:_' in X.features()
 
-        def feature_gate(goal_feature, P):
-            """
-            Feature A can be valued for B at probe head X iff
-            (1) B is an unvalued feature of the same type as A
-            (2) probe X contains overtly valued phi-bundle with the same type as A (gate condition)
-            """
+        # Feature valuation presupposes that either the probe does not have gate features or
+        # if it has them, the same type must exist
+        # Note: mismatches have already been checked earlier
+        # todo this is clearly still too complex but I don't know at present how to simplify
+
+        def feature_gate(f, P):
             for p in P:
-                if goal_feature.split(":")[1] == p.split(':')[0]:  # Condition (2)
+                if f.split(':')[1] == p.split(':')[0]:
                     return True
 
+        # Set of phi-features that are licensed at the probe
+
         P = set().union(*self.phi_bundles())
+
+        # Set of features that can be valued from the goal at the probe
+
         return [f for f in goal.head().core.features(type=['phi', 'interpretable']) if unvalued_counterparty(f, self) and (not P or feature_gate(f, P))]
 
     def phi_bundles(self):

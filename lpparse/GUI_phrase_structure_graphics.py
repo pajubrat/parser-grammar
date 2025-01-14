@@ -38,7 +38,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=4, column=0)
         self.canvas.focus_set()
-        self.canvas.configure(closeenough=10, width=self.application.settings.retrieve('image_parameter_canvas_width'), height=self.application.settings.retrieve('image_parameter_canvas_height'), background='white')
+        self.canvas.configure(closeenough=10,
+                              width=self.application.settings.retrieve('image_parameter_canvas_width'),
+                              height=self.application.settings.retrieve('image_parameter_canvas_height'),
+                              background='white')
 
         # Scrollbars for the canvas
 
@@ -54,7 +57,9 @@ class PhraseStructureGraphics(tk.Toplevel):
 
         self.graphics_menu = GraphicsMenu(self)
         self.config(menu=self.graphics_menu)
+
         # Buttons and status info
+
         self.ribbon = tk.Frame(self)
         self.ribbon.grid(row=0, column=0, sticky='W')
         self.create_ribbon_buttons()
@@ -243,12 +248,19 @@ class PhraseStructureGraphics(tk.Toplevel):
         of whether we want to edit single image (loaded from file), examine whole derivation (output from
         the model) or do nothing (image provided later). This function is also called if the user changed settings.
         """
+
+        # Delete everything
+
         self.canvas.delete('all')
+
+        # Execute these functions if the output comes from a whole derivation (speaker model)
+
         if self.speaker_model:
 
             # Derivation (sequence of phrase structures, whole output from the model)
 
             self.draw_phrase_structure_from_derivation(title='Accepted LF-interface')
+
         elif self.root_gps:
 
             # Single GPS (usually loaded from separate file)
@@ -263,19 +275,51 @@ class PhraseStructureGraphics(tk.Toplevel):
         """Deletes content from the canvas and draws X on it"""
         self.canvas.delete('all')
         self.inventory['dependencies'] = []
+
+        # Create gps from the input phrase structure X
+
         self.root_gps = GPhraseStructure(X.top().copy())
+
+        # Position the phrase structure into logical space and perform other initialization
+
         self.root_gps.initialize_logical_space()
+
+        # Initialize parameters
+
+        self.root_gps.initialize_image_parameters()
+
+        # Remove overlapping branches
+
         self.root_gps.remove_overlap()
+
+        # Determine the position of the highest node on the canvas
+
         spx, spy = self.determine_position_of_highest_node(self.root_gps)
+
+        # Draw the phrase structure
+
         self.canvas.draw_to_canvas(self.root_gps, spx, spy)
 
     def draw_phrase_structure_from_derivation(self, **kwargs):
         """Retrieves step from the derivation and calls the drawing function to present it on canvas"""
+
+        # This argument allows the caller to determine the index number of the derivation to be drawn
+        # All steps of the derivation are in a list self.speaker_model.results.recorded_steps
+
         start_index = kwargs.get('start', 0)
+
+        # Safeguards
+
         if start_index > len(self.speaker_model.results.recorded_steps):
             start_index = 0
+
+        # Get the phrase structure from the speaker model based on the index as input argument
+
         if 'step' in kwargs:
             self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, kwargs['step'])
+
+        # Get the phrase structure from the speaker model based on the title (e.g., LF-interface, PF-interface)
+
         if 'title' in kwargs:
             for step, item in enumerate(self.speaker_model.results.recorded_steps):
                 if item[2] == kwargs['title'] and step > start_index:
@@ -1269,7 +1313,9 @@ class GraphicsMenu(tk.Menu):
         self.add_cascade(label='Dependency', menu=dep)
 
         ps = tk.Menu(self, tearoff=False, font=menu_font)
+
         # Submenu Add...
+
         submenu_ps = tk.Menu(ps, tearoff=False, font=menu_font)
         submenu_ps.add_command(label='XP', command=self._event('<<AddXP>>'))
         submenu_ps.add_command(label='Head', command=self._event('<<AddHead>>'))
@@ -1304,6 +1350,7 @@ class GraphicsMenu(tk.Menu):
         self.add_cascade(label='Phrase Structure', menu=ps)
 
         # Templates menu
+
         templates_menu = tk.Menu(self, tearoff=False, font=menu_font)
         templates_menu.add_command(label='Basic XP', command=self._event('<<BasicTemplate>>'))
         templates_menu.add_command(label='VP', command=self._event('<<TemplateVP>>'))
@@ -1313,6 +1360,7 @@ class GraphicsMenu(tk.Menu):
         self.add_cascade(label='Templates', menu=templates_menu)
 
         # Settings menu
+
         settings_menu = tk.Menu(self, tearoff=False, font=menu_font)
 
         submenu_remove_overlap = tk.Menu(settings_menu, tearoff=False, font=menu_font)
@@ -1320,17 +1368,23 @@ class GraphicsMenu(tk.Menu):
         submenu_remove_overlap.add_command(label='Disable', command=self._event('<<CanvasLayoutControlDisable>>'))
         settings_menu.add_cascade(label='Canvas Layout Control', menu=submenu_remove_overlap)
         settings_menu.add_separator()
-        #Submenu for complex head style
+
+        # Submenu for complex head style
+
         submenu_complex_head_style = tk.Menu(settings_menu, tearoff=False, font=menu_font)
         submenu_complex_head_style.add_command(label='Stack', command=self._event('<<ComplexHeadStyle_Stack>>'))
         submenu_complex_head_style.add_command(label='Standard', command=self._event('<<ComplexHeadStyle_Standard>>'))
         settings_menu.add_cascade(label='Complex Head Style...', menu=submenu_complex_head_style)
+
         # Submenu for head chain visibility
+
         submenu_chains_head = tk.Menu(settings_menu, tearoff=0, font=menu_font)
         submenu_chains_head.add_command(label='Enable', command=self._event('<<EnableHeadChains>>'))
         submenu_chains_head.add_command(label='Disable', command=self._event('<<DisableHeadChains>>'))
         settings_menu.add_cascade(label='Head chains...', menu=submenu_chains_head)
+
         # Submenu for head chain visibility 2
+
         submenu_covert_heads = tk.Menu(settings_menu, tearoff=0, font=menu_font)
         submenu_covert_heads.add_command(label='All', command=self._event('<<ShowHeadsAll>>'))
         submenu_covert_heads.add_command(label='No Copies', command=self._event('<<ShowHeadsNoCopies>>'))
@@ -1338,7 +1392,9 @@ class GraphicsMenu(tk.Menu):
         settings_menu.add_separator()
         settings_menu.add_command(label='Show Features...', command=self._event('<<ShowFeatures>>'))
         settings_menu.add_separator()
+
         # Chain visibility menu
+
         submenu_chains_phrasal = tk.Menu(settings_menu, tearoff=False, font=menu_font)
         submenu_chains_phrasal.add_command(label='Enable', command=self._event('<<EnablePhrasalChains>>'))
         submenu_chains_phrasal.add_command(label='Disable', command=self._event('<<DisablePhrasalChains>>'))

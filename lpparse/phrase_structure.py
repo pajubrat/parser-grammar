@@ -657,7 +657,14 @@ class PhraseStructure:
         return X.Agree(X.get_goal())
 
     def Agree(X, goal):
+
+        # Agreement is executed if the probe has unvalued phi-features and there is a goal
+
         if len(X.core.features(type=['phi', 'unvalued'])) > 0 and goal:
+
+            # Valuation is possible if there are no phi-feature mismatches between the probe and goal
+            # This handles standard agreement errors
+
             if not goal.head().core.feature_mismatch_test(X.core.phi_bundles()):
                 X.core.value(goal)
             else:
@@ -668,10 +675,12 @@ class PhraseStructure:
         return X
 
     def get_goal(X):
-        return X.sister().INT(criteria=lambda x: not x.copied and x.head().core('referential'), intervention=lambda x: x.phase_head())
+        return X.sister().INT(criteria=lambda x: not x.copied and x.head().core('referential'),
+                              intervention=lambda x: x.phase_head())
 
     def phase_head(X):
-        return X.zero_level() and X.INT(some(PhraseStructure.phase_heads)) and not X.INT(some(PhraseStructure.phase_heads_exclude))
+        return X.zero_level() and X.INT(some(PhraseStructure.phase_heads)) and \
+               not X.INT(some(PhraseStructure.phase_heads_exclude))
 
     def EPP_violation(X):
         """

@@ -15,12 +15,10 @@ class SpeakerModel:
 
     def __init__(self, settings, language='XX'):
         self.settings = settings
-        self.sentence = []
-        self.language = language                                # Contextual variables (language etc.)
-        self.results = Results(self)
-        self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
-        self.exit = False                                       # Forced exit tag
-        self.name_provider_index = 0                            # Index for name provider, for chain identification
+        self.language = language
+
+        # Contains the following submodules
+
         self.narrow_semantics = NarrowSemantics(self)           # Narrow sentence-level semantics
         self.lexicon = LexicalInterface(self)                   # Access to the lexicon
         self.lexicon.load_lexicons(settings)                    # Load the language/dialect specific lexicon
@@ -28,6 +26,12 @@ class SpeakerModel:
         self.lexical_stream = LexicalStream(self)               # Access to lexical stream
         self.plausibility_metrics = PlausibilityMetrics(self)
         self.Experimental_functions = ExperimentalFunctions(self)
+
+        self.sentence = []
+        self.results = Results(self)
+        self.memory_buffer_inflectional_affixes = set()         # Local memory buffer for inflectional affixes
+        self.exit = False                                       # Forced exit tag
+        self.name_provider_index = 0                            # Index for name provider, for chain identification
         self.embedding = 0
         self.data_item = None
         self.ongoing_conversation = False

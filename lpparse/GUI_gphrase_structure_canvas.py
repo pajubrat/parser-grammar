@@ -124,10 +124,24 @@ class PhraseStructureCanvas(tk.Canvas):
         self.draw_to_canvas(gps, spx + x_offset, spy + y_offset)
 
     def draw_to_canvas(self, gps, spx, spy):
+        """
+        Draws all elements to the canvas
+        """
+
+        # Status bar update
+
         self.update_status_bar(spx)
-        self.info_text = self.create_text((2000, 300), state='hidden')  # Show information about selected objects
+
+        # Project the phrase structure onto canvas
+
         self.project_into_canvas(gps, spx, spy)
+
+        # Draws dependencies between nodes
+
         self.draw_dependencies()
+
+        # Scales everything based on zoom
+
         self.scale("all", 0, 0, self.scaling_factor, self.scaling_factor)
 
     def project_into_canvas(self, gps, spx, spy):
@@ -175,6 +189,7 @@ class PhraseStructureCanvas(tk.Canvas):
             # Generate the label text (label + phonological exponent + gloss)
 
             for i, label_item in enumerate(affix.label_stack):
+
                 text = self.feature_conversion_for_images(label_item)
 
                 # Do not reproduce items if blocked by settings
@@ -248,17 +263,21 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def create_complex_node(self, gps, M_const_coord, spx, spy, color='black'):
 
-        L_const_coord = (spx + gps.L().x * self.application.settings.retrieve('image_parameter_grid'), spy + gps.L().y * self.application.settings.retrieve('image_parameter_y_grid'))
-        R_const_coord = (spx + gps.R().x * self.application.settings.retrieve('image_parameter_grid'), spy + gps.R().y * self.application.settings.retrieve('image_parameter_y_grid'))
+        L_const_coord = (spx + gps.L().x * self.application.settings.retrieve('image_parameter_grid'),
+                         spy + gps.L().y * self.application.settings.retrieve('image_parameter_y_grid'))
+        R_const_coord = (spx + gps.R().x * self.application.settings.retrieve('image_parameter_grid'),
+                         spy + gps.R().y * self.application.settings.retrieve('image_parameter_y_grid'))
 
         # Create text holding the complex label (e.g., XP)
 
+        text = self.feature_conversion_for_images(gps.label_stack[0])
         ID = self.create_text(M_const_coord,
-                              text=gps.label_stack[0][0],
+                              text=text,
                               fill=color,
                               activefill='grey',
                               tag='node',
-                              font=(self.label_style['label'][0], int(self.label_style['label'][1] * self.scaling_factor)))
+                              font=(self.label_style['label'][0],
+                                    int(self.label_style['label'][1] * self.scaling_factor)))
 
         self.ID_to_object[str(ID)] = gps
         gps.ID = ID
@@ -267,7 +286,34 @@ class PhraseStructureCanvas(tk.Canvas):
         if gps in self.selected_objects:
             self.addtag_withtag('selected', ID)
 
+        # Shrink node
+
+        if gps.shrink:
+            Y_offset = self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
+            for i, label_item in enumerate(gps.label_stack):
+
+                # Font scaling
+
+                scaled_font = list(self.label_style[label_item[1]])
+                scaled_font[1] = int(self.label_style[label_item[1]][1] * self.scaling_factor)
+                scaled_font = tuple(scaled_font)
+
+                if label_item[1] != 'label':
+                    text = self.feature_conversion_for_images(label_item)
+                    self.create_text((spx + gps.x * self.application.settings.retrieve('image_parameter_grid'), spy + gps.y * self.application.settings.retrieve('image_parameter_y_grid') + Y_offset),
+                                     fill=color,
+                                     activefill='red',
+                                     tag='node',
+                                     text=text,
+                                     anchor='center',
+                                     font=scaled_font)
+                    Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
+            return
+
+        # Compressed node
+
         if gps.compressed:
+
             self.create_line(self.Y_frame(M_const_coord, 1), self.Y_frame(L_const_coord, 0.5), width=2, fill='black')
             self.create_line(self.Y_frame(M_const_coord, 1), self.Y_frame(R_const_coord, 0.5), width=2, fill='black')
             self.create_line(self.Y_frame(L_const_coord, 0.5), self.Y_frame(R_const_coord, 0.5), width=2, fill='black')
@@ -344,17 +390,26 @@ class PhraseStructureCanvas(tk.Canvas):
 
     def draw_dependencies(self):
         for dep in self.parent.inventory['dependencies']:
+
+            # Do not draw dependencies if dominating nodes have been compressed for the source
+
             if not {x for x in dep.source_gps.dominating_nodes() if x.compressed}:
+
+                # Do not draw dependencies if dominating nodes have been compressed for the target
+
                 if not {x for x in dep.target_gps.dominating_nodes() if x.compressed}:
+
+                    # Draw the dependency
+
                     self.draw_dependency(dep)
 
     def feature_conversion_for_images(self, label_item):
         text = label_item[0]
         if self.application.settings.retrieve('image_parameter_DP_hypothesis', False):
             if text == 'φ':
-                text = 'D'
+                return 'D'
             if text == 'φP':
-                text = 'DP'
+                return 'DP'
         if label_item[1] == 'feature':
             return '[' + text + ']'
         return text
@@ -370,10 +425,14 @@ class PhraseStructureCanvas(tk.Canvas):
                   (dep.source_gps.X + dep.spx + dep.source_X_offset, self.get_lowered_Y_coord_for_arrow(dep)),
                   (dep.target_gps.X + dep.epx + dep.target_X_offset, self.get_lowered_Y_coord_for_arrow(dep)),
                   (dep.target_gps.X + dep.epx + dep.target_X_offset, self.calculate_Y_coord(dep.target_gps) + dep.epy)]
+
+        # Change the color if the dependency has been selected by the user
+
         if self.selected_dependency == dep:
             color = 'red'
         else:
             color = 'black'
+
         ID = self.create_line(*coords,
                               splinesteps=50,
                               dash=self.parent.line_style['arrow']['dash'],
@@ -384,6 +443,7 @@ class PhraseStructureCanvas(tk.Canvas):
                               width=self.parent.line_style['arrow']['width'],
                               smooth=dep.smooth,
                               fill=color)
+
         if dep.label:
             mX = abs(dep.source_gps.X + dep.target_gps.X) / 2
             mY = self.get_lowered_Y_coord_for_arrow(dep) + 30
@@ -394,6 +454,7 @@ class PhraseStructureCanvas(tk.Canvas):
                              text=dep.label,
                              anchor='c',
                              font=self.label_style['arrow_label'])
+
         self.ID_to_object[str(ID)] = dep
 
     def label_offset(self, gps):
@@ -402,11 +463,23 @@ class PhraseStructureCanvas(tk.Canvas):
         return self.application.settings.retrieve('image_parameter_text_spacing') * self.application.settings.retrieve('image_parameter_tsize') * gps.label_size()
 
     def calculate_Y_coord(self, gps):
+
+        # Value for compressed phrase
+
         for x in gps.dominating_nodes():
             if x.compressed:
-                return x.Y  # GPS is inside compressed node
+                return x.Y
+
+        # Value for shrink phrase
+
+        if gps.shrink:
+            return self.Y_coord_zero_level(gps)
+
+        # Value for complex node
+
         if gps.complex():
             return self.Y_coord_complex_node(gps)
+
         return self.Y_coord_zero_level(gps)
 
     def Y_coord_complex_node(self, gps):
