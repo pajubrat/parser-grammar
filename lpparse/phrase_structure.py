@@ -36,20 +36,20 @@ class PhraseStructure:
                      'TARGET': lambda x: x,
                      'TRANSFORM': lambda x, t: x.feature_inheritance()},
                   'A-chain':
-                    {'TRIGGER': lambda x: x.core('EPP') and
+                    {'TRIGGER': lambda x: x('EPP') and
                                           x.is_R() and x.sister() and x.sister().complex() and
                                           x.sister().INT('referential') and not x.sister().INT('operator', scan=True) and
                                           x.tail_test(tail_sets=x.sister().get_tail_sets(), direction='right', weak_test=True),
                      'TARGET': lambda x: x.sister().chaincopy(),
                      'TRANSFORM': lambda x, t: x * t},
                   'IHM':
-                    {'TRIGGER': lambda x: x.complex_head() and not x.core('EHM'),
+                    {'TRIGGER': lambda x: x.complex_head() and not x('EHM'),
                      'TARGET': lambda x: x.affix(),
                      'TRANSFORM': lambda x, t: x.head_reconstruction(t)},
                   'Scrambling':
                       {'TRIGGER': lambda x: x.max().license_scrambling() and
-                                            (x.container() and x.container().core('EF') and
-                                             (not x.container().core('theta_predicate') or x.container().core('preposition')) or
+                                            (x.container() and x.container()('EF') and
+                                             (not x.container()('theta_predicate') or x.container()('preposition')) or
                                              not x.head().tail_test()) and x.scrambling_target() and
                                             x.scrambling_target() != x.top() and not x.operator_in_scope_position() and
                                             PhraseStructure.speaker_model.LF.pass_LF_legibility(x.scrambling_target().copy().transfer(), logging=False) and
@@ -87,6 +87,12 @@ class PhraseStructure:
             self.adjunct = True
             left.adjunct = False
 
+        # Support-layer (not part of the empirical theory)
+
+        self.shrink = False                 # This can be used to create zero-level objects from phrases (used currently by GPS)
+        self.phrasal_zero_level = False     # Represents phrasal zero-level objects, currently used only by GPS (not empirical theory)'
+        self.mapped = None                  # target node when performing copying, used to copy/transfer chains
+
     # Phrase structure geometry --------------------------------
 
     def L(X):
@@ -115,7 +121,9 @@ class PhraseStructure:
         return len(X.const) > 1
 
     def zero_level(X):
-        return len(X.const) < 2
+        return len(X.const) < 2 or X.phrasal_zero_level     # The latter property is currently used only by GPS objects (supervision layer, not part of theory)
+                                                            # The issue is that GPS algorithm is sensitive to head(), so here we allow this property to
+                                                            # influence head calculations.
 
     def is_L(X):
         return X.M() and X.M().L() == X
@@ -212,6 +220,9 @@ class PhraseStructure:
             return x
         return collection
 
+    def __call__(X, stri):
+        return X.head().core(stri)
+
     def INT(X, target_seed=None, **kwargs):
 
         # If there are no arguments, use defaults
@@ -297,7 +308,7 @@ class PhraseStructure:
         return next((x for x in arguments if x), None)
 
     def generate_pro(X):
-        if X.core('predicate') and X.core.overt_phi_sustains_reference():
+        if X('predicate') and X.core.overt_phi_sustains_reference():
             return PhraseStructure(features=X.core.features(type=['phi', 'valued']) | {'φ', 'PF:pro'})
 
     def predicate_composition(X):
@@ -368,7 +379,7 @@ class PhraseStructure:
         return str(PhraseStructure.chain_index)
 
     def create_feature_chain(X):
-        if X.scan_strong_features():
+        if X.scan_strong_features() and X.local_container() and X.local_container().head()('finite'):
             X.local_container().core.add_features(PhraseStructure.speaker_model.lexicon.lexical_redundancy(X.scan_strong_features()))
 
     def local_container(X):
@@ -387,29 +398,37 @@ class PhraseStructure:
 
             if X.container() and X.container().specifier() == X:
                 return X.container()    # (1) Y if [XP [Y..]]
+
             # otherwise (2) create Y such that [XP [Y...]]
+
             return (PhraseStructure(features={'C', 'C/fin', 'PF:C', 'LF:C', 'Fin', 'EF'}) * X.sister()).L()
 
     def scan_strong_features(X):
         T = X.INT('strong_features', scan=True)
         if T:
-            return {x[2:] for x in T.core('strong_features')}
+            return {x[2:] for x in T('strong_features')}
 
     def chaincopy(X):
         if X.identity == 0:
             X.identity = X.baptize_chain()
+
+        # Copies strong features (if any) to the local head (if any)
+        #
         X.create_feature_chain()
+        #
+        #
+
         Xc = X.copy()
         X.copied = Xc
         Xc.identity = X.identity
         Xc.elliptic = True
-        if X.head().core('referential'):
+        if X.head()('referential'):
             Xc.adjunct = False
         return Xc
 
     def update_copied_chains(X):
         if X.copied:
-            X.copied = X.top().find_constituent_with_identity(X, X.identity)
+            X.copied = X.copied.mapped
         if X.complex:
             for x in X.const:
                 x.update_copied_chains()
@@ -501,7 +520,7 @@ class PhraseStructure:
             return not X.max().gets_theta_role_from(X.max().container()) or X.pro_projection_principle_violation()
 
     def projection_principle_applies(X):
-        return X.core('referential') and X.max() and not X.max().INT('nonreferential', scan=True)
+        return X('referential') and X.max() and not X.max().INT('nonreferential', scan=True)
 
     def pro_projection_principle_violation(X):
         if X.zero_level() and X.core.overt_phi_sustains_reference() and X.complement():
@@ -530,11 +549,12 @@ class PhraseStructure:
 
     def reconstruct_operator(X, T):
         for x in X.sister().collect_sWM(intervention=lambda x: x.zero_level() and x.INT('referential')):
+
+            #   Sentence operator, null head, V2 (local X-to-C)
+
             if T.zero_level() and \
                     T.INT('finite') and \
                     not T.EXT(criteria=lambda x: x.zero_level() and x.INT('finite_C')):
-
-                #   Sentence operator, null head, V2
 
                 T = X.chaincopy()
                 if x.complex():
@@ -584,15 +604,19 @@ class PhraseStructure:
     # Scrambling ==========================================================================
 
     def tail_fit(X, Y, direction='left'):
-        return X.tail_test(tail_sets=Y.head().get_tail_sets(), weak_test=Y.head().core('referential') or Y.INT('preposition'), direction=direction)
+        return X.tail_test(tail_sets=Y.head().get_tail_sets(), weak_test=Y.head()('referential') or Y.INT('preposition'), direction=direction)
 
     def scrambling_reconstruct(XP, YP):
         """
         Reconstructs scrambled phrases.
         XP = the original phrase which was marked for scrambling.
-        YP = target (may contain additional material such as Specs)
+        YP = target (may contain additional material such as Specs) that will be scrambled
         """
+
         set_logging(False)
+
+        # Transfer the scrambled phrase into parallel working space
+
         YP.transfer()
         set_logging(True)
         YP.adjunct = True
@@ -611,7 +635,8 @@ class PhraseStructure:
             Spec = O in O.container().EXT(acquire='all', domain='max')
         else:
             Spec = None
-        YP = YP.chaincopy()
+
+        YP = XP.chaincopy()
 
         # Search for a new position
 
@@ -636,8 +661,8 @@ class PhraseStructure:
         return XP.head().top()     # If nothing is found, do nothing
 
     def local_tense_edge(X):
-        if X.EXT(criteria=lambda x: x.M() and x.core('finite')):
-            return X.EXT(criteria=lambda x: x.M() and x.core('finite')).M()
+        if X.EXT(criteria=lambda x: x.M() and x('finite')):
+            return X.EXT(criteria=lambda x: x.M() and x('finite')).M()
         return X.top()
 
     def scrambling_target(X):
@@ -675,7 +700,7 @@ class PhraseStructure:
         return X
 
     def get_goal(X):
-        return X.sister().INT(criteria=lambda x: not x.copied and x.head().core('referential'),
+        return X.sister().INT(criteria=lambda x: not x.copied and x.head()('referential'),
                               intervention=lambda x: x.phase_head())
 
     def phase_head(X):
@@ -699,9 +724,9 @@ class PhraseStructure:
         # Main rules
 
         if not X.INT(['ASP', 'strong_pro']):                                    #   Amnesty for strong pro, theta heads and C/fin
-            if not X.core('EF'):                                            #   If X does not have EF,
-                return X.specifier() and not X.core('thematic_edge')       #   it cannot have nonthematic edge element
-            if X.INT({'-ΦPF'}) or not X.core('EPP'):                            #   Amnesty for non-agreeing heads and heads without EPP
+            if not X('EF'):                                            #   If X does not have EF,
+                return X.specifier() and not X('thematic_edge')       #   it cannot have nonthematic edge element
+            if X.INT({'-ΦPF'}) or not X('EPP'):                            #   Amnesty for non-agreeing heads and heads without EPP
                 return False
             if X.INT({'weak_pro'}):                                             #   Secondary rule:
                 return X.INT({'ΦLF'}) and not X.specifier()                  #   if Agree(X, Y), SpecXP cannot be empty
@@ -732,8 +757,8 @@ class PhraseStructure:
 
         # C-T feature inheritance
 
-        if X.core('finite') and \
-                not X.EXT(criteria=lambda x: x.zero_level() and x.core('finite')) and not X.INT({'!PER'}):
+        if X('finite') and \
+                not X.EXT(criteria=lambda x: x.zero_level() and x('finite')) and not X.INT({'!PER'}):
             X.core.add_features({'!PER'})
 
         # Obligatory control
@@ -883,7 +908,7 @@ class PhraseStructure:
         X.mother_ = None
         return X, m
 
-    def copy_(X):
+    def _copy(X):
         Y = PhraseStructure()
         Y.core = X.core.copy()
         Y.adjunct = X.adjunct
@@ -892,11 +917,12 @@ class PhraseStructure:
         Y.identity = X.identity
         Y.copied = X.copied
         Y.elliptic = X.elliptic
-        Y.create_constituents([x.copy_() for x in X.const])
+        X.mapped = Y  # Provides the source for copying/transferring chains; support, not part of theory
+        Y.create_constituents([x._copy() for x in X.const])
         return Y
 
     def copy(X):
-        return X.copy_().update_copied_chains()
+        return X._copy().update_copied_chains()
 
     def reattach(X, m):
         X.mother_ = m
@@ -943,7 +969,7 @@ class PhraseStructure:
 
     def label(X):
         head = X.head()
-        if X.complex():
+        if not X.zero_level():
             suffix = 'P'
         else:
             suffix = ''
@@ -1045,18 +1071,6 @@ class PhraseStructure:
 
     def w_internal(X):
         return X.bottom().bottom_affix().internal
-
-    def find_node_with_identity(X, identity, start):
-        Y = None
-        if X != start:
-            if X.identity == identity:
-                return X
-            if X.complex():
-                for x in X.const:
-                    Y = x.find_node_with_identity(identity, start)
-                    if Y:
-                        break
-        return Y
 
     def construct_semantic_working_memory(X, intervention_feature, assignment):
         sWM = set()

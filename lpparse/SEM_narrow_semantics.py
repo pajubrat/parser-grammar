@@ -122,13 +122,13 @@ class NarrowSemantics:
 
                 # Thematic roles
 
-                if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and X.core('theta_predicate'):
+                if self.speaker_model.settings.retrieve('general_parameter_calculate_thematic_roles', True) and X('theta_predicate'):
                     self.speaker_model.results.store_output_field('Thematic roles', self.thematic_roles_module.reconstruct(X))
 
                 # Argument-predicate pairs
 
                 if self.speaker_model.settings.retrieve('general_parameter_calculate_predicates', True) and \
-                        'Φ' in X.core and not X.core('referential') and not X.INT({'N'}):
+                        'Φ' in X.core and not X('referential') and not X.INT({'N'}):
                     self.speaker_model.results.store_output_field('Predicates', self.predicates.reconstruct(X))
                     if self.speaker_model.settings.retrieve('UG_parameter_Agree', 'revised') == 'standard':
                         self.predicates.operation_failed = False

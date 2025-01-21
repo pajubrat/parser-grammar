@@ -145,31 +145,38 @@ class LexiconView(tk.LabelFrame):
         self.style.configure("mystyle.Treeview.Heading", font=('Calibri', 16))
 
         # LabelFrame formatting
+
         self.configure()
         self.columnconfigure(0, weight=1)
 
         # Create Treeview
+
         self.lexicon_treeview = ttk.Treeview(self, columns=['Language', 'Comment'], selectmode='browse', style='mystyle.Treeview')
         self.lexicon_treeview.heading('#0', text='Item')
 
         # self.lexicon_treeview.column('#0', width=150, stretch='no')
+
         self.lexicon_treeview.heading('Comment', text='Comment')
         self.lexicon_treeview.heading('Language', text='Language')
 
         self.lexicon_dict = lexicon_dict
 
         # fill Treeview
+
         self.fill_with_data()
 
         # Create scrollbar
+
         self.scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.lexicon_treeview.yview)
         self.lexicon_treeview.configure(yscrollcommand=self.scrollbar.set)
 
         # Position the elements
+
         self.lexicon_treeview.grid(row=0, column=0, sticky='NSWE')
         self.scrollbar.grid(row=0, column=1, sticky='NSW')
 
     # Fill the treeview with the elements in the lexicon dictionary
+
     def fill_with_data(self):
 
         for lexicon_file in list(self.lexicon_dict.keys()):

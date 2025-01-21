@@ -18,6 +18,8 @@ class GPhraseStructure(PhraseStructure):
         self.flip = False
         self.phrasal_zero = False
         self.custom_label = None
+        self.shrink = source.shrink
+        self.phrasal_zero_level = source.phrasal_zero_level
 
         if not source.terminal():
 
@@ -27,8 +29,9 @@ class GPhraseStructure(PhraseStructure):
 
                 # Do not create them for DP is DP were set to be shrink
 
-                if not (self.application.settings.retrieve('image_parameter_shrink_all_DPs', False) and source.head().core('referential')):
+                if not (self.application.settings.retrieve('image_parameter_shrink_all_DPs', False) and source.head()('referential')):
                     self.create_constituents([GPhraseStructure(x) for x in self.complex_head_transform(source).const])
+                    self.phrasal_zero_level = True
                     self.relabel()  # Create new custom labels (e.g., not phrases XP)
             else:
                 self.create_constituents([GPhraseStructure(const) for const in source.const])
@@ -45,11 +48,8 @@ class GPhraseStructure(PhraseStructure):
         self.custom_gloss = None
         self.custom_features = []
         self.custom_text = None
-        self.head_chain_target = None
-        self.Agree_target = None
         self.source = source
         self.compressed = False
-        self.shrink = False
         self.label_stack = self.generate_label_stack()
         self.custom_arcs = []
         self.ellipsis = None
@@ -112,22 +112,40 @@ class GPhraseStructure(PhraseStructure):
             x = x.mother_
         return lst
 
-    def find_Agree(gps):
-        if gps.zero_level() and gps.is_L() and 'ΦLF' in gps.core.features():
-            pass
+    def map_into_gps(gX, X):
+        """
+        Finds recursively gX which maps into X
+        """
+
+        if gX.source == X:
+            return gX
+
+        if gX.affix():
+            K = gX.affix().map_into_gps(X)
+            if K:
+                return K
+
+        if gX.complex():
+            K = gX.L().map_into_gps(X)
+            if not K:
+                K = gX.R().map_into_gps(X)
+            return K
 
     def initialize_image_parameters(self):
         if self.complex():
 
             # Create compressed DPs
 
-            if self.head().core('referential') and self.application.settings.retrieve('image_parameter_DP_compression', False):
-                pass
+            if self.head()('referential') and self.application.settings.retrieve('image_parameter_DP_compression', False):
+                self.compressed = True
 
             # Create shrink DPs
 
-            if self.head().core('referential') and self.application.settings.retrieve('image_parameter_shrink_all_DPs', False):
-                self.shrink = True
+            if self.head()('referential') and self.application.settings.retrieve('image_parameter_shrink_all_DPs', False):
+                self.shrink = True          # This will not draw any nodes below and currently created custom label DP
+                self.compressed = False     # Compression (triangle format) and shrink cannot be applied simultaneously
+                self.custom_label = 'DP'    # This could be generalized if we allow other types of shrunk constituents,
+                                            # but the intention is that normally we should use compression (triangle format)
 
                 # Copy phonological features from N into DP, if possible
 
@@ -252,9 +270,13 @@ class GPhraseStructure(PhraseStructure):
         return len(self.label_stack)
 
     def generate_label_stack(self):
+
+        # Label stack is a list of label information that will be shown in connection with this node
+
         label_stack = []
 
         # Minimum label is the label itself
+
         if not self.custom_label == '$n/a$':
             if self.custom_label:
                 label_stack.append((self.custom_label, 'label'))
@@ -262,6 +284,7 @@ class GPhraseStructure(PhraseStructure):
                 label_stack.append((self.label(), 'label'))
 
         # Phonological string
+
         if not self.custom_phonology == '$n/a$':
             if self.custom_phonology:
                 label_stack.append((self.custom_phonology, 'PF'))
@@ -270,6 +293,7 @@ class GPhraseStructure(PhraseStructure):
                     label_stack.append((self.get_phonological_string(), 'PF'))
 
         # Gloss
+
         if not self.custom_gloss == '$n/a$':
             if self.custom_gloss:
                 label_stack.append((f"ʻ{self.custom_gloss}ʼ", 'gloss'))
@@ -278,6 +302,7 @@ class GPhraseStructure(PhraseStructure):
                     label_stack.append((f"ʻ{self.gloss()}ʼ", 'gloss'))
 
         # Features
+
         if not '$n/a$' in self.custom_features:
             if self.custom_features:
                 for feature in self.custom_features:
@@ -287,6 +312,7 @@ class GPhraseStructure(PhraseStructure):
                     label_stack.append((f'{feature}', 'feature'))
 
         # Custom text
+
         if self.custom_text:
             label_stack.append((self.custom_text, 'gloss'))
 

@@ -179,10 +179,16 @@ class Results:
 
     def show_primitive_constituents(self, X):
         reply = ''
+
+        # Recursion
+
         if not X.zero_level():
             reply += self.show_primitive_constituents(X.L())
             reply += self.show_primitive_constituents(X.R())
         else:
+
+            # Show the features of the zero-level object and its affixes if not copied elsewhere
+
             for head in X.affixes():
                 if head.copied:
                     break

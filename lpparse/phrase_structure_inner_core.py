@@ -10,6 +10,7 @@ abstraction_funct = {'EHM': lambda X: 'ε' in X,
                      'EPP': lambda X: 'EF*' in X,
                      'TAM': lambda X: X.features(match=['TAM']),
                      'event': lambda X: 'π' in X,
+                     'polarity': lambda X: X.features(match=['POL:']),
                      'strong_features': lambda X: X.features(match=['**...']),
                      'predicate': lambda X: 'Φ' in X,
                      'finite': lambda X: ['Fin', 'T/fin', 'C/fin'] in X,
@@ -28,7 +29,7 @@ abstraction_funct = {'EHM': lambda X: 'ε' in X,
                      'nonthematic_verb': lambda X: X('verbal') and not X('theta_predicate'),
                      'thematic_edge': lambda X: X.get_selection_features('+SPEC') & {'D', 'φ'},
                      'light_verb': lambda X: ['v', 'v*', 'impass', 'cau'] in X,
-                     'finite_left_periphery': lambda X: X('finite') and ['T', 'C'] in X,
+                     'finite_left_periphery': lambda X: X('finite') and ['T', 'C'] in X and 'T/prt' not in X,
                      'finite_tense': lambda X: 'T/fin' in X or (X('finite') and 'T' in X),
                      'preposition': lambda X: 'P' in X,
                      'expresses_concept': lambda X: ['N', 'Neg', 'P', 'D', 'φ', 'A', 'V', 'Adv', 'Q', 'Num', '0'] in X and ['T/prt', 'COPULA'] not in X,
@@ -324,28 +325,54 @@ class PhraseStructureCore:
                          '$LANG:$': 5}
 
         def feature_sort(fset):
+
+            # Each feature will be allocated to one of these lists = sorting
+
             sorted_lst = [[], [], [], [], [], []]
+
+            # Holds all features at first then all the remaining features
+
             residuum = list(fset.copy())
+
+            # Examine each feature
+
             for f in fset:
+
+                # Checks the priority of the feature and inserts it into the sorted list,
+                # then removes from residuum
+
                 if f in sorting_order.keys():
                     sorted_lst[sorting_order[f]].append(f)
                     if f in residuum:
                         residuum.remove(f)
+
+                # Special notation which matches only substring $F$ = matches F
+
                 else:
                     for k in sorting_order.keys():
                         if k.startswith('$') and k.endswith('$') and k[1:-1] in f:
                             sorted_lst[sorting_order[k]].append(f)
                             if f in residuum:
                                 residuum.remove(f)
+
             result = []
+
+            # Examine each class of features and adds them into the result
+
             for lst in sorted_lst:
                 result += lst
             return result + sorted(residuum)
 
         stri = ''
+
+        # Examine each feature bundle
+
         for fset in self.feature_bundles():
-            stri += '{'
+            stri += '{'     # Start with this symbol
             line = ''
+
+            # Produce formatted output
+
             for i, f in enumerate(feature_sort(fset)):
                 if 0 < i < len(fset):
                     line += ' '

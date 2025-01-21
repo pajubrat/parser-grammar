@@ -17,11 +17,14 @@ class PhraseStructureCanvas(tk.Canvas):
         self.scaling_factor = 1
         self.info = None
         self.cursor = None
+
+        # Text types for images
+
         self.label_style = {'label': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize'))),
                             'PFtrace': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic", "overstrike"),
                             'PF': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic"),
                             'gloss': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
-                            'feature': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
+                            'feature': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), 0.8 * int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
                             'subscript': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') * 0.5)),
                             'arrow_label': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') * 0.75)),
                             'info': ("Courier", int(self.application.settings.retrieve('image_parameter_tsize') * 0.25))}
@@ -286,7 +289,7 @@ class PhraseStructureCanvas(tk.Canvas):
         if gps in self.selected_objects:
             self.addtag_withtag('selected', ID)
 
-        # Shrink node
+        # Phrasal zero-level node
 
         if gps.shrink:
             Y_offset = self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
@@ -308,6 +311,7 @@ class PhraseStructureCanvas(tk.Canvas):
                                      anchor='center',
                                      font=scaled_font)
                     Y_offset += self.application.settings.retrieve('image_parameter_tsize') * self.application.settings.retrieve('image_parameter_text_spacing')
+
             return
 
         # Compressed node
