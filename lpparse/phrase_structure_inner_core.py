@@ -92,11 +92,18 @@ class PhraseStructureCore:
         if isinstance(f, list):
             return set(f) & self.features()
 
-    def __call__(self, P):
-        if not P:
+    def __call__(self, stri):
+
+        # Safeguard
+
+        if not stri:
             return True
-        if abstraction_funct.get(P):
-            return abstraction_funct[P](self)
+
+        # If the string stri provides a valid key for the dictionary containing the definition,
+        # test whether the definition applies
+
+        if abstraction_funct.get(stri):
+            return abstraction_funct[stri](self)
 
     def features(self, **kwargs):
         fset = set().union(*[fset for fset in self._features])
@@ -164,73 +171,95 @@ class PhraseStructureCore:
         return [s.copy() for s in self._features]
 
     def integrity(self):
-        for i, fset in enumerate(self._features):
-            if i > 0 and self.m_selection_violation(i, fset):     # ith morpheme
+
+        # Examine each bundle and check m-selection
+
+        for i in range(1, len(self._features)):
+            if self.m_selection_violation(i):
                 return True
 
-    def m_selection_violation(self, i, current_morph_fset):
-        def get_negative_m_selection_features(fset):
-            return set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('-mCOMP=')])
+    def m_selection_violation(self, i):
 
-        def get_positive_m_selection_features(fset):
-            s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
-            return {f for f in s if not f.endswith('/else')}
+        # Return a set of m-features of type [type]
+        # Feature format is TYPE=A,B,C...
 
-        def get_positive_root_selection_features(fset):
-            s = set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith('+mCOMP=')])
-            return {f.split('/')[0] for f in s if f.endswith('/else')}
+        def m_selection(fset, type):
+            return set().union(*[set(f.split('=')[1].split(',')) for f in fset if f.startswith(type)])
 
-        fset_prev_morph = self._features[i-1]
-        fset_else = self.features()
-        if fset_prev_morph:
-            neg_mset = get_negative_m_selection_features(current_morph_fset)
-            pos_mset = get_positive_m_selection_features(current_morph_fset)
-            pos_else_set = get_positive_root_selection_features(current_morph_fset)
-            if neg_mset and (fset_prev_morph & neg_mset):
-                return True
-            if pos_mset and not (fset_prev_morph & pos_mset or fset_else & pos_else_set):
+        # --------------- MAIN FUNCTION -----------------------------------------------------
+
+        # Check that the previous bundle (i-1) does not have negative m-selected features
+
+        if self._features[i-1] & m_selection(self._features[i], '-mCOMP='):
+            return True
+
+        # Check that the previous bundle (i-1) contains positive m-selected features
+
+        pos_mset = {f for f in m_selection(self._features[i], '+mCOMP=') if not f.endswith('/root')}
+        pos_root = {f[:-5] for f in m_selection(self._features[i], '+mCOMP=') if f.endswith('/root')}
+        if pos_mset:
+            if not self._features[i-1] & pos_mset and not self.features() & pos_root:
                 return True
 
     # Phi-features ----------------------------------------------------------------------------
 
     def value(self, Y_goal):
         log(' values ')
+
+        # get features from the goal
+
         fset = self.features_to_value_from_goal(Y_goal)
         if fset:
+
+            # Value the acquired features
+
             for phi in fset:
                 self.value_phi_feature(phi)
                 log(f'[{phi[5:]}]')
         else:
             log(f'nothing')
         log(f' from goal {Y_goal.max()}.')
-        if len(fset) > 1:   # Partial agreement does not create ΦLF
+
+        # Partial agreement does not create ΦLF
+
+        if len(fset) > 1:
             self.add_features({'ΦLF'})
             self.remove_features({'?ΦLF'})
         self.add_features({f'PHI:IDX:{Y_goal.head().core.get_id()}'})
 
     def value_phi_feature(self, f):
+
+        # Remove the unvalued feature
+
         self.remove_features({f'PHI:{f.split(":")[1]}:_'})
+
+        # Add the valued feature
+
         self.add_features({f'{f[1:]}'})
 
     def features_to_value_from_goal(self, goal):
+
+        # Returns the unvalued counterparty T:V:_ for feature T:V:K
+
         def unvalued_counterparty(goal_feature, X):
             return f'PHI:{goal_feature.split(":")[1]}:_' in X.features()
 
         # Feature valuation presupposes that either the probe does not have gate features or
         # if it has them, the same type must exist
         # Note: mismatches have already been checked earlier
-        # todo this is clearly still too complex but I don't know at present how to simplify
 
         def feature_gate(f, P):
             for p in P:
                 if f.split(':')[1] == p.split(':')[0]:
                     return True
 
+        # ---------------------- MAIN FUNCTION -----------------------------------------------
+
         # Set of phi-features that are licensed at the probe
 
         P = set().union(*self.phi_bundles())
 
-        # Set of features that can be valued from the goal at the probe
+        # Return the set of features that can be valued from the goal at the probe
 
         return [f for f in goal.head().core.features(type=['phi', 'interpretable']) if unvalued_counterparty(f, self) and (not P or feature_gate(f, P))]
 
@@ -255,12 +284,24 @@ class PhraseStructureCore:
     # pro-calculations
 
     def overt_phi_sustains_reference(X):
+
+        # Definition for "sustains reference" i.e. can establish referential denotation:
+        # (1) must have overt phi-features,
+        # (2) is phi-consistent,
+        # (3) has minimal phi-features for reference.
+
         return X('overt_phi') and X.phi_consistent() and X.minimal_phi_for_reference()
 
     def phi_consistent(self):
+
+        # Definition for phi-consistency, i.e. features of type T do not have different values
+
         return next((False for fpair in itertools.permutations(self.complete_valued_phi_set(), 2) if value_mismatch(*fpair)), True)
 
     def minimal_phi_for_reference(self):
+
+        # The bundle must contain number, person and det features
+
         return {'NUM', 'PER', 'DET'} <= {phi[:3] for phi in self.complete_valued_phi_set()}
 
     def complete_valued_phi_set(self):

@@ -11,7 +11,7 @@ class Results:
     def __init__(self, speaker_model):
         self.syntax_semantics = None          # List of syntax, semantics tuples
         self.recorded_steps = None            # Contains all derivational steps
-        self.step_number = None               # Step number of recorded step
+        self.step_number = 0                  # Step number of recorded step
         self.output_fields = {}
         self.resources = {}
         self.execution_time_results = []       # Execution time
@@ -38,7 +38,7 @@ class Results:
         self.sentence = lst
         self.syntax_semantics = []
         self.recorded_steps = []
-        self.step_number = 1
+        self.step_number = 0
         self.resources = {}
         self.execution_time_results = []
         self.first_solution_found = False                       # Registers when the first solution if found
@@ -99,6 +99,9 @@ class Results:
         return [item[1] for item in self.recorded_steps if item[2] == title]
 
     def recorded_step(self, index):
+
+        # Return the number of the step, phrase structure and the title of the phrase structure
+
         return self.recorded_steps[index][0], self.recorded_steps[index][1], self.recorded_steps[index][2]
 
     def store_solution(self, X, data_item):

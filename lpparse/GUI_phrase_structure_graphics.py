@@ -182,8 +182,9 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<Control-s>', self.save)
         self.bind('<Key-w>', self.widen_node)
         self.bind('<Key-s>', self.squeeze_node)
-        self.bind('<Key-c>', self.create_forward_arrow)
+        self.bind('<Key-a>', self.create_forward_arrow)
         self.bind('<Key-l>', self.use_custom_label)
+        self.bind('<Key-c>', self.compress_node_shift)
         self.bind('<Control-l>', self.change_original_label)
         self.bind('<Key-e>', self.expand_phrase_structure)
         self.bind('<Key-i>', self.inspect)
@@ -266,15 +267,18 @@ class PhraseStructureGraphics(tk.Toplevel):
             # Single GPS (usually loaded from separate file)
 
             self.canvas.title = self.image_title
-            self.canvas.derivational_index = 0
+
         else:
-            pass    # Canvas is prepared but there will be no image
+
+            # Canvas is prepared but there will be no image
+
+            return
 
         # Update contents on the canvas
 
         self.update_contents()
 
-    def initialize_and_draw_phrase_structure(self, X):
+    def initialize_and_draw_phrase_structure(self, X, **kwargs):
         """Deletes content from the canvas and draws X on it"""
         self.canvas.delete('all')
 
@@ -285,6 +289,11 @@ class PhraseStructureGraphics(tk.Toplevel):
         # Create gps from the input phrase structure X
 
         self.root_gps = GPhraseStructure(X.top().copy())
+
+        # Implement chains (if requested by caller)
+
+        if kwargs.get('draw_chains', False):
+            self.implement_chains(self.root_gps)
 
         # Position the phrase structure into logical space and perform other initialization
 
@@ -309,34 +318,41 @@ class PhraseStructureGraphics(tk.Toplevel):
     def draw_phrase_structure_from_derivation(self, **kwargs):
         """Retrieves step from the derivation and calls the drawing function to present it on canvas"""
 
-        # This argument allows the caller to determine the index number of the derivation to be drawn
-        # All steps of the derivation are in a list self.speaker_model.results.recorded_steps
-
-        start_index = kwargs.get('start', 0)
-
-        # Safeguards
-
-        if start_index > len(self.speaker_model.results.recorded_steps):
-            start_index = 0
-
         # Get the phrase structure from the speaker model based on the index as input argument
 
         if 'step' in kwargs:
-            self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, kwargs['step'])
+            self.index_of_analysis_shown, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, kwargs['step'])
 
         # Get the phrase structure from the speaker model based on the title (e.g., LF-interface, PF-interface)
 
-        if 'title' in kwargs:
+        elif 'title' in kwargs:
+
+            # Start_index is optional argument which allows the caller to determine the index from which
+            # search based on title will begin, so that we can search for "next LF" for example
+
+            start_index = kwargs.get('start', 0)
+            if start_index > len(self.speaker_model.results.recorded_steps):
+                start_index = 0
+
             for step, item in enumerate(self.speaker_model.results.recorded_steps):
+
+                # Find a matching title
+
                 if item[2] == kwargs['title'] and step > start_index:
-                    self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, step)
+                    self.index_of_analysis_shown, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, step)
                     break
             else:
+
+                # Nothing was found based on the given title
+
                 return
         else:
-            self.canvas.derivational_index, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, self.index_of_analysis_shown)
+
+            # Default solution is no input argument was specified
+
+            self.index_of_analysis_shown, X, self.canvas.title = self.get_ps_from_speaker_model(self.speaker_model, self.index_of_analysis_shown)
+
         self.canvas.delete('all')
-        self.index_of_analysis_shown = self.canvas.derivational_index
         self.initialize_and_draw_phrase_structure(X)
 
     def get_ps_from_speaker_model(self, speaker_model, index):
@@ -346,8 +362,9 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def draw_and_save_phrase_structure_tree_as_postscript(self, X, filename):
         self.canvas.delete('all')
+        self.index_of_analysis_shown = 0
         self.canvas.title = ''
-        self.canvas.derivational_index = 0
+        self.initialize_and_draw_phrase_structure(X, draw_chains=True)
         self.fit_into_screen_and_show()
         self.update()
         self.save_image_as_postscript(filename)
@@ -1106,6 +1123,15 @@ class PhraseStructureGraphics(tk.Toplevel):
         gps.generate_label_stack()
         self.canvas.redraw(self.root_gps)
 
+    def compress_node_shift(self, *_):
+        for gps in self.canvas.selected_objects:
+            if gps.complex():
+                if not gps.compressed:
+                    gps.compressed = True
+                else:
+                    gps.compressed = False
+        self.update_contents(True)
+
     def compress_node(self, *_):
         for gps in self.canvas.selected_objects:
             # Compress the object
@@ -1151,13 +1177,14 @@ class PhraseStructureGraphics(tk.Toplevel):
     def next_image(self, *_):
         if self.speaker_model.results.recorded_steps:
             if self.index_of_analysis_shown < len(self.speaker_model.results.recorded_steps) - 1:
-                self.draw_phrase_structure_from_derivation(step=self.index_of_analysis_shown + 1)
+                self.index_of_analysis_shown += 1
+                self.draw_phrase_structure_from_derivation(step=self.index_of_analysis_shown)
 
     def previous_image(self, *_):
         if self.speaker_model.results.recorded_steps:
             if self.index_of_analysis_shown > 0:
                 self.index_of_analysis_shown -= 1
-            self.draw_phrase_structure_from_derivation(step=self.index_of_analysis_shown - 1)
+            self.draw_phrase_structure_from_derivation(step=self.index_of_analysis_shown)
 
     def first_image(self, *_):
         if self.speaker_model.results.recorded_steps:

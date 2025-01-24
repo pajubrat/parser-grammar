@@ -169,7 +169,8 @@ class Application(tk.Tk):
         # Prepare input
 
         self.local_file_system.initialize_output_files()
-        ad_hoc_data_item = {'index': self.dataset_frame.selected_data_item, 'word_list': self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['word_list']}
+        ad_hoc_data_item = {'index': self.dataset_frame.selected_data_item,
+                            'word_list': self.dataset_frame.sentences_to_parse_dict[self.dataset_frame.selected_data_item]['word_list']}
         language = self.language_guesser.guess_language(ad_hoc_data_item)
 
         # Parse the input expression and show results
@@ -192,7 +193,11 @@ class Application(tk.Tk):
 
         # Open the graphics window but do not show it
 
-        image_window = PhraseStructureGraphics(self, settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings, speaker_model=None, gps=None, title='')
+        image_window = PhraseStructureGraphics(self,
+                                               settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings,
+                                               speaker_model=None,
+                                               gps=None,
+                                               title='')
         image_window.withdraw()
 
         # Run the study, while saving the result images (as set by parameter image_window).
@@ -206,7 +211,11 @@ class Application(tk.Tk):
 
         X = PhraseStructure(features={'X'})
         GX = GPhraseStructure(PhraseStructure(X))
-        image_window = PhraseStructureGraphics(self, settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings, speaker_model=None, gps=GX, title='')
+        image_window = PhraseStructureGraphics(self,
+                                               settings=self.speaker_model[list(self.speaker_model.keys())[0]].settings,
+                                               speaker_model=None,
+                                               gps=GX,
+                                               title='')
 
     def run_study(self, *_, **kwargs):
         """
@@ -253,10 +262,17 @@ class Application(tk.Tk):
         self.speaker_model[sp].results.report_results_to_console()
 
     def save_result_image(self, language, image_window, data_item):
-        lf = self.speaker_model[language].results.get_results_by_title('Accepted LF-interface')
-        if lf:
+
+        # X_lst will host the list of acceptable LF-interface representations
+
+        X_lst = self.speaker_model[language].results.get_results_by_title('Accepted LF-interface')
+        if X_lst:
             image_window.settings = self.speaker_model[language].settings
-            image_window.draw_and_save_phrase_structure_tree_as_postscript(lf[0], f'{image_window.settings.retrieve("file_study_folder", "")}/' f'{data_item["index"]}')
+
+            # We print the first acceptable LF-interface
+
+            image_window.draw_and_save_phrase_structure_tree_as_postscript(X_lst[0],
+                                                                           f'{image_window.settings.retrieve("file_study_folder", "")}/' f'{data_item["index"]}')
 
     def dev_logging(self, stri):
         self.local_file_system.write_dev_log(stri)

@@ -8,7 +8,6 @@ class PhraseStructureCanvas(tk.Canvas):
         self.focus_set()
         self.application = parent.application
         self.title = None
-        self.derivational_index = None
         self.selected_objects = []   # selected (logical, phrase structure) objects
         self.selected_dependency = None
         self.parent = parent
@@ -116,7 +115,10 @@ class PhraseStructureCanvas(tk.Canvas):
         self.cursor = self.create_rectangle(0, 0, 0, 0, outline='#DDDDDD')
 
     def update_status_bar(self, spx):
-        self.parent.status_label.configure(text='Current image: (' + str(self.derivational_index) + ')  ' + self.title)
+        if self.parent.index_of_analysis_shown and self.title:
+            self.parent.status_label.configure(text='Current image: (' + str(self.parent.index_of_analysis_shown) + ')  ' + self.title)
+        else:
+            self.parent.status_label.configure(text='Current image:')
 
     def redraw(self, gps, recalculate=True, x_offset=0, y_offset=0):
         self.delete("all")

@@ -278,10 +278,21 @@ class GPhraseStructure(PhraseStructure):
         # Minimum label is the label itself
 
         if not self.custom_label == '$n/a$':
+
+            # Custom label
+
             if self.custom_label:
                 label_stack.append((self.custom_label, 'label'))
+
+            # Linguistic label
+
             else:
                 label_stack.append((self.label(), 'label'))
+
+        # Empty label is currently represented as white space
+
+        else:
+            label_stack.append((' ', 'label'))
 
         # Phonological string
 
