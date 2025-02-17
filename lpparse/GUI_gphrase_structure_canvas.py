@@ -157,14 +157,13 @@ class PhraseStructureCanvas(tk.Canvas):
         gps.Y = Y1
         gps.generate_label_stack()
 
-        color = 'black'
-        if gps in self.selected_objects:
-            color = 'red'
-
         if gps.complex():
+            color = 'black'
+            if gps in self.selected_objects:
+                color = 'red'
             self.create_complex_node(gps, (X1, Y1), spx, spy, color)
         else:
-            self.create_primitive_node(gps, X1, Y1, color)
+            self.create_primitive_node(gps, X1, Y1)
 
         if gps.highlight:
             self.highlight(gps, X1, Y1)
@@ -178,12 +177,16 @@ class PhraseStructureCanvas(tk.Canvas):
         else:
             self.create_line(X + 100, Y, X + 50, Y, arrowshape=(20, 20, 10), arrow='last', width=10)
 
-    def create_primitive_node(self, gps, X1, Y1, color='black'):
+    def create_primitive_node(self, gps, X1, Y1):
         Y_offset = 0    # Y_offset determines the lower boundary of the node + its label(s) when adding elements
 
         # Reproduce the head and all of its affixes
 
         for j, affix in enumerate(gps.affixes(), start=1):
+
+            color = 'black'
+            if affix in self.selected_objects:
+                color = 'red'
 
             # Do not reproduce affixes if blocked by settings
 

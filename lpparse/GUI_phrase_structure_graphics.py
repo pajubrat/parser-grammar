@@ -583,19 +583,40 @@ class PhraseStructureGraphics(tk.Toplevel):
 
     def expand_complex_head(self, *_):
         for gps in self.selected_objects_into_gps_list():
+
+            # Complex heads can only be generated for zero-level objects
+
             if not gps.complex():
+
+                # Create a new primitive head
+
                 H = GPhraseStructure(PhraseStructure())
+
+                # Get all affixes from the target head
+
                 affix_lst = gps.affixes()
 
                 # If covert complex heads are set to be disabled, we enable them first
 
                 if [a for a in affix_lst if a.copied]:
                     self.application.settings.store('image_parameter_covert_complex_heads', True)
+
+                # Designate the last (bottom) affix from the target head
+
                 last_affix = gps.affixes()[-1]
+
+                # Add the new constituent
+
                 last_affix.const = [H]
                 H.mother_ = last_affix
-                H.core.add_features({'PF:X'})
-                self.update_contents()
+
+                # Add features
+
+                # H.core.add_features({'PF:X'})
+
+            # Update contents
+
+            self.update_contents()
 
     def reverse_presentation(self, *_):
         for gps in self.selected_objects_into_gps_list():

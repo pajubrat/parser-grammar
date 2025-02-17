@@ -1,5 +1,5 @@
 
-# Binding corpus, September 2024, Pauli Brattico
+# Binding corpus, Febrauary 2025, Pauli Brattico
 # Condition A. An anaphor must be locally bound.
 # Condition B. A pronoun must not be locally bound.
 # Condition C. An R-expression can not be bound.
@@ -14,18 +14,12 @@
 
 		ketä Pekka ihailee
 
-		who does John admire
-
-		who C/wh John admires
-
 		who admires John
 
 		John admires Bill
 		¦-> Binding: John[a] admire Bill[b]
 		
-END
-
-		he 's brother admires Bill
+		he `s brother admires Bill
 		¦-> Binding: he[b] brother[a] admire Bill[b,c]
 
 		Bill said that John admires Tim
@@ -36,7 +30,7 @@ END
 		John admires himself
 		¦-> Binding: John[a] admire self[a]
 
-		he 's brother admires himself
+		he `s brother admires himself
 		¦-> Binding: he[b] brother[a] admire self[a]
 
 		Bill said that John admires himself
@@ -47,7 +41,7 @@ END
 		John admires him
 		¦-> Binding: John[a] admire him[b]
 
-		he 's brother admires him
+		he `s brother admires him
 		¦-> Binding: he[b] brother[a] admire him[b,c]
 		
 		Bill said that John admires him
@@ -62,7 +56,7 @@ END
 		¦-> Number of assignments: 6
 
 		Tim;
-		he 's brother admires Bill
+		he `s brother admires Bill
 		¦-> Number of assignments: 36
 
 		Tim;
@@ -76,7 +70,7 @@ END
 		¦-> Number of assignments: 3
 
 		Tim;
-		he 's brother admires himself
+		he `s brother admires himself
 		¦-> Number of assignments: 12
 
 		Tim;
@@ -90,7 +84,7 @@ END
 		¦-> Number of assignments: 6
 
 		Tim;
-		he 's brother admires him
+		he `s brother admires him
 		¦-> Number of assignments: 36
 		
 		Tim;
@@ -121,17 +115,17 @@ END
 
 	& 2.5 Intra-clausal coherence
 	
-		hän/2;
+		hän;
 		Pekan_gen sisko ihailee Merjaa
 		'Pekka-gen sister admire.prs.3sg Merja.par'
 		¦-> Binding: Pekka[c] sisko[b] ihaile- Merja[d]
 
-		hän/2;
+		hän;
 		Pekan_gen sisko ihailee häntä
 		'Pekka-gen sister admire.prs.3sg he.par'
 		¦-> Binding: Pekka[c] sisko[b] ihaile- hän[c,d]
 		
-		hän/2
+		hän;
 		Pekan_gen sisko ihailee itseä#An
 		'Pekka.gen sister admire.prs.3sg self.par-px3'
 		¦-> Binding: Pekka[b] sisko[a] ihaile- itse[a]
@@ -328,15 +322,15 @@ END
 				
 		# Finnish reflexives, no gender
 	
-			Pekka ihailee itseään
+			Pekka ihailee itseä#An
 			'Pekka.nom admire.prs.3sg self.par.px3'
 			¦-> Number of assignments: 2
 				
-			Merja ihailee itseään
+			Merja ihailee itseä#An
 			'Merja.nom admire.prs.3sg self.par.px3'
 			¦-> Number of assignments: 2
 	
-			hän ihailee itseään
+			hän ihailee itseä#An
 			'he.nom admire.prs.3sg self.par.px3'
 			¦-> Number of assignments: 2
 		
@@ -390,7 +384,7 @@ END
 
 	& 6.1 Ā-chains
 	
-		itseä#An#[kO] Pekka ihailee
+		itseä#An=kO Pekka ihailee
 		'self.par-px3-Q Pekka.nom admire.prs.3sg'
 		¦-> Binding: Pekka[a] ihaile- itse[a]
 
@@ -493,7 +487,7 @@ END
 
 & 8. DP-internal arguments
 
-	John admires he 's sister
+	John admires he `s sister
 	¦-> Binding: John[a] admire he[a,c] sister[b]
 			
 	Pekka ihailee hänen siskoa
@@ -504,7 +498,7 @@ END
 	'Pekka.nom took picture.acc he.ela'
 	¦-> Binding: Pekka[a] ota- kuva sta hän[a,c][b]
 	
-	Pekka otti kuvan itsestään
+	Pekka otti kuvan itsestä#An
 	'Pekka.nom took picture.acc self'	
 
 	Pekan_gen sisko nukkuu

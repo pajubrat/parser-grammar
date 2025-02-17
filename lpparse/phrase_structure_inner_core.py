@@ -157,7 +157,7 @@ class PhraseStructureCore:
             self._features[i] = fset_ - fset
 
     def add_features(self, fset):
-        if self._features[0]:
+        if len(self._features) > 0:
             self._features[0].update(fset)
         else:
             self._features = [fset]
@@ -306,6 +306,9 @@ class PhraseStructureCore:
 
     def complete_valued_phi_set(self):
         return set().union(*[frozenset(phi[4:].split(',')) for phi in self.features(type=['phi', 'valued'])])
+
+    def NUM_PER_phi(X):
+        return set().union(*[phi.split(',') for phi in X.features(type=['phi', 'valued'], format='reduced', match={'NUM:', 'PER:'})])
 
     # Selection, thematic roles
 

@@ -48,16 +48,14 @@ class PhraseStructure:
                      'TRANSFORM': lambda x, t: x.head_reconstruction(t)},
                   'Scrambling':
                       {'TRIGGER': lambda x: x.max().license_scrambling() and
-                                            (x.container() and x.container()('EF') and
-                                             (not x.container()('theta_predicate') or x.container()('preposition')) or
-                                             not x.head().tail_test()) and x.scrambling_target() and
-                                            x.scrambling_target() != x.top() and not x.operator_in_scope_position() and
+                                            (x.container() and x.container()('EF') and (not x.container()('theta_predicate') or x.container()('preposition')) or not x.head().tail_test())
+                                            and x.scrambling_target() and x.scrambling_target() != x.top() and not x.operator_in_scope_position() and
                                             PhraseStructure.speaker_model.LF.pass_LF_legibility(x.scrambling_target().copy().transfer(), logging=False) and
                                             not PhraseStructure.cyclic,
                        'TARGET': lambda x: x.scrambling_target(),
                        'TRANSFORM': lambda x, t: x.scrambling_reconstruct(t)},
                   'Agree':
-                      {'TRIGGER': lambda x: x.sister() and x.is_L() and x.core.features(type=['phi', 'unvalued']),
+                      {'TRIGGER': lambda x: x.sister() and x.is_L() and x.core.features(type=['phi', 'unvalued']) and not x('finite_C'),
                        'TARGET': lambda x: x,
                        'TRANSFORM': lambda x, t: x.AgreeLF()}
                        }
@@ -524,9 +522,7 @@ class PhraseStructure:
 
     def pro_projection_principle_violation(X):
         if X.zero_level() and X.core.overt_phi_sustains_reference() and X.complement():
-            return X.complement()(criteria=lambda y: y.zero_level() and
-                                                     y.core.overt_phi_sustains_reference(), intervention=lambda y: y('theta_predicate') and
-                                                                                                                   y('verbal'))
+            return X.complement().INT(criteria=lambda y: y.zero_level() and y.core.overt_phi_sustains_reference(), intervention=lambda y: y('theta_predicate') and y('verbal'))
 
     def gets_theta_role_from(Xmax, Y):
 
@@ -612,7 +608,6 @@ class PhraseStructure:
         XP = the original phrase which was marked for scrambling.
         YP = target (may contain additional material such as Specs) that will be scrambled
         """
-
         set_logging(False)
 
         # Transfer the scrambled phrase into parallel working space
@@ -710,7 +705,6 @@ class PhraseStructure:
     def EPP_violation(X):
         """
         Current implementation of the Agree/EPP system, tested as LF-legibility
-        todo There must be a deeper/simpler function but currently it is unknown
         """
 
         # Rule out stacking of non-adjunct constituents into the edge
@@ -723,15 +717,15 @@ class PhraseStructure:
 
         # Main rules
 
-        if not X.INT(['ASP', 'strong_pro']):                                    #   Amnesty for strong pro, theta heads and C/fin
-            if not X('EF'):                                            #   If X does not have EF,
+        if not X.INT(['ASP', 'strong_pro']):                          #   Amnesty for strong pro, theta heads and C/fin
+            if not X('EF'):                                           #   If X does not have EF,
                 return X.specifier() and not X('thematic_edge')       #   it cannot have nonthematic edge element
-            if X.INT({'-ΦPF'}) or not X('EPP'):                            #   Amnesty for non-agreeing heads and heads without EPP
+            if X.INT({'-ΦPF'}) or not X('EPP'):                       #   Amnesty for non-agreeing heads and heads without EPP
                 return False
-            if X.INT({'weak_pro'}):                                             #   Secondary rule:
-                return X.INT({'ΦLF'}) and not X.specifier()                  #   if Agree(X, Y), SpecXP cannot be empty
-            if X.INT({'ΦLF'}):                                                  #   Primary rule:
-                return not X.primary_rule()                                 #   if Agree(X, Y), YP = SpecXP
+            if X.INT({'weak_pro'}):                                   #   Secondary rule:
+                return X.INT({'ΦLF'}) and not X.specifier()           #   if Agree(X, Y), SpecXP cannot be empty
+            if X.INT({'ΦLF'}):                                        #   Primary rule:
+                return not X.primary_rule()                            #   if Agree(X, Y), YP = SpecXP
 
             # If Agree(X, Y) does not occur, then violation can be avoided if X is specifically marked to not require Agree
             # or there is phi-consistent overt agreement suffices at X
@@ -800,7 +794,6 @@ class PhraseStructure:
         """
         return X.INT('operator', scan=True) and \
                not X.core.features(match=['$OP$']) and \
-               X.INT('-insitu', scan=True) and \
                ((X.container() and X.container().INT({'Fin'})) or
                 (X.INT({'-insitu'}) and X.INT(['TAM', 'C/fin', 'Neg/fin'])))
 
@@ -836,16 +829,13 @@ class PhraseStructure:
 
         # If there is a suitable antecedent, return it
 
-        if X.EXT(criteria=lambda y: y.INT('referential') and not mismatch(X.phi_set(), y.head().phi_set())):
-            return X.EXT(criteria=lambda y: y.INT('referential') and not mismatch(X.phi_set(), y.head().phi_set()))
+        if X.EXT(criteria=lambda y: y.INT('referential') and not mismatch(X.core.NUM_PER_phi(), y.head().core.NUM_PER_phi())):
+            return X.EXT(criteria=lambda y: y.INT('referential') and not mismatch(X.core.NUM_PER_phi(), y.head().core.NUM_PER_phi()))
 
         # Otherwise, if X does not have overt phi, return generic 'one'
 
         if not X.INT('overt_phi'):
             return PhraseStructure(features={"PF:one", 'LF:generic', 'φ', 'D'})
-
-    def phi_set(X):
-        return X.core.features(type=['phi', 'valued'], format='reduced', match={'NUM:', 'PER:', '^,'})
 
     # Structure building --------------------------------------------------------------------------
 
@@ -899,9 +889,9 @@ class PhraseStructure:
 
     def attach(X, W):
         X.speaker_model.results.consume_resources('Merge', X, W)
-        if X.w_internal() or X.INT({'C'}) or X.bottom_affix().INT('EHM'):
+        if X.w_internal() or X.bottom_affix().INT('EHM'):
             return X ** W   #   EHM
-        return X * W        #   Phrasal Merge (asymmetric)
+        return X * W        #   Phrasal Merge
 
     def detach(X):
         m = X.M()

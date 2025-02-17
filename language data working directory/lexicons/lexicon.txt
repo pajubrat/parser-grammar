@@ -242,7 +242,7 @@ KUORSAA 	:: PF:kuorsaa- LF:snore V V/INTR -COMP:WH -COMP:T/fin -COMP:φ LANG:FI
 'snore'
 
 kuva#a		:: "KUVA.φ#par" LANG:FI
-kuva#n		:: "KUVA.φ#acc" LANG:FI
+kuva#n		:: "KUVA.φ#[acc]" LANG:FI
 kuva		:: "KUVA.φ.nom" LANG:FI
 KUVA		:: PF:kuva LF:picture N R_exp 3p udef nonhum LANG:FI
 'picture'
@@ -432,6 +432,9 @@ ole#tte		:: "OLE.0#tte" LANG:FI
 o#vat		:: "OLE.0#vAt" LANG:FI
 OLE			:: COPULA LF:be LANG:FI
 'be'
+
+otti		:: "OTA.v#i+0" LANG:FI
+OTA			:: PF:ota- LF:take V ASP:BOUNDED V/TR LANG:FI
 
 omaisuutensa	:: "omaisuus-#D#def#sg#3p#acc(n)" LANG:FI
 omaisuuttaan	:: "omaisuus-#D#def#sg#3p#par" LANG:FI
@@ -733,9 +736,13 @@ ne			:: "NE.φ.nom" LANG:FI
 NE			:: PF:ne LF:those N pl 3p def pron LANG:FI
 'it'
 
+itse#ä		:: "ITSE.φ#par" LANG:FI
+itse#stä	:: "ITSE.φ#sta"	LANG:FI
+ITSE		:: PF:itse LF:self N def refl LANG:FI
+
 # ENGLISH LEXICON -----------------------------------------------------------------------------------------------------------------------
 
-'s			:: PF:'s LF:Poss D REF EF* EF PHI:DET:DEF PHI:NUM:SG PHI:PER:3 R:NEW:$X$ POSS
+`s			:: PF:'s LF:Poss D REF EF* EF iPHI:DET:DEF iPHI:NUM:SG iPHI:PER:3 R:NEW:$X$ POSS
 a_D			:: D PF:D LF:D LANG:EN
 an			:: D iPHI:PER:3 iPHI:NUM:SG iPHI:DET:INDEF PF:D LF:D LANG:EN
 a			:: D iPHI:PER:3 iPHI:NUM:SG iPHI:DET:INDEF PF:D LF:D LANG:EN
@@ -963,11 +970,11 @@ him			:: "HE.D.[acc]" LANG:EN
 HE			:: PF:he LF:he N sg 3p hum def pron PHI_N LANG:EN
 
 himself		:: "HIMSELF.D" LANG:EN
-HIMSELF		:: PF:self LF:self N sg 23 hum def refl PHI_N LANG:EN
+HIMSELF		:: PF:self LF:self N sg 3 hum m def refl PHI_N LANG:EN
 
 her			:: "SHE.D.[acc]" LANG:EN
-herself		:: "herself-#D#sg#3p#def#hum#f#acc#reflexive" LANG:EN
-herself-	:: PF:self LF:self N PHI_N LANG:EN
+herself		:: "HERSELF.D" LANG:EN
+HERSELF		:: PF:self LF:self N sg 3 hum f def refl PHI_N LANG:EN
 
 she			:: "SHE.D" LANG:EN
 SHE			:: PF:she LF:she N pron f sg 3p def PHI_N LANG:EN
