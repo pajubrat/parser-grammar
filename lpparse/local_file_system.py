@@ -13,7 +13,7 @@ class LocalFileSystem:
         self.external_sources = {}
         self.encoding = 'utf-8'
         self.file_handle = {}
-        self.output_files = ['simple log', 'results', 'resources', 'errors', 'descriptive', 'numeration output', 'dev']
+        self.output_files = ['simple log', 'results', 'resources', 'errors', 'descriptive', 'numeration output', 'dev', 'dev_input_data']
 
     def initialize_output_files(self):
         self.configure_logging()
@@ -96,47 +96,87 @@ class LocalFileSystem:
         if self.application.settings.retrieve('use_numeration', False):
             input_file = self.application.settings.external_sources["numeration output"]
         index = 0
+
+        # Try to read the data file
+
         try:
             for line in open(input_file, encoding=self.encoding):
                 part_of_conversation = False
+
+                # Strip the line
+
                 line = line.strip()
+
+                # Stop reading if either command is encountered
+
                 if line.startswith('STOP') or line.startswith('END'):
                     break
+
+                # Comments are ignored
+
                 if not line or line.startswith('#') or line.startswith("\'"):
                     continue
+
+                # Start recording from this command (and erase previous data)
+
                 if line.startswith('BEGIN'):
                     input_data.reset()
                     index = 0
                     continue
+
+                # Process only the selected line
+
                 if line.startswith('%'):
-                    # We take only this line
                     index = 0
                     cont = False                #   This will break out of the loop once next sentence is detected
                     line = line.lstrip('%')
                     line = line.strip()
                     line = clear_line_end(line)
                     input_data.reset()          #   Empty the input data stored thus far; the new item is added below
+
+                # Take conversations into account
+
                 if line.endswith(';'):
                     part_of_conversation = True
                     line = clear_line_end(line)
+
+                # This symbol can be used to end conversations explicitly
+
                 if line.endswith('.'):
                     part_of_conversation = False
                     line = clear_line_end(line)
+
+                # These lines record attributes that must be checked against predicted outcome
+                # Descriptive adequacy
+
                 if line.startswith('¦->') and len(line.split(':')) == 2:
                     line = line.lstrip('¦->')
                     field, value = line.split(':')
                     input_data.update(index, {field.strip(): value.strip()})
                     continue
 
+                # This signals that the reading must end
+
                 if not cont and index == 1:
                     break
 
                 if line.startswith('&'):
+
+                    # These lines are comments which are however reproduced into outputs
+
                     input_data.add(self.create_data_from_line(line, -1, part_of_conversation))
                 else:
+
+                    # Add input sentence into the dataset
+                    # Note: attributes are added by the lines above
+
                     index += 1
                     input_data.add(self.create_data_from_line(line, index, part_of_conversation))
+
+            # Return the result
+
             return input_data
+
         except IOError:
             print(f'The corpus file "{input_file}" seems to be missing.\n'
                   f'Make sure that the file exists and that the name is correct.')
@@ -178,6 +218,11 @@ class LocalFileSystem:
     def save_simple_log(self, speaker_model):
         for step in speaker_model.results.recorded_steps:
             self.file_handle['simple log'].write(f'{step[0]}. {step[1]} ({step[2]})\n')
+
+    # Stores the input data used in the experiment
+
+    def save_input_data(self, input_data):
+        self.file_handle['dev_input_data'].write(f'{input_data}')
 
     def save_errors(self, speaker_model, data_item):
         if len(speaker_model.results.syntax_semantics) > 0 and not data_item["grammaticality"] or len(speaker_model.results.syntax_semantics) == 0 and data_item["grammaticality"]:

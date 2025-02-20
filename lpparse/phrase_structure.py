@@ -48,12 +48,12 @@ class PhraseStructure:
                      'TRANSFORM': lambda x, t: x.head_reconstruction(t)},
                   'Scrambling':
                       {'TRIGGER': lambda x: x.max().license_scrambling() and
-                                            (x.container() and x.container()('EF') and (not x.container()('theta_predicate') or x.container()('preposition')) or not x.head().tail_test())
-                                            and x.scrambling_target() and x.scrambling_target() != x.top() and not x.operator_in_scope_position() and
-                                            PhraseStructure.speaker_model.LF.pass_LF_legibility(x.scrambling_target().copy().transfer(), logging=False) and
+                                            (x.max().container() and x.max().container()('EF') and (not x.max().container()('theta_predicate') or x.max().container()('preposition')) or not x.head().tail_test())
+                                            and x.max().scrambling_target() and x.max().scrambling_target() != x.top() and not x.operator_in_scope_position() and
+                                            PhraseStructure.speaker_model.LF.pass_LF_legibility(x.max().scrambling_target().copy().transfer(), logging=False) and
                                             not PhraseStructure.cyclic,
-                       'TARGET': lambda x: x.scrambling_target(),
-                       'TRANSFORM': lambda x, t: x.scrambling_reconstruct(t)},
+                       'TARGET': lambda x: x.max().scrambling_target(),
+                       'TRANSFORM': lambda x, t: x.max().scrambling_reconstruct(t)},
                   'Agree':
                       {'TRIGGER': lambda x: x.sister() and x.is_L() and x.core.features(type=['phi', 'unvalued']) and not x('finite_C'),
                        'TARGET': lambda x: x,
@@ -194,10 +194,16 @@ class PhraseStructure:
         x = X
         y = None
         collection = []
-        intervention = kwargs.get('intervention', lambda x: False)  # default value for domain is "top"
+        intervention = kwargs.get('intervention', lambda x: False)
+
+        # default value for domain is "top"
+
         if kwargs.get('domain') == 'max':
             intervention = lambda x: x.M().head() != x.head()
-        criteria = kwargs.get('criteria', lambda x: True)           # default value for criteria is "everything"
+
+        # default value for criteria is "everything"
+
+        criteria = kwargs.get('criteria', lambda x: True)
         if kwargs.get('self', False):
             collection.append(X)
 
@@ -224,15 +230,14 @@ class PhraseStructure:
     def INT(X, target_seed=None, **kwargs):
 
         # If there are no arguments, use defaults
+        # Default search = find the dominant head (=head algorithm)
 
         if len(kwargs) == 0:
             kwargs['criteria'] = lambda x: x.zero_level()
             if isinstance(target_seed, str):
                 kwargs['intervention'] = lambda x: x.zero_level()
 
-        return X.internal_search_path(NodePicture(target_seed,
-                                                  criteria=kwargs.get('criteria', lambda x: True)),
-                                      **kwargs)
+        return X.internal_search_path(NodePicture(target_seed, criteria=kwargs.get('criteria', lambda x: True)), **kwargs)
 
     def internal_search_path(X, NodePic=None, **kwargs):
 
@@ -608,10 +613,10 @@ class PhraseStructure:
         XP = the original phrase which was marked for scrambling.
         YP = target (may contain additional material such as Specs) that will be scrambled
         """
-        set_logging(False)
 
         # Transfer the scrambled phrase into parallel working space
 
+        set_logging(False)
         YP.transfer()
         set_logging(True)
         YP.adjunct = True
@@ -765,7 +770,7 @@ class PhraseStructure:
 
         # DP-internal concord (rudimentary, not studied in detail)
 
-        if X.INT({'φ'}) and X.complement():
+        if X.INT({'φ'}) and X.complement() and X.complement().is_R():
             X.core.add_features(X.complement().head().core.features(type=['phi', 'interpretable']))
             X.core.add_features(X.complement().head().core.get_R_features())
         return X
@@ -1064,10 +1069,17 @@ class PhraseStructure:
 
     def construct_semantic_working_memory(X, intervention_feature, assignment):
         sWM = set()
+
+        # Examine the contents of the working memory for referential expressions
+
         for const in (x for x in X.EXT(acquire='all') if x.head().core.has_idx() and x.head().core.get_idx_tuple('QND') and x.head() != X and not x.copied):
             sWM.add(assignment[const.head().core.get_referential_index('QND')])
+
+            # Stop if there is an intervention
+
             if intervention_feature and not const.copied and {intervention_feature}.issubset(const.head().core.features()):
                 break
+
         return sWM
 
 class NodePicture:

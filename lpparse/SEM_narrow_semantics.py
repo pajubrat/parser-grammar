@@ -78,6 +78,7 @@ class NarrowSemantics:
         self.semantic_interpretation_failed = False
 
     def reset_for_new_interpretation(self):
+        self.speaker_model.results.reset_output_fields()
         self.semantic_interpretation_failed = False
         self.phi_interpretation_failed = False
         self.predicates.operation_failed = False
@@ -89,6 +90,7 @@ class NarrowSemantics:
             self.global_cognition.reset()
 
     def postsyntactic_semantic_interpretation(self, X):
+        self.reset_for_new_interpretation()
         log(f'\n----Semantic interpretation---------------------------------------------------------------------------\n')
         self.speaker_model.results.store_output_field('LF', f'{X}')
 

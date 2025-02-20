@@ -36,6 +36,16 @@ class PlausibilityMetrics:
             return [X.bottom()]
         return self.rank(self.filter(X.collect_sWM(geometrical=True, self=True)), w)
 
+    def right_edge(self, X):
+        lst = []
+        while X:
+            lst.append(X)
+            if X.complex():
+                X = X.R()
+            else:
+                break
+        return lst
+
     def filter(self, X_right_edge):
         return [N for N in X_right_edge if N.zero_level() or self.left_branch_filter(N)]
 

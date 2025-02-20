@@ -551,7 +551,7 @@ SIRKKU		:: PF:Sirkku- LF:Sirkku N R_exp 3p sg def hum f LANG:FI
 sisko#a#an	:: "SISKO.φ#sg.par#An"
 sisko#a		:: "SISKO.φ#sg.par"
 sisko		:: "SISKO.φ.nom"
-SISKO		:: PF:sisko LF:sister N R_exp 3p udef nonhum LANG:FI
+SISKO		:: PF:sisko LF:sister N R_exp 3p udef hum LANG:FI
 'sister'
 
 sopimuk#sen	:: "SOPIMUS.φ#sg.acc(n)" LANG:FI
@@ -578,6 +578,7 @@ SUKKA		:: PF:sukka LF:socks N R_exp 3p udef nonhum LANG:FI
 'sock'
 
 sta			:: PF:sta LF:of P TAIL:V LANG:FI
+sta/2		:: PF:sta LF:of P TAIL:N LANG:FI
 sti			:: PF:sti LF:by !COMP:* TAIL:T Adv -EF  LANG:FI
 
 talo		:: "TALO.φ.nom" LANG:FI
@@ -700,7 +701,8 @@ SINÄ		:: PF:sinä LF:you N sg 2p hum def pron PHI_N LANG:FI
 
 hän			:: "HÄN.φ.nom" LANG:FI
 häntä		:: "HÄN.φ#par" LANG:FI
-hänestä		:: "HÄN.φ#P(ela)" LANG:FI
+hänestä		:: "HÄN.φ#sta" LANG:FI
+hänestä/2	:: "HÄN.φ#sta/2" LANG:FI
 hänen		:: "HÄN.φ#gen" LANG:FI
 hänet		:: "HÄN.φ#acc(t)" LANG:FI
 HÄN			:: PF:hän LF:s/he N sg 3p def hum pron PHI_N LANG:FI
@@ -928,7 +930,7 @@ that    	:: PF:that LF:that FORCE FORCE:DECL REF LANG:EN
 the			:: PF:the LF:the D def 3p LANG:EN
 
 Tim			:: "TIM.D" LANG:EN
-TIM			:: PF:Tim LF:Tim N R_exp sg 3p def hum -SEM:directional nonadjoinable LANG:EN
+TIM			:: PF:Tim LF:Tim N R_exp sg 3p def m hum -SEM:directional nonadjoinable LANG:EN
 
 to     		:: PF:to LF:to P +SEM:directional -E TAIL:V +SEM:directional LANG:EN
 
@@ -967,7 +969,7 @@ YOU			:: PF:you LF:you N sg 2p hum def pron PHI_N LANG:EN
 
 he			:: "HE.D" LANG:EN
 him			:: "HE.D.[acc]" LANG:EN
-HE			:: PF:he LF:he N sg 3p hum def pron PHI_N LANG:EN
+HE			:: PF:he LF:he N sg 3p hum def m pron PHI_N LANG:EN
 
 himself		:: "HIMSELF.D" LANG:EN
 HIMSELF		:: PF:self LF:self N sg 3 hum m def refl PHI_N LANG:EN

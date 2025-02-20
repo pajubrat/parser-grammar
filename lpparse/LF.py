@@ -85,7 +85,7 @@ class LF:
         if X.zero_level() and \
                 X.max() != X.top() and \
                 X.get_tail_sets() and \
-                not X.tail_test(weak_test=not (X.core('preposition') or X.core('adverbial'))):
+                not X.tail_test(weak_test=not (X('preposition') or X('adverbial'))):
             log(f'\n\t\tPostsyntactic tail test for \'{X.illustrate()}\' failed.')
             return False
         return True

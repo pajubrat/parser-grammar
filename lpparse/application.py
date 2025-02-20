@@ -257,6 +257,12 @@ class Application(tk.Tk):
 
         # Closing tasks
 
+        # Store the input data used in the experiment
+
+        self.local_file_system.save_input_data(self.input_data)
+
+        # Close files
+
         self.local_file_system.close_all_output_files()
         sp = list(self.speaker_model.keys())[0]
         self.speaker_model[sp].results.report_results_to_console()

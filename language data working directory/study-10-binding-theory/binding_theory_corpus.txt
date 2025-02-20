@@ -8,14 +8,6 @@
 
 	# Condition C
 
-		Merjaa ihailee Pekka
-
-		ketä C/wh Pekka ihailee
-
-		ketä Pekka ihailee
-
-		who admires John
-
 		John admires Bill
 		¦-> Binding: John[a] admire Bill[b]
 		
@@ -39,18 +31,18 @@
 	# Condition B
 
 		John admires him
-		¦-> Binding: John[a] admire him[b]
+		¦-> Binding: John[a] admire he[b]
 
 		he `s brother admires him
-		¦-> Binding: he[b] brother[a] admire him[b,c]
+		¦-> Binding: he[b] brother[a] admire he[b,c]
 		
 		Bill said that John admires him
-		¦-> Binding: Bill[a] say John[b] admire him[a,c]
+		¦-> Binding: Bill[a] say John[b] admire he[a,c]
 
 & 2. Conversation tests (English)
 
 	& 2.1 Condition C
-
+		
 		Tim;
 		John admires Bill
 		¦-> Number of assignments: 6
@@ -128,7 +120,7 @@
 		hän;
 		Pekan_gen sisko ihailee itseä#An
 		'Pekka.gen sister admire.prs.3sg self.par-px3'
-		¦-> Binding: Pekka[b] sisko[a] ihaile- itse[a]
+		¦-> Binding: Pekka[c] sisko[b] ihaile- itse[b]
 		
 & 3. Basic binding principles in Finnish
 
@@ -366,7 +358,7 @@
 			'we.nom admire.prs.1pl self.par-px3'
 			¦-> Number of assignments: 0
 			
-			minä ihailen itseä#mme
+		%	minä ihailen itseä#mme
 			'I.nom admire.prs.1sg self.par-1pl'
 			¦-> Number of assignments: 0
 		
@@ -383,7 +375,7 @@
 & 6. Reconstruction
 
 	& 6.1 Ā-chains
-	
+			
 		itseä#An=kO Pekka ihailee
 		'self.par-px3-Q Pekka.nom admire.prs.3sg'
 		¦-> Binding: Pekka[a] ihaile- itse[a]
@@ -392,27 +384,27 @@
 
 		itseä#An ihailee Pekka
 		'self.par-px3 admire.prs.3sg Pekka.nom'
-		¦-> Binding: Pekka[a] itse[a] ihaile-
+		¦-> Binding: Pekka[a] ihaile- itse[a]
 		
 		Merjaa ihailee Pekka
 		'Merja.par admire.prs.3sg Pekka.nom'
-		¦-> Binding: Pekka[a] Merja[b] ihaile-
+		¦-> Binding: Pekka[a] ihaile- Merja[b]
 
 		häntä ihailee Pekka
 		'he.par admire.prs.3sg Pekka.nom'
-		¦-> Binding: Pekka[a] hän[b] ihaile-
+		¦-> Binding: Pekka[a] ihaile- hän[b]
 
 		itseä#An ihailee Pekan_gen sisko
 		'self.par-px3 admire.prs.3sg Pekka.gen sister.nom'
-		¦-> Binding: Pekka[b] sisko[a] itse[a] ihaile-
+		¦-> Binding: Pekka[b] sisko[a] ihaile- itse[a]
 			
 		häntä ihailee Pekan_gen sisko
 		'he.par admire.prs.3sg Pekka.gen sister'
-		¦-> Binding: Pekka[b] sisko[a] hän[b,c] ihaile-
+		¦-> Binding: Pekka[b] sisko[a] ihaile- hän[b,c]
 	
 		Merjaa ihailee Pekan_gen sisko
 		'Merja.par admire.prs.3sg Pekka.gen sister.'
-		¦-> Binding: Pekka[b] sisko[a] Merja[c] ihaile-
+		¦-> Binding: Pekka[b] sisko[a] ihaile- Merja[c]
 	
 	& 6.3 A-chains ("raising construction")
 	
@@ -430,10 +422,10 @@
 		¦-> Binding: John[a] want Mary[b] admire self[b]
 
 		John wants to/inf admire him
-		¦-> Binding: John[a] want admire him[b]
+		¦-> Binding: John[a] want admire he[b]
 		
 		John wants Mary to/inf admire him
-		¦-> Binding: John[a] want Mary[b] admire him[a,c]
+		¦-> Binding: John[a] want Mary[b] admire he[a,c]
 		
 		John wants to/inf admire Mary
 		¦-> Binding: John[a] want admire Mary[b]
@@ -496,8 +488,14 @@
 
 	Pekka otti kuvan hänestä
 	'Pekka.nom took picture.acc he.ela'
+	¦-> Binding: Pekka[a] ota- kuva[b] sta hän[c]
+	# The PP is merged as a right VP-adjunct
+
+	Pekka otti kuvan hänestä/2
+	'Pekka.nom took picture.acc he.ela'
 	¦-> Binding: Pekka[a] ota- kuva sta hän[a,c][b]
-	
+	# The PP is merged as a complement of N
+
 	Pekka otti kuvan itsestä#An
 	'Pekka.nom took picture.acc self'	
 

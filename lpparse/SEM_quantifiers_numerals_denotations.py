@@ -125,13 +125,10 @@ class QuantifiersNumeralsDenotations:
         for expression in ref_constituents_lst:
             if not self.binding_conditions(expression, assignment):
                 weighted_assignment['weight'] = 0
-                log('-(B)')
         if not self.semantic_compability(assignment):
             weighted_assignment['weight'] = 0
-            log('-(S)')
         if self.internal_inconsistency(assignment):
             weighted_assignment['weight'] = 0
-            log('-(IC)')
         if weighted_assignment['weight'] > 0:
             log('+')
         return weighted_assignment
@@ -144,6 +141,7 @@ class QuantifiersNumeralsDenotations:
             object1 = self.inventory[QND_idx]
             object2 = self.narrow_semantics.global_cognition.inventory[G_idx]
             if not self.narrow_semantics.global_cognition.ontological_compatibility(object1, object2):
+                log(f'-Semantic incongruity between {object1} and {object2}')
                 return False
         return True
 
@@ -157,6 +155,7 @@ class QuantifiersNumeralsDenotations:
             for QND_idx2, G_idx2 in assignment.items():
                 if QND_idx2 != QND_idx and G_idx2 == G_idx:
                     if not self.compatible(QND_idx, QND_idx2):
+                        log('-Internal inconsistency')
                         return True
 
     def print_assignment(self, assignment):
@@ -166,52 +165,89 @@ class QuantifiersNumeralsDenotations:
         return '; '.join(self.print_assignment(assignment) for assignment in assignments_dict)
 
     def binding_conditions(self, exp, assignment):
-        def evaluate(semantic_object, rule_, semantic_working_memory):
-            return ('NEW' in rule_ and not {semantic_object} & semantic_working_memory) or \
-                   ('OLD' in rule_ and {semantic_object} & semantic_working_memory)
+        def binding_violation(semantic_object, rule_, semantic_working_memory, X):
+            if 'NEW' in rule_ and {semantic_object} & semantic_working_memory:
+                log(f'-Illegitimate binder for {X.max().illustrate()}({semantic_object}) in WM ')
+                return True
+            if 'OLD' in rule_ and not {semantic_object} & semantic_working_memory:
+                log(f'-Binder missing for {X.max().illustrate()}({semantic_object}) from WM ({semantic_working_memory})')
+                return True
 
         idx, name, X, denotations = exp
         for f in self.get_R_features(X):
             R, rule, intervention = self.parse_R_feature(f)
-            if not evaluate(assignment[idx], rule, X.construct_semantic_working_memory(intervention, assignment)):
+            if binding_violation(assignment[idx], rule, X.construct_semantic_working_memory(intervention, assignment), X):
                 return False
         return True
 
     def assignment_output_string(self, X):
         """Summarises binding dependencies in one string"""
+
+        # Creates symbol content (words) for primitive constituents for the output string
+
         def relevant_content(Y):
             if ['V', 'N', 'A', 'P', 'Adv', 'D'] in Y.core:
                 return ''.join([f[3:] for f in Y.core.features() if f.startswith('PF:') and f[3:] not in PhraseStructure.major_cats and f[3:] != "'s"])
 
         stri = ''
+
         if not X.copied:
-            if X.L() and X.R():
+
+            # Recursion
+
+            if X.complex():
                 stri += self.assignment_output_string(X.L())
                 stri += self.assignment_output_string(X.R())
+
+            # Primitive constituents are turned into string symbols
+
             if X.zero_level() and relevant_content(X):
                 stri += ' ' + relevant_content(X)
 
             # Create binding tags at the end of referential expressions
-            if X.zero_level() and not X.core('referential') and X.core.get_idx_tuple('QND'):
+
+            # Binding for pro-elements
+
+            if X.zero_level() and not X('referential') and X.core.get_idx_tuple('QND'):
                 idx = X.core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f' {X.label()}/pro[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
-            elif X.M() and X.INT({'N'}) and X.is_R() and X.sister() and X.sister().core.get_idx_tuple('QND'):
+
+            # Binding for other constituents
+
+            # We target constituents [K N] where K (=phi- or D-head) has been associated with QND-object and N is a nominal
+            # todo Should be replaced with function which targets phi/D-head, the nontrivial issue is placement of the binding
+            # todo index which should be positioned at the end of the whole DP...
+
+            elif X.M() and X('nominal') and X.is_R() and X.sister() and X.sister().core.get_idx_tuple('QND'):
                 idx = X.sister().core.get_idx_tuple('QND')[0]
                 self.determine_BindingIndexes(idx)
                 stri += f'[{",".join(sorted(list(self.inventory[idx]["BindingIndexes"])))}]'
+
         return stri
 
     def determine_BindingIndexes(self, idx):
-        if 'BindingIndexes' not in self.inventory[idx]:               # Every expression initially has its own binding index
+
+        # Every expression initially has its own binding index
+
+        if 'BindingIndexes' not in self.inventory[idx]:
             self.inventory[idx]['BindingIndexes'] = {chr(int(idx)+96)}
+
+        # Calculate coreference and disjointness properties
+
         for i in self.inventory.keys():
             if i == idx:
                 break
-            if self.coreference(i, idx):    # If X and Y co-refer, they must have the same binding index
+
+            # If X and Y co-refer, they must have the same binding index
+
+            if self.coreference(i, idx):
                 self.inventory[i]['BindingIndexes'] = {chr(int(i)+96)}
                 self.inventory[idx]['BindingIndexes'] = {chr(int(i)+96)}
-            if self.overlapping_reference(i, idx):  # If X and Y overlap in denotation, both binding indexes are shown
+
+            # If X and Y overlap in denotation, both binding indexes are shown
+
+            if self.overlapping_reference(i, idx):
                 self.inventory[idx]['BindingIndexes'].add(chr(int(i)+96))
 
     def coreference(self, idx1, idx2):

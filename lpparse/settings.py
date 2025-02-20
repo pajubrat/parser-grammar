@@ -70,6 +70,7 @@ class Settings:
                                  "errors": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_observational_adequacy_errors.txt'),
                                  "descriptive": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_descriptive_adequacy_errors.txt'),
                                  "dev": self.folders['study'] / 'dev_log.txt',
+                                 "dev_input_data": self.folders['study'] / 'dev_input_data.txt',
                                  "simple log": self.folders['study'] / (self.data['file_test_corpus'][:-4] + '_simple_log.txt')
                                  }
 
