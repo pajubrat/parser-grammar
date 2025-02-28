@@ -24,15 +24,26 @@ class PredicatesRelationsEvents:
         self.inventory[idx].update(criteria)
 
     def project(self, X, idx):
+
+        # Projection of predicates, relations and events
+
         self.inventory[idx] = self.default_attributes(X)
+
+        # Events
+
         if 'π' in X.core.features():
             log(f'\n\t\tProject {X.label()}-event ({idx}, PRE)')
             Pred = X.predicate_composition()
             if Pred:
                 self.inventory[idx].update({'Composition': Pred, 'Participants': self.participant_composition(Pred)})
+
+        # Concepts
+
         if 'κ' in X.core.features():
             log(f'\n\t\tProject {X.label()}-concept ({idx}, PRE)')
             self.inventory[idx].update({'Concept': f'\'{".".join(X.core.get_lf())}\''})
+            self.inventory[idx].update({'Reference': f'Concept {".".join(X.core.get_lf())}'})
+
         return self.inventory[idx]
 
     def default_attributes(self, X):

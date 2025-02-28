@@ -66,7 +66,7 @@ class LF:
                         if self.speaker_model.settings.retrieve('dev_logging', False):
                             self.speaker_model.settings.application.dev_logging(f'\n\t{X} failed {key} {X.core.get_selection_features(key)}. ')
                         if self.logging:
-                            log(f'\t{X} 𝗳𝗮𝗶𝗹𝗲𝗱 {key}: {X.core.get_selection_features(key)} ')
+                            log(f'\t{X} failed {key}: {X.core.get_selection_features(key)} ')
                         return True     # Failed test
 
     def final_tail_check(self, X):

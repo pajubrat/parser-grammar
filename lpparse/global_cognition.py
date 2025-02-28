@@ -11,7 +11,7 @@ class GlobalCognition:
         self.inventory = {}
         self.index_counter = {'QND': 1, 'GLOBAL': 1, 'PRE': 1}
 
-    def present(self, X):
+    def presentation(self, X):
         return f'{X.max().illustrate()}'
 
     def consume_index(self, space='GLOBAL'):
@@ -28,15 +28,18 @@ class GlobalCognition:
     def update_discourse_inventory(self, idx, criteria):
         self.inventory[str(idx)].update_contents(criteria)
 
-    def project(self, X, semantic_object_dict):
-        idx = self.create_object(semantic_object_dict)
+    def project(self, X, semantic_attributes_dict):
+
+        # Projects a object to the global discourse inventory based on the narrow semantics meaning
+
+        idx = self.create_object(semantic_attributes_dict)
         self.inventory[idx]['Semantic space'] = 'GLOBAL'
         return self.inventory[idx]
 
-    def create_object(self, ontology_attributes_dict):
+    def create_object(self, semantic_attributes_dict):
         idx = self.consume_index()
-        self.inventory[str(idx)] = ontology_attributes_dict
-        log(f'\n\t\tProject object ({idx}, GLOBAL) for {ontology_attributes_dict["Reference"]}')
+        self.inventory[str(idx)] = semantic_attributes_dict
+        log(f'\n\t\tProject object ({idx}, GLOBAL) for {semantic_attributes_dict["Reference"]}')
         return str(idx)
 
     def ontological_compatibility(self, attribute_dict1, attribute_dict2):

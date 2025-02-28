@@ -6,7 +6,7 @@
 
 & 1. Initial binding condition tests (English)
 
-	# Condition C
+	# Condition C (1-3)
 
 		John admires Bill
 		¦-> Binding: John[a] admire Bill[b]
@@ -17,7 +17,7 @@
 		Bill said that John admires Tim
 		¦-> Binding: Bill[a] say John[b] admire Tim[c]
 
-	# Condition A
+	# Condition A (4-6)
 
 		John admires himself
 		¦-> Binding: John[a] admire self[a]
@@ -28,7 +28,7 @@
 		Bill said that John admires himself
 		¦-> Binding: Bill[a] say John[b] admire self[b]
 
-	# Condition B
+	# Condition B (7-9)
 
 		John admires him
 		¦-> Binding: John[a] admire he[b]
@@ -41,8 +41,8 @@
 
 & 2. Conversation tests (English)
 
-	& 2.1 Condition C
-		
+	& 2.1 Condition C (10-15)
+
 		Tim;
 		John admires Bill
 		¦-> Number of assignments: 6
@@ -55,7 +55,7 @@
 		Bill said that John admires Tim
 		¦-> Number of assignments: 24
 
-	& 2.2 Condition A
+	& 2.2 Condition A (16-21)
 
 		Tim;
 		John admires himself
@@ -69,7 +69,7 @@
 		Bill said that John admires himself
 		¦-> Number of assignments: 12
 
-	& 2.3 Condition B
+	& 2.3 Condition B (22-27)
 
 		Tim;
 		John admires him
@@ -78,13 +78,13 @@
 		Tim;
 		he `s brother admires him
 		¦-> Number of assignments: 36
-		
+
 		Tim;
 		Bill said that John admires him
 		¦-> Number of assignments: 36
 
-	& 2.4 Sequence of pronouns
-	
+	& 2.4 Sequence of pronouns (28-37
+
 		Tim;
 		he admires himself
 		¦-> Number of assignments: 3
@@ -105,7 +105,7 @@
 		Bill admires himself.
 		¦-> Number of assignments: 3
 
-	& 2.5 Intra-clausal coherence
+	& 2.5 Intra-clausal coherence (38-43)
 	
 		hän;
 		Pekan_gen sisko ihailee Merjaa
@@ -124,7 +124,7 @@
 		
 & 3. Basic binding principles in Finnish
 
-	& 3.1 Condition A
+	& 3.1 Condition A (44-46)
 	
 		Pekka ihailee itseä#An
 		'Pekka.nom admire.3sg.prs self.par-Px3'
@@ -138,10 +138,10 @@
 		'Pekka.nom said that Merja.nom admire.prs.3sg self.par-px3'
 		¦-> Binding: Pekka[a] sano- Merja[b] ihaile- itse[b]
 
-	& 3.2 Condition B
+	& 3.2 Condition B (47-49)
 	
 		Pekka ihailee häntä
-		'Pekka.nom admire-prs.3sg he.par'
+		'Pekka.nom admire.prs.3sg he.par'
 		¦-> Binding: Pekka[a] ihaile- hän[b]
 		
 		Pekan_gen sisko ihailee häntä
@@ -152,7 +152,7 @@
 		'Pekka said that Merja.nom admire.prs.3sg he.par'
 		¦-> Binding: Pekka[a] sano- Merja[b] ihaile- hän[a,c]
 		
-	& 3.3 Condition C
+	& 3.3 Condition C (50-52)
 	
 		Pekka ihailee Merjaa
 		'Pekka.nom admire.prs.3sg Merja.par'
@@ -168,7 +168,7 @@
 
 & 4. Null subjects and finite control
 
-	& 4.1 Basic null subject clauses
+	& 4.1 Basic null subject clauses (53-54)
 
 		ihailen Merjaa
 		'admire.prs.1sg Merja.par'
@@ -178,7 +178,7 @@
 		'I.nom admire.prs.3sg Merja.par'
 		¦-> Binding: minä[a] ihaile- Merja[b]
 
-	& 4.2 Special properties of third person null subjects
+	& 4.2 Special properties of third person null subjects (55-56)
 
 		*ihailee Merjaa
 		'admire.prs.3sg Merja.par'
@@ -187,37 +187,37 @@
 		'Pekka.nom says that admire.prs.3sg Merja.par'
 		¦-> Binding: Pekka[a] sano- ihaile- Merja[b]
 
-	& 4.3 Binding conditions with third person null subjects
+	& 4.3 Binding conditions with third person null subjects (57-61)
 
 		# Third person (special pattern)
 		
 			Pekka sanoo että ihailee häntä
-			'Pekka says that admire.prs.3sg he.par
+			'Pekka.nom say.prs.3sg that admire.prs.3sg he.par
 			¦-> Binding: Pekka[a] sano- ihaile- hän[b]
 			
 			Pekka sanoo että ihailee itseä#An
-			'Pekka says that admire.prs.3sg self.par-px3'
+			'Pekka.nom say.prs.3sg that admire.prs.3sg self.par-px3'
 			¦-> Binding: Pekka[a] sano- ihaile- itse[a]
 
 		# First person (generalizes to the rest)
 
 			Pekka sanoo että ihailen Merjaa
-			'Pekka says that admire.prs.1sg Merja.par'
+			'Pekka.nom say.prs.3sg that admire.prs.1sg Merja.par'
 			¦-> Binding: Pekka[a] sano- T/pro[b] ihaile- Merja[c]
 			
 			Pekka sanoo että ihailen häntä
-			'Pekka says that admire.prs.1sg he.par'
+			'Pekka.nom say.prs.3sg that admire.prs.1sg he.par'
 			¦-> Binding: Pekka[a] sano- T/pro[b] ihaile- hän[a,c]
 
 			Pekka sanoo että ihailen itseä#ni
-			'Pekka says that admire.prs.1sg self.par-px3'
+			'Pekka.nom say.prs.3sg that admire.prs.1sg self.par-px3'
 			¦-> Binding: Pekka[a] sano- T/pro[b] ihaile- itse[b]
 		
 & 5. Ontological compatibility
 
-	& 5.1 Restrictions on denotations
+	& 5.1 Restrictions on denotations (62-96)
 
-		# Gender mismatches
+		# Gender mismatches 
 
 			John admires Bill
 			¦-> Number of assignments: 2
@@ -329,11 +329,11 @@
 		# Finnish reflexives with and without PX
 		
 			minä ihailen itseä#ni
-			'I.nom admire.prs.3sg self.par-px1sg'
+			'I.nom admire.prs.1sg self.par-px1sg'
 			¦-> Number of assignments: 2
 	
 			minä ihailen itseä#An
-			'I.nom admire.prs.3sg self.par-px3'
+			'I.nom admire.prs.1sg self.par-px3'
 			¦-> Number of assignments: 0
 	
 			Pekka ihailee itseä#ni
@@ -345,7 +345,7 @@
 			¦-> Number of assignments: 2
 	
 			minä ihailen itseä
-			'I.nom admire.prs.3sg self.par'
+			'I.nom admire.prs.1sg self.par'
 			¦-> Number of assignments: 2
 			
 			Pekka ihailee itseä
@@ -358,11 +358,11 @@
 			'we.nom admire.prs.1pl self.par-px3'
 			¦-> Number of assignments: 0
 			
-		%	minä ihailen itseä#mme
+			minä ihailen itseä#mme
 			'I.nom admire.prs.1sg self.par-1pl'
 			¦-> Number of assignments: 0
 		
-	& 5.3 Mismatches in conversations
+	& 5.3 Mismatches in conversations (97-100)
 	
 		Tim;
 		she admires herself
@@ -377,8 +377,16 @@
 	& 6.1 Ā-chains
 			
 		itseä#An=kO Pekka ihailee
-		'self.par-px3-Q Pekka.nom admire.prs.3sg'
+		'self.par-px3=Q Pekka.nom admire.prs.3sg'
 		¦-> Binding: Pekka[a] ihaile- itse[a]
+
+		häntä=kO Pekka ihailee
+		'he.par=Q Pekka.nom admire.prs.3sg'
+		¦-> Binding: Pekka[a] ihaile- hän[b]
+
+		Merjaa=kO Pekka ihailee
+		'Merja.par=Q Pekka.nom admire.prs.3sg'
+		¦-> Binding: Pekka[a] ihaile- Merja[b]
 
 	& 6.2 Scrambling
 
@@ -438,7 +446,7 @@
 	
 		Mary wants herself to/inf admire John
 		¦-> Binding: Mary[a] want self[a] admire John[c]
-	
+			
 	& 7.2 Finnish A-infinitival
 	
 		Pekka haluaa ihailla itseä#An
@@ -477,6 +485,14 @@
 		Pekka käski Merjan_gen ihailla Jukkaa
 		¦-> Binding: Pekka[a] käske- Merja[b] ihaile- Jukka[c]
 
+		Pekka käski itse#nsA ihailla Jukkaa
+		'Pekka ordered self-px3 admire.a/inf Jukka.par'
+		¦-> Binding: Pekka[a] käske- itse[a] ihaile- Jukka[c]
+		
+		Pekka käski hänen ihailla Jukkaa
+		'Pekka ordered he.gen admire.a/inf Jukka.par'
+		¦-> Binding: Pekka[a] käske- hän[b] ihaile- Jukka[c]
+		
 & 8. DP-internal arguments
 
 	John admires he `s sister
@@ -487,17 +503,17 @@
 	¦-> Binding: Pekka[a] ihaile- hän[a,c] sisko[b]
 
 	Pekka otti kuvan hänestä
-	'Pekka.nom took picture.acc he.ela'
+	'Pekka.nom take.pst.3sg picture.acc he.ela'
 	¦-> Binding: Pekka[a] ota- kuva[b] sta hän[c]
 	# The PP is merged as a right VP-adjunct
 
 	Pekka otti kuvan hänestä/2
-	'Pekka.nom took picture.acc he.ela'
+	'Pekka.nom take.pst.3sg picture.acc he.ela'
 	¦-> Binding: Pekka[a] ota- kuva sta hän[a,c][b]
 	# The PP is merged as a complement of N
 
 	Pekka otti kuvan itsestä#An
-	'Pekka.nom took picture.acc self'	
+	'Pekka.nom take.pst.3sg picture.acc self.ela-px3'	
 
 	Pekan_gen sisko nukkuu
-	'Pekka.gen sister sleep.prs.3sg'
+	'Pekka.gen sister.nom sleep.prs.3sg'

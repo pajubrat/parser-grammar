@@ -1,0 +1,1225 @@
+@  Simulation parameters: {'file_study_configuration': 'binding_theory.lpg', 'file_study_folder': 'language data working directory/study-10-binding-theory', 'image_parameter_grid': 150, 'image_parameter_margins': 200, 'image_parameter_y_grid': 180, 'image_parameter_y_margins': 300, 'image_parameter_fit_margins': 100, 'image_parameter_canvas_width': 2250, 'image_parameter_canvas_height': 1500, 'image_parameter_label_padding': 1, 'image_parameter_text_spacing': 1.5, 'image_parameter_tshrink': 1.0, 'image_parameter_arc_curvature': 2, 'image_parameter_Y_offset_for_arrow': 50, 'image_parameter_tsize': 42, 'full_name': 'language data working directory/study-10-binding-theory/binding_theory.lpg', 'author': 'Pauli Brattico', 'year': 2025, 'date': 'February', 'study_id': 10, 'study_folder': 'language data working directory/study-10-binding-theory', 'test_corpus': 'binding_theory_corpus.txt', 'numeration': 'X', 'general_parameter_only_first_solution': True, 'ignore_ungrammatical_sentences': False, 'console_output': 'Full', 'stop_at_unknown_lexical_item': True, 'logging': True, 'use_numeration': False, 'dev_logging': True, 'file_test_corpus': 'binding_theory_corpus.txt', 'file_lexicon_folder': 'language data working directory/lexicons', 'file_lexicons': 'lexicon.txt;UGmorphemes.txt;inflections.txt', 'file_redundancy_rules': 'redundancy_rules.txt', 'image_parameter_words': True, 'image_parameter_glosses': True, 'image_parameter_adjuncts': False, 'image_parameter_head_chains': True, 'image_parameter_complex_heads': False, 'image_parameter_covert_complex_heads': False, 'image_parameter_phrasal_complex_heads': False, 'image_parameter_draw_trivial_head_chains': False, 'image_parameter_phrasal_chains': True, 'image_parameter_DP_hypothesis': False, 'image_parameter_DP_compression': False, 'image_parameter_shrink_all_DPs': False, 'image_parameter_chain_curvature': '1.5', 'image_parameter_font': 'Times New Roman', 'image_parameter_features': 'R:NEW;R:OLD:REF;R:NEW:REF;ΦPF', 'image_parameter_visualization': 'R:NEW>r;R:OLD:REF>rflx;R:NEW:REF>pron;ΦPF>φ', 'UG_parameter_Agree': 'revised', 'Phi Level test': False, 'UG_parameter_phase_heads': 'C;v;FORCE;Inf;IMPSS;P', 'UG_parameter_phase_heads_exclude': 'φ;v-;TO/inf', 'head_complement_selection': True, 'epsilon': True, 'w_selection': True, 'UG_parameter_middle_field_HM': True, 'calculate_assignments': True, 'calculate_pragmatics': False, 'calculate_thematic_roles': False, 'project_objects': True, 'generate_argument_links': True, 'calculate_predicates': True, 'calculate_operator_bindings': True, 'calculate_DIS_features': True, 'calculate_focus': True, 'extra_ranking': True, 'filter': True, 'lexical_anticipation': True, 'closure': 'Bottom-up', 'working_memory': True, 'spec_selection': 100, 'comp_selection': 100, 'negative_semantics_match': 100, 'lf_legibility_condition': 100}
+@  Time: 2025-02-26 12:48:54.090604
+@  Test sentences: language data working directory\study-10-binding-theory\binding_theory_corpus.txt
+@  Logs: language data working directory\study-10-binding-theory\binding_theory_corpus_log.txt
+
+
+1. John admires Bill
+	index: 1
+	expression: John admires Bill
+	word_list: ['John', 'admires', 'Bill']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] admire Bill[b]
+
+2. he `s brother admires Bill
+	index: 2
+	expression: he `s brother admires Bill
+	word_list: ['he', '`s', 'brother', 'admires', 'Bill']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: he[b] brother[a] admire Bill[b,c]
+
+3. Bill said that John admires Tim
+	index: 3
+	expression: Bill said that John admires Tim
+	word_list: ['Bill', 'said', 'that', 'John', 'admires', 'Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Bill[a] say John[b] admire Tim[c]
+
+4. John admires himself
+	index: 4
+	expression: John admires himself
+	word_list: ['John', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] admire self[a]
+
+5. he `s brother admires himself
+	index: 5
+	expression: he `s brother admires himself
+	word_list: ['he', '`s', 'brother', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: he[b] brother[a] admire self[a]
+
+6. Bill said that John admires himself
+	index: 6
+	expression: Bill said that John admires himself
+	word_list: ['Bill', 'said', 'that', 'John', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Bill[a] say John[b] admire self[b]
+
+7. John admires him
+	index: 7
+	expression: John admires him
+	word_list: ['John', 'admires', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] admire he[b]
+
+8. he `s brother admires him
+	index: 8
+	expression: he `s brother admires him
+	word_list: ['he', '`s', 'brother', 'admires', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: he[b] brother[a] admire he[b,c]
+
+9. Bill said that John admires him
+	index: 9
+	expression: Bill said that John admires him
+	word_list: ['Bill', 'said', 'that', 'John', 'admires', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Bill[a] say John[b] admire he[a,c]
+
+10. Tim
+	index: 10
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+11. John admires Bill
+	index: 11
+	expression: John admires Bill
+	word_list: ['John', 'admires', 'Bill']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 6
+
+12. Tim
+	index: 12
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+13. he `s brother admires Bill
+	index: 13
+	expression: he `s brother admires Bill
+	word_list: ['he', '`s', 'brother', 'admires', 'Bill']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 36
+
+14. Tim
+	index: 14
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+15. Bill said that John admires Tim
+	index: 15
+	expression: Bill said that John admires Tim
+	word_list: ['Bill', 'said', 'that', 'John', 'admires', 'Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 24
+
+16. Tim
+	index: 16
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+17. John admires himself
+	index: 17
+	expression: John admires himself
+	word_list: ['John', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 3
+
+18. Tim
+	index: 18
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+19. he `s brother admires himself
+	index: 19
+	expression: he `s brother admires himself
+	word_list: ['he', '`s', 'brother', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 12
+
+20. Tim
+	index: 20
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+21. Bill said that John admires himself
+	index: 21
+	expression: Bill said that John admires himself
+	word_list: ['Bill', 'said', 'that', 'John', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 12
+
+22. Tim
+	index: 22
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+23. John admires him
+	index: 23
+	expression: John admires him
+	word_list: ['John', 'admires', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 6
+
+24. Tim
+	index: 24
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+25. he `s brother admires him
+	index: 25
+	expression: he `s brother admires him
+	word_list: ['he', '`s', 'brother', 'admires', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 36
+
+26. Tim
+	index: 26
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+27. Bill said that John admires him
+	index: 27
+	expression: Bill said that John admires him
+	word_list: ['Bill', 'said', 'that', 'John', 'admires', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 36
+
+28. Tim
+	index: 28
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+29. he admires himself
+	index: 29
+	expression: he admires himself
+	word_list: ['he', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 3
+
+30. Tim
+	index: 30
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+31. he admires him
+	index: 31
+	expression: he admires him
+	word_list: ['he', 'admires', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 6
+
+32. John admires Bill
+	index: 32
+	expression: John admires Bill
+	word_list: ['John', 'admires', 'Bill']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+33. he admires himself
+	index: 33
+	expression: he admires himself
+	word_list: ['he', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 4
+
+34. John admires himself
+	index: 34
+	expression: John admires himself
+	word_list: ['John', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+35. he sleeps
+	index: 35
+	expression: he sleeps
+	word_list: ['he', 'sleeps']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 3
+
+36. John admires Mary
+	index: 36
+	expression: John admires Mary
+	word_list: ['John', 'admires', 'Mary']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+37. Bill admires himself
+	index: 37
+	expression: Bill admires himself
+	word_list: ['Bill', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 3
+
+38. hän
+	index: 38
+	expression: hän
+	word_list: ['hän']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+39. Pekan_gen sisko ihailee Merjaa
+	index: 39
+	expression: Pekan_gen sisko ihailee Merjaa
+	word_list: ['Pekan_gen', 'sisko', 'ihailee', 'Merjaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[c] sisko[b] ihaile- Merja[d]
+
+40. hän
+	index: 40
+	expression: hän
+	word_list: ['hän']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+41. Pekan_gen sisko ihailee häntä
+	index: 41
+	expression: Pekan_gen sisko ihailee häntä
+	word_list: ['Pekan_gen', 'sisko', 'ihailee', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[c] sisko[b] ihaile- hän[c,d]
+
+42. hän
+	index: 42
+	expression: hän
+	word_list: ['hän']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+43. Pekan_gen sisko ihailee itseä#An
+	index: 43
+	expression: Pekan_gen sisko ihailee itseä#An
+	word_list: ['Pekan_gen', 'sisko', 'ihailee', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[c] sisko[b] ihaile- itse[b]
+
+44. Pekka ihailee itseä#An
+	index: 44
+	expression: Pekka ihailee itseä#An
+	word_list: ['Pekka', 'ihailee', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- itse[a]
+
+45. Pekan_gen sisko ihailee itseä#An
+	index: 45
+	expression: Pekan_gen sisko ihailee itseä#An
+	word_list: ['Pekan_gen', 'sisko', 'ihailee', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[b] sisko[a] ihaile- itse[a]
+
+46. Pekka sanoi että Merja ihailee itseä#An
+	index: 46
+	expression: Pekka sanoi että Merja ihailee itseä#An
+	word_list: ['Pekka', 'sanoi', 'että', 'Merja', 'ihailee', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] sano- Merja[b] ihaile- itse[b]
+
+47. Pekka ihailee häntä
+	index: 47
+	expression: Pekka ihailee häntä
+	word_list: ['Pekka', 'ihailee', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- hän[b]
+
+48. Pekan_gen sisko ihailee häntä
+	index: 48
+	expression: Pekan_gen sisko ihailee häntä
+	word_list: ['Pekan_gen', 'sisko', 'ihailee', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[b] sisko[a] ihaile- hän[b,c]
+
+49. Pekka sanoi että Merja ihailee häntä
+	index: 49
+	expression: Pekka sanoi että Merja ihailee häntä
+	word_list: ['Pekka', 'sanoi', 'että', 'Merja', 'ihailee', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] sano- Merja[b] ihaile- hän[a,c]
+
+50. Pekka ihailee Merjaa
+	index: 50
+	expression: Pekka ihailee Merjaa
+	word_list: ['Pekka', 'ihailee', 'Merjaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- Merja[b]
+
+51. Pekan_gen sisko ihailee Pekkaa
+	index: 51
+	expression: Pekan_gen sisko ihailee Pekkaa
+	word_list: ['Pekan_gen', 'sisko', 'ihailee', 'Pekkaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[b] sisko[a] ihaile- Pekka[b,c]
+
+52. Pekka sanoi että Merja ihailee Pekkaa
+	index: 52
+	expression: Pekka sanoi että Merja ihailee Pekkaa
+	word_list: ['Pekka', 'sanoi', 'että', 'Merja', 'ihailee', 'Pekkaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] sano- Merja[b] ihaile- Pekka[c]
+
+53. ihailen Merjaa
+	index: 53
+	expression: ihailen Merjaa
+	word_list: ['ihailen', 'Merjaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: T/pro[a] ihaile- Merja[b]
+
+54. minä ihailen Merjaa
+	index: 54
+	expression: minä ihailen Merjaa
+	word_list: ['minä', 'ihailen', 'Merjaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: minä[a] ihaile- Merja[b]
+
+55. ihailee Merjaa
+	index: 55
+	expression: ihailee Merjaa
+	word_list: ['ihailee', 'Merjaa']
+	grammaticality: False
+	experimental_group: 1
+	part_of_conversation: False
+
+56. Pekka sanoo että ihailee Merjaa
+	index: 56
+	expression: Pekka sanoo että ihailee Merjaa
+	word_list: ['Pekka', 'sanoo', 'että', 'ihailee', 'Merjaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] sano- ihaile- Merja[b]
+
+57. Pekka sanoo että ihailee häntä
+	index: 57
+	expression: Pekka sanoo että ihailee häntä
+	word_list: ['Pekka', 'sanoo', 'että', 'ihailee', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] sano- ihaile- hän[b]
+
+58. Pekka sanoo että ihailee itseä#An
+	index: 58
+	expression: Pekka sanoo että ihailee itseä#An
+	word_list: ['Pekka', 'sanoo', 'että', 'ihailee', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] sano- ihaile- itse[a]
+
+59. Pekka sanoo että ihailen Merjaa
+	index: 59
+	expression: Pekka sanoo että ihailen Merjaa
+	word_list: ['Pekka', 'sanoo', 'että', 'ihailen', 'Merjaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] sano- T/pro[b] ihaile- Merja[c]
+
+60. Pekka sanoo että ihailen häntä
+	index: 60
+	expression: Pekka sanoo että ihailen häntä
+	word_list: ['Pekka', 'sanoo', 'että', 'ihailen', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] sano- T/pro[b] ihaile- hän[a,c]
+
+61. Pekka sanoo että ihailen itseä#ni
+	index: 61
+	expression: Pekka sanoo että ihailen itseä#ni
+	word_list: ['Pekka', 'sanoo', 'että', 'ihailen', 'itseä#ni']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] sano- T/pro[b] ihaile- itse[b]
+
+62. John admires Bill
+	index: 62
+	expression: John admires Bill
+	word_list: ['John', 'admires', 'Bill']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+63. John admires him
+	index: 63
+	expression: John admires him
+	word_list: ['John', 'admires', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+64. John admires her
+	index: 64
+	expression: John admires her
+	word_list: ['John', 'admires', 'her']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+65. John admires Mary
+	index: 65
+	expression: John admires Mary
+	word_list: ['John', 'admires', 'Mary']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+66. Pekka ihailee Jukkaa
+	index: 66
+	expression: Pekka ihailee Jukkaa
+	word_list: ['Pekka', 'ihailee', 'Jukkaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+67. Pekka ihailee häntä
+	index: 67
+	expression: Pekka ihailee häntä
+	word_list: ['Pekka', 'ihailee', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+68. Merja ihailee häntä
+	index: 68
+	expression: Merja ihailee häntä
+	word_list: ['Merja', 'ihailee', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+69. Pekka ihailee Merjaa
+	index: 69
+	expression: Pekka ihailee Merjaa
+	word_list: ['Pekka', 'ihailee', 'Merjaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+70. John admires it
+	index: 70
+	expression: John admires it
+	word_list: ['John', 'admires', 'it']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+71. Pekka ihailee taloa
+	index: 71
+	expression: Pekka ihailee taloa
+	word_list: ['Pekka', 'ihailee', 'taloa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+72. John admires me
+	index: 72
+	expression: John admires me
+	word_list: ['John', 'admires', 'me']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+73. John admires you
+	index: 73
+	expression: John admires you
+	word_list: ['John', 'admires', 'you']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+74. Pekka ihailee minua
+	index: 74
+	expression: Pekka ihailee minua
+	word_list: ['Pekka', 'ihailee', 'minua']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+75. Pekka ihailee sinua
+	index: 75
+	expression: Pekka ihailee sinua
+	word_list: ['Pekka', 'ihailee', 'sinua']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+76. John admires us
+	index: 76
+	expression: John admires us
+	word_list: ['John', 'admires', 'us']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+77. John admires them
+	index: 77
+	expression: John admires them
+	word_list: ['John', 'admires', 'them']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+78. Pekka ihailee meitä
+	index: 78
+	expression: Pekka ihailee meitä
+	word_list: ['Pekka', 'ihailee', 'meitä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+79. Pekka ihailee heitä
+	index: 79
+	expression: Pekka ihailee heitä
+	word_list: ['Pekka', 'ihailee', 'heitä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 1
+
+80. John admires herself
+	index: 80
+	expression: John admires herself
+	word_list: ['John', 'admires', 'herself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+81. Mary admires himself
+	index: 81
+	expression: Mary admires himself
+	word_list: ['Mary', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+82. he admires herself
+	index: 82
+	expression: he admires herself
+	word_list: ['he', 'admires', 'herself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+83. she admires himself
+	index: 83
+	expression: she admires himself
+	word_list: ['she', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+84. it admires herself
+	index: 84
+	expression: it admires herself
+	word_list: ['it', 'admires', 'herself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+85. it admires himself
+	index: 85
+	expression: it admires himself
+	word_list: ['it', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+86. Pekka ihailee itseä#An
+	index: 86
+	expression: Pekka ihailee itseä#An
+	word_list: ['Pekka', 'ihailee', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+87. Merja ihailee itseä#An
+	index: 87
+	expression: Merja ihailee itseä#An
+	word_list: ['Merja', 'ihailee', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+88. hän ihailee itseä#An
+	index: 88
+	expression: hän ihailee itseä#An
+	word_list: ['hän', 'ihailee', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+89. minä ihailen itseä#ni
+	index: 89
+	expression: minä ihailen itseä#ni
+	word_list: ['minä', 'ihailen', 'itseä#ni']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+90. minä ihailen itseä#An
+	index: 90
+	expression: minä ihailen itseä#An
+	word_list: ['minä', 'ihailen', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+91. Pekka ihailee itseä#ni
+	index: 91
+	expression: Pekka ihailee itseä#ni
+	word_list: ['Pekka', 'ihailee', 'itseä#ni']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+92. Pekka ihailee itseä#An
+	index: 92
+	expression: Pekka ihailee itseä#An
+	word_list: ['Pekka', 'ihailee', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+93. minä ihailen itseä
+	index: 93
+	expression: minä ihailen itseä
+	word_list: ['minä', 'ihailen', 'itseä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+94. Pekka ihailee itseä
+	index: 94
+	expression: Pekka ihailee itseä
+	word_list: ['Pekka', 'ihailee', 'itseä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+95. me ihailemme itseä#An
+	index: 95
+	expression: me ihailemme itseä#An
+	word_list: ['me', 'ihailemme', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+96. minä ihailen itseä#mme
+	index: 96
+	expression: minä ihailen itseä#mme
+	word_list: ['minä', 'ihailen', 'itseä#mme']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 0
+
+97. Tim
+	index: 97
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+98. she admires herself
+	index: 98
+	expression: she admires herself
+	word_list: ['she', 'admires', 'herself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 2
+
+99. Tim
+	index: 99
+	expression: Tim
+	word_list: ['Tim']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: True
+
+100. he admires himself
+	index: 100
+	expression: he admires himself
+	word_list: ['he', 'admires', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Number of assignments: 3
+
+101. itseä#An=kO Pekka ihailee
+	index: 101
+	expression: itseä#An=kO Pekka ihailee
+	word_list: ['itseä#An=kO', 'Pekka', 'ihailee']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- itse[a]
+
+102. häntä=kO Pekka ihailee
+	index: 102
+	expression: häntä=kO Pekka ihailee
+	word_list: ['häntä=kO', 'Pekka', 'ihailee']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- hän[b]
+
+103. Merjaa=kO Pekka ihailee
+	index: 103
+	expression: Merjaa=kO Pekka ihailee
+	word_list: ['Merjaa=kO', 'Pekka', 'ihailee']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- Merja[b]
+
+104. itseä#An ihailee Pekka
+	index: 104
+	expression: itseä#An ihailee Pekka
+	word_list: ['itseä#An', 'ihailee', 'Pekka']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- itse[a]
+
+105. Merjaa ihailee Pekka
+	index: 105
+	expression: Merjaa ihailee Pekka
+	word_list: ['Merjaa', 'ihailee', 'Pekka']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- Merja[b]
+
+106. häntä ihailee Pekka
+	index: 106
+	expression: häntä ihailee Pekka
+	word_list: ['häntä', 'ihailee', 'Pekka']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- hän[b]
+
+107. itseä#An ihailee Pekan_gen sisko
+	index: 107
+	expression: itseä#An ihailee Pekan_gen sisko
+	word_list: ['itseä#An', 'ihailee', 'Pekan_gen', 'sisko']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[b] sisko[a] ihaile- itse[a]
+
+108. häntä ihailee Pekan_gen sisko
+	index: 108
+	expression: häntä ihailee Pekan_gen sisko
+	word_list: ['häntä', 'ihailee', 'Pekan_gen', 'sisko']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[b] sisko[a] ihaile- hän[b,c]
+
+109. Merjaa ihailee Pekan_gen sisko
+	index: 109
+	expression: Merjaa ihailee Pekan_gen sisko
+	word_list: ['Merjaa', 'ihailee', 'Pekan_gen', 'sisko']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[b] sisko[a] ihaile- Merja[c]
+
+110. Pekka näyttää ihailevan itseä#An
+	index: 110
+	expression: Pekka näyttää ihailevan itseä#An
+	word_list: ['Pekka', 'näyttää', 'ihailevan', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+
+111. John wants to/inf admire himself
+	index: 111
+	expression: John wants to/inf admire himself
+	word_list: ['John', 'wants', 'to/inf', 'admire', 'himself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] want admire self[a]
+
+112. John wants Mary to/inf admire herself
+	index: 112
+	expression: John wants Mary to/inf admire herself
+	word_list: ['John', 'wants', 'Mary', 'to/inf', 'admire', 'herself']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] want Mary[b] admire self[b]
+
+113. John wants to/inf admire him
+	index: 113
+	expression: John wants to/inf admire him
+	word_list: ['John', 'wants', 'to/inf', 'admire', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] want admire he[b]
+
+114. John wants Mary to/inf admire him
+	index: 114
+	expression: John wants Mary to/inf admire him
+	word_list: ['John', 'wants', 'Mary', 'to/inf', 'admire', 'him']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] want Mary[b] admire he[a,c]
+
+115. John wants to/inf admire Mary
+	index: 115
+	expression: John wants to/inf admire Mary
+	word_list: ['John', 'wants', 'to/inf', 'admire', 'Mary']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] want admire Mary[b]
+
+116. John wants Mary to/inf admire Bill
+	index: 116
+	expression: John wants Mary to/inf admire Bill
+	word_list: ['John', 'wants', 'Mary', 'to/inf', 'admire', 'Bill']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] want Mary[b] admire Bill[c]
+
+117. John wants himself to/inf admire Mary
+	index: 117
+	expression: John wants himself to/inf admire Mary
+	word_list: ['John', 'wants', 'himself', 'to/inf', 'admire', 'Mary']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] want self[a] admire Mary[c]
+
+118. Mary wants herself to/inf admire John
+	index: 118
+	expression: Mary wants herself to/inf admire John
+	word_list: ['Mary', 'wants', 'herself', 'to/inf', 'admire', 'John']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Mary[a] want self[a] admire John[c]
+
+119. Pekka haluaa ihailla itseä#An
+	index: 119
+	expression: Pekka haluaa ihailla itseä#An
+	word_list: ['Pekka', 'haluaa', 'ihailla', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] halua- ihaile- itse[a]
+
+120. Pekka käski Merjan_gen ihailla itseä#An
+	index: 120
+	expression: Pekka käski Merjan_gen ihailla itseä#An
+	word_list: ['Pekka', 'käski', 'Merjan_gen', 'ihailla', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] käske- Merja[b] ihaile- itse[b]
+
+121. Pekka haluaa ihailla häntä
+	index: 121
+	expression: Pekka haluaa ihailla häntä
+	word_list: ['Pekka', 'haluaa', 'ihailla', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] halua- ihaile- hän[b]
+
+122. Pekka käski Merjan_gen ihailla häntä
+	index: 122
+	expression: Pekka käski Merjan_gen ihailla häntä
+	word_list: ['Pekka', 'käski', 'Merjan_gen', 'ihailla', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] käske- Merja[b] ihaile- hän[a,c]
+
+123. Pekka haluaa ihailla Merjaa
+	index: 123
+	expression: Pekka haluaa ihailla Merjaa
+	word_list: ['Pekka', 'haluaa', 'ihailla', 'Merjaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] halua- ihaile- Merja[b]
+
+124. Pekka käski Merjan_gen ihailla Jukkaa
+	index: 124
+	expression: Pekka käski Merjan_gen ihailla Jukkaa
+	word_list: ['Pekka', 'käski', 'Merjan_gen', 'ihailla', 'Jukkaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] käske- Merja[b] ihaile- Jukka[c]
+
+125. Pekan_gen sisko haluaa ihailla itseä#An
+	index: 125
+	expression: Pekan_gen sisko haluaa ihailla itseä#An
+	word_list: ['Pekan_gen', 'sisko', 'haluaa', 'ihailla', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[b] sisko[a] halua- ihaile- itse[a]
+
+126. Pekan_gen sisko käski Merjan_gen ihailla itseä#An
+	index: 126
+	expression: Pekan_gen sisko käski Merjan_gen ihailla itseä#An
+	word_list: ['Pekan_gen', 'sisko', 'käski', 'Merjan_gen', 'ihailla', 'itseä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[b] sisko[a] käske- Merja[c] ihaile- itse[c]
+
+127. Pekka haluaa ihailla häntä
+	index: 127
+	expression: Pekka haluaa ihailla häntä
+	word_list: ['Pekka', 'haluaa', 'ihailla', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] halua- ihaile- hän[b]
+
+128. Pekka käski Merjan_gen ihailla häntä
+	index: 128
+	expression: Pekka käski Merjan_gen ihailla häntä
+	word_list: ['Pekka', 'käski', 'Merjan_gen', 'ihailla', 'häntä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] käske- Merja[b] ihaile- hän[a,c]
+
+129. Pekka haluaa ihailla Merjaa
+	index: 129
+	expression: Pekka haluaa ihailla Merjaa
+	word_list: ['Pekka', 'haluaa', 'ihailla', 'Merjaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] halua- ihaile- Merja[b]
+
+130. Pekka käski Merjan_gen ihailla Jukkaa
+	index: 130
+	expression: Pekka käski Merjan_gen ihailla Jukkaa
+	word_list: ['Pekka', 'käski', 'Merjan_gen', 'ihailla', 'Jukkaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] käske- Merja[b] ihaile- Jukka[c]
+
+131. Pekka käski itse#nsA ihailla Jukkaa
+	index: 131
+	expression: Pekka käski itse#nsA ihailla Jukkaa
+	word_list: ['Pekka', 'käski', 'itse#nsA', 'ihailla', 'Jukkaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] käske- itse[a] ihaile- Jukka[c]
+
+132. Pekka käski hänen ihailla Jukkaa
+	index: 132
+	expression: Pekka käski hänen ihailla Jukkaa
+	word_list: ['Pekka', 'käski', 'hänen', 'ihailla', 'Jukkaa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] käske- hän[b] ihaile- Jukka[c]
+
+133. John admires he `s sister
+	index: 133
+	expression: John admires he `s sister
+	word_list: ['John', 'admires', 'he', '`s', 'sister']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: John[a] admire he[a,c] sister[b]
+
+134. Pekka ihailee hänen siskoa
+	index: 134
+	expression: Pekka ihailee hänen siskoa
+	word_list: ['Pekka', 'ihailee', 'hänen', 'siskoa']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ihaile- hän[a,c] sisko[b]
+
+135. Pekka otti kuvan hänestä
+	index: 135
+	expression: Pekka otti kuvan hänestä
+	word_list: ['Pekka', 'otti', 'kuvan', 'hänestä']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ota- kuva[b] sta hän[c]
+
+136. Pekka otti kuvan hänestä/2
+	index: 136
+	expression: Pekka otti kuvan hänestä/2
+	word_list: ['Pekka', 'otti', 'kuvan', 'hänestä/2']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+	Binding: Pekka[a] ota- kuva sta hän[a,c][b]
+
+137. Pekka otti kuvan itsestä#An
+	index: 137
+	expression: Pekka otti kuvan itsestä#An
+	word_list: ['Pekka', 'otti', 'kuvan', 'itsestä#An']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+
+138. Pekan_gen sisko nukkuu
+	index: 138
+	expression: Pekan_gen sisko nukkuu
+	word_list: ['Pekan_gen', 'sisko', 'nukkuu']
+	grammaticality: True
+	experimental_group: 1
+	part_of_conversation: False
+

@@ -35,7 +35,7 @@ image_parameter_head_chains = True
 image_parameter_complex_heads = False
 image_parameter_covert_complex_heads = False
 image_parameter_phrasal_complex_heads = False
-image_parameter_trivial_head_chains = False
+image_parameter_draw_trivial_head_chains = False
 
 # Phrasal chains
 image_parameter_phrasal_chains = True
@@ -50,8 +50,8 @@ image_parameter_chain_curvature = 1.5
 
 # Features
 image_parameter_font = Times New Roman
-image_parameter_features = ###
-image_parameter_visualization = ### > ###
+image_parameter_features = R:NEW;R:OLD:REF;R:NEW:REF;ΦPF
+image_parameter_visualization = R:NEW>r;R:OLD:REF>rflx;R:NEW:REF>pron;ΦPF>φ
 
 # UG COMPONENTS
 #	Agree

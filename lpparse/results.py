@@ -202,7 +202,8 @@ class Results:
         output_str = '\n'
         for inventory in speaker_model.narrow_semantics.all_inventories():
             for semantic_object, data_dict in inventory.items():
-                output_str += '\t\tObject ' + semantic_object
+                obj_name = data_dict.get('Reference', '')
+                output_str += f'\t\tObject {obj_name}({semantic_object})'
                 if 'Semantic type' in data_dict:
                     output_str += ' ' + str(sorted(data_dict['Semantic type']))
                 if 'Semantic space' in data_dict:

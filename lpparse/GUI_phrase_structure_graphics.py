@@ -395,8 +395,9 @@ class PhraseStructureGraphics(tk.Toplevel):
             if gX.zero_level() and \
                     gX.affix() and \
                     gX.affix().copied:
-                dep = Dependency(source=gX, target=gX.top().map_into_gps(gX.affix().copied), smooth=True)
-                self.inventory['dependencies'].append(dep)
+                if self.block_trivial_head_chains(gX):
+                    dep = Dependency(source=gX, target=gX.top().map_into_gps(gX.affix().copied), smooth=True)
+                    self.inventory['dependencies'].append(dep)
 
         # Phrasal chains
 
@@ -413,6 +414,10 @@ class PhraseStructureGraphics(tk.Toplevel):
             self.implement_chains(gX.L())
             self.implement_chains(gX.R())
 
+    def block_trivial_head_chains(self, gX):
+        if self.application.settings.retrieve('image_parameter_draw_trivial_head_chains', True):
+            return not (gX('referential') and gX.affix()('referential'))
+                
     def dependency_exists(self, source, target):
         for dep in self.inventory['dependencies']:
 

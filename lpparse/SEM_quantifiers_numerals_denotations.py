@@ -19,7 +19,13 @@ phi_map_dict = {'PER:1': ('Person', 'first'),
 class QuantifiersNumeralsDenotations:
     def __init__(self, narrow_semantics):
         self.narrow_semantics = narrow_semantics
+
+        # Inventory of QND objects
+
         self.inventory = {}
+
+        # Stores all assignments
+
         self.all_assignments = []
 
     def reset(self):
@@ -35,6 +41,10 @@ class QuantifiersNumeralsDenotations:
         return phi_map_dict.get(phi_feature, ())
 
     def accept(self, X):
+
+        # To project a WND-object, the element ("referential phrase") must be able to sustain coherent reference,
+        # it should not have agreed, and it must be referential
+
         return (X.core.overt_phi_sustains_reference() and not X.core('AgreeLF_occurred')) or X.core('referential')
 
     def remove_object(self, idx):
@@ -47,20 +57,35 @@ class QuantifiersNumeralsDenotations:
         self.inventory[idx].update(criteria)
 
     def object_presentation(self, X):
+
+        # Referential expressions are presented as phrases
+
         if X.core('referential'):
             return f'{X.max().illustrate()}'
+
+        # Sublexical pro-elements are presented as pro
+
         return f'pro({X})'
 
     def compatible(self, idx1, idx2):
         def included(field):
-            """Defines which ontological attributes are included in the comparisons"""
+
+            # Defines which ontological attributes are included in the comparisons
+            # Currently number, person, class and gender
+
             return field in {'Number', 'Person', 'Class', 'Gender'}
 
+        # Verifies that there are no value-mismatches
+        # We consider all attributes of each object projected into QND-space, then target only those
+        # which are included (see above) and detect value-mismatches.
+
         for attribute_pair in itertools.product(self.inventory[idx1].items(), self.inventory[idx2].items()):
+
             if included(attribute_pair[0][0]) and \
                     attribute_pair[0][0] == attribute_pair[1][0] and \
                     attribute_pair[0][1] != attribute_pair[1][1]:
                 return False
+
         return True
 
     def reconstruct_assignments(self, X):
@@ -83,34 +108,75 @@ class QuantifiersNumeralsDenotations:
         they are coreferential. Binding regulates coreferentiality.
         """
         log(f'\n\tDenotations:')
-        self.create_assignments_from_denotations(self.calculate_possible_denotations(X))
-        self.narrow_semantics.speaker_model.results.store_output_field('Binding', self.assignment_output_string(X)[1:])
-        log(f'\n\t\tSummary: {self.assignment_output_string(X)}')
 
-        # Currently we return only assignments for printout which have nonzero weight
+        # Stores all assignments into the object variable self.all_assignments
+        # Created on the basis of possible denotations for each referential expression
+
+        self.create_assignments_from_denotations(self.calculate_possible_denotations(X))
+
+        # Currently return only assignments for printout which have nonzero weight
 
         weighted_assignments = [assignment for assignment in self.all_assignments if assignment.get('weight', 0) > 0]
-        return len(weighted_assignments), self.print_assignments(weighted_assignments)
+
+        # Return the number of assignments and the assignments themselves for the caller (narrow semantics)
+        # which stores them into the output dictionary
+
+        log(f'\n\t\tSummary: {self.assignment_output_string(X)}')
+        return len(weighted_assignments), self.print_assignments(weighted_assignments), self.assignment_output_string(X)[1:]
 
     def calculate_possible_denotations(self, X):
         denotations_lst = []
+
+        # Copies are ignored
+
         if not X.copied:
+
+            # Recursion for complex phrases
+
             if X.complex():
                 denotations_lst += self.calculate_possible_denotations(X.L())
                 denotations_lst += self.calculate_possible_denotations(X.R())
+
+            # Primitive heads
+
             else:
+
+                # If the head contains an index to QND-object, it will be considered
+
                 if X.core.has_idx('QND'):
+
+                    # Get the idx, space pair
+
                     idx, space = X.core.get_idx_tuple('QND')
+
+                    # The field "Denotations" is used to store all denotations (objects in the global space)
+
                     self.inventory[idx]['Denotations'] = self.create_all_denotations(X)
                     log(f'\n\t\t{self.inventory[idx]["Reference"]}~{self.inventory[idx]["Denotations"]} ')
+
+                    # Return the list of denotations, which will be added together as the recursion proceeds
+
                     denotations_lst = [(idx, f'{X.illustrate()}', X, self.inventory[idx]['Denotations'])]
         return denotations_lst
 
     def create_assignments_from_denotations(self, ref_constituents_lst):
+
+        # Creates assignments
+        # ref_constituents_lst = list of referential expressions
+
         log(f'\n\tAssignments: ')
-        for assignment in itertools.product(*[tup[3] for tup in ref_constituents_lst]):                        #   Create all possible assignments (tup[3] = connection of denotations)
-            assignment = {tup[0]: assignment[i] for i, tup in enumerate(ref_constituents_lst)}                 #   Create assignment dict (because the rest is based on dicts)
-            self.all_assignments.append(self.calculate_assignment_weight(assignment, ref_constituents_lst))    #   Calculate assignment weights
+
+        #   Create all possible assignments (tup[3] = connection of denotations)
+
+        for assignment in itertools.product(*[tup[3] for tup in ref_constituents_lst]):
+
+            #   Create assignment dict
+
+            assignment_dict = {tup[0]: assignment[i] for i, tup in enumerate(ref_constituents_lst)}
+
+            #   Calculate assignment weights and add the (assignment, weight) pair into all_assignments
+
+            self.all_assignments.append(self.calculate_assignment_weight(assignment_dict, ref_constituents_lst))
 
     def calculate_assignment_weight(self, assignment, ref_constituents_lst):
         """
@@ -123,14 +189,27 @@ class QuantifiersNumeralsDenotations:
         log(f'\n\t\tAssignment {self.print_assignment(weighted_assignment)} ')
 
         for expression in ref_constituents_lst:
+
+            # Violations of binding conditions reduce the weight to 0
+
             if not self.binding_conditions(expression, assignment):
                 weighted_assignment['weight'] = 0
+
+        # Check semantic compatibility (e.g., *John admires herself)
+
         if not self.semantic_compability(assignment):
             weighted_assignment['weight'] = 0
+
+        # Check internal constituency (See Brattico 2025)
+
         if self.internal_inconsistency(assignment):
             weighted_assignment['weight'] = 0
+
+        # If no violations apply, log the assignment as accepted
+
         if weighted_assignment['weight'] > 0:
             log('+')
+
         return weighted_assignment
 
     def semantic_compability(self, assignment):
@@ -149,7 +228,7 @@ class QuantifiersNumeralsDenotations:
         """Verifies that the assignments are internally consistent.
         Internal consistency means that if two expressions A and B denote the same object O,
         A and B do not mismatch in their semantic attributes. This test is needed in cases where
-        the relevant attribute is not defined at O.
+        the relevant attribute is not defined at O. See Brattico 2025
         """
         for QND_idx, G_idx in assignment.items():
             for QND_idx2, G_idx2 in assignment.items():
@@ -165,26 +244,52 @@ class QuantifiersNumeralsDenotations:
         return '; '.join(self.print_assignment(assignment) for assignment in assignments_dict)
 
     def binding_conditions(self, exp, assignment):
+
+        # The binding conditions proposed in Brattico 2025
+
         def binding_violation(semantic_object, rule_, semantic_working_memory, X):
+
+            # Semantic working memory (whether complete, limited) is constructed by the caller and
+            # is here provided as a set
+
+            # RULE 1
+            # If the same semantic object denoted by X is inside (complete, limited) semantic working memory but
+            # X marked as NEW, raise violation
+
             if 'NEW' in rule_ and {semantic_object} & semantic_working_memory:
                 log(f'-Illegitimate binder for {X.max().illustrate()}({semantic_object}) in WM ')
                 return True
+
+            # RULE 2
+            # If the same semantic object denoted by X is not inside (complete, limited) semantic working memory
+            # but X is marked for OLD, raise violation
+
             if 'OLD' in rule_ and not {semantic_object} & semantic_working_memory:
                 log(f'-Binder missing for {X.max().illustrate()}({semantic_object}) from WM ({semantic_working_memory})')
                 return True
 
+        # Extract the index, name, X and denotations fields from the expression tuple
+
         idx, name, X, denotations = exp
+
+        # Examine each R-feature, i.e. features which must be verified against binding
+
         for f in self.get_R_features(X):
             R, rule, intervention = self.parse_R_feature(f)
+
+            # Check that no binding conditions are not violated
+            # Function construct_semantic_working_memory will create a set of object based on attributes complete, limited
+
             if binding_violation(assignment[idx], rule, X.construct_semantic_working_memory(intervention, assignment), X):
                 return False
+
         return True
 
     def assignment_output_string(self, X):
-        """Summarises binding dependencies in one string"""
+
+        # Maps assignments into a simple summary string
 
         # Creates symbol content (words) for primitive constituents for the output string
-
         def relevant_content(Y):
             if ['V', 'N', 'A', 'P', 'Adv', 'D'] in Y.core:
                 return ''.join([f[3:] for f in Y.core.features() if f.startswith('PF:') and f[3:] not in PhraseStructure.major_cats and f[3:] != "'s"])

@@ -1,5 +1,5 @@
 import tkinter as tk
-from g_phrase_structure import GPhraseStructure
+
 
 class PhraseStructureCanvas(tk.Canvas):
     """Canvas for drawing and manipulating phrase structure objects"""
@@ -16,6 +16,7 @@ class PhraseStructureCanvas(tk.Canvas):
         self.scaling_factor = 1
         self.info = None
         self.cursor = None
+        self.feature_mappings = self.create_feature_mappings()
 
         # Text types for images
 
@@ -32,6 +33,15 @@ class PhraseStructureCanvas(tk.Canvas):
         self.bind('<Control-Button-1>', self._on_ctrl_mouse_click)
         self.bind('<KeyPress>', self._key_press)
         self.info_text = None
+
+    def create_feature_mappings(self):
+
+        # Creates feature mappings which transform features present in the phrase structure trees into
+        # feature abbreviations as set up by the user in the study configuration file
+
+        if self.application.settings.retrieve('image_parameter_visualization', set()):
+            mappings = [item.strip().split('>') for item in self.application.settings.retrieve('image_parameter_visualization').split(';')]
+            return {key: value for key, value in mappings}
 
     def _key_press(self, event):
         if self.selected_objects:
@@ -420,6 +430,8 @@ class PhraseStructureCanvas(tk.Canvas):
             if text == 'φP':
                 return 'DP'
         if label_item[1] == 'feature':
+            if len(self.feature_mappings) > 0:
+                text = self.feature_mappings.get(text, text)
             return '[' + text + ']'
         return text
 
