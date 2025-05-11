@@ -182,123 +182,110 @@ class PhraseStructure:
     def bottom_affix(X):
         return X.collect_sWM(affixes=True, intervention=lambda x: x.copied)[-1]
 
-    # Paths -----------------------------------------------------------------------------
-
-    def EXT(X, **kwargs):
-        return X.external_search_path(**kwargs)
-
-    def external_search_path(X, **kwargs):
-
-        # Default values and preparations
-
-        x = X
-        y = None
-        collection = []
-        intervention = kwargs.get('intervention', lambda x: False)
-
-        # default value for domain is "top"
-
-        if kwargs.get('domain') == 'max':
-            intervention = lambda x: x.M().head() != x.head()
-
-        # default value for criteria is "everything"
-
-        criteria = kwargs.get('criteria', lambda x: True)
-        if kwargs.get('self', False):
-            collection.append(X)
-
-        # Upward path
-
-        while x.M() and not intervention(x):
-            y = x
-            x = x.M()
-            for z in x.const:
-                if z != y and criteria(z) and not (z.is_R() and z.adjunct):
-                    collection.append(z)
-
-        # Return
-
-        if kwargs.get('acquire', 'minimal') == 'minimal':
-            return next(iter(collection), None)
-        if kwargs.get('acquire') == 'maximal':
-            return x
-        return collection
+    # External and internal search  -----------------------------------------------------------------------------
 
     def __call__(X, stri):
         return X.head().core(stri)
 
+    def EXT(X, **kwargs):
+
+        # Default values and preparations
+
+        x, y, collection, search_parameters = X.initialize_EXT(kwargs)
+
+        # Upward path
+
+        while x.M() and not search_parameters['intervention'](x):
+            y = x
+            x = x.M()
+            for z in x.const:
+                if z != y and search_parameters['criteria'](z) and not (z.is_R() and z.adjunct):
+                    collection.append(z)
+
+        # Return either (i) first item, (ii) last item or (iii) the whole collection
+
+        if search_parameters['acquire'] == 'minimal':   # (i)
+            return next(iter(collection), None)
+        if search_parameters['acquire'] == 'maximal':   # (ii)
+            return x
+        return collection                               # (iii)
+
+    def initialize_EXT(X, kwargs):
+        if kwargs.get('domain') == 'max':
+            intervention = lambda x: x.M().head() != x.head()
+        else:
+            intervention = kwargs.get('intervention', lambda x: False)
+        criteria = kwargs.get('criteria', lambda x: True)
+        collection = []
+        if kwargs.get('self', False):
+            collection.append(X)
+
+        return X, \
+               X.M(), \
+               collection, \
+               {'intervention': intervention, 'criteria': criteria, 'acquire': kwargs.get('acquire', 'minimal')}
+
     def INT(X, target_seed=None, **kwargs):
+        search_parameters = X.initialize_INT(target_seed, kwargs)    # provide default values if missing
+        return X.internal_search_(search_parameters,
+                                  NodePicture(target_seed, criteria=kwargs.get('criteria', lambda x: True)))
 
-        # If there are no arguments, use defaults
-        # Default search = find the dominant head (=head algorithm)
+    def internal_search_(X, search_parameters, NodePic=None):
 
-        if len(kwargs) == 0:
-            kwargs['criteria'] = lambda x: x.zero_level()
+        # Collect nodes into syntactic working memory
+
+        if search_parameters.get('collect', False):
+            X.collect(search_parameters.get('geometrical', False))
+
+        # Match and terminate
+
+        if X.match_NodePic(NodePic):
+            return X.match_NodePic(NodePic)
+
+        # Search branching
+
+        if X.continue_search(search_parameters.get('affixes', False),
+                             search_parameters.get('intervention', lambda x: False)):
+            if X.left_branch_search(search_parameters.get('scan', False), search_parameters.get('geometrical', False)):
+                Y = X.L().internal_search_(search_parameters, NodePic)
+                if Y:
+                    return Y
+            if X.right_branch_search(search_parameters.get('scan', False), search_parameters.get('geometrical', False)):
+                return X.R().internal_search_(search_parameters, NodePic)
+
+    @staticmethod
+    def initialize_INT(target_seed, search_parameters):
+        if len(search_parameters) == 0:
+            search_parameters['criteria'] = lambda x: x.zero_level()
             if isinstance(target_seed, str):
-                kwargs['intervention'] = lambda x: x.zero_level()
+                search_parameters['intervention'] = lambda x: x.zero_level()
+        return search_parameters
 
-        return X.internal_search_path(NodePicture(target_seed, criteria=kwargs.get('criteria', lambda x: True)), **kwargs)
+    def left_branch_search(X, scan, geometrical):
+        return scan or (X.R().adjunct and not geometrical)
 
-    def internal_search_path(X, NodePic=None, **kwargs):
+    def right_branch_search(X, scan, geometrical):
+        return scan or geometrical or not X.R().adjunct
 
-        # Collect
+    def continue_search(X, affixes, intervention):
+        return (X.complex() or (affixes and X.affix())) and \
+               not(intervention(X.L()) or intervention(X))
 
-        if kwargs.get('collect', False):
-            if kwargs.get('geometrical', False):
-                PhraseStructure.speaker_model.syntactic_working_memory.append(X)
-            else:
-                if X.complex():
-                    PhraseStructure.speaker_model.syntactic_working_memory.append(X.L())
-                else:
-                    PhraseStructure.speaker_model.syntactic_working_memory.append(X)
-
-        # Match
-
-        if X.match(NodePic):
-            return X
-
-        if X.complex() and X.L().match(NodePic):
-            return X.L()
-
-        # Continue search (either X is complex OR we search inside complex heads)
-
-        if X.complex() or (X.affix() and kwargs.get('affixes', False)):
-
-            # Intervention
-
-            if kwargs.get('intervention', lambda x: False)(X.L()) or \
-                    kwargs.get('intervention', lambda x: False)(X):
-                return
-
-            # Scan
-
-            if kwargs.get('scan'):
-
-                if kwargs.get('scan', False):
-                    Y = X.L().internal_search_path(NodePic, **kwargs)
-                    if Y:
-                        return Y
-                    return X.R().internal_search_path(NodePic, **kwargs)
-
-            # Minimal search
-
-            else:
-
-                # Geometrical search
-
-                if kwargs.get('geometrical', False):
-                    return X.R().internal_search_path(NodePic, **kwargs)
-
-                # Non-geometrical search
-
-                if not X.R().adjunct:
-                    return X.R().internal_search_path(NodePic, **kwargs)
-                else:
-                    return X.L().internal_search_path(NodePic, **kwargs)
+    def collect(X, geometrical_search):
+        if X.zero_level() or geometrical_search:
+            PhraseStructure.speaker_model.syntactic_working_memory.append(X)
+        else:
+            PhraseStructure.speaker_model.syntactic_working_memory.append(X.L())
 
     def container(X):
         if X.M() and X.head() != X.M().head():
             return X.M().head()
+
+    def match_NodePic(X, NodePic):
+        if X.match(NodePic):
+            return X
+        if X.complex() and X.L().match(NodePic):
+            return X.L()
 
     # Argument identification --------------------------------------------------------------------------------
 
