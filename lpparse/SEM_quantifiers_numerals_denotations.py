@@ -42,7 +42,7 @@ class QuantifiersNumeralsDenotations:
 
     def accept(self, X):
 
-        # To project a WND-object, the element ("referential phrase") must be able to sustain coherent reference,
+        # To project a QND-object, the element ("referential phrase") must be able to sustain coherent reference,
         # it should not have agreed, and it must be referential
 
         return (X.core.overt_phi_sustains_reference() and not X.core('AgreeLF_occurred')) or X.core('referential')
