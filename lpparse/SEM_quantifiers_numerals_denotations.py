@@ -125,7 +125,7 @@ class QuantifiersNumeralsDenotations:
         return len(weighted_assignments), self.print_assignments(weighted_assignments), self.assignment_output_string(X)[1:]
 
     def calculate_possible_denotations(self, X):
-        denotations_lst = []
+        referential_expressions_lst = []
 
         # Copies are ignored
 
@@ -134,8 +134,8 @@ class QuantifiersNumeralsDenotations:
             # Recursion for complex phrases
 
             if X.complex():
-                denotations_lst += self.calculate_possible_denotations(X.L())
-                denotations_lst += self.calculate_possible_denotations(X.R())
+                referential_expressions_lst += self.calculate_possible_denotations(X.L())
+                referential_expressions_lst += self.calculate_possible_denotations(X.R())
 
             # Primitive heads
 
@@ -156,27 +156,25 @@ class QuantifiersNumeralsDenotations:
 
                     # Return the list of denotations, which will be added together as the recursion proceeds
 
-                    denotations_lst = [(idx, f'{X.illustrate()}', X, self.inventory[idx]['Denotations'])]
-        return denotations_lst
+                    referential_expressions_lst = [(idx, f'{X.illustrate()}', X, self.inventory[idx]['Denotations'])]
 
-    def create_assignments_from_denotations(self, ref_constituents_lst):
+        return referential_expressions_lst
 
-        # Creates assignments
-        # ref_constituents_lst = list of referential expressions
+    def create_assignments_from_denotations(self, referential_expressions_lst):
+
+        #  Create all possible assignments (tup[3] = denotations)
 
         log(f'\n\tAssignments: ')
 
-        #   Create all possible assignments (tup[3] = connection of denotations)
-
-        for assignment in itertools.product(*[tup[3] for tup in ref_constituents_lst]):
+        for assignment in itertools.product(*[tup[3] for tup in referential_expressions_lst]):
 
             #   Create assignment dict
 
-            assignment_dict = {tup[0]: assignment[i] for i, tup in enumerate(ref_constituents_lst)}
+            assignment_dict = {tup[0]: assignment[i] for i, tup in enumerate(referential_expressions_lst)}
 
             #   Calculate assignment weights and add the (assignment, weight) pair into all_assignments
 
-            self.all_assignments.append(self.calculate_assignment_weight(assignment_dict, ref_constituents_lst))
+            self.all_assignments.append(self.calculate_assignment_weight(assignment_dict, referential_expressions_lst))
 
     def calculate_assignment_weight(self, assignment, ref_constituents_lst):
         """
@@ -280,7 +278,10 @@ class QuantifiersNumeralsDenotations:
             # Check that no binding conditions are not violated
             # Function construct_semantic_working_memory will create a set of object based on attributes complete, limited
 
-            if binding_violation(assignment[idx], rule, X.construct_semantic_working_memory(intervention, assignment), X):
+            if binding_violation(assignment[idx],
+                                 rule,
+                                 X.construct_semantic_working_memory(intervention, assignment),
+                                 X):
                 return False
 
         return True
@@ -367,7 +368,8 @@ class QuantifiersNumeralsDenotations:
         return not self.coreference(idx1, idx2) and not self.disjoint_reference(idx1, idx2)
 
     def create_all_denotations(self, X):
-        return self.narrow_semantics.global_cognition.get_compatible_objects(self.inventory[X.head().core.get_referential_index('QND')])
+        return self.narrow_semantics.global_cognition.get_compatible_objects(
+            self.inventory[X.head().core.get_referential_index('QND')])
 
     def R_feature(self, feature):
         return feature.split(':')[0] == 'R'
