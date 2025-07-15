@@ -1055,19 +1055,10 @@ class PhraseStructure:
         return X.bottom().bottom_affix().internal
 
     def construct_semantic_working_memory(X, intervention_feature, assignment):
-        sWM = set()
+        sWM = X.EXT(acquire='all', criteria=lambda x: x.head().core.get_idx_tuple('QND') and x.head() != X and not x.copied)
+        limit = next((i for i, x in enumerate(sWM) if intervention_feature in x.head().core), len(sWM)) + 1
+        return {assignment[x.head().core.get_referential_index('QND')] for x in sWM[0:limit]}
 
-        # Examine the contents of the working memory for referential expressions
-
-        for const in (x for x in X.EXT(acquire='all') if x.head().core.has_idx() and x.head().core.get_idx_tuple('QND') and x.head() != X and not x.copied):
-            sWM.add(assignment[const.head().core.get_referential_index('QND')])
-
-            # Stop if there is an intervention
-
-            if intervention_feature and not const.copied and {intervention_feature}.issubset(const.head().core.features()):
-                break
-
-        return sWM
 
 class NodePicture:
     def __init__(self, t=None, **kwargs):
