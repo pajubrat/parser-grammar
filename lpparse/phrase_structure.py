@@ -369,17 +369,29 @@ class PhraseStructure:
         return str(PhraseStructure.chain_index)
 
     def create_feature_chain(X):
-        if X.scan_strong_features() and X.local_container() and X.local_container().head()('finite'):
-            X.local_container().core.add_features(PhraseStructure.speaker_model.lexicon.lexical_redundancy(X.scan_strong_features()))
 
-    def local_container(X):
+        # If XP has strong features and it has a finite local container Y (first line),
+        # copy the strong features to Y (second line).
+
+        # container_processing will create a new container if there is none
+        # If X is zero-level, local container is Y such that Y(X)
+        # If X is phrasal, local container is Y such as [YP XP ...Y...]
+
+        K = X.container_processing()
+
+        # Feature copying if X(P) has strong features and K is finite
+
+        if X.scan_strong_features() and K.head()('finite'):
+            K.core.add_features(PhraseStructure.speaker_model.lexicon.lexical_redundancy(X.scan_strong_features()))
+
+    def container_processing(X):
 
         # Local container of zero-level X is:
 
         if X.zero_level():
-            if X.M().zero_level():      # (1) Y if Y(X...)
+            if X.M().zero_level():      # ...(1) Y if Y(X...)
                 return X.M()
-            M = X.M()                   # otherwise (2) create Y such that Y(X...)
+            M = X.M()                   # ...otherwise (2) create Y such that Y(X...)
             return M.create_constituents([PhraseStructure(features={'C', 'C/fin', 'Fin', 'PF:C', 'LF:C', 'OP'}) ** X, M.R()]).L()
 
         else:
@@ -539,27 +551,38 @@ class PhraseStructure:
         for x in X.sister().collect_sWM(intervention=lambda x: x.zero_level() and x.INT('referential')):
 
             #   Sentence operator, null head, V2 (local X-to-C)
+            #   If the operator is finite head that is not selected by finite C.
 
             if T.zero_level() and \
                     T.INT('finite') and \
                     not T.EXT(criteria=lambda x: x.zero_level() and x.INT('finite_C')):
 
-                T = X.chaincopy()
+                T = X.chaincopy()               # Create copy of the target operator head
                 if x.complex():
-                    return T * x.sister()       # [T [XP [T' YP]]], XP = x
-                return T * x                    # [T [T' [K YP]]], K = x
+                    return T * x.sister()       # [T [DP YP]], x = DP => [T [XP [T' YP]]], T' = reconstructed copy
+                                                # Example "Maalasiko Pekka __ aitaa?"
+                return T * x                    # [T [K...]], x = K => [T [T' [K...]]]
 
-            # Found a position where tail tests succeed
+            # Try position where tail tests succeed
 
             if x.tail_test(tails_sets=T.get_tail_sets()) and x.zero_level():
 
                 if T.complex():
 
-                    # New SPEC
+                    # Phrasal constituent into SPEC
+                    # Example: "Kuka1 on maalannut [vP __1 v VP]?'
+
+                    # Specifier position must be empty, and specifier selection should not get violated
 
                     if not x.specifier() and T.INT(some(x.core.get_selection_features('+SPEC'))):
+
+                        # Reconstruction into ...[ __ X]
+
                         if x.is_R():
                             return T.chaincopy() * x
+
+                        # Reconstruction into ...[ __ [X...]]
+
                         return T.chaincopy() * x.M()
 
                     # New COMP
@@ -567,6 +590,8 @@ class PhraseStructure:
                     if T.INT(some(x.core.get_selection_features('+COMP'))):     # (2.1) No complement = [T....[x T']]
                         if not x.complement():
                             return x * T.chaincopy()
+
+                # Long head reconstruction for heads that are not finite
 
                 elif T.zero_level():
 
