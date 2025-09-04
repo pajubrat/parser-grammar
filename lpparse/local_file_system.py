@@ -147,11 +147,11 @@ class LocalFileSystem:
                     line = clear_line_end(line)
 
                 # These lines record attributes that must be checked against predicted outcome
-                # Descriptive adequacy
+                # Format is ¦->ATTRIBUTE: VALUE
 
-                if line.startswith('¦->') and len(line.split(':')) == 2:
+                if line.startswith('¦->') and len(line.split(' :')) == 2:
                     line = line.lstrip('¦->')
-                    field, value = line.split(':')
+                    field, value = line.split(' :')
                     input_data.update(index, {field.strip(): value.strip()})
                     continue
 
@@ -231,7 +231,7 @@ class LocalFileSystem:
         if len(speaker_model.results.syntax_semantics) > 0:
             for key in data_item.keys():
                 if speaker_model.results.get_output_field(key):
-                    if data_item[key] != ','.join(speaker_model.results.get_output_field(key)):
+                    if data_item[key] != ', '.join(speaker_model.results.get_output_field(key)):
                         r = f'\n{data_item["index"]}. {data_item["expression"]} ({key})\n\n\tPredicted:\t\t{data_item[key]}\n\tOutcome:\t\t{",".join(speaker_model.results.get_output_field(key))}\n\n'
                         self.file_handle['descriptive'].write(r)
 

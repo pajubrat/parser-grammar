@@ -76,7 +76,7 @@ class OperatorVariableModule:
             else:
                 self.bindings.append(f'{binding["Head"].label()}({Opf}, {self.operator_interpretation[Opf]}) bound by {binding["Scope"].illustrate()} by default rule. ')
         else:
-            log(f'\n\t{binding["Head"].illustrate()} with {Opf} is not bound by an scope-marker. ')
+            log(f'\n\t{binding["Head"].illustrate()} with {Opf} is not bound by scope-marker. ')
             self.interpretation_failed = True
 
     def is_operator(self, head):

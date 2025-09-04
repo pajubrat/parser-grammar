@@ -250,8 +250,8 @@ class Results:
         stri = ''
         for key in data_item.keys():
             if key in output_fields:
-                if data_item[key] != ','.join(output_fields[key]):
-                    stri += '\t\t' + data_item[key] + ' / ' + ','.join(output_fields[key]) + f' ({key})'
+                if data_item[key] != ', '.join(output_fields[key]):
+                    stri += '\t\t' + data_item[key] + ' / ' + ', '.join(output_fields[key]) + f' ({key})'
         if stri:
             return stri
         return '\t\tNone'

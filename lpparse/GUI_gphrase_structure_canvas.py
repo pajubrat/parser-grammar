@@ -24,9 +24,9 @@ class PhraseStructureCanvas(tk.Canvas):
                             'PFtrace': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic", "overstrike"),
                             'PF': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink')), "italic"),
                             'gloss': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
-                            'feature': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), 0.8 * int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
+                            'feature': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), 0.9 * int(self.application.settings.retrieve('image_parameter_tsize') / self.application.settings.retrieve('image_parameter_tshrink'))),
                             'subscript': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') * 0.5)),
-                            'arrow_label': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize') * 0.75)),
+                            'arrow_label': (self.application.settings.retrieve('image_parameter_font', 'Times New Roman'), int(self.application.settings.retrieve('image_parameter_tsize'))),
                             'info': ("Courier", int(self.application.settings.retrieve('image_parameter_tsize') * 0.25))}
         self.bind('<Button-1>', self._on_mouse_click)
         self.bind('<Button-3>', self._on_right_click)
@@ -456,7 +456,7 @@ class PhraseStructureCanvas(tk.Canvas):
 
         ID = self.create_line(*coords,
                               splinesteps=50,
-                              dash=self.parent.line_style['arrow']['dash'],
+                              dash=dep.dash,
                               arrow=dep.arrow_type,
                               activefill='red',
                               tag='dependency',

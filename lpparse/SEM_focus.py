@@ -14,7 +14,7 @@ class Focus:
 
             # Check if X has focus feature(s) and, if so, examine each
 
-            for focus_f in [f for f in X.core.features() if self.focus_feature(f)]:
+            for focus_f in sorted([f for f in X.core.features() if self.focus_feature(f)]):
 
                 # Examine the constituent having the operator and all other heads that it "contains" if it is complex
                 # x = used in the while-loop going through the individual heads contained in the highest head having the operator

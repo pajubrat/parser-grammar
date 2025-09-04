@@ -29,7 +29,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.inspect_window = None  # Shows information (features etc) of a selected node
         self.line_style = {'phrasal_chain': {'fill': 'black', 'dash': None, 'width': 2},
                            'head_chain': {'fill': 'black', 'dash': None, 'width': 2},
-                           'Agree': {'fill': 'blue', 'dash': None, 'width': 3},
+                           'Agree': {'fill': 'blue', 'dash': None, 'width': 2},
                            'arrow': {'fill': 'black', 'dash': None, 'width': 2},
                            'custom': {'fill': 'black', 'dash': None, 'width': 2}}
 
@@ -1514,6 +1514,7 @@ class Dependency:
         self.arrow_type = kwargs.get('arrow_type', 'none')
         self.label = kwargs.get('label', '')
         self.smooth = kwargs.get('smooth', False)
+        self.dash = None
         self.Y_offset = 0
         self.source_X_offset = 0
         self.target_X_offset = 0
@@ -1538,6 +1539,9 @@ class DependencyDialog(tk.Toplevel):
         dfont = ('Calibri', 20)
 
         # Frame: dependency type
+        # Contains basic information about the dependency
+
+        # Arrow type
         frameDependencyType = tk.LabelFrame(self, text='Dependency type', font=dfont)
         arrow_options = ['Forward', 'Backwards', 'Bidirectional', 'No direction']
         self.selDirection = tk.StringVar()
@@ -1549,12 +1553,16 @@ class DependencyDialog(tk.Toplevel):
             self.selDirection.set('Forward')
         for i, option in enumerate(arrow_options):
             tk.Radiobutton(frameDependencyType, padx=20, pady=20, justify='left', text=option, variable=self.selDirection, value=option, font=dfont).grid(row=0, column=i, sticky='w')
+
+        # Label (string)
         frameLabel = tk.LabelFrame(frameDependencyType, text='Label', font=dfont)
         self.selLabel = tk.StringVar()
         if dep:
             self.selLabel.set(dep.label)
         tk.Entry(frameLabel, textvariable=self.selLabel, font=dfont).grid(row=0, column=0, sticky='nw', padx=20, pady=20)
         frameLabel.grid(row=0, column=4, sticky='ns')
+
+        # Curved or not
         frameSmooth = tk.LabelFrame(frameDependencyType, text='Curved', font=dfont)
         self.selSmooth = tk.BooleanVar()
         if dep:
@@ -1564,6 +1572,18 @@ class DependencyDialog(tk.Toplevel):
                 self.selSmooth.set(False)
         tk.Checkbutton(frameSmooth, padx=10, pady=10, variable=self.selSmooth, font=dfont).grid(row=0, column=0, sticky='nw')
         frameSmooth.grid(row=0, column=5, sticky='ns')
+
+        # Dashed or not
+        frameDash = tk.LabelFrame(frameDependencyType, text='Dashed', font=dfont)
+        self.selDashed = tk.BooleanVar()
+        if dep:
+            if dep.dash:
+                self.selDashed.set(True)
+            else:
+                self.selDashed.set(False)
+        tk.Checkbutton(frameDash, padx=10, pady=10, variable=self.selDashed, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameDash.grid(row=0, column=6, sticky='ns')
+
         frameDependencyType.grid(row=1, column=0, sticky='we')
         # -----------------------------------------------------------------------
 
@@ -1625,6 +1645,10 @@ class DependencyDialog(tk.Toplevel):
         dep.epx = self.selEpx.get()
         dep.epy = self.selEpy.get()
         dep.Y_offset = self.selYoffset.get()
+        if self.selDashed.get():
+            dep.dash = (20,)
+        else:
+            dep.dash = None
         return dep
 
 
