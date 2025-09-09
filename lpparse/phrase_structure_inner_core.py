@@ -144,7 +144,7 @@ class PhraseStructureCore:
     def feature_bundles(self):
         return self._features
 
-    def bundle_features(self, f):
+    def bundle_for_feature(self, f):
         for fset in self._features:
             if f in fset:
                 return fset
