@@ -12,10 +12,10 @@ class OperatorVariableModule:
         self.bindings = []
         self.operator_interpretation = {'OP:WH': 'Wh-',
                                          'OP:TOP': 'Topic ',
-                                         'OP:DE/EM': 'De-emphasis ',
+                                         'OP:DE/EM': 'De-emphatic ',
                                          'OP:FAM': 'Familiarity ',
                                          'OP:FOC': 'Contrastive focus ',
-                                         'OP:POL': 'Polarity ',
+                                         'OP:EM': 'Emphatic ',
                                          'OP:Q': 'Yes/no interrogative ',
                                          'OP:REL': 'Relativization ',
                                          'OP:C/OP': 'Generic '}

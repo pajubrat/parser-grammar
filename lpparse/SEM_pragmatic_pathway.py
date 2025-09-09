@@ -11,8 +11,8 @@ class Discourse:
         self.index_counter = 0
         self.records_of_attentional_processing = {}  # Traces of attentional allocation
         self.discourse_interpretation = {'FAM': 'Familiarity assumption',
-                                         'POL': 'Affirmation bias',
-                                         'DE/EM': 'De-emphasis, politeness'}
+                                         'EM': 'Emphatic',
+                                         'DE/EM': 'De-emphasic, polite, informal'}
 
     def initialize(self):
         self.attention_gradient = []

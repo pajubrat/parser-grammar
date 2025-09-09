@@ -9,288 +9,299 @@
 		Pekka maalasi aitaa
 		'Pekka.nom paint.pst.3sg fence.par'
 		'Pekka painted the fence.'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		# baseline transitive SVO sentence without left peripheral clitics
-	
+
 		maalasi|[foc] Pekka aitaa
 		'paint.pst.3sg#foc Pekka.nom fence.par'
 		'Pekka PAINTED the fence.'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
+		¦-> Focus : Wide focus on event TP (OP:FOC), Narrow focus on V (OP:FOC)
 		# |[foc] = prosodic focus (focus stress, prosodic feature)
-	
+
 		maalasi=kO Pekka aitaa
 		'paint.pst.3sg=q Pekka.nom fence.par'
 		'Did Pekka paint the fence?'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
+		¦-> Focus : Wide focus on event TP (OP:Q), Narrow focus on V (OP:Q)
 
 		maalasi=hAn Pekka aitaa
 		'paint.pst.3sg=fam Pekka.nom fence.par'
 		'Pekka painted the fence (familiar).'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
+		¦-> Focus : Wide focus on event TP (OP:FAM), Narrow focus on V (OP:FAM)
 		
 		maalasi=pA Pekka aitaa
 		'paint.pst.3sg=pol Pekka.nom fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
+		¦-> Focus : Wide focus on event TP (OP:EM), Narrow focus on V (OP:EM)
 		
 		maalasi=pA=s Pekka aitaa
 		'paint.pst.3sg=pol=de/em Pekka.nom fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
+		¦-> Focus : Wide focus on event TP (OP:DE/EM), Narrow focus on V (OP:DE/EM), Wide focus on event TP (OP:EM), Narrow focus on V (OP:EM)
 
 		maalasi=kO=hAn Pekka aitaa
 		'paint.pst.3sg=q=fam Pekka.nom fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
+		¦-> Focus : Wide focus on event TP (OP:FAM), Narrow focus on V (OP:FAM), Wide focus on event TP (OP:Q), Narrow focus on V (OP:Q)
 
 		maalasi=kO=s Pekka aitaa
 		'paint.pst.3sg=q=de/em Pekka.nom fencec.par'
-		¦-> Speaker attitude: Interrogative
-		
+		¦-> Speaker attitude : Interrogative
+		¦-> Focus : Wide focus on event TP (OP:DE/EM), Narrow focus on V (OP:DE/EM), Wide focus on event TP (OP:Q), Narrow focus on V (OP:Q)
+
 		maalasi=pA=hAn Pekka aitaa
 		'paint.pst.3sg=pol=fam Pekka.nom fence.par'
-		¦-> Speaker attitude: Declarative
-		
+		¦-> Speaker attitude : Declarative
+		¦-> Focus : Wide focus on event TP (OP:EM), Narrow focus on V (OP:EM), Wide focus on event TP (OP:FAM), Narrow focus on V (OP:FAM)
+	
 		maalasi|[foc]=kO Pekka aitaa
 		'paint.pst.3sg#foc=q Pekka.nom fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
+		¦-> Focus : Wide focus on event TP (OP:FOC), Narrow focus on V (OP:FOC), Wide focus on event TP (OP:Q), Narrow focus on V (OP:Q)
 		
 		maalasi|[foc]=hAn Pekka aitaa
 		'paint.pst.3sg#foc=fam Pekka.nom fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
+		¦-> Focus : Wide focus on event TP (OP:FAM), Narrow focus on V (OP:FAM), Wide focus on event TP (OP:FOC), Narrow focus on V (OP:FOC)
 		
 		maalasi|[foc]=pA Pekka aitaa
 		'paint.pst.3sg#foc=pol Pekka.nom fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
+		¦-> Focus : Wide focus on event TP (OP:EM), Narrow focus on V (OP:EM), Wide focus on event TP (OP:FOC), Narrow focus on V (OP:FOC)
 		
 		maalasi|[foc]=pA=s Pekka aitaa
 		'paint.pst.3sg#foc=pol=s Pekka.nom fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		maalasi|[foc]=kO=hAn Pekka aitaa
 		'paint.pst.3sg#foc=q=fam Pekka.nom fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		maalasi|[foc]=kO=s Pekka aitaa
 		'paint.pst.3sg#foc=q=de|em Pekka.nom fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		maalasi|[foc]=pA=hAn Pekka aitaa
 		'paint.pst.3sg#foc=pol=fam Pekka.nom fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 	& Aux-to-C (1.2) 
 
 		Pekka on maalannut aitaa
 		'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		on|[foc] Pekka maalannut aitaa
 		'be.prs.3sg#foc Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 	
 		on=kO Pekka maalannut aitaa
 		'be.prs.3sg=q Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		on=hAn Pekka maalannut aitaa
 		'be.prs.3sg=fam Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		on=pA Pekka maalannut aitaa
 		'be.prs.3sg=pol Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		on=kO=s Pekka maalannut aitaa
 		'be.prs=q=de/em Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		on=kO=hAn Pekka maalannut aitaa
 		'be.prs.3sg=q=fam Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		on=pA=hAn Pekka maalannut aitaa
 		'be.prs.3sg=pol=fam Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		on=pA=s Pekka maalannut aitaa
 		'be.prs.3sg=pol=de|em Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		on|[foc]=kO Pekka maalannut aitaa
 		'be.prs.3sg=q Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		on|[foc]=hAn Pekka maalannut aitaa
 		'be.prs.3sg=fam Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		on|[foc]=pA Pekka maalannut aitaa
 		'be.prs.3sg.foc=pol Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		on|[foc]=kO=s Pekka maalannut aitaa
 		'be.prs=q=de/em Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		on|[foc]=kO=hAn Pekka maalannut aitaa
 		'be.prs.3sg.foc=q=fam Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		on|[foc]=pA=hAn Pekka maalannut aitaa
 		'be.prs.3sg.foc=pol=fam Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		on|[foc]=pA=s Pekka maalannut aitaa
 		'be.prs.3sg.foc=pol=de|em Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 	
 	& Neg-to-C (1.3)
 	
 		ei|[foc] Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		ei=kO Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		ei=hAn Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		ei=pA Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		ei=kO=s Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		ei=kO=hAn Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		ei=pA=s Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		ei=pA=hAn Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		ei|[foc]=kO Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		ei|[foc]=kO=s Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		ei|[foc]=kO=hAn Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		ei|[foc]=hAn Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		ei|[foc]=pA Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		ei|[foc]=pA=s Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		ei|[foc]=pA=hAn Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		ei|[foc]=kO=hAn Pekka maalannut aitaa
 		'not.3sg Pekka.nom paint.pst.prtc.sg fence.par'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 	& Subject Ā-operator to SpecCP (1.4)
 	
 		kuka maalasi aitaa
 		'who.nom painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 	
 		kuka=kO maalasi aitaa
 		'who=q painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 	
 		kuka=s maalasi aitaa
 		'who=de|em painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		kuka=pA maalasi aitaa
 		'who=pol painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		kuka=hAn maalasi aitaa
 		'who=fam painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 	
 		Pekka|[foc] maalasi aitaa
 		'Pekka.nom#foc painted fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		Pekka=kO maalasi aitaa
 		'Pekka.nom=q painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		Pekka=hAn maalasi aitaa
 		'Pekka.nom=fam painted fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		Pekka=pA maalasi aitaa
 		'Pekka.nom=pol painted fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		Pekka=kO=hAn maalasi aitaa
 		'Pekka.nom=q=fam painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		Pekka=kO=s maalasi aitaa
 		'Pekka.nom=q=de|em painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		Pekka=pA=hAn maalasi aitaa
 		'Pekka.nom=pol=fam painted fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 	
 		Pekka|[foc]=kO maalasi aitaa
 		'Pekka.nom|[foc]=q painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		Pekka|[foc]=hAn maalasi aitaa
 		'Pekka.nom|[foc]=fam painted fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		Pekka|[foc]=pA maalasi aitaa
 		'Pekka.nom|[foc]=pol painted fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		Pekka|[foc]=kO=hAn maalasi aitaa
 		'Pekka.nom|[foc]=q=fam painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		Pekka|[foc]=kO=s maalasi aitaa
 		'Pekka.nom|[foc]=q=de|em painted fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		Pekka|[foc]=pA=hAn maalasi aitaa
 		'Pekka.nom|[foc]=pol=fam painted fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 	& Object Ā-operator to SpecCP (1.5)
 	
 		mitä Pekka maalasi
 		'what.par Pekka painted'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		mitä=kO Pekka maalasi
 		'what.par=q Pekka painted'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 	
 		mitä=hAn Pekka maalasi
 		'what.par=fam Pekka painted'
@@ -306,63 +317,63 @@
 	
 		aitaa|[foc] Pekka maalasi
 		'fence.par#foc pekka painted'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		aitaa=kO Pekka maalasi
 		'fence.par=q pekka painted'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		aitaa=hAn Pekka maalasi
 		'fence.par=fam pekka painted'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		aitaa=pA Pekka maalasi
 		'fence.par=pol pekka painted'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		aitaa=kO=hAn Pekka maalasi
 		'fence.par=q=fam pekka painted'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		aitaa=pA=hAn Pekka maalasi
 		'fence.par=pol=fam pekka painted'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		aitaa=kO=s Pekka maalasi
 		'fence.par=q=de|em pekka painted'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		aitaa=pA=s Pekka maalasi
 		'fence.par=pol=de|em pekka painted'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		aitaa|[foc]=kO Pekka maalasi
 		'fence.par|[foc]=q pekka painted'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		aitaa|[foc]=hAn Pekka maalasi
 		'fence.par|[foc]=fam pekka painted'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		aitaa|[foc]=pA Pekka maalasi
 		'fence.par|[foc]=pol pekka painted'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		aitaa|[foc]=kO=hAn Pekka maalasi
 		'fence.par|[foc]=q=fam pekka painted'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		aitaa|[foc]=pA=hAn Pekka maalasi
 		'fence.par|[foc]=pol=fam pekka painted'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		aitaa|[foc]=kO=s Pekka maalasi
 		'fence.par|[foc]=q=de|em, pekka painted'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		aitaa|[foc]=pA=s Pekka maalasi
 		'fence.par|[foc]=pol=de|em pekka painted'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 & In situ constructions (2)
 
@@ -437,190 +448,190 @@
 
 			Pekka|FOC on maalannut aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 		
 			Pekka on|FOC maalannut aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 			
 			Pekka on maalannut|FOC aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka on maalannut aitaa|FOC
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka on|FOC maalannut|FOC aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 			
 			Pekka on|FOC maalannut aitaa|FOC
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka|FOC on|FOC maalannut aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 			
 			Pekka|FOC on maalannut|FOC aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka|FOC on maalannut aitaa|FOC
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'		
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka|FOC on|FOC maalannut|FOC aitaa
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 			
 			Pekka|FOC on|FOC maalannut aitaa|FOC
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka|FOC on|FOC maalannut|FOC aitaa|FOC
 			'Pekka.nom be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 		& In situ contrastive focus with other Ā-operators
 
 			Pekka|[foc]|FOC on maalannut aitaa
 			'Pekka#foc be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 		
 			Pekka|[foc] on|FOC maalannut aitaa
 			'Pekka#foc be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka|[foc] on maalannut|FOC aitaa
 			'Pekka#foc be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka|[foc] on maalannut aitaa|FOC
 			'Pekka#foc be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 			
 			Pekka=kO|FOC on maalannut aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 		
 			Pekka=kO on|FOC maalannut aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka=kO on maalannut|FOC aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka=kO on maalannut aitaa|FOC
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka=kO=s on|FOC maalannut aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka=kO=s on maalannut|FOC aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka=kO=s on maalannut aitaa|FOC
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka=kO=hAn on|FOC maalannut aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka=kO=hAn on maalannut|FOC aitaa
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka=kO=hAn on maalannut aitaa|FOC
 			'Pekka#q be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka=hAn|FOC on maalannut aitaa
 			'Pekka#fam be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 		
 			Pekka=hAn on|FOC maalannut aitaa
 			'Pekka#fam be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka=hAn on maalannut|FOC aitaa
 			'Pekka#fam be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka=hAn on maalannut aitaa|FOC
 			'Pekka#fam be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 			
 			Pekka=pA|FOC on maalannut aitaa
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 		
 			Pekka=pA on|FOC maalannut aitaa
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka=pA on maalannut|FOC aitaa
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka=pA on maalannut aitaa|FOC
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka=pA=s on|FOC maalannut aitaa
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka=pA=s on maalannut|FOC aitaa
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka=pA=s on maalannut aitaa|FOC
 			'Pekka#pol be.prs.3sg paint.pst.prtc.sg fence.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 		& Wh-in situ
 		
 			Pekka maalasi mitä
 			'Pekka.nom paint.pst.3sg what.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			kuka maalasi mitä
 			'who.nom paint.pst.3sg what.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 			Pekka|FOC maalasi mitä
 			'Pekka.nom paint.pst.3sg what.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka maalasi|FOC mitä
 			'Pekka.nom paint.pst.3sg what.par'
-			¦-> Speaker attitude: Declarative
+			¦-> Speaker attitude : Declarative
 
 			Pekka maalasi mitä|FOC
 			'Pekka.nom paint.pst.3sg what.par'
 
 			kuka maalasi mitä
 			'who.nom paint.pst.3sg what.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 			
 			kuka|FOC maalasi mitä
 			'who.nom paint.pst.3sg what.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 			
 			kuka maalasi|FOC mitä
 			'who.nom paint.pst.3sg what.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 			
 			kuka maalasi mitä|FOC
 			'who.nom paint.pst.3sg what.par'
-			¦-> Speaker attitude: Interrogative
+			¦-> Speaker attitude : Interrogative
 
 & Ā-operators inside pied-piped phrases (3)
 
@@ -628,253 +639,253 @@
 
 		tämän aidan|[foc] Pekka maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc] aidan Pekka maalasi
 		'this.acc#foc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan=kO Pekka maalasi
 		'this.acc fence.acc=q Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän=kO aidan Pekka maalasi
 		'this.acc=q fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän aidan=kO=hAn Pekka maalasi
 		'this.acc fence.acc=q-fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän=kO=hAn aidan Pekka maalasi
 		'this.acc=q-fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän aidan=kO=s Pekka maalasi
 		'this.acc fence.acc=q-de|em Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän=kO=s aidan Pekka maalasi
 		'this.acc=q-de|em fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän aidan=hAn Pekka maalasi
 		'this.acc fence.acc=fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän=hAn aidan Pekka maalasi
 		'this.acc=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan=pA Pekka maalasi
 		'this.acc fence.acc=pol Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän=pA aidan Pekka maalasi
 		'this.acc=pol fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan=pA=s Pekka maalasi
 		'this.acc fence.acc=pol-de|em Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän=pA=s aidan Pekka maalasi
 		'this.acc=pol=de|em fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan=pA=hAn Pekka maalasi
 		'this.acc fence.acc=pol=fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän=pA=hAn aidan Pekka maalasi
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän aidan|[foc]=kO Pekka maalasi
 		'this.acc fence.acc=q Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän|[foc]=kO aidan Pekka maalasi
 		'this.acc=q fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän aidan|[foc]=kO=hAn Pekka maalasi
 		'this.acc fence.acc=q-fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän|[foc]=kO=hAn aidan Pekka maalasi
 		'this.acc=q-fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän aidan|[foc]=kO=s Pekka maalasi
 		'this.acc fence.acc=q-de|em Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän|[foc]=kO=s aidan Pekka maalasi
 		'this.acc=q-de|em fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän aidan|[foc]=hAn Pekka maalasi
 		'this.acc fence.acc=fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc]=hAn aidan Pekka maalasi
 		'this.acc=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan|[foc]=pA Pekka maalasi
 		'this.acc fence.acc=pol Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc]=pA aidan Pekka maalasi
 		'this.acc=pol fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan|[foc]=pA=s Pekka maalasi
 		'this.acc fence.acc=pol-de|em Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc]=pA=s aidan Pekka maalasi
 		'this.acc=pol=de|em fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan|[foc]=pA=hAn Pekka maalasi
 		'this.acc fence.acc=pol=fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc]=pA=hAn aidan Pekka maalasi
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 	& Pied-piping to SpecCP with in situ focus (3.2)
 	
 		tämän|FOC aidan|[foc] Pekka maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc] aidan|FOC Pekka maalasi
 		'this.acc#foc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan=kO Pekka|FOC maalasi
 		'this.acc fence.acc=q Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän=kO aidan Pekka maalasi|FOC
 		'this.acc=q fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän|FOC aidan=kO=hAn Pekka maalasi
 		'this.acc fence.acc=q-fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän=kO=hAn aidan|FOC Pekka maalasi
 		'this.acc=q-fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän aidan=kO=s Pekka|FOC maalasi
 		'this.acc fence.acc=q-de|em Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän=kO=s aidan Pekka maalasi|FOC
 		'this.acc=q-de|em fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän|FOC aidan=hAn Pekka maalasi
 		'this.acc fence.acc=fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän=hAn aidan|FOC Pekka maalasi
 		'this.acc=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan=pA Pekka|FOC maalasi
 		'this.acc fence.acc=pol Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän=pA aidan Pekka maalasi|FOC
 		'this.acc=pol fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän|FOC aidan=pA=s Pekka maalasi
 		'this.acc fence.acc=pol-de|em Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän=pA=s aidan|FOC Pekka maalasi
 		'this.acc=pol=de|em fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan=pA=hAn Pekka|FOC maalasi
 		'this.acc fence.acc=pol=fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän=pA=hAn aidan Pekka maalasi|FOC
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|FOC aidan|[foc]=kO Pekka maalasi
 		'this.acc fence.acc=q Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän|[foc]=kO|FOC aidan Pekka maalasi
 		'this.acc=q fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän aidan|[foc]=kO=hAn Pekka|FOC maalasi
 		'this.acc fence.acc=q-fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän|[foc]=kO=hAn aidan Pekka maalasi|FOC
 		'this.acc=q-fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän|FOC aidan|[foc]=kO=s Pekka maalasi
 		'this.acc fence.acc=q-de|em Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 		
 		tämän|[foc]=kO=s|FOC aidan Pekka maalasi
 		'this.acc=q-de|em fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän aidan|[foc]=hAn Pekka|FOC maalasi
 		'this.acc fence.acc=fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc]=hAn aidan Pekka maalasi|FOC
 		'this.acc=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän|FOC aidan|[foc]=pA Pekka maalasi
 		'this.acc fence.acc=pol Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc]=pA aidan|FOC Pekka maalasi
 		'this.acc=pol fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän aidan|[foc]=pA=s Pekka|FOC maalasi
 		'this.acc fence.acc=pol-de|em Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc]=pA=s aidan Pekka maalasi|FOC
 		'this.acc=pol=de|em fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän|FOC aidan|[foc]=pA=hAn Pekka maalasi
 		'this.acc fence.acc=pol=fam Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc]=pA=hAn aidan|FOC Pekka maalasi
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän|[foc]=pA=hAn aidan|FOC Pekka|FOC maalasi
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän|[foc]=pA=hAn aidan|FOC Pekka|FOC maalasi|FOC
 		'this.acc=pol=fam fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 & Double-filled CP (4)
 	
@@ -1123,55 +1134,55 @@
 	
 		tämän|[foc] aidan|FOC Pekka maalasi
 		'this.acc fence.acc#foc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän=kO aidan|FOC Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän=kO=s aidan|FOC Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän=hAn aidan|FOC Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 		tämän=pA aidan|FOC Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 	
 		tämän=pA=hAn aidan|FOC Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 	
 		tämän|FOC aidan=kO Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän|FOC aidan=kO=s Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		tämän|FOC aidan|[foc] Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän|FOC aidan=hAn Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän|FOC aidan=pA Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän|FOC aidan=pA=hAn Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		tämän|FOC aidan=pA=s Pekka maalasi
 		'this.acc fence.acc Pekka.nom paint.pst.3sg'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 		
 & Long head movement (6)
 
@@ -1179,168 +1190,168 @@
 
 		maalata=kO Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=kO=s Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=hAn Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA=s Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata|[foc] Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata|[foc]=kO Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata|[foc]=kO=s Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata|[foc]=kO=hAn Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata|[foc]=hAn Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata|[foc]=pA Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata|[foc]=pA=s Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata|[foc]=pA=hAn Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 	& A|inf-to-C movement with in situ focus (6.2)
 
 		maalata=kO|FOC Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=kO Pekka|FOC aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=kO Pekka aikoo|FOC aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=kO Pekka aikoo aitaa|FOC
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=kO=s|FOC Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=kO=s Pekka|FOC aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=kO=s Pekka aikoo|FOC aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=kO=s Pekka aikoo aitaa|FOC
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Interrogative
+		¦-> Speaker attitude : Interrogative
 
 		maalata=hAn|FOC Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=hAn Pekka|FOC aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=hAn Pekka aikoo|FOC aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=hAn Pekka aikoo aitaa|FOC
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA|FOC Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA Pekka|FOC aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA Pekka aikoo|FOC aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA Pekka aikoo aitaa|FOC
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA=s|FOC Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA=s Pekka|FOC aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
 
 		maalata=pA=s Pekka aikoo|FOC aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA=s Pekka aikoo aitaa|FOC
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA=hAn|FOC Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA=hAn Pekka|FOC aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA=hAn Pekka aikoo|FOC aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata=pA=hAn Pekka aikoo aitaa|FOC
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata|[foc]|FOC Pekka aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata|[foc] Pekka|FOC aikoo aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata|[foc] Pekka aikoo|FOC aitaa
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 		maalata|[foc] Pekka aikoo aitaa|FOC
 		'paint.prs.a/inf Pekka plans __ fence'
-		¦-> Speaker attitude: Declarative
+		¦-> Speaker attitude : Declarative
 
 & Clitic combinations (7)
 

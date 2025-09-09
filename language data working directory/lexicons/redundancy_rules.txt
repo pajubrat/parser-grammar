@@ -122,10 +122,10 @@
 	
 	# Inflectional morphemes
 	
-		LANG:FI OP:Q		::	-mCOMP=OP:Q,OP:POL,OP:FAM,OP:DE/EM
-		LANG:FI OP:DE/EM	::	+mCOMP=OP:POL,OP:Q,OP:WH/root
+		LANG:FI OP:Q		::	-mCOMP=OP:Q,OP:EM,OP:FAM,OP:DE/EM
+		LANG:FI OP:DE/EM	::	+mCOMP=OP:EM,OP:Q,OP:WH/root
 		LANG:FI OP:FAM		::	-mCOMP=OP:FAM,OP:DE/EM
-		LANG:FI OP:POL		::	-mCOMP=OP:POL,OP:Q,OP:DE/EM,OP:FAM
+		LANG:FI OP:EM		::	-mCOMP=OP:EM,OP:Q,OP:DE/EM,OP:FAM
 	
 	# Other rules
 	
