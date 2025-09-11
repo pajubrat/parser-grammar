@@ -811,7 +811,7 @@ class PhraseStructure:
         """
         return X.INT('operator', scan=True) and \
                not X.core.features(match=['$OP$']) and \
-               ((X.container() and X.container().INT({'Fin'})) or
+               ((X.container() and X.container()('finite')) or
                 (X.INT({'-insitu'}) and X.INT(['TAM', 'C/fin', 'Neg/fin'])))
 
     # Tail-processing ---------------------------------------------------------------------------

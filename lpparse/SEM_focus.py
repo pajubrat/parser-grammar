@@ -6,7 +6,7 @@ class Focus:
         self.narrow_semantics = narrow_semantics
 
     def reconstruct(self, X):
-        self.reset_interpretation()
+        self.focus_interpretations = []
 
         # Ignore scope-markers
 
@@ -14,13 +14,13 @@ class Focus:
 
             # Check if X has focus feature(s) and, if so, examine each
 
-            for focus_f in sorted([f for f in X.core.features() if self.focus_feature(f)]):
+            for focus_f in sorted(list(X('operator'))):
 
-                # Examine the constituent having the operator and all other heads that it "contains" if it is complex
-                # x = used in the while-loop going through the individual heads contained in the highest head having the operator
-                # This creates ambiguities in how the operator can be interpreted
+                # Examine the constituent having the operator and, if it is complex, all other heads that it contains
+                # x = used in the loop
 
                 x = X
+
                 while x:
 
                     # Focus sets for concepts (ignores purely functional items and auxiliaries)
@@ -63,12 +63,7 @@ class Focus:
                         else:
                             x = x.affix()
                     else:
-                        x = None
+                        x = None    # This will terminate the focus set generation for X
 
             return self.focus_interpretations
 
-    def reset_interpretation(self):
-        self.focus_interpretations = []
-
-    def focus_feature(self, f):
-        return f.startswith('OP:')
