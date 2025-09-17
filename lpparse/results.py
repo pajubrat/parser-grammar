@@ -119,15 +119,24 @@ class Results:
     def store_output_field(self, key, value):
         """
         Converts the output of semantic interpretation into the correct format
+        key = the key for the dictionary holding the results
+        value = the value (relevant information for user)
         """
+
+        # Store strings as such
+
         if isinstance(value, str):
             if key not in self.output_fields:
                 self.output_fields[key] = [value]
             else:
                 self.output_fields[key].append(value)
 
+        # Convert dictionaries into strings
+
         if isinstance(value, dict):
             self.output_fields[key] = [f'{k}: {value[k]}' for k in value.keys()]
+
+        # Lists are added as such
 
         if isinstance(value, list):
             if key not in self.output_fields:

@@ -565,7 +565,7 @@ class PhraseStructure:
 
             # Try position where tail tests succeed
 
-            if x.tail_test(tails_sets=T.get_tail_sets()) and x.zero_level():
+            if x.zero_level() and x.tail_test(tails_sets=T.get_tail_sets()):
 
                 if T.complex():
 
