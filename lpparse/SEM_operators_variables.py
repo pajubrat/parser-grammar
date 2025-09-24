@@ -30,6 +30,9 @@ class OperatorVariableModule:
 
         if not X('scope_marker') and X('operator'):
 
+            # Use this function to test Brattico (2021, 2022)
+            # self.test_affix_theory(X)
+
             # Find all operator features
 
             for Opf in X('operator'):
@@ -79,4 +82,17 @@ class OperatorVariableModule:
         else:
             log(f'\n\t{binding["Head"].illustrate()} with {Opf} is not bound by scope-marker. ')
             self.interpretation_failed = True
+
+    @staticmethod
+    # Experimental function which can be used to test the affix theory
+    # of Brattico (2021, 2022). It bundes all operator feature bundles into
+    # one hybrid bundle
+    def test_affix_theory(X):
+        A = set()                       # All operator features all collected into this set
+        for f in [x for x in X.core.features()]:
+            if 'OP:' in f:
+                B = X.core.bundle_for_feature(f)
+                X.core.remove_bundle(B)
+                A.update(B)
+        X.core.add_features(A)
 

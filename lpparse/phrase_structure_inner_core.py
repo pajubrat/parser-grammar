@@ -148,13 +148,19 @@ class PhraseStructureCore:
         for fset in self._features:
             if f in fset:
                 return fset
+        return set()
+
+    def remove_bundle(self, fset):
+        for fset2 in self._features:
+            if fset == fset2:
+                self._features.remove(fset)
 
     def set_features(self, fset):
         self._features = [fset]
 
     def remove_features(self, fset):
-        for i, fset_ in enumerate(self._features):
-            self._features[i] = fset_ - fset
+        for i, fset_ in enumerate(self._features):      # Examine all feature bundles
+            self._features[i] = fset_ - fset            # Remove features defined in fset from each bundle
 
     def add_features(self, fset):
         if len(self._features) > 0:
