@@ -333,6 +333,9 @@ class PhraseStructureCanvas(tk.Canvas):
 
         if gps.compressed:
 
+            # Explanation for Y_frame -calculations:
+            # The triangle has regular X coordinates but reaches lower to replace what would otherwise be the label (now missing)
+            # Thus it consumes the same space on the canvas as a regular constituent
             self.create_line(self.Y_frame(M_const_coord, 1), self.Y_frame(L_const_coord, 0.5), width=2, fill='black')
             self.create_line(self.Y_frame(M_const_coord, 1), self.Y_frame(R_const_coord, 0.5), width=2, fill='black')
             self.create_line(self.Y_frame(L_const_coord, 0.5), self.Y_frame(R_const_coord, 0.5), width=2, fill='black')

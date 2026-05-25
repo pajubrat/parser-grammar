@@ -19,13 +19,15 @@ class Settings:
         self.create_settings_for_file_system()
 
     def default_settings(self):
-         return {'image_parameter_grid': 150,
+        physical_page_width_cm = 20
+        pixels_per_cm = 118
+        return {'image_parameter_grid': 150,
                   'image_parameter_margins': 200,
-                  'image_parameter_y_grid': 180,
+                  'image_parameter_y_grid': 200,
                   'image_parameter_y_margins': 300,
                   'image_parameter_fit_margins': 100,
-                  'image_parameter_canvas_width': 2250,
-                  'image_parameter_canvas_height': 1500,
+                  'image_parameter_canvas_width': physical_page_width_cm * pixels_per_cm,
+                  'image_parameter_canvas_height': 1700,
                   'image_parameter_label_padding': 1,
                   'image_parameter_text_spacing': 1.5,
                   'image_parameter_tshrink': 1.0,

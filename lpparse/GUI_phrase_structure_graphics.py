@@ -4,6 +4,12 @@ from phrase_structure import PhraseStructure
 from feature_processing import clean_string
 from g_phrase_structure import GPhraseStructure
 import pickle
+
+try:
+    from PIL import Image, ImageGrab, ImageChops
+except ModuleNotFoundError:
+    print("Warning: PIL library is missing, image saving will not work.")
+
 from GUI_gphrase_structure_canvas import PhraseStructureCanvas
 
 
@@ -38,7 +44,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.canvas = PhraseStructureCanvas(self)
         self.canvas.grid(row=4, column=0)
         self.canvas.focus_set()
-        self.canvas.configure(closeenough=10,
+        self.canvas.configure(closeenough=10, bd=0, highlightthickness=0,
                               width=self.application.settings.retrieve('image_parameter_canvas_width'),
                               height=self.application.settings.retrieve('image_parameter_canvas_height'),
                               background='white')
@@ -84,6 +90,9 @@ class PhraseStructureGraphics(tk.Toplevel):
 
         self.bind('<<SaveAsStructure>>', self.save_as)
         self.bind('<<Save>>', self.save)
+        self.bind('<<SavePage>>', self.save_page)
+        self.bind('<<SaveImage>>', self.save_image)
+        self.bind('<<SaveInvertedImage>>', self.save_inverted_image)
         self.bind('<<LoadAsStructure>>', self.load_as_structure)
         self.bind('<<FitPhraseStructure>>', self.fit_phrase_structure)
         self.bind('<<ResetScaling>>', self.reset_scaling)
@@ -181,7 +190,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<MouseWheel>', self.zoomer)
         self.bind('<Control-s>', self.save)
         self.bind('<Key-w>', self.widen_node)
-        self.bind('<Key-s>', self.squeeze_node)
+        self.bind('<Key-s>', self.shrink_phrase_structure)
         self.bind('<Key-a>', self.create_forward_arrow)
         self.bind('<Key-l>', self.use_custom_label)
         self.bind('<Key-c>', self.compress_node_shift)
@@ -233,7 +242,10 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.create_button(self.button_img10, self.widen_node, self.ribbon, pad, column)
         column += 1
         self.button_img11 = tk.PhotoImage(file='./lpparse/image resources/squeeze.png').subsample(2, 2)
-        self.create_button(self.button_img11, self.squeeze_node, self.ribbon, pad,column)
+        self.create_button(self.button_img11, self.squeeze_node, self.ribbon, pad, column)
+        column += 1
+        self.button_img13 = tk.PhotoImage(file='./lpparse/image resources/shrink.png').subsample(2, 2)
+        self.create_button(self.button_img13, self.shrink_phrase_structure, self.ribbon, pad, column)
 
     def create_button(self, image, command, ribbon, pad, column):
         tk.Button(ribbon, command=command,
@@ -369,7 +381,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.update()
         self.save_image_as_postscript(filename)
 
-    def fit_into_screen_and_show(self, margins=0):
+    def fit_into_screen_and_show(self, margins=50):
         """
         Collects all elements on the canvas and optimizes its size. Size optimization uses the
         width settings unless the image is larger.
@@ -1194,11 +1206,40 @@ class PhraseStructureGraphics(tk.Toplevel):
                 antecedent, context = antecedent.split('//')
             self.feature_visualizations[antecedent] = (context, target)     #   Store the result into dictionary [A] = (C, T)
 
-    def save_image(self, *_):
+    def save_page(self, *_):
+        crop = 10   # Use this to crop from the image
+        filename = filedialog.asksaveasfilename(initialfile="ps_image") + '.tif'
         self.fit_into_screen_and_show()
-        filename = filedialog.asksaveasfilename()
-        self.save_image_as_postscript(filename)
-        messagebox.showinfo(title='Image Saving', message=f'Image Saved as {filename}.eps')
+        self.canvas.update()
+        self.canvas.update_idletasks()
+        x = self.winfo_rootx() + self.canvas.winfo_x() + crop
+        y = self.winfo_rooty() + self.canvas.winfo_y() + crop
+        x1 = x + self.canvas.winfo_width() - crop
+        y1 = y + self.canvas.winfo_height() - crop
+        bbox = (x, y, x1, y1)
+        ImageGrab.grab(bbox).save(filename, 'tiff')
+
+    def save_inverted_image(self, *_):
+        filename = filedialog.asksaveasfilename(initialfile="ps_image") + '.tif'
+        ImageChops.invert(ImageGrab.grab(self.calculate_bbox())).save(filename, 'tiff')
+
+    def save_image(self, *_):
+        filename = filedialog.asksaveasfilename(initialfile="ps_image") + '.tif'
+        ImageGrab.grab(self.calculate_bbox()).save(filename, 'tiff')
+
+    def calculate_bbox(self):
+        margin = 20   # Use this to crop from the image
+        self.fit_into_screen_and_show()
+        self.canvas.update()
+        self.canvas.update_idletasks()
+        x = self.winfo_rootx() + self.canvas.winfo_x() + margin
+        y = self.winfo_rooty() + self.canvas.winfo_y() + margin
+        tags = ['node', 'dependency']   # Tags for objects on the canvas that will be part of the picture
+        bounding_boxes = [self.canvas.bbox(tag) for tag in tags]
+        return (x+min(bbox[0]-margin for bbox in bounding_boxes if bbox),
+                y+min(bbox[1]-margin for bbox in bounding_boxes if bbox),
+                x+max(bbox[2]+margin for bbox in bounding_boxes if bbox),
+                y+max(bbox[3]+margin for bbox in bounding_boxes if bbox))
 
     def next_image(self, *_):
         if self.speaker_model.results.recorded_steps:
@@ -1291,6 +1332,14 @@ class GraphicsMenu(tk.Menu):
         file_menu.add_command(label='Load...', command=self._event('<<LoadAsStructure>>'))
         file_menu.add_command(label='Save', command=self._event('<<Save>>'))
         file_menu.add_command(label='Save As...', command=self._event('<<SaveAsStructure>>'))
+
+        # Submenu for Image save
+        file_menu_Save_image = tk.Menu(file_menu, tearoff=0, font=menu_font)
+        file_menu_Save_image.add_command(label='Save page...', command=self._event('<<SavePage>>'))
+        file_menu_Save_image.add_command(label='Save image...', command=self._event('<<SaveImage>>'))
+        file_menu_Save_image.add_command(label='Save inverted image...', command=self._event('<<SaveInvertedImage>>'))
+        file_menu.add_cascade(label='Save Image...', menu=file_menu_Save_image)
+
         file_menu.add_command(label='Save Postscript Image...', command=self._event('<<CaptureImage>>'))
         self.add_cascade(label='File', underline=0, menu=file_menu)
 
