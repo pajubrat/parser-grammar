@@ -1228,18 +1228,19 @@ class PhraseStructureGraphics(tk.Toplevel):
         ImageGrab.grab(self.calculate_bbox()).save(filename, 'tiff')
 
     def calculate_bbox(self):
-        margin = 20   # Use this to crop from the image
+        y_margin = 20   # Use this to crop from the image
+        x_margin = 60
         self.fit_into_screen_and_show()
         self.canvas.update()
         self.canvas.update_idletasks()
-        x = self.winfo_rootx() + self.canvas.winfo_x() + margin
-        y = self.winfo_rooty() + self.canvas.winfo_y() + margin
+        x = self.winfo_rootx() + self.canvas.winfo_x() + x_margin
+        y = self.winfo_rooty() + self.canvas.winfo_y() + y_margin
         tags = ['node', 'dependency']   # Tags for objects on the canvas that will be part of the picture
         bounding_boxes = [self.canvas.bbox(tag) for tag in tags]
-        return (x+min(bbox[0]-margin for bbox in bounding_boxes if bbox),
-                y+min(bbox[1]-margin for bbox in bounding_boxes if bbox),
-                x+max(bbox[2]+margin for bbox in bounding_boxes if bbox),
-                y+max(bbox[3]+margin for bbox in bounding_boxes if bbox))
+        return (x+min(bbox[0]-x_margin for bbox in bounding_boxes if bbox),
+                y+min(bbox[1]-y_margin for bbox in bounding_boxes if bbox),
+                x+max(bbox[2]+x_margin for bbox in bounding_boxes if bbox),
+                y+max(bbox[3]+y_margin for bbox in bounding_boxes if bbox))
 
     def next_image(self, *_):
         if self.speaker_model.results.recorded_steps:
