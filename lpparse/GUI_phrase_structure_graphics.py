@@ -3,7 +3,7 @@ from tkinter import simpledialog, filedialog, messagebox
 from phrase_structure import PhraseStructure
 from feature_processing import clean_string
 from g_phrase_structure import GPhraseStructure
-import pickle
+import pickle, time
 
 try:
     from PIL import Image, ImageGrab, ImageChops
@@ -90,9 +90,7 @@ class PhraseStructureGraphics(tk.Toplevel):
 
         self.bind('<<SaveAsStructure>>', self.save_as)
         self.bind('<<Save>>', self.save)
-        self.bind('<<SavePage>>', self.save_page)
         self.bind('<<SaveImage>>', self.save_image)
-        self.bind('<<SaveInvertedImage>>', self.save_inverted_image)
         self.bind('<<LoadAsStructure>>', self.load_as_structure)
         self.bind('<<FitPhraseStructure>>', self.fit_phrase_structure)
         self.bind('<<ResetScaling>>', self.reset_scaling)
@@ -102,7 +100,6 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.bind('<<PreviousImage>>', self.previous_image)
         self.bind('<<FirstImage>>', self.first_image)
         self.bind('<<NextLFImage>>', self.nextLFimage)
-        self.bind('<<CaptureImage>>', self.save_image)
         self.bind('<<Inspect>>', self.inspect)
         self.bind('<<CompressNode>>', self.compress_node)
         self.bind('<<DecompressNode>>', self.decompress_node)
@@ -381,19 +378,19 @@ class PhraseStructureGraphics(tk.Toplevel):
         self.update()
         self.save_image_as_postscript(filename)
 
-    def fit_into_screen_and_show(self, margins=50):
+    def fit_into_screen_and_show(self, x_margins=50, y_margins=50):
         """
         Collects all elements on the canvas and optimizes its size. Size optimization uses the
         width settings unless the image is larger.
         """
         self.lift()
         x1, y1, x2, y2 = self.canvas.bbox('all')
-        self.update_contents(False, margins-x1, margins-y1)
+        self.update_contents(False, x_margins-x1, y_margins-y1)
         if x2 - x1 > self.application.settings.retrieve('image_parameter_canvas_width'):
             width = x2 - x1
         else:
             width = self.application.settings.retrieve('image_parameter_canvas_width')    # This matches with A4
-        height = y2 - y1 + margins * 2
+        height = y2 - y1 + y_margins * 4
         self.canvas.configure(width=width, height=height, background='white')
 
     def save_image_as_postscript(self, filename=''):
@@ -1219,28 +1216,32 @@ class PhraseStructureGraphics(tk.Toplevel):
         bbox = (x, y, x1, y1)
         ImageGrab.grab(bbox).save(filename, 'tiff')
 
-    def save_inverted_image(self, *_):
-        filename = filedialog.asksaveasfilename(initialfile="ps_image") + '.tif'
-        ImageChops.invert(ImageGrab.grab(self.calculate_bbox())).save(filename, 'tiff')
-
     def save_image(self, *_):
-        filename = filedialog.asksaveasfilename(initialfile="ps_image") + '.tif'
-        ImageGrab.grab(self.calculate_bbox()).save(filename, 'tiff')
+        name, inverted, page, x_margins, y_margins, image_format = SaveImageDialog().show()
+        time.sleep(0.5)
+        filename = name + '.' + image_format
+        if image_format == 'tif':
+            image_format = 'tiff'
+        box = self.calculate_bbox(x_margins, y_margins, page)
+        if inverted:
+            ImageChops.invert(ImageGrab.grab(box)).save(filename, image_format)
+        else:
+            ImageGrab.grab(box).save(filename, image_format)
 
-    def calculate_bbox(self):
-        y_margin = 20   # Use this to crop from the image
-        x_margin = 60
-        self.fit_into_screen_and_show()
+    def calculate_bbox(self, x_margins, y_margins, page):
+        self.fit_into_screen_and_show(x_margins=x_margins, y_margins=y_margins)
         self.canvas.update()
-        self.canvas.update_idletasks()
-        x = self.winfo_rootx() + self.canvas.winfo_x() + x_margin
-        y = self.winfo_rooty() + self.canvas.winfo_y() + y_margin
-        tags = ['node', 'dependency']   # Tags for objects on the canvas that will be part of the picture
-        bounding_boxes = [self.canvas.bbox(tag) for tag in tags]
-        return (x+min(bbox[0]-x_margin for bbox in bounding_boxes if bbox),
-                y+min(bbox[1]-y_margin for bbox in bounding_boxes if bbox),
-                x+max(bbox[2]+x_margin for bbox in bounding_boxes if bbox),
-                y+max(bbox[3]+y_margin for bbox in bounding_boxes if bbox))
+        x = self.winfo_rootx() + self.canvas.winfo_x()
+        y = self.winfo_rooty() + self.canvas.winfo_y()
+        self.canvas.delete('cursor')
+        bbox = self.canvas.bbox('all')
+        x1 = x+bbox[0]-x_margins
+        y1 = y+bbox[1]-y_margins
+        x2 = x+bbox[2]+x_margins
+        y2 = y+bbox[3]+y_margins
+        if page:
+            x2 = x1 + 2100  # Constant width
+        return x1, y1, x2, y2
 
     def next_image(self, *_):
         if self.speaker_model.results.recorded_steps:
@@ -1333,15 +1334,7 @@ class GraphicsMenu(tk.Menu):
         file_menu.add_command(label='Load...', command=self._event('<<LoadAsStructure>>'))
         file_menu.add_command(label='Save', command=self._event('<<Save>>'))
         file_menu.add_command(label='Save As...', command=self._event('<<SaveAsStructure>>'))
-
-        # Submenu for Image save
-        file_menu_Save_image = tk.Menu(file_menu, tearoff=0, font=menu_font)
-        file_menu_Save_image.add_command(label='Save page...', command=self._event('<<SavePage>>'))
-        file_menu_Save_image.add_command(label='Save image...', command=self._event('<<SaveImage>>'))
-        file_menu_Save_image.add_command(label='Save inverted image...', command=self._event('<<SaveInvertedImage>>'))
-        file_menu.add_cascade(label='Save Image...', menu=file_menu_Save_image)
-
-        file_menu.add_command(label='Save Postscript Image...', command=self._event('<<CaptureImage>>'))
+        file_menu.add_command(label='Save Image...', command=self._event('<<SaveImage>>'))
         self.add_cascade(label='File', underline=0, menu=file_menu)
 
         image_properties_menu = tk.Menu(self, tearoff=False, font=menu_font)
@@ -1701,6 +1694,80 @@ class DependencyDialog(tk.Toplevel):
             dep.dash = None
         return dep
 
+class SaveImageDialog(tk.Toplevel):
+    def __init__(self, dep=None):
+        super().__init__()
+        self.title(f'Save Image')
+        dfont = ('Calibri', 20)
+
+        # File Name
+        frameFileName = tk.LabelFrame(self, text='File name', font=dfont)
+        self.selLabel = tk.StringVar()
+        self.selLabel.set('1')
+        tk.Entry(frameFileName, textvariable=self.selLabel, font=dfont).grid(row=0, column=0, sticky='nw', padx=20, pady=20)
+        frameFileName.grid(row=0, column=0, sticky='ew')
+
+        buttonBROWSE = tk.Button(frameFileName, text='Browse', font=dfont, padx=10, pady=10, command=self.browse, bg='#EEEECC')
+        buttonBROWSE.grid(row=0, column=1, sticky='e')
+
+        # File type
+        frameDependencyType = tk.LabelFrame(self, text='Image Format', font=dfont)
+        format_options = ['tif', 'png', 'jpg']
+        self.selFormat = tk.StringVar()
+        self.selFormat.set('tif')
+        for i, option in enumerate(format_options):
+            tk.Radiobutton(frameDependencyType, padx=20, pady=20, justify='left', text=option, variable=self.selFormat, value=option, font=dfont).grid(row=0, column=i, sticky='w')
+        frameDependencyType.grid(row=0, column=1, sticky='nswe')
+
+        # Options frame, holding Page and Color Inversion
+        frameOptions = tk.LabelFrame(self, text='Options', font=dfont, padx=20, pady=20)
+
+        # Color Inversion
+        frameColorInverted = tk.LabelFrame(frameOptions, text='Invert Color', font=dfont)
+        self.selColorInversion = tk.BooleanVar()
+        self.selColorInversion.set(False)
+        tk.Checkbutton(frameColorInverted, padx=10, pady=10, variable=self.selColorInversion, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameColorInverted.grid(row=0, column=0, sticky='ns')
+
+        # Page
+        frameWholePage = tk.LabelFrame(frameOptions, text='Whole Page ', font=dfont)
+        self.selPage = tk.BooleanVar()
+        self.selPage.set(False)
+        tk.Checkbutton(frameWholePage, padx=10, pady=10, variable=self.selPage, font=dfont).grid(row=0, column=0, sticky='nw')
+        frameWholePage.grid(row=0, column=1, sticky='ns')
+
+        frameOptions.grid(row=1, column=1, sticky='NS')
+
+        # -----------------------------------------------------------------------
+
+        # frame: position
+        framePosition = tk.LabelFrame(self, text='Margins', font=dfont, padx=20, pady=20)
+        self.selMargins_x = tk.IntVar()
+        self.selMargins_y = tk.IntVar()
+        self.selMargins_x.set(0)
+        self.selMargins_y.set(0)
+        frameSpx = tk.LabelFrame(framePosition, text='X-margins', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpx, textvariable=self.selMargins_x, font=dfont).grid(row=0, column=0, padx=10, pady=10)
+        frameSpx.grid(row=0, column=0)
+        frameSpy = tk.LabelFrame(framePosition, text='y-margins', font=dfont, padx=20, pady=20)
+        tk.Entry(frameSpy, textvariable=self.selMargins_y, font=dfont).grid(row=0, column=0, padx=10, pady=10 )
+        frameSpy.grid(row=0, column=1)
+        framePosition.grid(row=1, column=0, sticky='WE')
+
+        buttonOK = tk.Button(self, text='Save', font=dfont, padx=10, pady=10, command=self.ok, bg='#CCAACC')
+        buttonOK.grid(row=2, column=3, ipadx=50)
+
+    def ok(self):
+        self.destroy()
+
+    def browse(self):
+        self.selLabel.set(filedialog.asksaveasfilename(initialfile=self.selLabel.get()) + '.tif')
+
+    def show(self):
+        self.wm_deiconify()
+        self.focus_force()
+        self.wait_window()
+        return self.selLabel.get(), self.selColorInversion.get(), self.selPage.get(), self.selMargins_x.get(), self.selMargins_y.get(), self.selFormat.get()
 
 class InspectWindow(tk.Toplevel):
     """Creates a new dependency or modifies an existing one (provided as an input argument)"""

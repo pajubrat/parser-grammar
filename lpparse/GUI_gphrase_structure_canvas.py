@@ -122,7 +122,7 @@ class PhraseStructureCanvas(tk.Canvas):
             self.coords(self.cursor, 0, 0, 0, 0)
 
     def create_cursor(self):
-        self.cursor = self.create_rectangle(0, 0, 0, 0, outline='#DDDDDD')
+        self.cursor = self.create_rectangle(0, 0, 0, 0, outline='#DDDDDD', tag='cursor')
 
     def update_status_bar(self, spx):
         if self.parent.index_of_analysis_shown and self.title:
