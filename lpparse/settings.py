@@ -9,6 +9,7 @@ class Settings:
         self.application = application
         self.data = application.local_file_system.root_settings
         self.data.update(self.default_settings())
+        self.memorized_values = {}
         self.folders = {}
         self.external_sources = {}
         self.load_and_initialize_settings()
@@ -17,6 +18,18 @@ class Settings:
         self.data.update(self.application.local_file_system.load_settings())
         self.process_settings()
         self.create_settings_for_file_system()
+        self.create_memorized_values()
+
+    def create_memorized_values(self):
+        self.memorized_values = \
+            {
+                'image_file_name': '1',
+                'image_file_format': 'tif',
+                'image_color_inverted': False,
+                'image_whole_page': False,
+                'image_x_margins': 0,
+                'image_y_margins': 0
+            }
 
     def default_settings(self):
         physical_page_width_cm = 20

@@ -1217,7 +1217,7 @@ class PhraseStructureGraphics(tk.Toplevel):
         ImageGrab.grab(bbox).save(filename, 'tiff')
 
     def save_image(self, *_):
-        name, inverted, page, x_margins, y_margins, image_format = SaveImageDialog().show()
+        name, inverted, page, x_margins, y_margins, image_format = SaveImageDialog(self).show()
         time.sleep(0.5)
         filename = name + '.' + image_format
         if image_format == 'tif':
@@ -1695,16 +1695,18 @@ class DependencyDialog(tk.Toplevel):
         return dep
 
 class SaveImageDialog(tk.Toplevel):
-    def __init__(self, dep=None):
+    def __init__(self, host_window, dep=None):
         super().__init__()
         self.title(f'Save Image')
+        self.host_window = host_window
         dfont = ('Calibri', 20)
 
         # File Name
         frameFileName = tk.LabelFrame(self, text='File name', font=dfont)
         self.selLabel = tk.StringVar()
-        self.selLabel.set('1')
-        tk.Entry(frameFileName, textvariable=self.selLabel, font=dfont).grid(row=0, column=0, sticky='nw', padx=20, pady=20)
+        # memorized_values keeps a record of previous field values
+        self.selLabel.set(self.host_window.application.settings.memorized_values.get('image_file_name', '1'))
+        tk.Entry(frameFileName, textvariable=self.selLabel, font=dfont, width=50).grid(row=0, column=0, sticky='we', padx=20, pady=20)
         frameFileName.grid(row=0, column=0, sticky='ew')
 
         buttonBROWSE = tk.Button(frameFileName, text='Browse', font=dfont, padx=10, pady=10, command=self.browse, bg='#EEEECC')
@@ -1714,7 +1716,8 @@ class SaveImageDialog(tk.Toplevel):
         frameDependencyType = tk.LabelFrame(self, text='Image Format', font=dfont)
         format_options = ['tif', 'png', 'jpg']
         self.selFormat = tk.StringVar()
-        self.selFormat.set('tif')
+        # memorized_values keeps a record of previous field values
+        self.selFormat.set(self.host_window.application.settings.memorized_values.get('image_file_format', 'tif'))
         for i, option in enumerate(format_options):
             tk.Radiobutton(frameDependencyType, padx=20, pady=20, justify='left', text=option, variable=self.selFormat, value=option, font=dfont).grid(row=0, column=i, sticky='w')
         frameDependencyType.grid(row=0, column=1, sticky='nswe')
@@ -1725,14 +1728,16 @@ class SaveImageDialog(tk.Toplevel):
         # Color Inversion
         frameColorInverted = tk.LabelFrame(frameOptions, text='Invert Color', font=dfont)
         self.selColorInversion = tk.BooleanVar()
-        self.selColorInversion.set(False)
+        # memorized_values keeps a record of previous field values
+        self.selColorInversion.set(self.host_window.application.settings.memorized_values.get('image_color_inverted', False))
         tk.Checkbutton(frameColorInverted, padx=10, pady=10, variable=self.selColorInversion, font=dfont).grid(row=0, column=0, sticky='nw')
         frameColorInverted.grid(row=0, column=0, sticky='ns')
 
         # Page
         frameWholePage = tk.LabelFrame(frameOptions, text='Whole Page ', font=dfont)
         self.selPage = tk.BooleanVar()
-        self.selPage.set(False)
+        # memorized_values keeps a record of previous field values
+        self.selPage.set(self.host_window.application.settings.memorized_values.get('image_whole_page', False))
         tk.Checkbutton(frameWholePage, padx=10, pady=10, variable=self.selPage, font=dfont).grid(row=0, column=0, sticky='nw')
         frameWholePage.grid(row=0, column=1, sticky='ns')
 
@@ -1744,8 +1749,9 @@ class SaveImageDialog(tk.Toplevel):
         framePosition = tk.LabelFrame(self, text='Margins', font=dfont, padx=20, pady=20)
         self.selMargins_x = tk.IntVar()
         self.selMargins_y = tk.IntVar()
-        self.selMargins_x.set(0)
-        self.selMargins_y.set(0)
+        # memorized_values keeps a record of previous field values
+        self.selMargins_x.set(self.host_window.application.settings.memorized_values.get('image_x_margins', 0))
+        self.selMargins_y.set(self.host_window.application.settings.memorized_values.get('image_y_margins', 0))
         frameSpx = tk.LabelFrame(framePosition, text='X-margins', font=dfont, padx=20, pady=20)
         tk.Entry(frameSpx, textvariable=self.selMargins_x, font=dfont).grid(row=0, column=0, padx=10, pady=10)
         frameSpx.grid(row=0, column=0)
@@ -1762,11 +1768,21 @@ class SaveImageDialog(tk.Toplevel):
 
     def browse(self):
         self.selLabel.set(filedialog.asksaveasfilename(initialfile=self.selLabel.get()) + '.tif')
+        self.focus()
 
     def show(self):
         self.wm_deiconify()
         self.focus_force()
         self.wait_window()
+
+        # Update memorized values so that they are available when the dialog is opened next time
+        self.host_window.application.settings.memorized_values['image_file_name'] = self.selLabel.get()
+        self.host_window.application.settings.memorized_values['image_file_format'] = self.selFormat.get()
+        self.host_window.application.settings.memorized_values['image_color_inverted'] = self.selColorInversion.get()
+        self.host_window.application.settings.memorized_values['image_whole_page'] = self.selPage.get()
+        self.host_window.application.settings.memorized_values['image_x_margins'] = self.selMargins_x.get()
+        self.host_window.application.settings.memorized_values['image_y_margins'] = self.selMargins_y.get()
+
         return self.selLabel.get(), self.selColorInversion.get(), self.selPage.get(), self.selMargins_x.get(), self.selMargins_y.get(), self.selFormat.get()
 
 class InspectWindow(tk.Toplevel):
